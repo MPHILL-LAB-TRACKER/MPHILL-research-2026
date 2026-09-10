@@ -15,7 +15,7 @@ MPHIL research tracker, includes methodology &amp; results.
 
 ## Where things are
 
-- **Current tasks and progress** — see the [project board](LINK-GOES-HERE)
+- **Current tasks and progress** — see the [project board](https://mphill-lab-tracker.github.io/MPHILL-research-2026/)
 - **Deadlines** — see [Milestones](LINK-GOES-HERE)
 - **Documents and data** — in the `/documents` and `/data` folders above
 
