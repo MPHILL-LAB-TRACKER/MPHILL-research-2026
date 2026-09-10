@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MPhil Research Tracker - 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: #161b22;
+      --border-color: #30363d;
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --accent-blue: #58a6ff;
+      --accent-green: #238636;
+      --accent-green-bright: #3fb950;
+      --accent-purple: #bc8cff;
+      --accent-amber: #d29922;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header-title h1 {
+      font-size: 1.8rem;
+      color: #f0f6fc;
+      font-weight: 700;
+    }
+
+    .header-title p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(56, 139, 253, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 139, 253, 0.4);
+    }
+
+    /* Grid layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      color: #f0f6fc;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Progress bar */
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .progress-bar-bg {
+      background: #21262d;
+      border-radius: 6px;
+      height: 12px;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #238636, #3fb950);
+      width: 45%; /* Adjust total project completion percentage here */
+      border-radius: 6px;
+      transition: width 0.4s ease;
+    }
+
+    /* Milestone List */
+    .milestone-list {
+      list-style: none;
+    }
+
+    .milestone-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .milestone-item:last-child { margin-bottom: 0; }
+
+    .status-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .done { background: rgba(63, 185, 80, 0.2); color: var(--accent-green-bright); border: 1px solid var(--accent-green-bright); }
+    .in-progress { background: rgba(210, 153, 34, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .pending { background: rgba(139, 148, 158, 0.2); color: var(--text-muted); border: 1px solid var(--text-muted); }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      font-weight: 600;
+    }
+
+    .tab-btn.active {
+      color: var(--accent-blue);
+      border-bottom-color: var(--accent-blue);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Log / Timeline entries */
+    .log-entry {
+      border-left: 2px solid var(--border-color);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .log-entry::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+    }
+
+    .log-date {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .log-title {
+      font-weight: 600;
+      color: #f0f6fc;
+      margin: 0.2rem 0;
+    }
+
+    .log-desc {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="header-title">
+        <h1>MPhil Research Progress Tracker</h1>
+        <p>Biomedical Sciences / Medical Microbiology Lab Workspace</p>
+      </div>
+      <div>
+        <span class="badge">Active Research Phase</span>
+      </div>
+    </header>
+
+    <!-- Project Overview & High-Level Progress -->
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <h2>Overall Project Completion</h2>
+      <div class="progress-header">
+        <span>Milestones Reached</span>
+        <span>45%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Milestones Column -->
+      <div class="card">
+        <h2>Key Objectives</h2>
+        <ul class="milestone-list">
+          <li class="milestone-item">
+            <span class="status-icon done">✓</span>
+            <div>
+              <strong>Literature Review & Proposal</strong>
+              <p style="font-size:0.8rem; color:var(--text-muted);">Completed research scope and method formulation.</p>
+            </div>
+          </li>
+          <li class="milestone-item">
+            <span class="status-icon in-progress">▶</span>
+            <div>
+              <strong>Sample Extraction & Isolation</strong>
+              <p style="font-size:0.8rem; color:var(--text-muted);">In progress: Extracting metabolites and endophytes.</p>
+            </div>
+          </li>
+          <li class="milestone-item">
+            <span class="status-icon in-progress">▶</span>
+            <div>
+              <strong>Electrochemical / Biosensor Characterization</strong>
+              <p style="font-size:0.8rem; color:var(--text-muted);">Functionalizing surfaces & measuring response curves.</p>
+            </div>
+          </li>
+          <li class="milestone-item">
+            <span class="status-icon pending">⧖</span>
+            <div>
+              <strong>Data Analysis & Thesis Drafting</strong>
+              <p style="font-size:0.8rem; color:var(--text-muted);">Pending lab work validation.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Quick Metrics Column -->
+      <div class="card">
+        <h2>Current Focus</h2>
+        <p style="font-size:0.9rem; margin-bottom: 1rem;">
+          Evaluating sample activity, binding affinity via electrochemical sensing, and data parsing routines.
+        </p>
+        <div style="background: #0d1117; padding: 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+          <div style="font-size: 0.8rem; color: var(--text-muted);">System / Tooling Status</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-purple); margin-top: 0.4rem;">
+            ● Data Analysis Pipelines: Ready<br>
+            ● Biosensor Runs: In Progress<br>
+            ● Autoclave & Sample Prep: Scheduled
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs Section for Detailed Logs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="openTab(event, 'logs')">Lab Log & Updates</button>
+      <button class="tab-btn" onclick="openTab(event, 'notes')">Methods & Notes</button>
+    </div>
+
+    <!-- Tab Content: Logs -->
+    <div id="logs" class="tab-content active">
+      <div class="log-entry">
+        <div class="log-date">2026-08-15</div>
+        <div class="log-title">Electrochemical Signal Optimization</div>
+        <div class="log-desc">Completed baseline cyclic voltammetry scans. Verified reproducibility across trial runs.</div>
+      </div>
+      <div class="log-entry">
+        <div class="log-date">2026-07-28</div>
+        <div class="log-title">Endophytic Isolation Protocols</div>
+        <div class="log-desc">Isolated targeted strains from plant extracts. Prepared stock cultures for secondary metabolite screening.</div>
+      </div>
+    </div>
+
+    <!-- Tab Content: Notes -->
+    <div id="notes" class="tab-content">
+      <div class="card">
+        <h2>Experimental Summary</h2>
+        <p style="font-size: 0.9rem;">
+          Keep notes on experimental parameters, buffer concentrations, or sensor functionalization details here for quick reference during analysis.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <p>MPhil Research Project Hub &bull; Hosted on GitHub Pages</p>
+    </footer>
+  </div>
+
+  <script>
+    function openTab(evt, tabName) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(c => c.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      document.getElementById(tabName).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>
