@@ -1,45 +1,37 @@
-# Validation report — 10 September 2026
+# V3 validation report
 
-## Results
+## Executed checks
 
-**46 / 46 backend and security regression tests passed.**
-
-Command:
+**66 backend and content/security tests passed**, using temporary SQLite databases and FastAPI TestClient:
 
 ```bash
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-The assertions exercise the real FastAPI routes with temporary SQLite databases, not mocked authorization. They cover anonymous denial, `/admin` role checks, researcher assignment boundaries, public publishing restrictions, public-field allowlists, private relationship filtering, CSRF/Origin checks, password changes, login throttling, session expiration/revocation, protected documents, photo approval, rejected upload types, request limits, audit events, explicit publication types and optimistic edit conflicts.
+This includes the existing 46 regression tests and 20 new checks for source-to-profile mapping, all 11 local portrait images, the exact supplied and host-published conference dates, name corrections, certificate bytes and evidence attribution, date validation, public/private boundaries, certificate approval and replacement uploads, denied asset-directory access, admin-only new collections, and a conservative V2→V3 update that preserves owner edits and is repeatable.
 
-**43 / 43 in-memory Chromium UI checks passed, with zero JavaScript runtime errors.**
-
-Command:
+**73 in-memory Chromium rendering and interaction checks passed:**
 
 ```bash
-python tests/render_check.py
+python tests/render_check.py --output test-results/render
 ```
 
-This renders the actual public and management templates in Chromium without navigating the browser to a network URL. Forms call the real application through a local FastAPI TestClient bridge. The bridge supplies a same-origin test Origin header and retains test cookies. Document redirects are captured as intended destinations. Therefore these checks validate UI rendering, form payloads, page state and application behavior, **not real browser cookie policy, live network navigation, TLS or a deployed origin**.
+The public snapshot was rendered directly in Chromium with remote network requests deliberately aborted. All 11 presentation portraits decoded successfully, the certificate preview rendered, and the participation-certificate PDF downloaded with bytes matching the supplied original. Desktop/mobile layouts, researcher aliases, individual activity pages, the three homepage presentation cards, the seminar card, official-only event links, date-discrepancy labels, and the expired-event archive transition were checked.
 
-UI checks include desktop/mobile overflow, mobile menus, corrected names, legacy profile routing, three Kadhila papers, researcher/publication search, sign-in, biography updates reflected in the public projection, project and milestone assignment, weighted progress, manuscript stages, private notes, account creation and the researcher-only workspace. The test accounts and sample project/manuscript/milestone/update records are temporary; they are not in the delivered public dataset.
+Administration forms were connected to the actual application routes through an in-memory TestClient transport. The checks exercised biography edits, alert changes, certificate approval revocation, safe blank defaults for new portrait/certificate records, projects, milestones, manuscript states, accounts, per-researcher progress, and private-data exclusion. Test accounts and temporary records are not included in the shipped seed.
 
-**Python and JavaScript syntax checks passed.** Python modules were compiled, and both public/admin scripts passed `node --check`. The compiled public page was rebuilt after the final script formatting changes.
+JavaScript syntax checks passed for both public and administrative scripts. No JavaScript runtime errors were recorded during the rendering checks. The supplied PDF was preserved byte-for-byte; the browser download also matched those bytes. All 12 original homepage capability records and all 8 publication records are unchanged.
 
-## Live-browser limitation
+## Scope limitations
 
-`tests/browser_check.py` starts a real loopback HTTP application and is supplied for staging validation. In this environment the managed Chromium policy blocks all URL navigation, producing `net::ERR_BLOCKED_BY_ADMINISTRATOR` on the first local-page visit. No policy was modified or bypassed. The live-navigation run did **not** pass and is not included in the successful check counts above. Run it in an unrestricted local/staging browser before deployment.
+The live-origin test was attempted:
 
-## Image limitation
+```bash
+python tests/browser_check.py --output test-results/browser
+```
 
-External image requests were intentionally aborted in the successful rendering checks. This tests the reference-photo and initials fallbacks; it does not establish remote source availability, image-file download success, licence permission or browser third-party privacy behavior. Two named portrait URLs are included, but no researcher photograph files were downloaded in this environment.
+This environment blocked browser navigation to the local test origin with **`net::ERR_BLOCKED_BY_ADMINISTRATOR`**. This is recorded as **not completed**, not as a passing end-to-end test. No browser policy was changed. In-memory UI checks do not verify browser-origin cookie behaviour, HTTPS, reverse proxies, production deployment, live GitHub Pages connectivity or a remote image server.
 
-## Environment tested
+The original source Instagram post could not be retrieved. Public conference content uses accessible official organiser/host pages plus clearly distinguished owner-provided notices. The remaining remote photograph references were not verified for live delivery or reuse permission in this release.
 
-Python 3.13; FastAPI 0.128.2; Starlette 0.50.0; Uvicorn 0.48.0; python-multipart 0.0.29; argon2-cffi 25.1.0; Pillow 12.3.0; HTTPX 0.28.1; Playwright 1.57.0; system Chromium. These are the direct package versions used here, not a claim that they will remain the latest or free of future advisories.
-
-Clean dependency installation, other operating systems/Python versions, a Docker build, live TLS/reverse-proxy configuration, institutional account policies, penetration testing, production backups/restores and the actual GitHub deployment remain untested. No production server was created or changed.
-
-## Delivered evidence
-
-`test-results/backend-tests.txt` contains the full unit-test output. `test-results/render-report.json` records the named UI checks and scope limitations. Screenshots in `screenshots` show the actual rendered interface. Where a screenshot contains a `UI test` label or account name, it is clearly temporary test data, not an assertion about laboratory activity.
+Test result files are under `docs/test-results/`. Screenshots are under `docs/screenshots/`. Run the live-origin suite and deployment checks on the actual staging server before production release. No repository commit, production account, server or deployment was created during this update.

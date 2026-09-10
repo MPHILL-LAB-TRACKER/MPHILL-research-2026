@@ -41,6 +41,7 @@ def main():
     init=sub.add_parser('init',help='Seed public content and create the first owner');init.add_argument('--username')
     server=sub.add_parser('serve',help='Serve locally (use a TLS reverse proxy in production)');server.add_argument('--host',default='127.0.0.1');server.add_argument('--port',type=int,default=8000)
     sub.add_parser('build-public',help='Rebuild root index.html from the public seed')
+    upgrade=sub.add_parser('upgrade-content',help='Preview/apply the V3 team, alert and certificate update while preserving owner edits');upgrade.add_argument('--apply',action='store_true')
     reset=sub.add_parser('reset-password',help='Local-server emergency password reset');reset.add_argument('username')
     backup=sub.add_parser('backup',help='Back up private database and uploads securely');backup.add_argument('destination',type=Path)
     sub.add_parser('configure-production',help='Write production settings interactively')
@@ -60,6 +61,14 @@ def main():
         except OSError: pass
         print('Saved .env. Configure HTTPS and persistent storage before exposing the server.');return
     db=store()
+    if args.command=='upgrade-content':
+        import json
+        from backend.content_update import upgrade_content
+        try: report=upgrade_content(db,apply=args.apply)
+        except ValueError as exc: raise SystemExit(str(exc))
+        print(json.dumps(report,indent=2))
+        if not args.apply: print('Preview only. Apply with: python manage.py upgrade-content --apply')
+        return
     if args.command=='init':
         db.seed()
         with db.connect() as c: existing=c.execute('SELECT COUNT(*) FROM users').fetchone()[0]

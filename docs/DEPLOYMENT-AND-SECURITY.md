@@ -53,7 +53,7 @@ Researchers can request a biography change through a private update with type **
 
 A separate explicit field schema controls the public projection. Database records are not returned wholesale. Internal notes, private submission IDs/deadlines, manuscript PDFs and funding amounts/currencies are excluded even when a record’s public status is enabled. Private relationship IDs are removed. Public project progress is an administrator-entered approved value; it is not computed from private tasks.
 
-Publication PDFs are downloadable publicly only when the specific publication record is public and its **Allow public download** flag is set. Local portraits require a public person record, the correct linked upload ID and **Approved** photo permission. Other files remain protected. Never treat an unguessable filename or a hidden navigation button as authorization.
+Publication and achievement-certificate PDFs are downloadable publicly only when the specific record is public and its explicit document-publication flag is set. An achievement linked to a private researcher is omitted from the public feed. Local portraits require a public person record, the correct linked upload ID and **Approved** photo permission. Other files remain protected. Never treat an unguessable filename or a hidden navigation button as authorization.
 
 ## Authentication and request protection
 
@@ -100,3 +100,10 @@ Here `owner` is an example username, not a pre-created account. Replace it with 
 ## Before real deployment
 
 Review dependency advisories and update through a tested environment; the delivered versions are the direct versions exercised here, not a promise of indefinite security. Configure HTTPS and service supervision, persistent storage, off-site encrypted backups, access ownership and photograph permissions. Run the HTTP tests and the live-origin browser test on the actual staging deployment. Verify HTTPS cookies, reverse proxy limits, public CORS reads from the GitHub Pages origin, private-file denial, restores and account recovery. No production server, TLS certificate, domain, remote image delivery or live GitHub deployment was tested or created for this delivery.
+
+
+## V3 bundled assets and existing installations
+
+The owner-supplied portrait and certificate files in `data/assets` are not mounted as public static directories by the backend. An allowlisted projection embeds only approved assets belonging to public records. Bundled certificates require the document-publication flag, and uploaded replacements take priority. Static snapshots include approved bytes and cannot be recalled.
+
+Use `python manage.py upgrade-content` to preview an existing V2 database update. Apply with `python manage.py upgrade-content --apply`; a private database backup is created first. Modified owner fields are preserved. Do not delete `var/`, replace `.env`, reinitialize production records, or expose database backups to the public repository. Re-export the connected public HTML after deployment to update its client-side design too.

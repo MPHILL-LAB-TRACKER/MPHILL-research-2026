@@ -287,7 +287,7 @@ def create_app(db_path=None,base_url=None,production=None):
         if not row: raise HTTPException(404,'File not found.')
         p=store.get(row['collection'],row['record_id']); accessible=False
         if p and p['visibility']=='public':
-            accessible=(row['mime'].startswith('image/') and p.get('photo_upload_id')==uid and p.get('photo_permission')=='approved') or (row['collection']=='publications' and p.get('document_id')==uid and p.get('document_public') is True)
+            accessible=(row['mime'].startswith('image/') and p.get('photo_upload_id')==uid and p.get('photo_permission')=='approved') or (row['collection'] in ('publications','achievements') and p.get('document_id')==uid and p.get('document_public') is True)
         if not accessible:
             u=user_for(request)
             if not p or not assigned(store,u,row['collection'],p): raise HTTPException(403,'You do not have access to this file.')
@@ -359,6 +359,15 @@ def create_app(db_path=None,base_url=None,production=None):
                     uid=link.rsplit('/',1)[-1]
                     with store.connect() as c: row=c.execute("SELECT * FROM uploads WHERE id=? AND mime LIKE 'image/%'",(uid,)).fetchone()
                     if row and (uploads/row['path']).is_file(): person['photo_url']='data:'+row['mime']+';base64,'+base64.b64encode((uploads/row['path']).read_bytes()).decode()
+            for achievement in data.get('achievements', []):
+                link=achievement.get('document_url','')
+                if link.startswith(base_url+'/media/'):
+                    uid=link.rsplit('/',1)[-1]
+                    with store.connect() as c:
+                        row=c.execute("SELECT * FROM uploads WHERE id=? AND mime='application/pdf' AND collection='achievements'",(uid,)).fetchone()
+                    if row and (uploads/row['path']).is_file():
+                        achievement['document_url']='data:application/pdf;base64,'+base64.b64encode((uploads/row['path']).read_bytes()).decode()
+                        achievement['certificate_filename']=row['original_name']
         html=compile_public({} if mode=='connected' else data,live=mode=='connected',api_base=base_url)
         return Response(html,media_type='text/html',headers={'Content-Disposition':f'attachment; filename="TED2-{mode}-index.html"','Cache-Control':'no-store'})
     return app

@@ -1,8 +1,8 @@
-# TED² Laboratory — Research website & private workspace
+# TED² Laboratory — Website & Research Workspace V3
 
 **A public laboratory website, an owner/admin content manager, and an individual research workspace.**
 
-This update continues the cream-and-forest-green design of the existing TED² website. It keeps individual publications and research activity on dedicated pages rather than moving them onto the homepage. The homepage retains all twelve descriptions from the supplied Tissue Engineering document.
+This update continues the cream-and-forest-green design of the existing TED² website. Detailed researcher work and publications stay on dedicated pages; the homepage adds concise activity alerts and a researcher-recognition teaser. The homepage retains all twelve descriptions from the supplied Tissue Engineering document.
 
 ## Start here
 
@@ -14,11 +14,45 @@ This update continues the cream-and-forest-green design of the existing TED² we
 
 **A GitHub Pages upload alone does not activate the admin system.** GitHub Pages hosts static files; the authenticated database-backed application needs a server. The connected public page lets the existing public address remain unchanged while edits and private research live on the separate server.
 
-## What changed in this version
+## What changed in V3
 
-The roster now uses **Ms Vevangapi Mbatara**, and the old misspelled profile route redirects within the page to her corrected profile. **Prof Nailoke Pauline Kadhila, PhD / Associate Professor** has been added with Google Scholar, ResearchGate, ORCID and the attributed LinkedIn announcement, plus three selected publisher-checked journal articles. There are now **10 researchers, 2 collaborators and 8 selected publication records**.
+The public website now has **11 locally bundled portraits extracted from the labelled photographs in `Team.pptx`**, with matching team roles, affiliations, postgraduate programmes and research topics. These images also work in the standalone HTML without a remote image server. The roster remains **10 researchers and 2 collaborators**, and all **8 existing publication records** and **12 homepage research descriptions** are preserved.
 
-The disliked grayscale cell photograph has been removed and replaced with a typographic research panel. The earlier pipetting, materials and fluorescence references remain; the TED² and UNAM logos remain embedded locally. Individual profile photos have been linked only where a named source was found: Kadhila and Shatri. These are **remote profile-image references, not downloaded image files**. All other profiles use initials until an approved portrait is supplied. Photograph reuse permission has not been established. The full evidence and image audit is in [docs/PHOTO-AND-CONTENT-AUDIT.md](docs/PHOTO-AND-CONTENT-AUDIT.md).
+Names follow the new presentation: **Dr Albertina Shatri, Ms Denise Bouman, Dr Maneria Halweendo, Ms Charity Maepa, Ms Nonku Phili and Ms Jaydine Jeris**. The corrected **Ms Vevangapi Mbatara** entry is retained. Existing internal record IDs are deliberately stable; both legacy and corrected-name profile links continue to work. Prof Nailoke Pauline Kadhila is not pictured in the supplied presentation, so her previous profile, selected bibliography and remote portrait reference are retained.
+
+A new **Alerts** section on the homepage lists the three requested conference presentations, with a separate **Coming soon — Nanomedicine in Health** seminar-series notice. Each conference notice also appears on its named researcher’s profile. Detailed activity pages link to official organiser websites, not Instagram. Dated notices leave the upcoming homepage list after their end date and remain in the Activity archive; this does not imply that a planned presentation actually took place.
+
+**Date discrepancy requiring confirmation:** the laboratory supplied **17–18 November 2026** for Dr Albertina Shatri’s and Ms Naungwe Simasiku’s NCRST presentations. NCRST’s available official call lists **17–18 September 2026** for the 2026 Biennial National Research Symposium. The website keeps the supplied November schedule and visibly flags this discrepancy rather than silently replacing either source. UNAM’s official SANORD page confirms **22–25 September 2026**. Named presentation participation is laboratory-reported, not independently confirmed from a speaker programme. The supplied Instagram post could not be retrieved; no caption or changed date was inferred from it.
+
+**Mr Paulus Hamutenya’s Falling Walls recognition** is on his profile, with a homepage teaser, certificate preview and downloadable original PDF. The note describes progression from 90 candidates to the top 16 without a top-three finish. The website distinguishes this owner-reported result from the certificate, which confirms participation on **25 August 2026**. The source PDF is preserved byte-for-byte and embedded in the standalone HTML.
+
+The two new owner/admin sections are **Homepage alerts & events** and **Achievements & certificates**. They support private/public visibility, named researcher links, date evidence, homepage display controls and explicit certificate publication approval. Researcher accounts do not acquire administrative publishing rights.
+
+The disliked grayscale cell photograph remains removed. The TED² and UNAM logos remain embedded; the existing background laboratory photographs remain remote references. See [the source and image audit](docs/PHOTO-AND-CONTENT-AUDIT.md) for attribution and limitations.
+
+## Updating an existing V2 installation
+
+For a static GitHub Pages site, replace only `index.html` with the V3 compiled file. Its team portraits and certificate require no separate asset upload. The static file does not enable the server-backed admin system.
+
+For an already-running management application, replace its source files with this package **without deleting or replacing `var/`, `.env`, the database, or uploaded files**. Stop the application, activate its existing virtual environment, and run:
+
+```bash
+python manage.py upgrade-content
+python manage.py upgrade-content --apply
+python manage.py serve
+```
+
+The first command previews changes without writing. The second makes a private pre-update SQLite backup, applies the supplied content, and preserves owner-edited fields that differ from the V2 baseline. It does not replace accounts, private projects, manuscript records or upload files. Review any `preserved_owner_fields` in the report. Repeating the update does not reapply unchanged content.
+
+A fresh installation needs only `python start.py`; it imports the V3 seed normally. After upgrading a hosted server, export a new **Connected public page** and replace the repository’s `index.html` so the public design also receives the new Alerts and certificate components.
+
+## Editing the new sections
+
+**Conference and seminar alerts:** open **Website content → Homepage alerts & events**. Edit the title, description, linked researchers, dates and official host URL. Keep unresolved NCRST dates marked **Date conflict**, with the public evidence note. Once the organiser confirms the dates, update the schedule, date-evidence status and note together. For an undated seminar, use **Date to be announced** and leave its date fields empty. Select **Show in homepage Alerts** and **Public** when ready.
+
+**Recognition and certificates:** open **Website content → Achievements & certificates**. Edit the achievement and evidence note, select the researcher, and control the homepage teaser. The supplied Falling Walls document is available under **Owner-supplied certificate**. To replace it, upload a PDF, save the record, and deliberately approve **Publish certificate PDF**. A replacement upload takes priority over the bundled PDF. Unchecking approval removes the document from future public API responses and exports; previously downloaded snapshots cannot be recalled.
+
+**Team photographs:** each updated profile has a **Portrait supplied in Team.pptx** selection. An approved uploaded portrait overrides that selection. Choosing the empty option removes the bundled fallback; revoking portrait approval stops public delivery of the bundled image. The supplied photographs were used at the owner’s request, not assigned an open reuse licence.
 
 ## Local setup
 
@@ -54,11 +88,11 @@ Running `init` again preserves existing content and accounts. Rebuilding the pub
 
 ## The administration area
 
-The sidebar provides structured forms for researchers/collaborators, publications, research projects, manuscripts, milestones, activity updates, collaborations, funders, homepage descriptions, site contact details and sources. Long text is entered as text, not executable HTML. Research interests and author lists use one item per line. Relationships use profile/project selectors, not manually typed IDs.
+The sidebar provides structured forms for homepage alerts, achievements/certificates, researchers/collaborators, publications, research projects, manuscripts, milestones, activity updates, collaborations, funders, homepage descriptions, site contact details and sources. Long text is entered as text, not executable HTML. Research interests and author lists use one item per line. Relationships use profile/project selectors, not manually typed IDs.
 
 **Edit a biography:** open **Researchers & collaborators**, choose the profile, change the biography or research interests and select **Save changes**. Keep the record Private while reviewing it; select Public when its public fields are approved.
 
-**Upload a portrait:** save the profile first, open **Uploaded portrait**, choose JPEG/PNG/WebP, then press **Upload portrait**. Add the photographer/source and set **Portrait permission → Approved** when permission has been confirmed. Press **Save changes** to attach the upload. An approved local portrait takes priority over the remote image URL. A successful upload alone does not save the rest of the form.
+**Upload a portrait:** save the profile first, open **Uploaded portrait**, choose JPEG/PNG/WebP, then press **Upload portrait**. Add the photographer/source and set **Portrait permission → Approved** when permission has been confirmed. Press **Save changes** to attach the upload. An approved uploaded portrait takes priority over the presentation image and remote image URL. A successful upload alone does not save the rest of the form.
 
 **Add a publication:** enter the actual title, year and author list; associate the relevant researchers; supply the DOI or source URL; choose the correct evidence type. University catalogue records and author-listed work remain distinguished from publisher-verified journal articles. Public PDF downloads require a separate deliberate flag and appropriate distribution rights.
 
@@ -86,7 +120,7 @@ Researchers use `/workspace`, not `/admin`. For a biography change they submit a
 
 ## Connecting the existing GitHub page
 
-The public repository’s source file was checked against the earlier delivered compiled file; it matched Git object `e629357a55226376268d61ad1a9900ac8c13b69e` at the time of inspection. This package was prepared for download; **no repository commit, deployment or server account was created**.
+The earlier V2 delivery recorded that the repository file matched Git object `e629357a55226376268d61ad1a9900ac8c13b69e` at its time of inspection. V3 does not claim a fresh repository comparison. This package was prepared for download; **no repository commit, deployment or server account was created**.
 
 Deploy the Python application to your chosen persistent HTTPS server. Run `python manage.py configure-production` there and enter its real origin. Complete HTTPS/proxy/service setup and initialize the owner. Sign in to `/admin` and open **Publish & export**. Download the **Connected public page**, rename it `index.html`, and upload it to the existing repository, replacing the current public page.
 
@@ -100,7 +134,7 @@ For full deployment and backup instructions, see [docs/DEPLOYMENT-AND-SECURITY.m
 
 The supplied root `index.html` is a read-only **snapshot** with CSS, JavaScript, logos and public seed data embedded. It can be opened directly or hosted on GitHub Pages. It has no fake localStorage login and no embedded administrator secret. Staff access explains how to run the complete application.
 
-The admin’s **Public snapshot** export includes only currently approved public fields. Approved local portraits are embedded; remote images and linked public PDFs remain dependent on their sources. A snapshot does not receive later changes and cannot be recalled after someone downloads it.
+The admin’s **Public snapshot** export includes only currently approved public fields. Approved local portraits and published achievement-certificate PDFs are embedded; remote photographs and other linked public PDFs remain dependent on their sources. A snapshot does not receive later changes and cannot be recalled after someone downloads it.
 
 The admin’s **Connected public page** export contains the UI and the actual server origin, but no record data. It reads approved content at page load and displays an explicit connection error if the backend cannot be reached.
 
@@ -142,9 +176,9 @@ For running content, use the admin forms and export controls instead of editing 
 python -m unittest discover -s tests -v
 ```
 
-**46 backend/security regression tests passed.** These cover role restrictions, private-data projection, direct endpoint access, CSRF and Origin checks, login throttling, session revocation, password changes, optimistic concurrency, uploads, photo approval and public export behavior.
+**66 backend/content/security regression tests passed.** The new source mappings, certificate access controls, alert-date validation and non-destructive content upgrade are checked alongside the existing permission and API regressions.
 
-**43 in-memory Chromium rendering/interface checks passed.** They exercise the actual forms against a local API transport, including biography edits, project/milestone/manuscript creation, per-researcher progress, account creation, mobile layouts and private update controls. They are not represented as a live-origin or production deployment test. Remote images were deliberately blocked during these checks, validating their fallbacks rather than their current delivery.
+**73 in-memory Chromium rendering/interface checks passed.** These include offline delivery of all 11 supplied portraits, the certificate preview and byte-identical PDF download, homepage events, researcher links, mobile layouts, admin editing and publication approval. Real browser network navigation was blocked by this environment and is not reported as a passing live-origin test. See [docs/TESTING.md](docs/TESTING.md).
 
 ```bash
 python -m pip install -r requirements-test.txt

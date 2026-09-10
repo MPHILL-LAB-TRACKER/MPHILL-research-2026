@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from datetime import date
 from urllib.parse import urlparse
+from .assets import PORTRAITS, CERTIFICATES
 
 
 def f(key, label, kind='text', *, required=False, options=None, relation=None, public=True, help=''):
@@ -23,7 +24,7 @@ SCHEMAS={
   f('bio','Biography','textarea'),f('topics','Research interests','lines'),f('work','Selected work','textarea'),f('note','Public evidence note','textarea'),
   f('scholar_url','Google Scholar','url'),f('researchgate_url','ResearchGate','url'),f('linkedin_url','LinkedIn profile / attributed post','url'),f('orcid_url','ORCID','url'),
   f('photo_url','Remote portrait URL','url',help='Use only a portrait attributed to this named researcher; not a group-photo guess.'),
-  f('photo_upload_id','Uploaded portrait','image'),f('photo_credit','Photographer / credit'),f('photo_source_url','Portrait source page','url'),
+  f('photo_upload_id','Uploaded portrait','image'),f('bundled_portrait','Portrait supplied in Team.pptx','select',options=list(PORTRAITS),public=False,help='The supplied presentation photograph. An approved uploaded portrait takes priority; choose an empty option to remove this fallback.'),f('photo_credit','Photographer / credit'),f('photo_source_url','Portrait source page','url'),
   f('photo_permission','Portrait permission','select',options=['not-recorded','unconfirmed','approved'],help='A public profile is not automatically a reuse licence. An approved local upload takes priority.'),
   f('source_urls','Biography evidence URLs','urls'),NOTE]),
  'publications':dict(label='Publications',title='title',fields=[
@@ -55,6 +56,21 @@ SCHEMAS={
   f('project_id','Project','relation',relation='projects'),f('date','Date','date',required=True),
   f('kind','Update type','select',options=['progress','experiment','conference','award','dataset','bio-change','other'],required=True),
   f('text','Update / proposed biography text','textarea',required=True),f('document_id','Supporting PDF','document',public=False),NOTE]),
+ 'announcements':dict(label='Homepage alerts & events',title='title',fields=[
+  f('title','Alert title',required=True),f('kind','Activity type','select',required=True,options=['conference','seminar','notice']),P,
+  f('description','Public description','textarea',required=True),f('host','Host / organiser'),f('location','Location'),
+  f('start_date','Laboratory-supplied start date','date'),f('end_date','Laboratory-supplied end date','date'),
+  f('date_status','Date evidence','select',required=True,options=['host-confirmed','lab-supplied','date-conflict','date-to-be-announced']),
+  f('official_start_date','Host-published start date','date'),f('official_end_date','Host-published end date','date'),
+  f('official_url','Official conference / host page','url'),f('evidence_note','Public date / participation evidence note','textarea'),
+  f('homepage','Show in homepage Alerts','checkbox'),NOTE]),
+ 'achievements':dict(label='Achievements & certificates',title='title',fields=[
+  f('title','Achievement title',required=True),f('researcher_id','Researcher','relation',relation='people',required=True),
+  f('date','Activity date','date',required=True),f('summary','Achievement description','textarea',required=True),
+  f('evidence_note','What the evidence supports','textarea'),f('homepage','Show recognition on the homepage','checkbox'),
+  f('certificate_key','Owner-supplied certificate','select',options=list(CERTIFICATES),public=False),
+  f('document_id','Replacement certificate PDF','document',public=False),
+  f('document_public','Publish certificate PDF','checkbox',help='Explicitly approve distribution of this certificate. A replacement upload overrides the bundled certificate.'),NOTE]),
  'funders':dict(label='Funders',title='name',fields=[
   f('name','Funder name',required=True),f('website','Website','url'),f('summary','Public acknowledgement','textarea'),
   f('award_reference','Public award reference'),SOURCE,f('amount','Internal awarded amount','money',public=False),f('currency','Internal currency',public=False),
@@ -117,4 +133,15 @@ def validate(collection, payload):
         out[key]=v
     for start,end in [('start_date','due_date'),('start_date','end_date')]:
         if out.get(start) and out.get(end) and out[start]>out[end]: raise ValueError('The end date must not precede the start date.')
+    if collection == 'announcements':
+        for first, last in [('start_date', 'end_date'), ('official_start_date', 'official_end_date')]:
+            if out[last] and (not out[first] or out[last] < out[first]):
+                raise ValueError('The end date must be on or after the corresponding start date.')
+        if out['date_status'] == 'date-to-be-announced':
+            if out['start_date'] or out['end_date']:
+                raise ValueError('A date-to-be-announced activity must not contain a scheduled date.')
+        elif not out['start_date']:
+            raise ValueError('A dated activity needs a start date.')
+        if out['date_status'] == 'date-conflict' and not out['evidence_note']:
+            raise ValueError('Explain the date discrepancy in the public evidence note.')
     return out

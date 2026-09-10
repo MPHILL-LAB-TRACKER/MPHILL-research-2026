@@ -1,0 +1,123 @@
+[
+  {
+    "key": "albertina-shatri",
+    "name": "Dr Albertina Shatri",
+    "slide": 2,
+    "shape_index": 3,
+    "source": "Team.pptx",
+    "width": 200,
+    "height": 200,
+    "sha256": "da669890acac8317dd4115ccbd830749fc208d4b7a568901c826dce56c1c6254",
+    "file": "portraits/albertina-shatri.jpg"
+  },
+  {
+    "key": "davis-mumbengegwi",
+    "name": "Prof Davis Mumbengegwi",
+    "slide": 2,
+    "shape_index": 9,
+    "source": "Team.pptx",
+    "width": 640,
+    "height": 662,
+    "sha256": "27b85518176fed31d938ed78bf482051bed99260d09ff08ea549c0442c119c4a",
+    "file": "portraits/davis-mumbengegwi.jpg"
+  },
+  {
+    "key": "silas-bere",
+    "name": "Dr Silas Bere",
+    "slide": 2,
+    "shape_index": 10,
+    "source": "Team.pptx",
+    "width": 640,
+    "height": 611,
+    "sha256": "2f0e0d0eb31443a05591ed3b187d14db48204c35e2d8d841c6db147ca67b6103",
+    "file": "portraits/silas-bere.jpg"
+  },
+  {
+    "key": "charity-maepa",
+    "name": "Ms Charity Maepa",
+    "slide": 2,
+    "shape_index": 7,
+    "source": "Team.pptx",
+    "width": 512,
+    "height": 512,
+    "sha256": "a1bb0c6e209dab09cab77c37c9b15fedf58a648d259baa98a1fd59f11fa89908",
+    "file": "portraits/charity-maepa.jpg"
+  },
+  {
+    "key": "maneria-halweendo",
+    "name": "Dr Maneria Halweendo",
+    "slide": 3,
+    "shape_index": 7,
+    "source": "Team.pptx",
+    "width": 539,
+    "height": 720,
+    "sha256": "a460d4f24d7d55a7afeec34e8cf8b3127b16064fd9a8e079e965f19d4f09418c",
+    "file": "portraits/maneria-halweendo.jpg"
+  },
+  {
+    "key": "denise-bouman",
+    "name": "Ms Denise Bouman",
+    "slide": 3,
+    "shape_index": 8,
+    "source": "Team.pptx",
+    "width": 540,
+    "height": 720,
+    "sha256": "9ffd2e0ace92438c2c618de86702279bb12c72a470fecfb7e8c46a9a0a6f28a4",
+    "file": "portraits/denise-bouman.jpg"
+  },
+  {
+    "key": "nonku-phili",
+    "name": "Ms Nonku Phili",
+    "slide": 3,
+    "shape_index": 5,
+    "source": "Team.pptx",
+    "width": 640,
+    "height": 592,
+    "sha256": "2e2ab6bf1e88c033055cc9e4b6f1744c2709bacfc3f12c08f866c04861443c22",
+    "file": "portraits/nonku-phili.jpg"
+  },
+  {
+    "key": "naungwe-simasiku",
+    "name": "Ms Naungwe Simasiku",
+    "slide": 4,
+    "shape_index": 2,
+    "source": "Team.pptx",
+    "width": 640,
+    "height": 685,
+    "sha256": "b06870a8f7cc3a6b8351d60449d218ec08096423a29f531d3128eea7b2204b26",
+    "file": "portraits/naungwe-simasiku.jpg"
+  },
+  {
+    "key": "vevangapi-mbatara",
+    "name": "Ms Vevangapi Mbatara",
+    "slide": 4,
+    "shape_index": 4,
+    "source": "Team.pptx",
+    "width": 639,
+    "height": 720,
+    "sha256": "addb4cec4038bcf914e387e86dfefc4d147b1fe04fc14d24ba9a87a2929cc623",
+    "file": "portraits/vevangapi-mbatara.jpg"
+  },
+  {
+    "key": "paulus-hamutenya",
+    "name": "Mr Paulus Hamutenya",
+    "slide": 4,
+    "shape_index": 7,
+    "source": "Team.pptx",
+    "width": 640,
+    "height": 560,
+    "sha256": "55208438096e9e9a3a9ef1ef7c54342a828a7ad2e8c8c3888a7d93d378ec868c",
+    "file": "portraits/paulus-hamutenya.jpg"
+  },
+  {
+    "key": "jaydine-jeris",
+    "name": "Ms Jaydine Jeris",
+    "slide": 4,
+    "shape_index": 12,
+    "source": "Team.pptx",
+    "width": 557,
+    "height": 720,
+    "sha256": "733490f4aae67f69ff4a9cea0ae8806de551928933546aa51d126558582106e0",
+    "file": "portraits/jaydine-jeris.jpg"
+  }
+]

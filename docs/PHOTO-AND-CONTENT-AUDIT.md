@@ -1,58 +1,60 @@
-# Researcher photographs and content audit
+# V3 content and image audit
 
-Reviewed 10 September 2026. The public site contains ten researchers and two collaborators. Membership comes from the owner’s roster and explicit addition, not inferred from authorship alone.
+Review date: 10 September 2026. This release is grounded in the owner’s `Team.pptx`, `Falling walls.pdf`, the activity instructions, and the official conference pages below. Historical bibliography evidence is retained from V2; it has not been represented as a fresh comprehensive literature search.
 
-## Photographs: what was and was not obtained
+## Team presentation
 
-**Two named portrait image URLs were extracted from public ResearchGate author profiles. The actual image files could not be downloaded in this environment.** They are included as remote references, with initials displayed when a source rejects a request or is unavailable. No researcher’s face was generated, identified from an uncaptioned group photograph, or substituted with an unrelated person.
-
-| Profile | Image status | Attribution |
+| Source | Supported content | Use in this release |
 |---|---|---|
-| Prof Nailoke Pauline Kadhila | Named ResearchGate portrait URL; remotely linked, not locally bundled | https://www.researchgate.net/profile/Nailoke-Kadhila |
-| Dr Shatri Albertina / Albertina Shatri | Named ResearchGate portrait URL; remotely linked, not locally bundled | https://www.researchgate.net/profile/Albertina-Shatri |
-| Ms Denis Bouman | Initials; no confidently attributable portrait confirmed | The published name Denise Bouman was encountered, but not silently merged with this roster name. |
-| Dr Silas Bere | Initials; no usable named portrait confirmed | A bibliographic record is not a portrait attribution. |
-| Dr Manelia Halweendo | Initials; unresolved name/title discrepancy | A laboratory report names “Ms Melania Halweendo”; the roster says “Dr Manelia Halweendo”. These are not treated as a confirmed identity match. |
-| Prof Davis Mumbengegwi | Initials | The image on the reviewed ResearchGate page was the platform’s generic default silhouette, not a researcher photograph. |
-| Mr Paulus Hamutenya | Initials | No sufficiently attributable public portrait confirmed. |
-| Ms Naungwe Simasiku | Initials | No sufficiently attributable public portrait confirmed. |
-| Ms Jaydine Feris | Initials | No sufficiently attributable public portrait confirmed. |
-| Ms Vevangapi Mbatara | Initials; name corrected exactly as supplied by the owner | No sufficiently attributable public portrait confirmed. |
-| Ms Charity Mepa | Initials | No sufficiently attributable public portrait confirmed. |
-| Ms Nonku Phiri | Initials | Unrelated entertainment profiles were not used as researcher evidence. |
+| `Team.pptx`, slide 2 | CRP–ICGEB research grant collaborators: Dr Albertina Shatri (Project Principal Investigator, School of Medicine, UNAM), Prof Davis Mumbengegwi (Centre for Research Services, UNAM), Dr Silas Bere (School of Dentistry, UNAM), Ms Charity Maepa (Department of Physics, University of Pretoria) | Four portraits, names, affiliations, brief biographies and the documented collaboration |
+| `Team.pptx`, slide 3 | CRP–ICGEB technical support: Dr Maneria Halweendo (School of Dentistry, UNAM), Ms Denise Bouman (School of Medicine, UNAM), Ms Nonku Phili (Department of Physics, University of Pretoria) | Three portraits and the exact support roles and affiliations |
+| `Team.pptx`, slide 4 | Postgraduate students under capacity building, their MSc programmes, four research titles, and labelled portraits | Four portraits and source-based researcher descriptions; no completed qualification, study result or publication is inferred |
 
-Public LinkedIn material was searched. A Federated Management Institute conference announcement explicitly names Prof Nailoke Pauline Kadhila:
+Portraits were extracted from the PowerPoint’s embedded image objects and paired with their adjacent text labels by slide layout. No identity was inferred from a face. Existing PowerPoint crop settings were respected; originals were not stylistically redrawn. JPEG copies remove incidental metadata and are sized for the website without artificial upscaling. Dr Shatri’s source portrait is only 200 × 200 pixels; its original detail cannot be increased by enlarging it.
 
-https://www.linkedin.com/posts/federated-management-institute_africa-biotechnology-engineering-activity-7026856735600455680-Cpj-
+The file-level mapping, source slide, shape index, pixel dimensions and checksums are recorded in `docs/evidence/team-portrait-manifest.json`. The 11 local images are in `data/assets/portraits/`. They are outside the server’s static web root and included in public responses only through the approved record projection. The compiled HTML embeds them.
 
-That announcement is retained as corroborating public context. Its 2023 roles are not presented as current appointments. A conference banner or company background image is not silently substituted for a reusable headshot. No private LinkedIn account data was accessed, and no login restriction was bypassed.
+The presentation spells the names **Denise Bouman, Maneria Halweendo, Charity Maepa, Nonku Phili and Jaydine Jeris**. These supersede the earlier roster’s spelling on display. Old database identifiers are retained to avoid breaking existing assignments; corrected-name aliases resolve to the same profiles. The earlier workshop report’s differently named “Ms Melania Halweendo” is still not silently equated with Dr Maneria Halweendo.
 
-The linked portraits have **unconfirmed reuse permission**. A public profile is not a licence to republish its photograph. The administrator should obtain the researcher’s approved photograph and use the upload field. The upload is decoded, resized and re-encoded to JPEG with metadata removed. Set portrait permission to **Approved** and save to publish the local copy. A local approved upload takes priority over a remote URL. The backend does not fetch arbitrary remote image URLs.
+The postgraduate research-title mapping is:
 
-## Kadhila’s added profile and selected papers
+- **Ms Naungwe Simasiku — MSc in Medical Microbiology:** bacteria causing acute dental abscesses in adults at Katutura dental facilities, antibiotic susceptibility and novel plant-based nanoparticles.
+- **Ms Vevangapi Mbatara — MSc in Biomedical Sciences:** in vitro apoptosis-inducing potential of silver nanoparticles synthesised from actinomycetes metabolites in cervical cancer cells.
+- **Mr Paulus Hamutenya — MSc in Biomedical Sciences:** detection and screening of endophyte-derived secondary metabolites using aptamer-functionalised gold nanoparticle biosensors.
+- **Ms Jaydine Jeris — MSc in Biomedical Sciences:** antibiotic-resistance patterns, molecular detection of resistance genes, and nanoparticle-based antimicrobial activity against oral and gastrointestinal bacterial pathogens.
 
-Google Scholar profile: https://scholar.google.com/citations?hl=en&user=XnUxBZEAAAAJ
+Exact titles are retained in the individual profile’s Selected work section, with line-wrap artifacts removed. No project stage, completion percentage, grant amount, specific technical duty or new article has been invented. The slide deck calls these MSc programmes; this release does not silently substitute “MPhil.”
 
-ResearchGate profile: https://www.researchgate.net/profile/Nailoke-Kadhila
+Prof Nailoke Pauline Kadhila is not included in this slide deck. Her previous profile and three selected journal records are preserved. Her portrait remains a remote ResearchGate reference with unconfirmed reuse permission and an initials fallback. All other named portraits now come from the presentation supplied for this update.
 
-ORCID: https://orcid.org/0000-0002-9302-9835
+## Conference and seminar notices
 
-Google Scholar’s indexed profile was found, but full automated access was rate-limited. The website therefore does **not** claim to reproduce her complete bibliography, citation count or current h-index. Three selected articles were checked against publisher records:
+**NCRST official host page:** https://www.ncrst.na/calls/
 
-1. Hamwenye, K.K.N.; Ueitele, I.S.E.; Kadhila, N.P.; Embashu, W.; Nantanga, K.K.M. (2022). *Towards medicinal tea from untapped Namibian Ganoderma: Phenolics and in vitro antioxidant activity of wild and cultivated mushrooms.* South African Journal of Science, 118(3/4), article 9357. https://doi.org/10.17159/sajs.2022/9357
-2. Kadhila, N.P.; Sekhoacha, M.; Tselanyane, M.; Chinsembu, K.C.; Molefe-Khamanga, D.M. (2020). *Determination of the antiplasmodial activity, cytotoxicity and active compound of Pechuel-loeschea leubnitziae O. Hoffm. (Asteraceae) of Namibia.* SN Applied Sciences, 2, 1328. https://doi.org/10.1007/s42452-020-2926-6
-3. Ueitele, I.S.E.; Horn, L.N.; Kadhila, N.P. (2021). *Ganoderma research activities and development in Namibia: A review.* Asian Journal of Mycology, 4(1), 29–39. https://doi.org/10.5943/ajom/4/1/4
+**Official call linked from that page:** https://www.ncrst.na/wp-content/uploads/2026/07/Call-for-Abstracts-2-1.png
 
-These are **selected works by a listed researcher**, not a claim that each originated in TED². In vitro antioxidant or antiplasmodial findings are not described as proof of clinical benefit.
+The available organiser poster describes the **2026 Biennial National Research Symposium** and lists **17–18 September 2026**. It describes sharing Namibian research findings, strengthening national research capacity and knowledge exchange; Health and Biomedical Sciences is a listed thematic area. The owner supplied **17–18 November 2026** for both Dr Albertina Shatri and Ms Naungwe Simasiku. November is retained as the laboratory-supplied schedule, with explicit **Date confirmation pending** labels and the September discrepancy. The poster is not treated as proof of individual presentation acceptance.
 
-The earlier five publication records remain, including the weaker author-listed and catalogued university records, with their evidence distinctions preserved.
+The supplied Instagram post could not be fetched. No Instagram caption, newer rescheduling announcement, venue, registration deadline, talk title or speaker session was inferred. Public calls to action link to NCRST’s own calls page. An internal note preserves the supplied reference for the administrator; it is excluded from public JSON and HTML.
 
-## Original content retained or changed
+**SANORD official host page:** https://www.unam.edu.na/sanord
 
-All twelve supplied Tissue Engineering document research descriptions remain on the homepage. The main cream/forest-green design and the original extracted TED² / UNAM logos remain. The original pipetting, materials and fluorescence images remain remote reference photographs, not asserted to be laboratory experimental results. Their original reuse uncertainty remains.
+The UNAM page confirms **22–25 September 2026**, **Windhoek**, University of Namibia hosting, and **Re-Imagining Knowledge for Shared Development** as the theme. Dr Shatri’s planned participation is separately attributed to the laboratory’s instruction. An individual talk title and session time were not supplied.
 
-The disliked grayscale cell image (Unsplash identifier `photo-1631556096543-23fdcb5896da`) is no longer loaded or included in the public dataset. Its former source-section link still resolves to a brief removal note. It was replaced by a typographic research panel, not an invented micrograph.
+**Nanomedicine in Health** is included as an owner-announced forthcoming seminar series bringing together African scientists in nanomedicine. No dates, speaker list, meeting platform or registration mechanism was invented.
 
-The old profile route `#/profiles/mbotarai-vevangapi` resolves to `Ms Vevangapi Mbatara`. Her new stable ID is `vevangapi-mbatara`.
+## Falling Walls certificate and selection result
 
-The three prior collaboration reports were retained as **collaboration records**. A historical May 2025 workshop or an undated institutional relationship was not converted into an allegedly active 2026 project. No current project, progress percentage, manuscript stage, funder award, grant amount or researcher achievement was invented. Owners can now enter these through the management forms.
+The owner-supplied `Falling walls.pdf` is a **certificate of participation**, naming **Paulus Hamutenya** and **Falling Walls Lab Windhoek, Namibia**, dated **25 August 2026**. The original PDF is bundled without modification; a separately rendered JPEG provides the website preview.
+
+The **90-candidate pool, progression to the top 16 and absence of a top-three placing** come from the owner’s accompanying statement. The certificate itself does not record those rankings. The achievement note makes this distinction, without calling Mr Hamutenya a top-three winner or implying a certified rank of sixteenth.
+
+Certificate PDF: `data/assets/certificates/falling-walls-paulus-hamutenya-2026.pdf`.
+
+Preview: `data/assets/certificates/falling-walls-paulus-hamutenya-2026.jpg`.
+
+## Rights and publication controls
+
+The supplied assets are used at the owner’s explicit request for this website. That does not create an open licence or transfer photographer or institutional rights. The original TED² and UNAM marks remain subject to their owners’ brand permissions. Remaining reference-site laboratory images and Kadhila’s remote portrait retain V2’s network and reuse-permission limitations.
+
+Certificate publication requires both public record visibility and explicit document approval. Uploaded private research-update or manuscript attachments are not made public by this change. A publicly distributed static HTML snapshot, including its approved certificate and portraits, cannot later be recalled.

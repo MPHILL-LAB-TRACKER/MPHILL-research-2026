@@ -226,3 +226,64 @@ progress{display:block;width:100%;height:10px;accent-color:var(--forest);margin:
 @media(max-width:1020px){.menu-toggle{display:block}.header-inner{position:relative}.primary-nav{display:none;position:absolute;top:100%;left:0;right:0;padding:20px;background:var(--paper);border:1px solid var(--line);flex-direction:column;align-items:stretch}.primary-nav.open{display:flex}.stage-board{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.container{width:calc(100% - 36px)}.hero-grid{gap:30px;padding-block:35px}.hero-photo{height:340px}.record-grid,.feature-grid,.contact-grid,.people-home-grid{grid-template-columns:1fr}.profile-top{align-items:start;gap:18px}.avatar.large{width:90px;height:114px;font-size:2rem}.profile-top h1{font-size:2.1rem}.feature-typeset{min-height:350px;padding:30px}.record-card{padding:23px}.hero h1{font-size:3.1rem}.section{padding-block:55px}.institution-location{display:none}.page-heading{padding-bottom:35px}.person-grid{grid-template-columns:1fr}.stage-board{grid-template-columns:1fr}.directory-layout{display:block}.side-nav{position:static;margin-bottom:28px}.side-nav nav{grid-template-columns:1fr 1fr}.directory-layout .side-note{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* V3: source-backed team portraits, homepage alerts, and certificate recognition. */
+.alerts-section{background:#f0f3eb;border-bottom:1px solid var(--line)}
+.alert-eyebrow{display:flex;align-items:center;gap:9px}
+.alert-eyebrow span{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.alerts-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(275px,1fr);gap:35px;align-items:start}
+.event-list{display:grid;gap:17px}
+.event-card{display:flex;gap:22px;padding:24px;background:var(--paper);border:1px solid var(--line);min-width:0}
+.event-date{flex:0 0 80px;align-self:start;min-height:95px;background:var(--forest);color:#fff;text-align:center;padding:10px 4px;display:flex;flex-direction:column;justify-content:center}
+.event-date>span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.event-date strong{font:1.75rem/1.25 var(--serif);white-space:nowrap}
+.event-date small{font-size:.7rem;opacity:.8}
+.event-date.undated strong{font-size:1.6rem}
+.event-copy{min-width:0;flex:1}
+.event-copy>.eyebrow{font-size:.61rem;margin-bottom:8px}
+.event-copy h3{font-size:1.5rem;line-height:1.2;text-wrap:initial;letter-spacing:-.02em}
+.event-copy h3 a{text-decoration:none}
+.event-copy h3 a:hover{text-decoration:underline}
+.event-copy>p:not(.eyebrow){font-size:.86rem;margin-top:14px}
+.event-copy .event-range{font-size:.8rem;margin:8px 0 9px;color:var(--forest);font-weight:600}
+.event-badge{display:inline-block;background:var(--sage);padding:3px 8px;font-size:.61rem;line-height:1.6;color:var(--deep);font-weight:600}
+.event-badge.date-warning{background:#f6edd6;color:#79591d}
+.event-links{display:flex;flex-wrap:wrap;gap:8px 19px;margin-top:15px;font-size:.74rem;font-weight:600}
+.event-evidence{margin-top:18px;font-size:.78rem;color:var(--muted)}
+.event-evidence summary{cursor:pointer;color:var(--forest)}
+.event-evidence p{margin-top:8px}
+.date-discrepancy{padding:17px 19px;border-left:3px solid var(--gold);background:#fcf7e9;color:#68502a;font-size:.78rem;line-height:1.7}
+.date-discrepancy a{color:inherit}
+.seminar-stack{display:grid;gap:20px;min-width:0}
+.seminar-notice{padding:33px;background:var(--deep);color:#f6f5ed;position:relative;overflow:hidden}
+.seminar-notice .eyebrow{color:#d5dfcb;font-size:.65rem;margin-bottom:26px}
+.seminar-index{font-size:.61rem;letter-spacing:.2em;display:block;padding-top:20px;border-top:1px solid #6b8477;margin-bottom:36px;color:#d5dfcb}
+.seminar-notice h3{font-size:2.6rem;line-height:1.07;margin-bottom:25px;max-width:350px}
+.seminar-notice>p{font-size:.95rem;line-height:1.8}
+.seminar-notice .seminar-note{font-size:.74rem;opacity:.78;margin-top:25px}
+.seminar-notice .button.secondary{color:#fff;border-color:#91aa9d;font-size:.76rem}
+.seminar-notice .button.secondary:hover{background:var(--forest)}
+.activity-host{margin:24px 0;font-size:.86rem}
+.activity-detail>.date-discrepancy{margin-block:25px}
+.content-section>.event-list{margin-top:22px}
+.recognition-section{background:var(--paper)}
+.recognition-teaser{display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:42px;align-items:center;padding:34px 38px;border:1px solid var(--line);border-top:3px solid var(--gold);background:var(--cream);margin-block:20px}
+.recognition-teaser h3{font-size:2.15rem;line-height:1.15;max-width:700px}
+.recognition-teaser p:not(.eyebrow){font-size:.91rem;margin-block:20px;max-width:780px}
+.recognition-teaser .eyebrow{margin-bottom:16px}
+.certificate-thumb{display:block;box-shadow:0 6px 24px #15392d18;transform:rotate(2deg);border:7px solid white;background:white}
+.certificate-thumb img{width:100%;height:auto}
+.achievement-card{padding:30px;border:1px solid var(--line);background:var(--cream);margin-top:25px}
+.achievement-card>h3{font-size:2.1rem;line-height:1.15;margin-bottom:18px}
+.achievement-card>p{font-size:.91rem;line-height:1.8}
+.certificate-layout{display:grid;grid-template-columns:minmax(200px,1fr) minmax(200px,.9fr);gap:28px;align-items:start;margin-top:30px}
+.certificate-preview{padding:12px;background:#fff;border:1px solid var(--line)}
+.certificate-preview img{width:100%;height:auto}
+.certificate-preview figcaption{font-size:.69rem;line-height:1.6;margin-top:12px;color:var(--muted)}
+.certificate-info h4{font-size:1rem;margin-bottom:13px}
+.certificate-info p{font-size:.81rem;color:var(--muted)}
+.certificate-info .button{font-size:.74rem;white-space:normal;max-width:100%}
+.profile-image{object-position:center 27%}
+@media(max-width:1100px){.alerts-grid{gap:24px;grid-template-columns:minmax(0,1.45fr) minmax(250px,1fr)}.event-card{padding:19px;gap:15px}.event-date{flex-basis:70px}.seminar-notice{padding:25px}.event-copy h3{font-size:1.4rem}}
+@media(max-width:850px){.alerts-grid{grid-template-columns:1fr}.seminar-notice{padding:30px}.seminar-index{margin-bottom:20px}.seminar-notice h3{font-size:2.5rem;max-width:none}.certificate-layout{grid-template-columns:1fr}.certificate-preview{max-width:470px}.recognition-teaser{grid-template-columns:minmax(0,1fr) 125px;gap:25px;padding:25px}}
+@media(max-width:550px){.event-card{gap:14px;padding:18px 15px}.event-date{flex-basis:61px;min-height:84px}.event-date strong{font-size:1.4rem}.event-copy h3{font-size:1.22rem}.event-links{font-size:.7rem;gap:8px 15px}.recognition-teaser{grid-template-columns:1fr;gap:25px}.certificate-thumb{width:120px}.recognition-teaser h3,.achievement-card>h3{font-size:1.8rem}.achievement-card{padding:19px}.seminar-notice h3{font-size:2.3rem}.profile-subnav{flex-wrap:wrap}.event-evidence{overflow-wrap:anywhere}}
