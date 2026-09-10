@@ -3,7 +3,7 @@ MPHIL research tracker, includes methodology &amp; results.
 
 **Supervisor:** Dr. Shatri
 **Institution:** Department, University of Namibia School of medicine
-**Period:** March 2026 – November 2026
+**Period:** March 2026 – November 2027
 
 ## Team
 
