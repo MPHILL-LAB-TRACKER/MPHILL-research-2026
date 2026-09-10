@@ -3,354 +3,1862 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MPhil Research Tracker - 2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#861f2c" />
+  <meta
+    name="description"
+    content="Tissue Engineering & Drug Development Laboratory (TED²), University of Namibia School of Medicine."
+  />
+  <title>TED² Laboratory | UNAM School of Medicine</title>
+
   <style>
+    /* =========================================================
+       TED² LABORATORY — SINGLE-FILE GITHUB PAGES WEBSITE
+       ---------------------------------------------------------
+       Everything is inside this index.html:
+       - HTML
+       - CSS
+       - JavaScript
+       - Animated research-lab illustration
+
+       QUICK EDIT AREAS:
+       1. Researcher details: search for "RESEARCHER DATA"
+       2. News/updates: search for "UPDATE DATA"
+       3. Contact details: search for "CONTACT DETAILS"
+       ========================================================= */
+
     :root {
-      --bg-color: #0d1117;
-      --card-bg: #161b22;
-      --border-color: #30363d;
-      --text-main: #c9d1d9;
-      --text-muted: #8b949e;
-      --accent-blue: #58a6ff;
-      --accent-green: #238636;
-      --accent-green-bright: #3fb950;
-      --accent-purple: #bc8cff;
-      --accent-amber: #d29922;
+      --unam-red: #861f2c;
+      --unam-red-dark: #5e1420;
+      --gold: #c9a227;
+      --ink: #17212b;
+      --muted: #66707b;
+      --paper: #ffffff;
+      --soft: #f5f2ec;
+      --soft-red: #f7ecee;
+      --line: #e4ded5;
+      --success: #237a57;
+      --shadow: 0 16px 40px rgba(19, 29, 38, 0.09);
+      --radius: 22px;
+      --max: 1180px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 2rem 1rem;
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    img,
+    svg {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     .container {
-      max-width: 1100px;
-      margin: 0 auto;
+      width: min(calc(100% - 36px), var(--max));
+      margin-inline: auto;
     }
 
-    header {
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 1.5rem;
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--unam-red);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
-    .header-title h1 {
-      font-size: 1.8rem;
-      color: #f0f6fc;
-      font-weight: 700;
+    h1,
+    h2,
+    h3 {
+      line-height: 1.12;
+      margin-top: 0;
     }
 
-    .header-title p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-top: 0.2rem;
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.55rem, 6vw, 5.2rem);
+      letter-spacing: -0.045em;
+      margin-bottom: 20px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      background: rgba(56, 139, 253, 0.15);
-      color: var(--accent-blue);
-      border: 1px solid rgba(56, 139, 253, 0.4);
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
     }
 
-    /* Grid layout */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+    h3 {
+      font-size: 1.12rem;
+      margin-bottom: 9px;
     }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1.5rem;
+    p {
+      margin-top: 0;
     }
 
-    .card h2 {
-      font-size: 1.1rem;
-      color: #f0f6fc;
-      margin-bottom: 1rem;
+    .lead {
+      color: #49545f;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      max-width: 760px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 9999;
+      top: 10px;
+      left: 10px;
+      transform: translateY(-180%);
+      background: #fff;
+      color: #111;
+      padding: 10px 14px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .skip-link:focus {
+      transform: none;
+    }
+
+    /* ---------- Header ---------- */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(228, 222, 213, 0.92);
+    }
+
+    .top-stripe {
+      height: 5px;
+      background:
+        linear-gradient(90deg,
+          var(--unam-red) 0 72%,
+          var(--gold) 72% 100%);
+    }
+
+    .nav-wrap {
+      min-height: 78px;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-    }
-
-    /* Progress bar */
-    .progress-header {
-      display: flex;
       justify-content: space-between;
-      font-size: 0.85rem;
-      margin-bottom: 0.5rem;
-      color: var(--text-muted);
+      gap: 24px;
     }
 
-    .progress-bar-bg {
-      background: #21262d;
-      border-radius: 6px;
-      height: 12px;
-      width: 100%;
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #238636, #3fb950);
-      width: 45%; /* Adjust total project completion percentage here */
-      border-radius: 6px;
-      transition: width 0.4s ease;
-    }
-
-    /* Milestone List */
-    .milestone-list {
-      list-style: none;
-    }
-
-    .milestone-item {
+    .brand {
       display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
+      align-items: center;
+      gap: 13px;
+      text-decoration: none;
+      min-width: 0;
     }
 
-    .milestone-item:last-child { margin-bottom: 0; }
-
-    .status-icon {
-      width: 18px;
-      height: 18px;
+    .brand-mark {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      flex-shrink: 0;
-      margin-top: 2px;
+      display: grid;
+      place-items: center;
+      background: var(--unam-red);
+      color: #fff;
+      font-family: Georgia, serif;
+      font-weight: 800;
+      font-size: 0.98rem;
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.2);
     }
 
-    .done { background: rgba(63, 185, 80, 0.2); color: var(--accent-green-bright); border: 1px solid var(--accent-green-bright); }
-    .in-progress { background: rgba(210, 153, 34, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
-    .pending { background: rgba(139, 148, 158, 0.2); color: var(--text-muted); border: 1px solid var(--text-muted); }
-
-    /* Tabs */
-    .tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 1.5rem;
-      gap: 1rem;
-    }
-
-    .tab-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      padding: 0.5rem 1rem;
-      font-size: 0.95rem;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      font-weight: 600;
-    }
-
-    .tab-btn.active {
-      color: var(--accent-blue);
-      border-bottom-color: var(--accent-blue);
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
+    .brand-copy strong,
+    .brand-copy span {
       display: block;
     }
 
-    /* Log / Timeline entries */
-    .log-entry {
-      border-left: 2px solid var(--border-color);
-      padding-left: 1rem;
-      margin-bottom: 1.5rem;
+    .brand-copy strong {
+      font-family: Georgia, serif;
+      font-size: 0.96rem;
+      line-height: 1.1;
+    }
+
+    .brand-copy span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.2;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .desktop-nav a {
+      text-decoration: none;
+      color: #303943;
+      font-size: 0.88rem;
+      font-weight: 700;
       position: relative;
     }
 
-    .log-entry::before {
-      content: '';
+    .desktop-nav a::after {
+      content: "";
       position: absolute;
-      left: -5px;
-      top: 4px;
-      width: 8px;
-      height: 8px;
+      height: 2px;
+      left: 0;
+      right: 100%;
+      bottom: -8px;
+      background: var(--unam-red);
+      transition: right .25s ease;
+    }
+
+    .desktop-nav a:hover::after,
+    .desktop-nav a:focus-visible::after {
+      right: 0;
+    }
+
+    .nav-cta {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      background: var(--unam-red);
+      color: #fff !important;
+      padding: 10px 15px;
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .mobile-nav {
+      display: none;
+      padding: 0 0 17px;
+    }
+
+    .mobile-nav.open {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mobile-nav a {
+      text-decoration: none;
+      padding: 10px 2px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* ---------- Hero ---------- */
+
+    .hero {
+      overflow: hidden;
+      position: relative;
+      padding: 74px 0 68px;
+      background:
+        radial-gradient(circle at 82% 16%, rgba(201,162,39,.16), transparent 25%),
+        radial-gradient(circle at 18% 70%, rgba(134,31,44,.08), transparent 30%),
+        linear-gradient(180deg, #fff 0%, #faf8f4 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero h1 span {
+      color: var(--unam-red);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--unam-red);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(134,31,44,.2);
+    }
+
+    .button-secondary {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 34px;
+      max-width: 650px;
+    }
+
+    .fact {
+      padding: 14px 14px 13px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: .96rem;
+      margin-bottom: 2px;
+    }
+
+    .fact span {
+      font-size: .76rem;
+      color: var(--muted);
+    }
+
+    .lab-stage {
+      position: relative;
+      min-height: 510px;
+      display: grid;
+      place-items: center;
+    }
+
+    .lab-card {
+      width: min(100%, 540px);
+      aspect-ratio: 1.05 / 1;
+      padding: 14px;
+      border-radius: 30px;
+      background: #fff;
+      box-shadow: 0 28px 65px rgba(34, 28, 24, .14);
+      border: 1px solid #ece5dc;
+      transform: rotate(1deg);
+    }
+
+    .lab-card svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 20px;
+      background: #f3eee7;
+    }
+
+    .float-label {
+      position: absolute;
+      padding: 10px 13px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.93);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      font-size: .76rem;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+      animation: floaty 4.2s ease-in-out infinite;
+    }
+
+    .float-label.one {
+      left: 0;
+      top: 20%;
+    }
+
+    .float-label.two {
+      right: -5px;
+      bottom: 15%;
+      animation-delay: -2s;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-9px); }
+    }
+
+    /* SVG motion */
+    .pipette-arm {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pipette 3.2s ease-in-out infinite;
+    }
+
+    .researcher-head {
+      transform-box: fill-box;
+      transform-origin: bottom center;
+      animation: nod 4s ease-in-out infinite;
+    }
+
+    .bubble-a { animation: bubble 3s ease-in-out infinite; }
+    .bubble-b { animation: bubble 3.6s ease-in-out -1.3s infinite; }
+    .bubble-c { animation: bubble 4.2s ease-in-out -2s infinite; }
+    .signal-line {
+      stroke-dasharray: 260;
+      stroke-dashoffset: 260;
+      animation: drawSignal 3s linear infinite;
+    }
+
+    @keyframes pipette {
+      0%, 100% { transform: translate(0,0) rotate(0); }
+      45% { transform: translate(-6px,10px) rotate(-4deg); }
+      55% { transform: translate(-6px,10px) rotate(-4deg); }
+    }
+
+    @keyframes nod {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    @keyframes bubble {
+      0% { transform: translateY(6px); opacity: .1; }
+      40% { opacity: .8; }
+      100% { transform: translateY(-22px); opacity: 0; }
+    }
+
+    @keyframes drawSignal {
+      0% { stroke-dashoffset: 260; }
+      60%, 100% { stroke-dashoffset: 0; }
+    }
+
+    /* ---------- Sections ---------- */
+
+    section {
+      padding: 84px 0;
+    }
+
+    .section-soft {
+      background: var(--soft);
+    }
+
+    .section-red {
+      background: var(--unam-red);
+      color: #fff;
+    }
+
+    .section-red .eyebrow,
+    .section-red .muted {
+      color: #f2d9dd;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading > div:first-child {
+      max-width: 760px;
+    }
+
+    .section-heading p {
+      margin-bottom: 0;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .capability {
+      min-height: 230px;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: #fff;
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .capability:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .capability::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--unam-red), var(--gold));
+    }
+
+    .icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      color: var(--unam-red);
+      background: var(--soft-red);
+      font-size: 1.25rem;
+      font-weight: 900;
+    }
+
+    .capability p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .focus-strip {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--line);
+    }
+
+    .focus-item {
+      background: #fff;
+      padding: 18px;
+    }
+
+    .focus-item strong {
+      display: block;
+      color: var(--unam-red);
+      font-size: .87rem;
+      margin-bottom: 5px;
+    }
+
+    .focus-item span {
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    /* ---------- Researchers ---------- */
+
+    .researcher-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .researcher-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 270px;
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: #fff;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .researcher-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .person-top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 auto;
       border-radius: 50%;
-      background: var(--accent-blue);
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--unam-red), #b34a58);
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 8px 22px rgba(134,31,44,.18);
     }
 
-    .log-date {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-family: 'JetBrains Mono', monospace;
+    .person-name {
+      font-weight: 900;
+      line-height: 1.24;
     }
 
-    .log-title {
-      font-weight: 600;
-      color: #f0f6fc;
-      margin: 0.2rem 0;
+    .person-role {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .78rem;
     }
 
-    .log-desc {
-      font-size: 0.9rem;
-      color: var(--text-main);
+    .status-pill {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #edf8f3;
+      color: var(--success);
+      font-size: .72rem;
+      font-weight: 900;
+      margin-bottom: 14px;
     }
+
+    .status-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 4px rgba(35,122,87,.1);
+    }
+
+    .person-summary {
+      color: var(--muted);
+      font-size: .87rem;
+      flex: 1;
+    }
+
+    .profile-button {
+      margin-top: 18px;
+      border: 0;
+      background: transparent;
+      color: var(--unam-red);
+      padding: 0;
+      font-weight: 900;
+      text-align: left;
+    }
+
+    .profile-button:hover {
+      text-decoration: underline;
+    }
+
+    .collaborator-note {
+      margin-top: 26px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--soft-red);
+      border: 1px solid #ecd0d5;
+      color: #54343a;
+    }
+
+    /* ---------- Updates ---------- */
+
+    .updates-layout {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .update-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .update-card {
+      padding: 20px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(255,255,255,.25);
+      color: var(--ink);
+    }
+
+    .update-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 9px;
+      color: var(--muted);
+      font-size: .73rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .update-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .pipeline {
+      padding: 25px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.08);
+    }
+
+    .pipeline h3 {
+      color: #fff;
+    }
+
+    .pipeline-item {
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,.18);
+    }
+
+    .pipeline-item:first-of-type {
+      border-top: 0;
+    }
+
+    .pipeline-item strong,
+    .pipeline-item span {
+      display: block;
+    }
+
+    .pipeline-item strong {
+      color: #fff;
+      font-size: .9rem;
+    }
+
+    .pipeline-item span {
+      margin-top: 4px;
+      color: #f0dce0;
+      font-size: .78rem;
+    }
+
+    /* ---------- Location ---------- */
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .location-card,
+    .contact-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .address-block {
+      padding: 19px;
+      border-radius: 16px;
+      background: var(--soft);
+      margin: 20px 0;
+    }
+
+    .address-block strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 13px;
+      margin-top: 22px;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .contact-row strong {
+      font-size: .78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .contact-row span,
+    .contact-row a {
+      font-size: .9rem;
+      word-break: break-word;
+    }
+
+    .contact-row a {
+      color: var(--unam-red);
+      font-weight: 800;
+    }
+
+    /* ---------- Footer ---------- */
 
     footer {
-      text-align: center;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      background: #15191e;
+      color: #d9dee3;
+      padding: 36px 0;
+      border-top: 5px solid var(--unam-red);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .footer-title {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .footer-copy {
+      margin-top: 5px;
+      color: #929ca6;
+      font-size: .78rem;
+      max-width: 760px;
+    }
+
+    .back-top {
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid #444b52;
+      border-radius: 10px;
+      padding: 9px 12px;
+    }
+
+    /* ---------- Researcher dialog ---------- */
+
+    dialog {
+      width: min(92vw, 720px);
+      max-height: 86vh;
+      border: 0;
+      border-radius: 24px;
+      padding: 0;
+      box-shadow: 0 30px 90px rgba(0,0,0,.28);
+      color: var(--ink);
+    }
+
+    dialog::backdrop {
+      background: rgba(8, 12, 16, .64);
+      backdrop-filter: blur(5px);
+    }
+
+    .dialog-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 26px;
+      background: var(--unam-red);
+      color: #fff;
+    }
+
+    .dialog-head h3 {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: 1.65rem;
+    }
+
+    .dialog-head p {
+      margin: 4px 0 0;
+      color: #f2d9dd;
+      font-size: .83rem;
+    }
+
+    .dialog-close {
+      border: 1px solid rgba(255,255,255,.45);
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+    }
+
+    .dialog-body {
+      padding: 26px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .detail-box {
+      padding: 17px;
+      border-radius: 15px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+    }
+
+    .detail-box strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--unam-red);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .detail-box p {
+      margin-bottom: 0;
+      font-size: .89rem;
+      color: #525d67;
+    }
+
+    .edit-note {
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-left: 4px solid var(--gold);
+      background: #fff9e9;
+      color: #675b34;
+      font-size: .8rem;
+    }
+
+    /* ---------- Reveal ---------- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 980px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-button {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .hero-grid,
+      .updates-layout,
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .lab-stage {
+        min-height: 440px;
+      }
+
+      .capability-grid,
+      .researcher-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .focus-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: min(calc(100% - 24px), var(--max));
+      }
+
+      .brand-copy span {
+        display: none;
+      }
+
+      .hero {
+        padding: 44px 0 54px;
+      }
+
+      .hero-grid {
+        gap: 28px;
+      }
+
+      .lab-stage {
+        min-height: 365px;
+      }
+
+      .float-label {
+        display: none;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+
+      .quick-facts,
+      .capability-grid,
+      .researcher-grid,
+      .focus-strip,
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading,
+      .footer-grid {
+        display: block;
+      }
+
+      .back-top {
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .contact-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
+
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <div class="container">
-    <header>
-      <div class="header-title">
-        <h1>MPhil Research Progress Tracker</h1>
-        <p>Biomedical Sciences / Medical Microbiology Lab Workspace</p>
-      </div>
-      <div>
-        <span class="badge">Active Research Phase</span>
-      </div>
-    </header>
+  <header class="site-header" id="top">
+    <div class="top-stripe"></div>
 
-    <!-- Project Overview & High-Level Progress -->
-    <div class="card" style="margin-bottom: 1.5rem;">
-      <h2>Overall Project Completion</h2>
-      <div class="progress-header">
-        <span>Milestones Reached</span>
-        <span>45%</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill"></div>
-      </div>
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="TED2 Laboratory home">
+        <div class="brand-mark">TED²</div>
+        <div class="brand-copy">
+          <strong>Tissue Engineering &amp; Drug Development Laboratory</strong>
+          <span>University of Namibia · School of Medicine</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#research">Research</a>
+        <a href="#researchers">Researchers</a>
+        <a href="#updates">Updates</a>
+        <a href="#location">Location</a>
+        <a class="nav-cta" href="#researchers">Active researchers →</a>
+      </nav>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobileNav"
+        aria-label="Open navigation"
+      >
+        ☰
+      </button>
     </div>
 
-    <div class="grid">
-      <!-- Milestones Column -->
-      <div class="card">
-        <h2>Key Objectives</h2>
-        <ul class="milestone-list">
-          <li class="milestone-item">
-            <span class="status-icon done">✓</span>
-            <div>
-              <strong>Literature Review & Proposal</strong>
-              <p style="font-size:0.8rem; color:var(--text-muted);">Completed research scope and method formulation.</p>
-            </div>
-          </li>
-          <li class="milestone-item">
-            <span class="status-icon in-progress">▶</span>
-            <div>
-              <strong>Sample Extraction & Isolation</strong>
-              <p style="font-size:0.8rem; color:var(--text-muted);">In progress: Extracting metabolites and endophytes.</p>
-            </div>
-          </li>
-          <li class="milestone-item">
-            <span class="status-icon in-progress">▶</span>
-            <div>
-              <strong>Electrochemical / Biosensor Characterization</strong>
-              <p style="font-size:0.8rem; color:var(--text-muted);">Functionalizing surfaces & measuring response curves.</p>
-            </div>
-          </li>
-          <li class="milestone-item">
-            <span class="status-icon pending">⧖</span>
-            <div>
-              <strong>Data Analysis & Thesis Drafting</strong>
-              <p style="font-size:0.8rem; color:var(--text-muted);">Pending lab work validation.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <nav class="container mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="#home">Home</a>
+      <a href="#research">Research capabilities</a>
+      <a href="#researchers">Active researchers</a>
+      <a href="#updates">Research updates</a>
+      <a href="#location">Location &amp; contact</a>
+    </nav>
+  </header>
 
-      <!-- Quick Metrics Column -->
-      <div class="card">
-        <h2>Current Focus</h2>
-        <p style="font-size:0.9rem; margin-bottom: 1rem;">
-          Evaluating sample activity, binding affinity via electrochemical sensing, and data parsing routines.
-        </p>
-        <div style="background: #0d1117; padding: 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
-          <div style="font-size: 0.8rem; color: var(--text-muted);">System / Tooling Status</div>
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-purple); margin-top: 0.4rem;">
-            ● Data Analysis Pipelines: Ready<br>
-            ● Biosensor Runs: In Progress<br>
-            ● Autoclave & Sample Prep: Scheduled
+  <main id="main">
+
+    <!-- =======================================================
+         HOME
+         ======================================================= -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">UNAM · School of Medicine · Research Laboratory</p>
+          <h1>
+            Engineering better
+            <span>biomedical solutions.</span>
+          </h1>
+
+          <p class="lead">
+            The Tissue Engineering &amp; Drug Development Laboratory (TED²)
+            supports research at the interface of advanced cell culture,
+            biomaterials, regenerative therapeutics, drug delivery and
+            microscale biomedical platforms.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#research">
+              Explore research capabilities
+            </a>
+            <a class="button button-secondary" href="#researchers">
+              Meet active researchers
+            </a>
+          </div>
+
+          <div class="quick-facts" aria-label="Laboratory summary">
+            <div class="fact">
+              <strong>TED² Laboratory</strong>
+              <span>Tissue engineering &amp; drug development</span>
+            </div>
+            <div class="fact">
+              <strong>School of Medicine</strong>
+              <span>University of Namibia</span>
+            </div>
+            <div class="fact">
+              <strong>Windhoek</strong>
+              <span>Hage Geingob Campus</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lab-stage" aria-label="Animated illustration of researchers working in a laboratory">
+          <div class="float-label one">3D culture · biomaterials</div>
+          <div class="float-label two">Drug delivery · microscale systems</div>
+
+          <div class="lab-card">
+            <svg viewBox="0 0 620 590" role="img" aria-labelledby="labTitle labDesc">
+              <title id="labTitle">Researchers working in a biomedical laboratory</title>
+              <desc id="labDesc">
+                A restrained animated illustration showing researchers, a pipette,
+                samples, a microscope and a live data trace.
+              </desc>
+
+              <!-- room -->
+              <rect width="620" height="590" rx="26" fill="#f3eee7"/>
+              <rect y="440" width="620" height="150" fill="#ded7ce"/>
+              <rect x="38" y="55" width="225" height="140" rx="12" fill="#fff"/>
+              <rect x="55" y="72" width="191" height="106" rx="7" fill="#f9fbfc"/>
+              <path class="signal-line" d="M70 138 H95 L110 112 L126 155 L145 123 L163 138 H181 L194 98 L209 150 L231 138"
+                    fill="none" stroke="#861f2c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="57" y="97" fill="#66707b" font-size="13" font-family="system-ui">LIVE RESEARCH DATA</text>
+
+              <!-- cabinet -->
+              <rect x="410" y="56" width="162" height="180" rx="12" fill="#fff"/>
+              <rect x="426" y="76" width="130" height="15" rx="5" fill="#ded7ce"/>
+              <rect x="426" y="118" width="130" height="15" rx="5" fill="#ded7ce"/>
+              <rect x="426" y="160" width="130" height="15" rx="5" fill="#ded7ce"/>
+              <g>
+                <rect x="442" y="91" width="18" height="25" rx="4" fill="#c9a227"/>
+                <rect x="480" y="91" width="18" height="25" rx="4" fill="#861f2c"/>
+                <rect x="521" y="91" width="18" height="25" rx="4" fill="#6c8796"/>
+                <rect x="445" y="133" width="18" height="25" rx="4" fill="#6c8796"/>
+                <rect x="484" y="133" width="18" height="25" rx="4" fill="#c9a227"/>
+                <rect x="522" y="133" width="18" height="25" rx="4" fill="#861f2c"/>
+              </g>
+
+              <!-- central lab bench -->
+              <rect x="165" y="330" width="330" height="30" rx="7" fill="#4c5660"/>
+              <rect x="185" y="360" width="22" height="100" fill="#707983"/>
+              <rect x="455" y="360" width="22" height="100" fill="#707983"/>
+
+              <!-- microscope -->
+              <g transform="translate(210 252)">
+                <rect x="0" y="68" width="95" height="12" rx="6" fill="#861f2c"/>
+                <path d="M36 0 h30 v14 H51 v27 c0 18 13 33 31 35"
+                      fill="none" stroke="#4c5660" stroke-width="12" stroke-linecap="round"/>
+                <circle cx="77" cy="76" r="10" fill="#c9a227"/>
+                <rect x="18" y="80" width="76" height="12" rx="6" fill="#4c5660"/>
+              </g>
+
+              <!-- sample tubes -->
+              <g transform="translate(330 292)">
+                <rect x="0" y="0" width="24" height="55" rx="7" fill="#fff" stroke="#8b949d" stroke-width="3"/>
+                <rect x="34" y="0" width="24" height="55" rx="7" fill="#fff" stroke="#8b949d" stroke-width="3"/>
+                <rect x="68" y="0" width="24" height="55" rx="7" fill="#fff" stroke="#8b949d" stroke-width="3"/>
+                <path d="M4 35 h16 v14 H4z" fill="#c9a227" opacity=".8"/>
+                <path d="M38 29 h16 v20 H38z" fill="#861f2c" opacity=".7"/>
+                <path d="M72 39 h16 v10 H72z" fill="#6c8796" opacity=".8"/>
+                <circle class="bubble-a" cx="12" cy="31" r="3" fill="#fff"/>
+                <circle class="bubble-b" cx="45" cy="26" r="3" fill="#fff"/>
+                <circle class="bubble-c" cx="80" cy="36" r="3" fill="#fff"/>
+              </g>
+
+              <!-- researcher left -->
+              <g transform="translate(65 226)">
+                <g class="researcher-head">
+                  <circle cx="63" cy="46" r="37" fill="#8f6048"/>
+                  <path d="M26 42 C31 2, 94 3, 101 44 C83 31, 47 30, 26 42" fill="#27242a"/>
+                </g>
+                <path d="M30 88 Q63 69 96 88 L118 217 H8 Z" fill="#f7f8f9" stroke="#d8dce0" stroke-width="3"/>
+                <path d="M57 84 L63 118 L70 84" fill="#861f2c"/>
+                <path d="M90 113 Q126 146 147 193" fill="none" stroke="#8f6048" stroke-width="18" stroke-linecap="round"/>
+                <circle cx="149" cy="197" r="11" fill="#8f6048"/>
+                <path d="M24 121 Q-5 155 15 194" fill="none" stroke="#8f6048" stroke-width="17" stroke-linecap="round"/>
+              </g>
+
+              <!-- researcher right -->
+              <g transform="translate(430 226)">
+                <g class="researcher-head" style="animation-delay:-1.3s">
+                  <circle cx="56" cy="44" r="36" fill="#6e4939"/>
+                  <path d="M21 42 C25 5, 83 0, 92 38 C71 29, 42 28, 21 42" fill="#1f2930"/>
+                </g>
+                <path d="M25 87 Q56 70 87 87 L112 216 H0 Z" fill="#ffffff" stroke="#d8dce0" stroke-width="3"/>
+                <path d="M31 118 Q1 149 19 190" fill="none" stroke="#6e4939" stroke-width="17" stroke-linecap="round"/>
+                <circle cx="21" cy="193" r="10" fill="#6e4939"/>
+              </g>
+
+              <!-- pipette -->
+              <g class="pipette-arm" transform="translate(458 238)">
+                <rect x="0" y="0" width="18" height="102" rx="7" fill="#c9a227"/>
+                <rect x="3" y="100" width="12" height="52" rx="5" fill="#7f8a92"/>
+                <path d="M7 152 h4 l-2 25z" fill="#861f2c"/>
+              </g>
+
+              <!-- TED2 label -->
+              <rect x="33" y="493" width="554" height="62" rx="15" fill="#861f2c"/>
+              <text x="58" y="521" fill="#fff" font-size="20" font-weight="800" font-family="Georgia, serif">
+                Tissue Engineering &amp; Drug Development
+              </text>
+              <text x="58" y="543" fill="#f3dfe2" font-size="13" font-family="system-ui">
+                Research · Translation · Biomedical Innovation
+              </text>
+            </svg>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Tabs Section for Detailed Logs -->
-    <div class="tabs">
-      <button class="tab-btn active" onclick="openTab(event, 'logs')">Lab Log & Updates</button>
-      <button class="tab-btn" onclick="openTab(event, 'notes')">Methods & Notes</button>
-    </div>
+    <!-- =======================================================
+         RESEARCH
+         ======================================================= -->
+    <section class="section-soft" id="research">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">Research capabilities</p>
+            <h2>From cellular models to translational platforms.</h2>
+            <p class="lead">
+              TED² brings together tissue-engineering and drug-development
+              approaches to study biological behaviour, material performance
+              and therapeutic delivery.
+            </p>
+          </div>
+        </div>
 
-    <!-- Tab Content: Logs -->
-    <div id="logs" class="tab-content active">
-      <div class="log-entry">
-        <div class="log-date">2026-08-15</div>
-        <div class="log-title">Electrochemical Signal Optimization</div>
-        <div class="log-desc">Completed baseline cyclic voltammetry scans. Verified reproducibility across trial runs.</div>
+        <div class="capability-grid">
+          <article class="capability reveal">
+            <div class="icon-box">3D</div>
+            <h3>Advanced 3D Cell Culture</h3>
+            <p>
+              State-of-the-art 3D culture systems are used to more closely mimic
+              natural tissue environments and support studies of tissue
+              regeneration and cellular behaviour.
+            </p>
+          </article>
+
+          <article class="capability reveal">
+            <div class="icon-box">BM</div>
+            <h3>Biomaterial Development</h3>
+            <p>
+              Development of biocompatible materials that support cell growth
+              and tissue integration for effective and durable regenerative
+              applications.
+            </p>
+          </article>
+
+          <article class="capability reveal">
+            <div class="icon-box">RT</div>
+            <h3>Regenerative Therapeutics</h3>
+            <p>
+              Research into regenerative strategies intended to restore
+              function and address tissue damage associated with injury or
+              disease.
+            </p>
+          </article>
+
+          <article class="capability reveal">
+            <div class="icon-box">DD</div>
+            <h3>Precision in Drug Delivery</h3>
+            <p>
+              Nanoparticle-based systems are explored to improve therapeutic
+              bioavailability and targeted delivery in biomedical applications.
+            </p>
+          </article>
+
+          <article class="capability reveal">
+            <div class="icon-box">µ</div>
+            <h3>Microscale Platforms</h3>
+            <p>
+              Microscale delivery platforms are designed for controlled and
+              sustained release of therapeutics while aiming to reduce
+              undesirable effects.
+            </p>
+          </article>
+
+          <article class="capability reveal">
+            <div class="icon-box">↔</div>
+            <h3>Cell–Material Interactions</h3>
+            <p>
+              Investigation of how materials affect cell adhesion,
+              proliferation and differentiation to inform tissue-engineering
+              strategies.
+            </p>
+          </article>
+        </div>
+
+        <div class="focus-strip reveal" aria-label="Additional research focus areas">
+          <div class="focus-item">
+            <strong>Material selection</strong>
+            <span>Compatibility between biomaterials and specific cell types.</span>
+          </div>
+          <div class="focus-item">
+            <strong>2D vs 3D dynamics</strong>
+            <span>Comparative analysis of cellular behaviour across model systems.</span>
+          </div>
+          <div class="focus-item">
+            <strong>Functional outcomes</strong>
+            <span>Linking cell–material interactions to regenerative performance.</span>
+          </div>
+          <div class="focus-item">
+            <strong>Design innovation</strong>
+            <span>Scaffold architecture, nutrient flow and cellular integration.</span>
+          </div>
+        </div>
       </div>
-      <div class="log-entry">
-        <div class="log-date">2026-07-28</div>
-        <div class="log-title">Endophytic Isolation Protocols</div>
-        <div class="log-desc">Isolated targeted strains from plant extracts. Prepared stock cultures for secondary metabolite screening.</div>
+    </section>
+
+    <!-- =======================================================
+         RESEARCHERS
+         Cards are generated from the JS data near the bottom.
+         ======================================================= -->
+    <section id="researchers">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">People</p>
+            <h2>Active researchers &amp; collaborators.</h2>
+            <p class="lead">
+              Select a researcher to open a profile area for current work,
+              achievements and research outputs. Only information supplied or
+              verified should be published here.
+            </p>
+          </div>
+        </div>
+
+        <div class="researcher-grid" id="researcherGrid"></div>
+
+        <div class="collaborator-note reveal" id="collaboratorNote"></div>
       </div>
+    </section>
+
+    <!-- =======================================================
+         UPDATES
+         ======================================================= -->
+    <section class="section-red" id="updates">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">Research activity</p>
+            <h2>News, active data &amp; publication progress.</h2>
+            <p class="lead">
+              This area is designed for current laboratory milestones,
+              publications in progress, datasets, conference activity and other
+              time-sensitive research updates.
+            </p>
+          </div>
+        </div>
+
+        <div class="updates-layout">
+          <div class="update-list" id="updateList"></div>
+
+          <aside class="pipeline reveal">
+            <h3>Publication / data pipeline</h3>
+
+            <div class="pipeline-item">
+              <strong>In preparation</strong>
+              <span>Add manuscripts currently being drafted.</span>
+            </div>
+
+            <div class="pipeline-item">
+              <strong>Under review</strong>
+              <span>Add submitted manuscripts after verification.</span>
+            </div>
+
+            <div class="pipeline-item">
+              <strong>Datasets / methods</strong>
+              <span>Add released datasets, protocols or validated methods.</span>
+            </div>
+
+            <div class="pipeline-item">
+              <strong>Recent achievements</strong>
+              <span>Add accepted papers, awards, milestones and presentations.</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         LOCATION & CONTACT
+         ======================================================= -->
+    <section class="section-soft" id="location">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">Find the laboratory</p>
+            <h2>University of Namibia, Windhoek.</h2>
+            <p class="lead">
+              The laboratory is presented within the University of Namibia
+              School of Medicine research environment at Hage Geingob Campus.
+            </p>
+          </div>
+        </div>
+
+        <div class="location-grid">
+          <article class="location-card reveal">
+            <h3>Institutional location</h3>
+
+            <div class="address-block">
+              <strong>University of Namibia — Hage Geingob Campus</strong>
+              School of Medicine<br />
+              Bach Street<br />
+              Windhoek, Namibia
+            </div>
+
+            <p class="muted">
+              Hage Geingob Campus houses the UNAM School of Medicine and other
+              health-sciences schools.
+            </p>
+
+            <a
+              class="button button-primary"
+              href="https://www.google.com/maps/search/?api=1&query=University+of+Namibia+Hage+Geingob+Campus+Bach+Street+Windhoek+Namibia"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open location in Maps ↗
+            </a>
+          </article>
+
+          <article class="contact-card reveal">
+            <h3>Laboratory contact</h3>
+            <p class="muted">
+              Replace the placeholders below with the laboratory's verified
+              email, telephone number and preferred research-enquiry contact.
+            </p>
+
+            <!-- CONTACT DETAILS: edit these values -->
+            <div class="contact-list">
+              <div class="contact-row">
+                <strong>Email</strong>
+                <span>lab-email@unam.na</span>
+              </div>
+              <div class="contact-row">
+                <strong>Telephone</strong>
+                <span>+264 XX XXX XXXX</span>
+              </div>
+              <div class="contact-row">
+                <strong>Research</strong>
+                <span>Collaboration, student research and laboratory enquiries</span>
+              </div>
+              <div class="contact-row">
+                <strong>UNAM</strong>
+                <a href="https://www.unam.edu.na/" target="_blank" rel="noopener noreferrer">
+                  University of Namibia ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">
+          Tissue Engineering &amp; Drug Development Laboratory (TED²)
+        </div>
+        <div class="footer-copy">
+          University of Namibia · School of Medicine · Hage Geingob Campus,
+          Windhoek. This laboratory page should publish only verified research,
+          people and institutional information.
+        </div>
+      </div>
+
+      <a class="back-top" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- Researcher profile modal -->
+  <dialog id="profileDialog" aria-labelledby="dialogName">
+    <div class="dialog-head">
+      <div>
+        <h3 id="dialogName">Researcher</h3>
+        <p id="dialogRole">Role</p>
+      </div>
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="Close profile">
+        ×
+      </button>
     </div>
 
-    <!-- Tab Content: Notes -->
-    <div id="notes" class="tab-content">
-      <div class="card">
-        <h2>Experimental Summary</h2>
-        <p style="font-size: 0.9rem;">
-          Keep notes on experimental parameters, buffer concentrations, or sensor functionalization details here for quick reference during analysis.
-        </p>
+    <div class="dialog-body">
+      <p id="dialogSummary"></p>
+
+      <div class="detail-grid">
+        <div class="detail-box">
+          <strong>Current work</strong>
+          <p id="dialogCurrentWork"></p>
+        </div>
+
+        <div class="detail-box">
+          <strong>Achievements / outputs</strong>
+          <p id="dialogAchievements"></p>
+        </div>
+      </div>
+
+      <div class="edit-note">
+        Edit this person's verified work and achievements in the
+        <strong>RESEARCHER DATA</strong> section near the bottom of
+        <strong>index.html</strong>.
       </div>
     </div>
-
-    <footer>
-      <p>MPhil Research Project Hub &bull; Hosted on GitHub Pages</p>
-    </footer>
-  </div>
+  </dialog>
 
   <script>
-    function openTab(evt, tabName) {
-      const contents = document.querySelectorAll('.tab-content');
-      contents.forEach(c => c.classList.remove('active'));
+    /* =========================================================
+       RESEARCHER DATA
+       ---------------------------------------------------------
+       Update "currentWork" and "achievements" as verified
+       information becomes available.
 
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach(b => b.classList.remove('active'));
+       You can also add a new researcher by copying one object.
+       ========================================================= */
 
-      document.getElementById(tabName).classList.add('active');
-      evt.currentTarget.classList.add('active');
+    const researchers = [
+      {
+        name: "Dr Shatri Albertina",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+      {
+        name: "Ms Denis Bouman",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+      {
+        name: "Dr Silas Bere",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+      {
+        name: "Dr Manelia Halweendo",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+      {
+        name: "Prof Davis Mumbengegwi",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+      {
+        name: "Mr Paulus Hamutenya",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+      {
+        name: "Ms Naungwe Simasiku",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+      {
+        name: "Ms Jaydine Feris",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+      {
+        name: "Ms Mbotarai Vevangapi",
+        role: "Active researcher",
+        type: "researcher",
+        currentWork: "Verified current-project information has not yet been entered.",
+        achievements: "Add verified publications, milestones, awards or other research outputs.",
+        summary: "Active member of the TED² research group."
+      },
+
+      /* Collaborators from the supplied researcher list */
+      {
+        name: "Ms Charity Mepa",
+        role: "Collaborator",
+        type: "collaborator",
+        currentWork: "Add verified collaboration activity.",
+        achievements: "Add verified collaborative outputs.",
+        summary: "TED² collaborator."
+      },
+      {
+        name: "Ms Nonku Phiri",
+        role: "Collaborator",
+        type: "collaborator",
+        currentWork: "Add verified collaboration activity.",
+        achievements: "Add verified collaborative outputs.",
+        summary: "TED² collaborator."
+      }
+    ];
+
+    /* =========================================================
+       UPDATE DATA
+       ---------------------------------------------------------
+       Replace these starter cards with real current information.
+       Examples:
+       - publication in progress
+       - manuscript accepted
+       - dataset released
+       - active experiment
+       - conference presentation
+       - laboratory milestone
+       ========================================================= */
+
+    const updates = [
+      {
+        date: "Current",
+        type: "Research focus",
+        title: "Advanced tissue models and biomaterial interaction",
+        text:
+          "TED² research capabilities include 3D cell culture, biomaterial development and investigation of cell–material interactions."
+      },
+      {
+        date: "Current",
+        type: "Therapeutic platforms",
+        title: "Drug-delivery and microscale research",
+        text:
+          "The laboratory profile includes nanoparticle-enabled drug delivery and microscale platforms for controlled therapeutic release."
+      },
+      {
+        date: "Update this card",
+        type: "News / publication",
+        title: "Add the latest verified laboratory milestone here",
+        text:
+          "Use this space for a publication in progress, accepted paper, dataset release, conference activity or other current research update."
+      }
+    ];
+
+    /* =========================================================
+       PAGE BEHAVIOUR
+       ========================================================= */
+
+    const researcherGrid = document.getElementById("researcherGrid");
+    const collaboratorNote = document.getElementById("collaboratorNote");
+    const updateList = document.getElementById("updateList");
+
+    const profileDialog = document.getElementById("profileDialog");
+    const dialogName = document.getElementById("dialogName");
+    const dialogRole = document.getElementById("dialogRole");
+    const dialogSummary = document.getElementById("dialogSummary");
+    const dialogCurrentWork = document.getElementById("dialogCurrentWork");
+    const dialogAchievements = document.getElementById("dialogAchievements");
+    const dialogClose = document.getElementById("dialogClose");
+
+    function initials(name) {
+      const clean = name.replace(/^(Dr|Prof|Mr|Ms|Mrs)\s+/i, "");
+      return clean
+        .split(/\s+/)
+        .slice(0, 2)
+        .map(part => part.charAt(0).toUpperCase())
+        .join("");
     }
+
+    function openProfile(person) {
+      dialogName.textContent = person.name;
+      dialogRole.textContent = person.role;
+      dialogSummary.textContent = person.summary;
+      dialogCurrentWork.textContent = person.currentWork;
+      dialogAchievements.textContent = person.achievements;
+
+      if (typeof profileDialog.showModal === "function") {
+        profileDialog.showModal();
+      } else {
+        profileDialog.setAttribute("open", "");
+      }
+    }
+
+    const activeResearchers = researchers.filter(p => p.type === "researcher");
+    const collaborators = researchers.filter(p => p.type === "collaborator");
+
+    activeResearchers.forEach(person => {
+      const card = document.createElement("article");
+      card.className = "researcher-card reveal";
+
+      card.innerHTML = `
+        <div class="person-top">
+          <div class="avatar" aria-hidden="true">${initials(person.name)}</div>
+          <div>
+            <div class="person-name">${person.name}</div>
+            <div class="person-role">${person.role}</div>
+          </div>
+        </div>
+
+        <div class="status-pill">Active</div>
+        <p class="person-summary">${person.summary}</p>
+
+        <button class="profile-button" type="button">
+          View profile &amp; work →
+        </button>
+      `;
+
+      card.querySelector("button").addEventListener("click", () => openProfile(person));
+      researcherGrid.appendChild(card);
+    });
+
+    collaboratorNote.innerHTML = `
+      <strong>Collaborators:</strong>
+      ${collaborators.map(person => person.name).join(" · ")}
+    `;
+
+    updates.forEach(item => {
+      const card = document.createElement("article");
+      card.className = "update-card reveal";
+      card.innerHTML = `
+        <div class="update-meta">
+          <span>${item.type}</span>
+          <span>${item.date}</span>
+        </div>
+        <h3>${item.title}</h3>
+        <p>${item.text}</p>
+      `;
+      updateList.appendChild(card);
+    });
+
+    dialogClose.addEventListener("click", () => profileDialog.close());
+
+    profileDialog.addEventListener("click", event => {
+      const rect = profileDialog.getBoundingClientRect();
+      const outside =
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom;
+
+      if (outside) profileDialog.close();
+    });
+
+    /* Mobile menu */
+    const menuButton = document.getElementById("menuButton");
+    const mobileNav = document.getElementById("mobileNav");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.textContent = isOpen ? "×" : "☰";
+    });
+
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
+      });
+    });
+
+    /* Scroll reveal */
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>
