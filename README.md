@@ -1,33 +1,20 @@
-# MPHILL-research-2026
-MPHIL research tracker, includes methodology &amp; results.
-
-**Supervisor:** Dr. Shatri
-**Institution:** Department, University of Namibia School of medicine
-**Period:** March 2026 – November 2027
-
-## Team
-
-| Name | GitHub | Responsible for |
-| ---- | ------ | --------------- |
-| Student One | @username | Data collection, site A |
-| Student Two | @username | Literature review, statistics |
-| Student Three | @username | Fieldwork logistics, write-up |
-
-## Where things are
-
-- **Current tasks and progress** — see the [project board](https://mphill-lab-tracker.github.io/MPHILL-research-2026/)
-- **Deadlines** — see [Milestones](LINK-GOES-HERE)
-- **Documents and data** — in the `/documents` and `/data` folders above
-
-## Current status
-
-Updated weekly. Last updated: DATE
-
-Short paragraph on where the project stands right now. Three or four sentences.
-What's done, what's in progress, what's blocked.
-
-## How we work
-
-- Every task is an issue. If it isn't an issue, it isn't tracked.
-- Update your issues before the Friday meeting.
-- Anything blocked gets the `blocked` label so it's visible immediately.
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TED² | Tissue Engineering & Drug Development Laboratory — UNAM</title>
+<meta name="description" content="Tissue Engineering & Drug Development Laboratory (TED²), University of Namibia School of Medicine — research in 3D cell culture, biomaterials, regenerative therapeutics and precision drug delivery.">
+<meta name="theme-color" content="#a51c30"><link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/css/styles.css"><script defer src="assets/js/data.js"></script><script defer src="assets/js/app.js"></script>
+<meta property="og:title" content="TED² — Tissue Engineering & Drug Development Laboratory"><meta property="og:description" content="University of Namibia · School of Medicine · Hage Geingob Campus"><meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ResearchOrganization","name":"Tissue Engineering & Drug Development Laboratory (TED²)","parentOrganization":{"@type":"CollegeOrUniversity","name":"University of Namibia"},"address":{"@type":"PostalAddress","streetAddress":"Florence Nightingale Street","addressLocality":"Windhoek","addressCountry":"NA"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="topbar"><div class="container"><span>University of Namibia · School of Medicine</span><span>Hage Geingob Campus · Windhoek, Namibia</span></div></div>
+<header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">TED²</span><span class="brand-text"><strong>Tissue Engineering & Drug Development</strong><span>Research Laboratory · UNAM</span></span></a><button class="menu-btn" aria-label="Toggle navigation" aria-expanded="false">Menu</button><nav class="nav" aria-label="Primary"><a aria-current="page" href="index.html">Home</a><a href="research.html">Research</a><a href="researchers.html">Researchers</a><a href="news.html">News & Data</a><a href="about.html">About & Location</a></nav></div></header>
+<main id="main">
+<section class="hero"><div class="container hero-grid"><div><div class="eyebrow">Research · Translation · Innovation</div><h1>Engineering better models, materials and delivery systems for medicine.</h1><p>TED² is the Tissue Engineering & Drug Development Laboratory at the University of Namibia. The laboratory brings together advanced cell culture, biomaterial development, regenerative therapeutics, nanoparticle-enabled drug delivery and microscale research platforms.</p><div class="hero-actions"><a class="btn btn-primary" href="research.html">Explore research areas</a><a class="btn btn-secondary" href="researchers.html">Meet active researchers</a></div><div class="hero-meta"><span>📍 Hage Geingob Campus, Windhoek</span><span>🏛 School of Medicine</span><span>🔬 Biomedical & translational research</span></div></div><div class="hero-visual"><img src="assets/img/lab-animation.svg" alt="Animated illustration of researchers working at a laboratory bench"><div class="live-chip">Active research environment</div></div></div></section>
+<section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Research capabilities</div><h2>Core areas of work</h2></div><p>Research themes are drawn directly from the laboratory brief, with a focus on cell–material interactions, controlled therapeutic delivery and translational applications.</p></div><div class="grid research-grid" data-research-preview></div><div class="stats"><div class="stat"><strong>12</strong><span>defined research focus areas</span></div><div class="stat"><strong>3D</strong><span>advanced cell culture emphasis</span></div><div class="stat"><strong>11</strong><span>listed researchers & collaborators</span></div><div class="stat"><strong>1</strong><span>multidisciplinary translational lab</span></div></div></div></section>
+<section class="section soft"><div class="container"><div class="section-head"><div><div class="eyebrow">Live research hub</div><h2>Activity, publications & active data</h2></div><p>This area is designed for publication announcements, work in progress, datasets, conference activity and laboratory milestones. Content is maintained from one data file.</p></div><div class="grid activity-grid"><div class="card"><div class="activity-list" data-activity></div></div><aside class="card pipeline"><span class="tag">Publication pipeline</span><h3>Space for in-progress work</h3><p>No verified manuscript-in-progress information was supplied for public posting, so the site does not invent one. Add an item to <strong>assets/js/data.js</strong> when a title and status are approved.</p><a class="btn btn-secondary" href="news.html">Open news & data hub</a></aside></div></div></section>
+<section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">People</div><h2>Active researchers</h2></div><p>Each person has a dedicated profile page for current work, research focus, selected achievements and verified public links where available.</p></div><div class="grid people-grid" data-researchers-preview></div><div style="margin-top:1.5rem"><a class="btn btn-primary" href="researchers.html">View the full research team</a></div></div></section>
+<section class="section soft"><div class="container location-card"><div><div class="eyebrow">Where we are</div><h2>University of Namibia, Hage Geingob Campus</h2><p>TED² is presented as a research laboratory within the University of Namibia's School of Medicine environment in Windhoek. Hage Geingob Campus is a major UNAM hub for medical and health-sciences education and research.</p><a class="btn btn-primary" href="about.html">About the laboratory & location</a></div><div class="location-panel"><h3>TED² Laboratory</h3><p><strong>School of Medicine</strong><br>University of Namibia<br>Hage Geingob Campus<br>Florence Nightingale Street<br>Windhoek, Namibia</p><div class="qr-note"><img src="assets/img/legacy-lab-qr.png" alt="QR code supplied for the existing laboratory page"><small>Existing lab-page QR supplied with the project. Replace it after the final GitHub Pages URL is chosen.</small></div></div></div></section>
+</main>
+<footer class="footer"><div class="container"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark">TED²</span><span class="brand-text"><strong style="color:white">Tissue Engineering & Drug Development</strong><span>University of Namibia</span></span></a><p>A clean, research-focused GitHub Pages site for communicating laboratory capabilities, people, active work and outputs.</p></div><div><h3>Explore</h3><ul><li><a href="research.html">Research areas</a></li><li><a href="researchers.html">Researchers</a></li><li><a href="news.html">News & active data</a></li></ul></div><div><h3>Institution</h3><ul><li><a target="_blank" rel="noopener" href="https://www.unam.edu.na/">University of Namibia</a></li><li><a href="about.html">School of Medicine context</a></li><li><a href="about.html#location">Hage Geingob Campus</a></li></ul></div><div><h3>Site</h3><ul><li><a href="about.html">About</a></li><li><a href="README.md">Deployment guide</a></li></ul></div></div><div class="copyright"><span>© <span data-year></span> TED² research site</span><span>Built for GitHub Pages · Research-use communication</span></div></div></footer>
+</body></html>
