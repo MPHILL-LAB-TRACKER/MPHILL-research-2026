@@ -1,0 +1,846 @@
+{
+  "settings": [
+    {
+      "id": "laboratory",
+      "title": "Tissue Engineering & Drug Development Laboratory",
+      "short_name": "TED²",
+      "institution": "University of Namibia",
+      "contact_email": "aiikasha@unam.na",
+      "contact_name": "Dr Albertina Shatri",
+      "address": "Hage Geingob Campus\nBach Street\nWindhoek, Namibia",
+      "hero_title": "Engineering better biomedical solutions.",
+      "hero_intro": "Research at the interface of advanced cell culture, biomaterials, regenerative therapeutics, drug delivery and microscale biomedical platforms.",
+      "hero_image_url": "https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit%2Cfl_lossy%2Ch_9000%2Cw_1200%2Cf_auto%2Cq_auto/20730478/355678_108410.png",
+      "hero_image_credit": "Reference laboratory website; photographer and reuse licence not specified.",
+      "hero_image_source": "https://auburn-mint-phnps5.mystrikingly.com/1",
+      "reviewed": "2026-09-10",
+      "visibility": "public",
+      "materials_image_url": "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_clip%2Cw_960%2Ch_720%2Cf_auto%2Cq_auto/unsplashcom/photo-1617155093758-158e4e5dcfe9",
+      "materials_image_credit": "Strikingly-hosted Unsplash image photo-1617155093758-158e4e5dcfe9; photographer identity not confirmed.",
+      "microscopy_image_url": "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_clip%2Cw_960%2Ch_720%2Cf_auto%2Cq_auto/unsplashcom/photo-1631049124964-f93fd879fec9",
+      "microscopy_image_credit": "Strikingly-hosted Unsplash image photo-1631049124964-f93fd879fec9; photographer identity not confirmed."
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "advanced-3d-cell-culture",
+      "title": "Advanced 3D Cell Culture",
+      "text": "Our laboratory utilizes state-of-the-art 3D culture systems that closely mimic the natural tissue environment, enabling more accurate studies of tissue regeneration and cellular behavior.",
+      "order": 1,
+      "visibility": "public"
+    },
+    {
+      "id": "biomaterial-development",
+      "title": "Biomaterial Development",
+      "text": "We focus on the creation of biocompatible materials that support cell growth and tissue integration, ensuring effective and durable healing processes.",
+      "order": 2,
+      "visibility": "public"
+    },
+    {
+      "id": "regenerative-therapeutics",
+      "title": "Regenerative therapeutics",
+      "text": "Our research encompasses a wide range of regenerative therapies aimed at restoring function and alleviating damage caused by injury or disease.",
+      "order": 3,
+      "visibility": "public"
+    },
+    {
+      "id": "precision-drug-delivery",
+      "title": "Precision in Drug Delivery",
+      "text": "We develop cutting-edge nanoparticle systems designed to enhance bioavailability and targeted delivery of therapeutics, improving outcomes in various medical applications.",
+      "order": 4,
+      "visibility": "public"
+    },
+    {
+      "id": "microscale-platform",
+      "title": "Microscale platform",
+      "text": "Our micro-scale delivery platforms are engineered to release drugs in a controlled manner, allowing for sustained therapeutic effects while minimizing side effects.",
+      "order": 5,
+      "visibility": "public"
+    },
+    {
+      "id": "understanding-interactions",
+      "title": "Understanding Interactions",
+      "text": "We investigate how different materials influence cell adhesion, proliferation, and differentiation, providing valuable insights for tissue engineering applications.",
+      "order": 6,
+      "visibility": "public"
+    },
+    {
+      "id": "material-selection",
+      "title": "Material selection",
+      "text": "We explore various biomaterials to determine their compatibility with specific cell types, ensuring optimal integration and performance in regenerative applications.",
+      "order": 7,
+      "visibility": "public"
+    },
+    {
+      "id": "2d-vs-3d-dynamic",
+      "title": "2D vs 3D Dynamic",
+      "text": "Our research includes comparative studies of cell behavior in 2D and 3D environments, revealing crucial differences that impact tissue regeneration outcomes.",
+      "order": 8,
+      "visibility": "public"
+    },
+    {
+      "id": "functional-outcome",
+      "title": "Functional Outcome",
+      "text": "By analyzing cell-material interactions, we aim to predict functional outcomes of tissue engineering strategies, enhancing the effectiveness of our regenerative approaches.",
+      "order": 9,
+      "visibility": "public"
+    },
+    {
+      "id": "material-development",
+      "title": "Material development",
+      "text": "We focus on the synthesis of biocompatible scaffolds that support cell adhesion and growth, serving as a foundation for tissue regeneration.",
+      "order": 10,
+      "visibility": "public"
+    },
+    {
+      "id": "design-innovations",
+      "title": "Design innovations",
+      "text": "Our team implements innovative designs in scaffold architecture to optimize nutrient flow and cellular interaction, crucial for effective tissue repair.",
+      "order": 11,
+      "visibility": "public"
+    },
+    {
+      "id": "application-in-medicine",
+      "title": "Application in medicine",
+      "text": "The scaffolds and nanomaterials we develop are applied across various medical fields, including orthopedics, wound healing, Gastric complications and dental applications, demonstrating their versatility.",
+      "order": 12,
+      "visibility": "public"
+    }
+  ],
+  "people": [
+    {
+      "id": "albertina-shatri",
+      "name": "Dr Shatri Albertina",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "The laboratory’s public research-ethics report identifies Dr Albertina Shatri as the nanoendodontic project principal investigator at the May 2025 event.",
+      "topics": [
+        "Tissue engineering",
+        "Nanomedicine"
+      ],
+      "work": "Nanoendodontics and research ethics: The laboratory report describes her leadership of informed-consent training for the Katutura nanoendodontic team in May 2025.",
+      "note": "Name order follows the supplied roster. Public sources use Albertina Shatri; the author profile also lists Iikasha as a name variant. University works below have weaker verification than the publisher-checked journal articles in this directory.",
+      "scholar_url": "https://scholar.google.com/citations?hl=en&user=qHscwtEAAAAJ",
+      "researchgate_url": "https://www.researchgate.net/profile/Albertina-Shatri",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "https://i1.rgstatic.net/ii/profile.image/11431281302829624-1736545277553_Q128/Albertina-Shatri.jpg",
+      "photo_credit": "Named ResearchGate author profile; photographer and reuse permission not specified.",
+      "photo_source_url": "https://www.researchgate.net/profile/Albertina-Shatri",
+      "photo_permission": "unconfirmed",
+      "photo_upload_id": "",
+      "source_urls": [
+        "https://auburn-mint-phnps5.mystrikingly.com/blog/empowering-ethical-research-informed-consent-training-at-katutura",
+        "https://scholar.google.com/citations?hl=en&user=qHscwtEAAAAJ"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "denis-bouman",
+      "name": "Ms Denis Bouman",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "Listed in the supplied TED² laboratory roster.",
+      "topics": [],
+      "work": "",
+      "note": "No independently attributable public research record was confirmed for this name during this review. This is not evidence that the person has no research outputs.",
+      "scholar_url": "",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [],
+      "visibility": "public"
+    },
+    {
+      "id": "silas-bere",
+      "name": "Dr Silas Bere",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "The laboratory’s May 2025 event report names Dr Silas Bere as an ICGEB/CRP collaborator in the nanoendodontic research team.",
+      "topics": [
+        "Dentistry",
+        "Research ethics"
+      ],
+      "work": "Nanoendodontic collaboration: Co-led the lab-reported informed-consent training at Katutura Intermediate Hospital with Dr Albertina Shatri. The report describes roles at that event, not a current appointment check.",
+      "note": "The public author-profile link is included, but no specific journal article was attributed without a sufficiently clear bibliographic match.",
+      "scholar_url": "https://scholar.google.com/citations?hl=en&user=UvxwY24AAAAJ",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [
+        "https://auburn-mint-phnps5.mystrikingly.com/blog/empowering-ethical-research-informed-consent-training-at-katutura",
+        "https://scholar.google.com/citations?hl=en&user=UvxwY24AAAAJ"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "manelia-halweendo",
+      "name": "Dr Manelia Halweendo",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "Listed in the supplied TED² laboratory roster.",
+      "topics": [],
+      "work": "",
+      "note": "The supplied roster lists “Dr Manelia Halweendo”. A laboratory report instead names “Ms Melania Halweendo” as a site investigator. Their identity and title alignment have not been confirmed; that work has therefore not been assigned to this profile.",
+      "scholar_url": "",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [
+        "https://auburn-mint-phnps5.mystrikingly.com/blog/empowering-ethical-research-informed-consent-training-at-katutura"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "davis-mumbengegwi",
+      "name": "Prof Davis Mumbengegwi",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "Selected publisher-verified work by Prof Davis Mumbengegwi addresses malaria epidemiology and molecular detection in Namibia.",
+      "topics": [
+        "Malaria epidemiology",
+        "Molecular detection"
+      ],
+      "work": "Malaria risk, infection and detection: The selected articles examine epidemiological risk factors, parasite-species detection and low-density infections. They document research coauthorship; they are not automatically classified as TED² laboratory outputs.",
+      "note": "These are selected publications, not a complete bibliography. The 2019 publisher author list uses “Davies Mumbengegwi”; the bibliographic entry preserves that spelling.",
+      "scholar_url": "https://scholar.google.com/citations?hl=en&user=i6-oV-gAAAAJ",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [
+        "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0252690",
+        "https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0007290",
+        "https://link.springer.com/article/10.1186/s12936-018-2626-5"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "nailoke-pauline-kadhila",
+      "name": "Prof Nailoke Pauline Kadhila",
+      "group": "researcher",
+      "role": "Associate Professor · PhD",
+      "bio": "Associate Professor at the University of Namibia. Her public researcher profiles describe work in mycology, medicinal plants and drug discovery, including research on Namibian Ganoderma mushrooms.",
+      "topics": [
+        "Mycology",
+        "Medicinal plants",
+        "Drug discovery"
+      ],
+      "work": "Selected published work examines Ganoderma mushrooms, phenolic composition and in vitro antioxidant activity, and antiplasmodial activity of Namibian medicinal-plant extracts.",
+      "note": "Added to the laboratory roster at the owner’s request. The publications listed here are selected work by this researcher; they are not automatically attributed to TED². A 2023 LinkedIn conference announcement independently names her, but historical roles in that announcement are not presented as current appointments.",
+      "scholar_url": "https://scholar.google.com/citations?hl=en&user=XnUxBZEAAAAJ",
+      "researchgate_url": "https://www.researchgate.net/profile/Nailoke-Kadhila",
+      "linkedin_url": "https://www.linkedin.com/posts/federated-management-institute_africa-biotechnology-engineering-activity-7026856735600455680-Cpj-",
+      "orcid_url": "https://orcid.org/0000-0002-9302-9835",
+      "photo_url": "https://i1.rgstatic.net/ii/profile.image/481528120647682-1491816658954_Q128/Nailoke-Kadhila.jpg",
+      "photo_source_url": "https://www.researchgate.net/profile/Nailoke-Kadhila",
+      "photo_credit": "Named ResearchGate author profile; photographer and reuse permission not specified.",
+      "photo_permission": "unconfirmed",
+      "photo_upload_id": "",
+      "source_urls": [
+        "https://www.researchgate.net/profile/Nailoke-Kadhila",
+        "https://scholar.google.com/citations?hl=en&user=XnUxBZEAAAAJ"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "paulus-hamutenya",
+      "name": "Mr Paulus Hamutenya",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "Listed in the supplied TED² laboratory roster.",
+      "topics": [],
+      "work": "",
+      "note": "No independently attributable public research record was confirmed for this name during this review. This is not evidence that the person has no research outputs.",
+      "scholar_url": "",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [],
+      "visibility": "public"
+    },
+    {
+      "id": "naungwe-simasiku",
+      "name": "Ms Naungwe Simasiku",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "Listed in the supplied TED² laboratory roster.",
+      "topics": [],
+      "work": "",
+      "note": "No independently attributable public research record was confirmed for this name during this review. This is not evidence that the person has no research outputs.",
+      "scholar_url": "",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [],
+      "visibility": "public"
+    },
+    {
+      "id": "jaydine-feris",
+      "name": "Ms Jaydine Feris",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "Listed in the supplied TED² laboratory roster.",
+      "topics": [],
+      "work": "",
+      "note": "No independently attributable public research record was confirmed for this name during this review. This is not evidence that the person has no research outputs.",
+      "scholar_url": "",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [],
+      "visibility": "public"
+    },
+    {
+      "id": "vevangapi-mbatara",
+      "name": "Ms Vevangapi Mbatara",
+      "group": "researcher",
+      "role": "Researcher",
+      "bio": "Listed in the supplied TED² laboratory roster.",
+      "topics": [],
+      "work": "",
+      "note": "Name corrected by the laboratory owner. An attributable public research record or portrait has not yet been confirmed.",
+      "scholar_url": "",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [],
+      "visibility": "public"
+    },
+    {
+      "id": "charity-mepa",
+      "name": "Ms Charity Mepa",
+      "group": "collaborator",
+      "role": "Collaborator",
+      "bio": "Listed in the supplied TED² laboratory roster.",
+      "topics": [],
+      "work": "",
+      "note": "No independently attributable public research record was confirmed for this name during this review. This is not evidence that the person has no research outputs.",
+      "scholar_url": "",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [],
+      "visibility": "public"
+    },
+    {
+      "id": "nonku-phiri",
+      "name": "Ms Nonku Phiri",
+      "group": "collaborator",
+      "role": "Collaborator",
+      "bio": "Listed in the supplied TED² laboratory roster.",
+      "topics": [],
+      "work": "",
+      "note": "No independently attributable public research record was confirmed for this name during this review. This is not evidence that the person has no research outputs.",
+      "scholar_url": "",
+      "researchgate_url": "",
+      "linkedin_url": "",
+      "orcid_url": "",
+      "photo_url": "",
+      "photo_credit": "",
+      "photo_source_url": "",
+      "photo_permission": "not-recorded",
+      "photo_upload_id": "",
+      "source_urls": [],
+      "visibility": "public"
+    }
+  ],
+  "publications": [
+    {
+      "id": "shatri-nanoparticles-2023",
+      "title": "Designing and characterizing the plant-based chitosan-modified poly (lactic-co-glycolic acid) nanoparticles for salmonella and e. coli-induced gastroenteritis.",
+      "year": 2023,
+      "authors": [
+        "A. Shatri"
+      ],
+      "venue": "University of Namibia",
+      "volume": "",
+      "number": "",
+      "doi": "",
+      "type": "author-listed",
+      "people": [
+        "albertina-shatri"
+      ],
+      "source_url": "https://scholar.google.com/citations?hl=en&user=qHscwtEAAAAJ",
+      "summary": "A nanoparticle-development research work listed in the publicly indexed author profile.",
+      "note": "Title and year were found in indexed author-profile records. A publisher page, degree type and DOI were not confirmed.",
+      "document_id": "",
+      "document_public": false,
+      "visibility": "public"
+    },
+    {
+      "id": "malaria-risk-2021",
+      "title": "Malaria risk factors in northern Namibia: The importance of occupation, age and mobility in characterizing high-risk populations",
+      "year": 2021,
+      "authors": [
+        "Jennifer L. Smith",
+        "Davis Mumbengegwi",
+        "Erastus Haindongo",
+        "Carmen Cueto",
+        "Kathryn W. Roberts",
+        "Roly Gosling",
+        "Petrina Uusiku",
+        "Immo Kleinschmidt",
+        "Adam Bennett",
+        "Hugh J. Sturrock"
+      ],
+      "venue": "PLOS ONE",
+      "volume": "16(6)",
+      "number": "e0252690",
+      "doi": "10.1371/journal.pone.0252690",
+      "type": "peer-reviewed",
+      "people": [
+        "davis-mumbengegwi"
+      ],
+      "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0252690",
+      "summary": "An epidemiological study of occupational, age-related and mobility-associated malaria risk in northern Namibia.",
+      "note": "Selected work by a listed researcher; no claim that this article originated in TED².",
+      "document_id": "",
+      "document_public": false,
+      "visibility": "public"
+    },
+    {
+      "id": "molecular-detection-2019",
+      "title": "Molecular detection of P. vivax and P. ovale foci of infection in asymptomatic and symptomatic children in Northern Namibia",
+      "year": 2019,
+      "authors": [
+        "Daniel H. Haiyambo",
+        "Petrina Uusiku",
+        "Davies Mumbengegwi",
+        "Jeff M. Pernica",
+        "Ronnie Bock",
+        "Benoit Malleret",
+        "Laurent Rénia",
+        "Beatrice Greco",
+        "Isaac K. Quaye"
+      ],
+      "venue": "PLOS Neglected Tropical Diseases",
+      "volume": "13(5)",
+      "number": "e0007290",
+      "doi": "10.1371/journal.pntd.0007290",
+      "type": "peer-reviewed",
+      "people": [
+        "davis-mumbengegwi"
+      ],
+      "source_url": "https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0007290",
+      "summary": "A study using molecular methods to characterize Plasmodium species infections in children in northern Namibia.",
+      "note": "The full publisher author list spells the co-author’s given name “Davies”. This exact spelling is retained here.",
+      "document_id": "",
+      "document_public": false,
+      "visibility": "public"
+    },
+    {
+      "id": "subpatent-malaria-2018",
+      "title": "Subpatent malaria in a low transmission African setting: a cross-sectional study using rapid diagnostic testing (RDT) and loop-mediated isothermal amplification (LAMP) from Zambezi region, Namibia",
+      "year": 2018,
+      "authors": [
+        "Patrick McCreesh",
+        "Davis Mumbengegwi",
+        "Kathryn Roberts",
+        "Munyaradzi Tambo",
+        "Jennifer Smith",
+        "Brooke Whittemore",
+        "Gerard Kelly",
+        "Caitlin Moe",
+        "Max Murphy",
+        "Mukosha Chisenga",
+        "Bryan Greenhouse",
+        "Henry Ntuku",
+        "Immo Kleinschmidt",
+        "Hugh Sturrock",
+        "Petrina Uusiku",
+        "Roland Gosling",
+        "Adam Bennett",
+        "Michelle S. Hsiang"
+      ],
+      "venue": "Malaria Journal",
+      "volume": "17",
+      "number": "480",
+      "doi": "10.1186/s12936-018-2626-5",
+      "type": "peer-reviewed",
+      "people": [
+        "davis-mumbengegwi"
+      ],
+      "source_url": "https://link.springer.com/article/10.1186/s12936-018-2626-5",
+      "summary": "A cross-sectional investigation of low-density malaria infections and diagnostic detection in Namibia’s Zambezi region.",
+      "note": "Selected work by a listed researcher; coauthor relationships are not presented as formal TED² partnerships.",
+      "document_id": "",
+      "document_public": false,
+      "visibility": "public"
+    },
+    {
+      "id": "iikasha-phytochemical-2016",
+      "title": "Phytochemical screening and antibacterial testing of selected Namibian medicinal plants against laboratory and clinical bacteria that cause diarrhoea",
+      "year": 2016,
+      "authors": [
+        "Albertina M. N. Iikasha"
+      ],
+      "venue": "University of Namibia",
+      "volume": "",
+      "number": "",
+      "doi": "",
+      "type": "catalogued",
+      "people": [
+        "albertina-shatri"
+      ],
+      "source_url": "https://books.google.com/books/about/Phytochemical_screening_and_antibacteria.html?id=FLHZzgEACAAJ",
+      "summary": "A university research work catalogued under the author’s Iikasha name; the catalog records 228 pages.",
+      "note": "Catalog metadata, not a verified journal article. The name association is supported by the Shatri author profile; degree type was not established.",
+      "document_id": "",
+      "document_public": false,
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-ganoderma-tea-2022",
+      "title": "Towards medicinal tea from untapped Namibian Ganoderma: Phenolics and in vitro antioxidant activity of wild and cultivated mushrooms",
+      "year": 2022,
+      "authors": [
+        "Karlin K.N. Hamwenye",
+        "Isabella S.E. Ueitele",
+        "Nailoke P. Kadhila",
+        "Werner Embashu",
+        "Komeine K.M. Nantanga"
+      ],
+      "venue": "South African Journal of Science",
+      "volume": "118(3/4)",
+      "number": "9357",
+      "doi": "10.17159/sajs.2022/9357",
+      "type": "peer-reviewed",
+      "people": [
+        "nailoke-pauline-kadhila"
+      ],
+      "source_url": "https://sajs.co.za/index.php/sajs/en/article/view/9357",
+      "summary": "Examines phenolics and in vitro antioxidant activity of wild and cultivated Namibian Ganoderma mushrooms.",
+      "note": "Bibliographic details checked against the publisher. Selected work by a listed researcher; no claim that this article originated in TED².",
+      "document_id": "",
+      "document_public": false,
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-antiplasmodial-2020",
+      "title": "Determination of the antiplasmodial activity, cytotoxicity and active compound of Pechuel-loeschea leubnitziae O. Hoffm. (Asteraceae) of Namibia",
+      "year": 2020,
+      "authors": [
+        "Nailoke P. Kadhila",
+        "M. Sekhoacha",
+        "M. Tselanyane",
+        "Kazhila C. Chinsembu",
+        "Duduzile M. Molefe-Khamanga"
+      ],
+      "venue": "SN Applied Sciences",
+      "volume": "2",
+      "number": "1328",
+      "doi": "10.1007/s42452-020-2926-6",
+      "type": "peer-reviewed",
+      "people": [
+        "nailoke-pauline-kadhila"
+      ],
+      "source_url": "https://link.springer.com/article/10.1007/s42452-020-2926-6",
+      "summary": "Investigates in vitro antiplasmodial activity and cytotoxicity of fractions from a Namibian medicinal plant.",
+      "note": "Bibliographic details checked against the publisher. Selected work by a listed researcher; no claim that this article originated in TED².",
+      "document_id": "",
+      "document_public": false,
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-ganoderma-review-2021",
+      "title": "Ganoderma research activities and development in Namibia: A review",
+      "year": 2021,
+      "authors": [
+        "Isabella S.E. Ueitele",
+        "Lydia N. Horn",
+        "Nailoke P. Kadhila"
+      ],
+      "venue": "Asian Journal of Mycology",
+      "volume": "4(1)",
+      "number": "29–39",
+      "doi": "10.5943/ajom/4/1/4",
+      "type": "peer-reviewed",
+      "people": [
+        "nailoke-pauline-kadhila"
+      ],
+      "source_url": "https://doi.org/10.5943/ajom/4/1/4",
+      "summary": "Reviews Ganoderma research activities and development in Namibia.",
+      "note": "Bibliographic details checked against the publisher. Selected work by a listed researcher; no claim that this article originated in TED².",
+      "document_id": "",
+      "document_public": false,
+      "visibility": "public"
+    }
+  ],
+  "collaborations": [
+    {
+      "id": "nanoendodontic-research",
+      "title": "Nanoendodontics & research ethics",
+      "partner": "Katutura Intermediate Hospital",
+      "people": [
+        "albertina-shatri",
+        "silas-bere"
+      ],
+      "summary": "A lab-reported informed-consent workshop for the nanoendodontic research team.",
+      "detail": "The report places the training at the hospital’s dental facility in Windhoek and identifies support through an ICGEB-funded project. It names Dr Albertina Shatri and Dr Silas Bere as workshop leads.",
+      "period": "May 2025 event",
+      "source_url": "https://auburn-mint-phnps5.mystrikingly.com/blog/empowering-ethical-research-informed-consent-training-at-katutura",
+      "note": "This is an institutional activity report, not a peer-reviewed publication. The report’s “Ms Melania Halweendo” has not been merged with the differently named roster entry.",
+      "visibility": "public"
+    },
+    {
+      "id": "pretoria-imaging",
+      "title": "Imaging for dental research",
+      "partner": "University of Pretoria",
+      "people": [],
+      "summary": "The reference laboratory website reports an imaging collaboration connected to root-canal and periodontal research.",
+      "detail": "The laboratory describes a University of Pretoria partnership and ICGEB support. The website does not provide an independently checked partner agreement or a definitive member-by-member project roster.",
+      "period": "Date not specified by source",
+      "source_url": "https://auburn-mint-phnps5.mystrikingly.com/",
+      "note": "Shown as a laboratory-reported relationship, not as independently verified partner endorsement. No researcher has been assigned without explicit source support.",
+      "visibility": "public"
+    },
+    {
+      "id": "biomedical-research",
+      "title": "Natural products & therapeutic delivery",
+      "partner": "Biomedical Research laboratory",
+      "people": [],
+      "summary": "The reference website describes collaboration around indigenous knowledge, drug discovery and delivery mechanisms.",
+      "detail": "The laboratory page links this collaboration to research into chronic infections. It does not identify a complete partner-team roster or supply a specific jointly authored paper.",
+      "period": "Date not specified by source",
+      "source_url": "https://auburn-mint-phnps5.mystrikingly.com/",
+      "note": "Partner wording is retained as published. No unverified individuals, project dates or publication links have been added.",
+      "visibility": "public"
+    }
+  ],
+  "projects": [],
+  "manuscripts": [],
+  "milestones": [],
+  "updates": [],
+  "funders": [],
+  "sources": [
+    {
+      "id": "tissue-document",
+      "title": "Tissue Engineering LAB WEB PAGE.docx",
+      "url": "",
+      "kind": "Supplied document",
+      "note": "Source for all 12 homepage research descriptions. Wording retained; this is laboratory-provided content, not independent validation of equipment or clinical outcomes.",
+      "visibility": "public"
+    },
+    {
+      "id": "roster",
+      "title": "Pasted text(1).txt",
+      "url": "",
+      "kind": "Supplied code",
+      "note": "Source for the nine researchers, two collaborators and supplied titles. Roster membership is user-supplied, not independently established.",
+      "visibility": "public"
+    },
+    {
+      "id": "logo-document",
+      "title": "TED2 WEB page.docx",
+      "url": "",
+      "kind": "Supplied document",
+      "note": "Embedded TED² and University of Namibia logos extracted without redrawing. Uncropped laboratory logo retained.",
+      "visibility": "public"
+    },
+    {
+      "id": "lab-home",
+      "title": "TED² laboratory reference website",
+      "url": "https://auburn-mint-phnps5.mystrikingly.com/",
+      "kind": "Laboratory website",
+      "note": "Design context, laboratory contact and lab-reported institutional collaborations. Not evidence of independent partner endorsement.",
+      "visibility": "public"
+    },
+    {
+      "id": "lab-research",
+      "title": "TED² research areas",
+      "url": "https://auburn-mint-phnps5.mystrikingly.com/1",
+      "kind": "Laboratory website",
+      "note": "Reference research images and matching research descriptions. Some photographs use Unsplash image identifiers.",
+      "visibility": "public"
+    },
+    {
+      "id": "lab-contact",
+      "title": "Reference contact page",
+      "url": "https://auburn-mint-phnps5.mystrikingly.com/4",
+      "kind": "Laboratory website",
+      "note": "Design reference only. Its generic US street address and example telephone number were excluded; no telephone number is invented.",
+      "visibility": "public"
+    },
+    {
+      "id": "nano-report",
+      "title": "Informed consent training at Katutura: nanoendodontic team",
+      "url": "https://auburn-mint-phnps5.mystrikingly.com/blog/empowering-ethical-research-informed-consent-training-at-katutura",
+      "kind": "Laboratory report",
+      "note": "Describes a May 2025 event and identifies Albertina Shatri and Silas Bere. Names Ms Melania Halweendo, which differs from the supplied roster. Historical project roles, not verified current appointments.",
+      "visibility": "public"
+    },
+    {
+      "id": "shatri-scholar",
+      "title": "Albertina MN Shatri — Google Scholar",
+      "url": "https://scholar.google.com/citations?hl=en&user=qHscwtEAAAAJ",
+      "kind": "Author-maintained profile",
+      "note": "Publicly indexed profile associates Shatri with the name Iikasha and lists the 2023 university work. Direct profile retrieval was rate-limited; the record is not labelled publisher-verified.",
+      "visibility": "public"
+    },
+    {
+      "id": "bere-scholar",
+      "title": "Silas Bere — Google Scholar",
+      "url": "https://scholar.google.com/citations?hl=en&user=UvxwY24AAAAJ",
+      "kind": "Author-maintained profile",
+      "note": "Public search results associate this profile with University of Namibia. No specific publication was assigned solely from a name match.",
+      "visibility": "public"
+    },
+    {
+      "id": "davis-scholar",
+      "title": "Davis Mumbengegwi — Google Scholar",
+      "url": "https://scholar.google.com/citations?hl=en&user=i6-oV-gAAAAJ",
+      "kind": "Author-maintained profile",
+      "note": "Further reading; the three included journal articles were checked against publisher records, not this profile alone.",
+      "visibility": "public"
+    },
+    {
+      "id": "malaria-risk",
+      "title": "Malaria risk factors in northern Namibia",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0252690",
+      "kind": "Publisher record",
+      "note": "PLOS ONE, 2021; 16(6): e0252690. Publisher confirms Davis Mumbengegwi as co-author.",
+      "visibility": "public"
+    },
+    {
+      "id": "molecular-detection",
+      "title": "Molecular detection of P. vivax and P. ovale",
+      "url": "https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0007290",
+      "kind": "Publisher record",
+      "note": "PLOS Neglected Tropical Diseases, 2019; 13(5): e0007290. Full author list spells the name Davies Mumbengegwi; that spelling is retained in the citation.",
+      "visibility": "public"
+    },
+    {
+      "id": "subpatent",
+      "title": "Subpatent malaria in a low transmission African setting",
+      "url": "https://link.springer.com/article/10.1186/s12936-018-2626-5",
+      "kind": "Publisher record",
+      "note": "Malaria Journal, 2018; 17:480. Publisher confirms Davis Mumbengegwi as co-author.",
+      "visibility": "public"
+    },
+    {
+      "id": "iikasha-catalog",
+      "title": "Phytochemical screening and antibacterial testing — catalog record",
+      "url": "https://books.google.com/books/about/Phytochemical_screening_and_antibacteria.html?id=FLHZzgEACAAJ",
+      "kind": "Bibliographic catalog",
+      "note": "University of Namibia, 2016, 228 pages; author Albertina M. N. Iikasha. Included as a catalogued university work, not a peer-reviewed article. Degree type was not established.",
+      "visibility": "public"
+    },
+    {
+      "id": "unam-campus",
+      "title": "UNAM Library — campuses",
+      "url": "https://library.unam.edu.na/campuses/",
+      "kind": "Institutional source",
+      "note": "Supports Hage Geingob Campus, Bach Street, Windhoek. No laboratory room or telephone was confirmed.",
+      "visibility": "public"
+    },
+    {
+      "id": "github-pages",
+      "title": "GitHub Pages — configuring a publishing source",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "kind": "Official technical documentation",
+      "note": "Publishing from an existing branch and root folder. Deployment instructions checked against GitHub documentation.",
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-scholar",
+      "title": "Nailoke Pauline Kadhila — Google Scholar",
+      "url": "https://scholar.google.com/citations?hl=en&user=XnUxBZEAAAAJ",
+      "kind": "Author profile",
+      "note": "Indexed profile found. Automated access to full Google Scholar bibliography was rate-limited; this website does not claim a complete bibliography.",
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-rg",
+      "title": "Nailoke Pauline Kadhila — ResearchGate",
+      "url": "https://www.researchgate.net/profile/Nailoke-Kadhila",
+      "kind": "Author profile",
+      "note": "Supports name, degree, affiliation, research interests and attribution of the linked portrait. Reuse permission for the photograph is not documented.",
+      "visibility": "public"
+    },
+    {
+      "id": "shatri-rg",
+      "title": "Albertina Shatri — ResearchGate",
+      "url": "https://www.researchgate.net/profile/Albertina-Shatri",
+      "kind": "Author profile",
+      "note": "Named profile supports attribution of the linked portrait. Reuse permission for the photograph is not documented.",
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-linkedin",
+      "title": "LinkedIn — named conference speaker announcement",
+      "url": "https://www.linkedin.com/posts/federated-management-institute_africa-biotechnology-engineering-activity-7026856735600455680-Cpj-",
+      "kind": "Conference announcement",
+      "note": "Public 2023 announcement names Prof Nailoke Pauline Kadhila. It is corroboration, not evidence of a current appointment or a reusable headshot licence.",
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-tea",
+      "title": "Ganoderma medicinal tea — publisher",
+      "url": "https://sajs.co.za/index.php/sajs/en/article/view/9357",
+      "kind": "Publisher record",
+      "note": "2022 journal article; in vitro antioxidant activity does not establish clinical benefit.",
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-antiplasmodial",
+      "title": "Pechuel-loeschea leubnitziae — publisher",
+      "url": "https://link.springer.com/article/10.1007/s42452-020-2926-6",
+      "kind": "Publisher record",
+      "note": "2020 journal article.",
+      "visibility": "public"
+    },
+    {
+      "id": "kadhila-review",
+      "title": "Ganoderma research in Namibia — publisher",
+      "url": "https://doi.org/10.5943/ajom/4/1/4",
+      "kind": "Publisher record",
+      "note": "2021 review; DOI resolves to the publisher record/PDF.",
+      "visibility": "public"
+    }
+  ]
+}

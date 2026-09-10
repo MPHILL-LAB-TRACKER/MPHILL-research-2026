@@ -1,206 +1,162 @@
-<p align="center">
-  <img src="assets/images/ted2-wordmark.png" alt="Tissue Engineering & Drug Development Laboratory" width="560">
-</p>
+# TED² Laboratory — Research website & private workspace
 
-<h1 align="center">TED² Laboratory</h1>
-<p align="center"><strong>Tissue Engineering &amp; Drug Development · University of Namibia</strong><br>A source-grounded research website, built with HTML, CSS and JavaScript.</p>
+**A public laboratory website, an owner/admin content manager, and an individual research workspace.**
 
-<p align="center">
-  <a href="#publish-in-your-existing-repository">Publish</a> ·
-  <a href="#preview-locally">Preview</a> ·
-  <a href="#edit-the-website">Edit</a> ·
-  <a href="#research-content-and-verification">Research sources</a> ·
-  <a href="#photographs-and-logos">Images</a>
-</p>
+This update continues the cream-and-forest-green design of the existing TED² website. It keeps individual publications and research activity on dedicated pages rather than moving them onto the homepage. The homepage retains all twelve descriptions from the supplied Tissue Engineering document.
 
----
+## Start here
 
-## About this repository
+| What you need | Use this |
+|---|---|
+| Update the existing public GitHub page immediately | Upload this package’s root **`index.html`**, replacing the existing file. This is a standalone public snapshot. |
+| Edit profiles, upload photos and track research locally | Extract the complete package and run **`python start.py`**. |
+| Make admin changes update the live GitHub website | Host the Python application behind HTTPS, then use **Administration → Publish & export → Connected public page** and upload that file as the repository’s `index.html`. |
 
-This learning project presents the Tissue Engineering & Drug Development Laboratory through a restrained cream-and-forest-green design informed by the supplied laboratory logo and [Strikingly reference website](https://auburn-mint-phnps5.mystrikingly.com/4).
+**A GitHub Pages upload alone does not activate the admin system.** GitHub Pages hosts static files; the authenticated database-backed application needs a server. The connected public page lets the existing public address remain unchanged while edits and private research live on the separate server.
 
-The homepage contains **all 12 research descriptions** from the supplied Tissue Engineering document. It introduces the people by name, but **their work and publications appear on separate profile pages**, not on the homepage. Collaborators and laboratory-reported projects also have individual pages.
+## What changed in this version
 
-The repository includes a **prebuilt website** and the small, dependency-free generator that produced it. Nothing needs compiling or installing merely to open or publish the website.
+The roster now uses **Ms Vevangapi Mbatara**, and the old misspelled profile route redirects within the page to her corrected profile. **Prof Nailoke Pauline Kadhila, PhD / Associate Professor** has been added with Google Scholar, ResearchGate, ORCID and the attributed LinkedIn announcement, plus three selected publisher-checked journal articles. There are now **10 researchers, 2 collaborators and 8 selected publication records**.
 
-**Included:** 20 static pages · 11 individual profiles · 3 collaboration pages · 5 selected research records · 1 compiled single-file edition.
+The disliked grayscale cell photograph has been removed and replaced with a typographic research panel. The earlier pipetting, materials and fluorescence references remain; the TED² and UNAM logos remain embedded locally. Individual profile photos have been linked only where a named source was found: Kadhila and Shatri. These are **remote profile-image references, not downloaded image files**. All other profiles use initials until an approved portrait is supplied. Photograph reuse permission has not been established. The full evidence and image audit is in [docs/PHOTO-AND-CONTENT-AUDIT.md](docs/PHOTO-AND-CONTENT-AUDIT.md).
 
-## Choose an edition
+## Local setup
 
-| Edition | Open this file | Best use |
-| :-- | :-- | :-- |
-| **Multi-page website** | `index.html` | Learning, normal repository maintenance and accessible static hosting. Keep the accompanying folders. |
-| **Compiled single file** | `TED2-single-file.html` | A portable website in one HTML file. Layout, scripts, logos and all views are embedded. Internal navigation requires JavaScript. |
-
-Both editions initially use the original online photograph URLs. Logos and the public-site QR code are included locally. **Neither edition is fully offline with photographs until the optional image-caching command has succeeded.**
-
-The multi-page edition exposes readable page content and working profile links without JavaScript. Search, mobile-menu enhancement and citation copying use JavaScript. The single-file edition uses `#/...` routes; it is not necessary to set up server rewrite rules.
-
-## Publish in your existing repository
-
-You do **not** need another repository.
-
-1. Extract the package. Upload its **contents**, including the folders, into your existing repository. Place `index.html` at the repository root, not inside an extra enclosing folder. Keep your existing repository history and review files before replacing any of your own work.
-2. Commit the uploaded files to the branch you use for the website. The generated HTML is already included; there is no dependency installation or build step on GitHub.
-3. Open **Settings → Pages**. Under **Build and deployment**, choose **Deploy from a branch**. Select the branch containing these files, choose **`/ (root)`**, and save.
-4. Use the published address shown by GitHub Pages after deployment completes. No particular repository name, account name or custom domain is hardcoded into this project.
-
-The `.nojekyll` file is included. All internal asset and page paths are relative, so the site can live under a repository subdirectory as well as a custom-domain root.
-
-For a one-file deployment instead, upload `TED2-single-file.html` under the name **`index.html`**. Its internal views, styles, scripts and logos are embedded; the remote-photo limitation still applies. Do not replace the multi-page source `index.html` with this edition when continuing to maintain and rebuild the full project.
-
-Official instructions: [GitHub — configuring a publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
-
-## Preview locally
-
-**No tools required:** open `index.html` in a browser while keeping the extracted directory intact. Alternatively, open `TED2-single-file.html`.
-
-For a localhost preview, run the following from the repository folder with **Node.js 22 or later**:
+Python 3.11 or newer is required; the delivered application was tested on Python 3.13. From the extracted folder:
 
 ```bash
-npm start
+python start.py
 ```
 
-Open `http://127.0.0.1:8080`. Stop the preview with `Ctrl+C`.
+Use `python3 start.py` on systems where Python 3 is named `python3`.
 
-A different port is supported:
+The launcher creates an isolated `.venv`, installs dependencies, imports the public seed data and asks you to choose the first **owner username and password**. There is no default password or public account registration. Initial dependency installation needs internet access. The launcher binds only to your computer’s loopback interface.
+
+After startup:
+
+| Page | Local address |
+|---|---|
+| Public website | http://127.0.0.1:8000/ |
+| Owners and administrators | http://127.0.0.1:8000/admin |
+| Researcher workspace | http://127.0.0.1:8000/workspace |
+
+Keep the terminal running while using the local site. Press Ctrl+C to stop it. Your edits remain in `var/ted2.sqlite3`; uploads remain in `var/uploads`. They are not stored only in the browser. **Keep this directory private and back it up.** Never upload `var`, `.env`, backups or unpublished manuscripts into the public GitHub repository.
+
+For an existing prepared Python environment:
 
 ```bash
-node scripts/serve.mjs 8090
+python -m pip install -r requirements.txt
+python manage.py init
+python manage.py serve
 ```
 
-There are **no npm packages to install**. The preview server binds to localhost, serves only files inside the project directory, refuses dotfiles and does not provide a public production server.
+Running `init` again preserves existing content and accounts. Rebuilding the public seed file does not overwrite your running database.
 
-## Website structure
+## The administration area
+
+The sidebar provides structured forms for researchers/collaborators, publications, research projects, manuscripts, milestones, activity updates, collaborations, funders, homepage descriptions, site contact details and sources. Long text is entered as text, not executable HTML. Research interests and author lists use one item per line. Relationships use profile/project selectors, not manually typed IDs.
+
+**Edit a biography:** open **Researchers & collaborators**, choose the profile, change the biography or research interests and select **Save changes**. Keep the record Private while reviewing it; select Public when its public fields are approved.
+
+**Upload a portrait:** save the profile first, open **Uploaded portrait**, choose JPEG/PNG/WebP, then press **Upload portrait**. Add the photographer/source and set **Portrait permission → Approved** when permission has been confirmed. Press **Save changes** to attach the upload. An approved local portrait takes priority over the remote image URL. A successful upload alone does not save the rest of the form.
+
+**Add a publication:** enter the actual title, year and author list; associate the relevant researchers; supply the DOI or source URL; choose the correct evidence type. University catalogue records and author-listed work remain distinguished from publisher-verified journal articles. Public PDF downloads require a separate deliberate flag and appropriate distribution rights.
+
+**Create active research:** add the title, lead, research team, public summary, stage and dates. Link collaborations and funders only where the relationship is documented. Assign milestones to members of that project team. New records start private.
+
+**Track each researcher:** open **Researcher progress** and choose the person. Their assigned projects, manuscripts and activity appear together. Internal completion is calculated from weighted milestones: completed milestone weight divided by total assigned milestone weight. A separate administrator-approved public progress field prevents private work from changing the public figure automatically.
+
+**Manage manuscripts:** use the pipeline stages **Idea → Drafting → Internal review → Submitted → Under review → Revisions → Accepted → Published**. The board groups these stages for an overview. Private reviewer notes, submission references, internal deadlines and manuscript files stay out of the public feed even when a public title/status is approved.
+
+**Manage collaborators and funders:** create the relationship or funder record and link it to a project. The site can publish acknowledgements and source evidence. Internal amounts, currency and notes remain private. The supplied historical collaboration reports were preserved without inventing current grant awards or active-project statuses.
+
+**Review changes:** the activity log records actors, actions and timestamps. Each record has readable saved revision history. Concurrent edits use version checks; a stale form receives a conflict message rather than overwriting another person’s work. Records can be unpublished by choosing Private; this version preserves historical records rather than permanently deleting them through the UI.
+
+## Accounts and permissions
+
+| Role | Allowed actions |
+|---|---|
+| **Owner** | All content controls, publishing, uploads, account creation, roles, password resets and revocation. |
+| **Administrator** | All content controls and publishing, but no account-management permissions. |
+| **Researcher** | View assigned projects/profile; update assigned private manuscripts, milestones and research activity. No access to other researchers’ private work, publication approval or account roles. |
+
+Only the owner sees **Accounts & permissions**. Create an account, select Researcher and link it to the correct profile. Share its initial password privately; the researcher can change it after signing in. Account changes and password resets revoke existing sessions. The last active owner cannot be disabled or demoted.
+
+Researchers use `/workspace`, not `/admin`. For a biography change they submit a private update of type **Bio change**, which an administrator reviews. Published records are locked to administrators; researchers can propose new changes through private updates rather than silently altering approved public content.
+
+## Connecting the existing GitHub page
+
+The public repository’s source file was checked against the earlier delivered compiled file; it matched Git object `e629357a55226376268d61ad1a9900ac8c13b69e` at the time of inspection. This package was prepared for download; **no repository commit, deployment or server account was created**.
+
+Deploy the Python application to your chosen persistent HTTPS server. Run `python manage.py configure-production` there and enter its real origin. Complete HTTPS/proxy/service setup and initialize the owner. Sign in to `/admin` and open **Publish & export**. Download the **Connected public page**, rename it `index.html`, and upload it to the existing repository, replacing the current public page.
+
+Once connected, public saves appear on the next page load; no HTML editing is needed for each biography or project update. The public file sends no administrator credentials to the server and contains no private records. The API allows public reads from `https://mphill-lab-tracker.github.io`. If the public origin later changes, update `TED2_PUBLIC_ORIGINS` on the server.
+
+Do not publish a connected page that points to `127.0.0.1`. That address refers to each visitor’s own computer, not your laboratory server. A local HTTP export is explicitly labelled in the admin screen.
+
+For full deployment and backup instructions, see [docs/DEPLOYMENT-AND-SECURITY.md](docs/DEPLOYMENT-AND-SECURITY.md).
+
+## Public snapshots versus live content
+
+The supplied root `index.html` is a read-only **snapshot** with CSS, JavaScript, logos and public seed data embedded. It can be opened directly or hosted on GitHub Pages. It has no fake localStorage login and no embedded administrator secret. Staff access explains how to run the complete application.
+
+The admin’s **Public snapshot** export includes only currently approved public fields. Approved local portraits are embedded; remote images and linked public PDFs remain dependent on their sources. A snapshot does not receive later changes and cannot be recalled after someone downloads it.
+
+The admin’s **Connected public page** export contains the UI and the actual server origin, but no record data. It reads approved content at page load and displays an explicit connection error if the backend cannot be reached.
+
+## Code organization
 
 ```text
-.
-├── index.html                  Homepage: all supplied research content
-├── researchers.html            Searchable researcher directory
-├── collaborators.html          Collaborators and lab-reported projects
-├── publications.html           Searchable, filterable research records
-├── sources.html                Sources, verification notes and image credits
-├── 404.html                    Static not-found page
-├── TED2-single-file.html        Compiled portable edition
-├── profiles/                   Nine researchers + two collaborators
-├── projects/                   Three source-linked collaboration pages
-├── assets/
-│   ├── css/styles.css          Colours, typography, layout and responsive rules
-│   ├── js/site.js              Menus, search, filtering and citation copying
-│   └── images/                 Extracted logos and public-site QR code
-├── data/
-│   ├── site.json               Editable content and source-of-truth records
-│   ├── publications.bib        Generated bibliography export
-│   └── build-manifest.json     Generated page and photo-cache inventory
-├── scripts/
-│   ├── build.mjs               Builds both editions using Node alone
-│   ├── serve.mjs               Local preview server
-│   ├── validate.mjs            Data, path, anchor and content-integrity checks
-│   ├── download-images.mjs     Optional caching of the reference photographs
-│   └── test-server.mjs         Local HTTP server smoke tests
-├── docs/
-│   ├── CONTENT-AUDIT.md        Research verification decisions and gaps
-│   ├── IMAGE-CREDITS.md        Image origins and caching instructions
-│   └── TESTING.md              Test commands, results and limitations
-├── .nojekyll
-├── .gitignore
-└── package.json
+index.html                 Compiled public snapshot for the existing repository
+start.py                   Local setup and launcher
+manage.py                  Initialize, serve, configure, build, reset, back up
+requirements.txt           Tested direct Python dependencies
+backend/
+  app.py                   API, roles, uploads, exports and account operations
+  schema.py                Shared editor fields and validation
+  security.py              Argon2 passwords, server sessions, Origin/CSRF checks
+  db.py                    SQLite storage, transactions and audit events
+  public.py                Explicit public-field projection
+  build.py                 Single-file public compiler
+web/
+  public.html              Public page template
+  admin.html               Sign-in / private-workspace shell
+  assets/                  Editable public and admin CSS / JavaScript
+  images/                  Original extracted TED² and UNAM marks
+data/seed.json             Verified public starting content; no private accounts
+tests/                     Backend/security, offline UI and staging browser tests
+docs/                      Evidence audit, deployment notes and testing report
 ```
 
-## Edit the website
-
-### Content
-
-Edit **`data/site.json`**. The collections correspond directly to the site:
-
-| Collection | What it controls |
-| :-- | :-- |
-| `research` | The complete homepage descriptions and section anchors. |
-| `people` | Supplied names, roles, topics, documented activities, links and profile notes. |
-| `publications` | Titles, authors, year, record type, DOI, linked researchers and verification notes. |
-| `projects` | Collaboration pages, source-backed membership and provenance. |
-| `sources` | The source directory and each source’s evidential limits. |
-| `images` | Exact reference-photo addresses, local cache names, alternative text and credits. |
-
-After saving changes, regenerate both editions and check the result:
+Rebuild the root snapshot after editing the source public seed or design:
 
 ```bash
-npm run build
-npm test
+python manage.py build-public
 ```
 
-Equivalent one-command check:
-
-```bash
-npm run check
-```
-
-**Generated files are not the editing source.** Direct changes to `index.html`, profile pages, bibliography export or the single-file edition are overwritten by the next build. Edit the JSON for content, the CSS/JavaScript for presentation and behaviour, or `scripts/build.mjs` for the HTML templates.
-
-### Design
-
-The beginning of **`assets/css/styles.css`** defines the colour and typography variables. The design uses system fonts and Georgia; there are no external font downloads, paid libraries or font files to distribute.
-
-### New people and papers
-
-Follow the structure of an existing record. Every person needs a unique `id`; publication `people` entries refer to those IDs. Every research output or collaboration needs a real `sourceId`. The builder generates the appropriate profile and collaboration pages automatically.
-
-Preserve the distinction between `peer-reviewed`, `author-listed` and `catalogued` records. Do not assign a DOI, academic identifier, paper, affiliation or portrait from a name resemblance alone.
-
-The validator intentionally checks the original baseline roster and research-topic counts. When deliberately expanding that baseline, update those explicit count assertions in `scripts/validate.mjs` as part of the same reviewed change.
-
-## Research content and verification
-
-**Source review date: 10 September 2026.** This is a reviewed snapshot, not a live publication aggregator.
-
-The included bibliography contains **three publisher-checked journal articles associated with Prof Davis Mumbengegwi**. It also contains **two differently qualified university research records associated with Dr Albertina Shatri**: one found through an indexed author profile and one through a bibliographic catalog. Those university records are not presented as verified journal articles.
-
-The laboratory report on the May 2025 nanoendodontic informed-consent event supports the documented activity for Dr Albertina Shatri and Dr Silas Bere. Laboratory-reported collaborations are clearly labelled; an article’s coauthors are not automatically promoted to formal institutional partners.
-
-For other members, the profile states that a confidently attributable public record was not confirmed. This **does not mean that the person has no work or publications**.
-
-There is one unresolved name/title discrepancy: the supplied roster says **“Dr Manelia Halweendo”**, while a laboratory report says **“Ms Melania Halweendo”**. The website retains the supplied roster entry and does not silently attach the report’s activities to it.
-
-See [the complete content audit](docs/CONTENT-AUDIT.md) and the website’s `sources.html`. Bibliographic records are selected works by listed researchers, **not necessarily TED² laboratory outputs or a complete career bibliography**.
-
-## Photographs and logos
-
-The supplied Word document provided the TED² wordmark, laboratory icon and UNAM logo. They have been extracted and included. The original uncropped logo is retained at `assets/images/ted2-logo-original.png`.
-
-Four reference photographs are connected using their actual Strikingly CDN addresses. **The delivery environment could inspect those images through web retrieval but could not download their binary files into the package.** As shipped, those four images therefore load online. A deliberate branded fallback is shown when a photograph cannot load; the page content remains readable.
-
-After confirming permission to reuse the photographs, cache them on a network-connected machine:
-
-```bash
-npm run images
-```
-
-The script downloads the original photographs with a fixed PNG/JPEG output format, checks the returned type and size, saves each successful download atomically, and rebuilds **both** editions. If a download fails, an existing cached copy is preserved and the affected uncached image keeps its original URL. Failure exits with a nonzero status and a visible explanation.
-
-After a successful cache, commit the new photographs and regenerated pages. No API key, npm package or image-generation service is needed. There is no guarantee that third-party image hosts will remain available indefinitely.
-
-The QR code points to the **public original laboratory website**, not the private Strikingly editor link from the supplied document. It does not claim to encode your as-yet-unspecified GitHub Pages address.
-
-Full attribution and ownership notes: [Image credits](docs/IMAGE-CREDITS.md).
-
-## Accessibility and privacy
-
-The implementation includes semantic headings, visible keyboard focus, a skip link, mobile navigation, Escape-to-close behaviour, labelled search/filter fields, readable no-results states, reduced-motion support and printable content. Initials replace missing portraits. These measures are not a claim of formal WCAG certification.
-
-There is no analytics script, tracking pixel, contact-data database or fake form submission. The contact action opens the user’s email application. Remote photographs still cause requests to their third-party hosts; caching them locally removes that image-host dependency.
+For running content, use the admin forms and export controls instead of editing `seed.json` after initialization.
 
 ## Testing
 
 ```bash
-npm run check
+python -m unittest discover -s tests -v
 ```
 
-Checks include the baseline roster, complete homepage text, profile generation, bibliography source links, local file paths, anchors, duplicate HTML IDs, image alternative text, unsafe external-tab links and accidental reintroduction of the old template placeholders. The script does not imply that every external URL is live or that every scientific claim is independently validated.
+**46 backend/security regression tests passed.** These cover role restrictions, private-data projection, direct endpoint access, CSRF and Origin checks, login throttling, session revocation, password changes, optimistic concurrency, uploads, photo approval and public export behavior.
 
-See [Testing](docs/TESTING.md) for the delivered test report and browser-rendering limitations.
+**43 in-memory Chromium rendering/interface checks passed.** They exercise the actual forms against a local API transport, including biography edits, project/milestone/manuscript creation, per-researcher progress, account creation, mobile layouts and private update controls. They are not represented as a live-origin or production deployment test. Remote images were deliberately blocked during these checks, validating their fallbacks rather than their current delivery.
 
-## Ownership and publication approval
+```bash
+python -m pip install -r requirements-test.txt
+python -m playwright install chromium
+python tests/render_check.py
+python tests/browser_check.py
+```
 
-This repository is an educational implementation based on supplied laboratory materials and public sources. It is not presented as independent proof of institutional approval. University marks, source photographs, publication material and supplied research text retain their respective ownership. No licence for third-party assets is granted by their presence in this repository.
+The final command is the **live local-server browser test** for an unrestricted staging environment. It is included but could not run here because the managed browser blocks URL navigation. Do not confuse that unexecuted deployment check with the successful in-memory UI checks. Python/JavaScript syntax checks also passed. Full details are in [docs/TESTING.md](docs/TESTING.md).
 
-Confirm institutional branding, member names and the right to publish images before presenting this as an official laboratory website. No licence has been added to replace or override the existing repository’s licensing decisions.
+## Boundaries
+
+This is a functional small-laboratory implementation, not an independent security audit or institutional compliance approval. It does not provision hosting, domain names, email, SSO, two-factor authentication or malware scanning. Do not store patient-identifiable data without a separate institutional assessment. Clean dependency installation, Docker deployment, TLS behavior on a real domain and image reuse rights were not established by the local test run.
+
+No fabricated project status, grant, manuscript stage or progress number is included. Empty research areas are deliberate: they become useful as the laboratory enters its real information.
