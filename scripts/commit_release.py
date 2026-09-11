@@ -15,15 +15,16 @@ def main():
         parts=Path(name).parts
         if Path(name).is_absolute() or '..' in parts or any(x in {'.git','.env','.venv','var','backups','__pycache__'} for x in parts):raise SystemExit('Unsafe release path: '+name)
         if (ROOT/name).is_symlink() or not (ROOT/name).is_file():raise SystemExit('Missing or symlink release file: '+name)
+        if (ROOT/name).stat().st_size>90*1024*1024:raise SystemExit('Release file exceeds the 90 MiB safety limit: '+name+'\nUse browser publishing for media-rich updates and keep a smaller source snapshot.')
     private=[n for n in git('ls-files').stdout.splitlines() if re.search(r'(^|/)(?:var|backups|\.venv)/|(^|/)\.env$|\.sqlite',n)]
     if private:raise SystemExit('Private runtime files are already tracked; remove them from version control before pushing:\n'+'\n'.join(private))
     print(git('status','--short').stdout)
     print('Only the',len(names),'release-manifest paths will be staged. Databases, .env, uploads and other files are excluded.')
-    if not args.yes and input('Type COMMIT to record V4: ').strip()!='COMMIT':raise SystemExit('Cancelled; no files were staged.')
+    if not args.yes and input('Type COMMIT to record V5: ').strip()!='COMMIT':raise SystemExit('Cancelled; no files were staged.')
     git('add','--',*names)
     if not git('diff','--cached','--name-only').stdout.strip():print('No new release changes to commit.');return
     print(git('diff','--cached','--stat').stdout)
-    result=git('commit','-m','Upgrade TED2 Research Workspace to V4: media studio and authenticated publishing')
+    result=git('commit','-m','Upgrade TED2 Research Workspace to V5: full content controls, media and themes')
     print(result.stdout);print('Source commit created. Push it with: git push origin main')
 if __name__=='__main__':
     try:main()

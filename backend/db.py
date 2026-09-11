@@ -33,6 +33,7 @@ class Store:
             CREATE INDEX IF NOT EXISTS public_records ON records(visibility,collection);
             CREATE TABLE IF NOT EXISTS uploads(id TEXT PRIMARY KEY,path TEXT NOT NULL,original_name TEXT NOT NULL,mime TEXT NOT NULL,size INTEGER NOT NULL,collection TEXT NOT NULL,record_id TEXT NOT NULL,created_by TEXT NOT NULL,created_at TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY AUTOINCREMENT,actor TEXT NOT NULL,action TEXT NOT NULL,collection TEXT NOT NULL,record_id TEXT NOT NULL,before_json TEXT,after_json TEXT,created_at TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS trash(collection TEXT NOT NULL,id TEXT NOT NULL,deleted_at TEXT NOT NULL,deleted_by TEXT NOT NULL,state TEXT NOT NULL CHECK(state IN ('trashed','purged')),PRIMARY KEY(collection,id));
             CREATE TABLE IF NOT EXISTS attempts(key TEXT NOT NULL,at REAL NOT NULL);
             CREATE INDEX IF NOT EXISTS attempts_time ON attempts(key,at);
             ''')
@@ -51,10 +52,10 @@ class Store:
         if row is None: return None
         d=json.loads(row['payload']); d.update(_version=row['version'],_updated_at=row['updated_at']); return d
     def get(self,collection,rid):
-        with self.connect() as c: return self.record(c.execute('SELECT * FROM records WHERE collection=? AND id=?',(collection,rid)).fetchone())
+        with self.connect() as c: return self.record(c.execute('SELECT * FROM records WHERE collection=? AND id=? AND NOT EXISTS(SELECT 1 FROM trash t WHERE t.collection=records.collection AND t.id=records.id)',(collection,rid)).fetchone())
     def list(self,collection,public_only=False):
         with self.connect() as c:
-            sql='SELECT * FROM records WHERE collection=?'+(" AND visibility='public'" if public_only else '')+' ORDER BY updated_at DESC,id'
+            sql='SELECT * FROM records WHERE collection=? AND NOT EXISTS(SELECT 1 FROM trash t WHERE t.collection=records.collection AND t.id=records.id)'+(" AND visibility='public'" if public_only else '')+' ORDER BY updated_at DESC,id'
             return [self.record(r) for r in c.execute(sql,(collection,))]
     @staticmethod
     def audit(c,actor,action,collection,rid,before=None,after=None):

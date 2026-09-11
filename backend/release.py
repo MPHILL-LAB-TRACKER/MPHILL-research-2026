@@ -15,7 +15,7 @@ def release_files(store,uploads,*,embedded=False):
     with store.connect() as c:
         c.execute('BEGIN')
         records={name:[] for name in SCHEMAS}
-        for row in c.execute('SELECT * FROM records ORDER BY collection,id'):
+        for row in c.execute('SELECT * FROM records WHERE NOT EXISTS(SELECT 1 FROM trash t WHERE t.collection=records.collection AND t.id=records.id) ORDER BY collection,id'):
             if row['collection'] in records: records[row['collection']].append(json.loads(row['payload']))
         attachments={row['id']:dict(row) for row in c.execute('SELECT * FROM uploads')}
     data=project_public(records,'');files={};total=0
@@ -47,7 +47,7 @@ def release_files(store,uploads,*,embedded=False):
         return 'data:'+mime+';base64,'+base64.b64encode(blob).decode('ascii') if embedded else key
     for collection,rows in data.items():
         for p in rows:
-            for key in ('photo_url','document_url','certificate_preview','asset_url','hero_image_url'):
+            for key in ('photo_url','document_url','certificate_preview','asset_url','hero_image_url','logo_url'):
                 if key in p:p[key]=asset(p[key])
     html=compile_public(data).encode('utf-8')
     if embedded:return {'index.html':html}

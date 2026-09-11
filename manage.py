@@ -41,7 +41,7 @@ def main():
     init=sub.add_parser('init',help='Seed public content and create the first owner');init.add_argument('--username')
     server=sub.add_parser('serve',help='Serve locally (use a TLS reverse proxy in production)');server.add_argument('--host',default='127.0.0.1');server.add_argument('--port',type=int,default=8000)
     sub.add_parser('build-public',help='Rebuild root index.html from the public seed')
-    upgrade=sub.add_parser('upgrade-content',help='Preview/apply the V4 studio, media and profile update while preserving owner edits');upgrade.add_argument('--apply',action='store_true')
+    upgrade=sub.add_parser('upgrade-content',help='Preview/apply V5 content controls and theme defaults while preserving owner edits');upgrade.add_argument('--apply',action='store_true')
     export=sub.add_parser('export-public',help='Build current approved database content into a public HTML snapshot');export.add_argument('--output',type=Path,default=ROOT/'index.html')
     reset=sub.add_parser('reset-password',help='Local-server emergency password reset');reset.add_argument('username')
     backup=sub.add_parser('backup',help='Back up private database and uploads securely');backup.add_argument('destination',type=Path)

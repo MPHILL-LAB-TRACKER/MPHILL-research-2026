@@ -72,12 +72,12 @@
             ['My workspace', [['dashboard', 'Overview'], ['progress', 'My research progress'], ['records/projects', 'Assigned projects'], ['records/manuscripts', 'My manuscripts'], ['records/milestones', 'My milestones'], ['records/updates', 'My updates'], ['records/people', 'My profile']]],
             ['Account', [['password', 'Change password']]]
         ] : [
-            ['Website studio', [['studio', 'Website studio'], ['media', 'Photos & videos'], ['records/sections', 'Pages & sections'], ['publish', 'Publish to GitHub']]],
+            ['Website studio', [['studio', 'Website studio'], ['media', 'Photos & videos'], ['records/sections', 'Pages & sections'], ['edit/theme/website', 'Theme & colours'], ['records/contacts', 'Contact information'], ['records/fields', 'Custom fields'], ['trash', 'Trash & restore'], ['publish', 'Publish to GitHub']]],
             ['Research management', [['dashboard', 'Overview'], ['progress', 'Researcher progress'], ['records/projects', 'Active research'], ['board', 'Manuscript pipeline'], ['records/milestones', 'Milestones & progress'], ['records/updates', 'Research updates']]],
             ['Website content', [['records/announcements', 'Homepage alerts & events'], ['records/achievements', 'Achievements & certificates'], ['records/people', 'Researchers & collaborators'], ['records/publications', 'Publications'], ['records/collaborations', 'Collaborations'], ['records/funders', 'Funders'], ['records/capabilities', 'Homepage research'], ['records/settings', 'Website settings'], ['records/sources', 'Sources & credits']]],
             ['Publishing & access', [['export', 'Publish & export'], ['audit', 'Activity log'], ...(user.role === 'owner' ? [['users', 'Accounts & permissions']] : []), ['password', 'Change password']]]
         ];
-        app.innerHTML = `<div class="app-shell"><aside class="sidebar" id="sidebar"><a class="sidebar-brand" href="#/dashboard"><img src="/images/ted2-wordmark.png" alt="TED² Laboratory"></a><div class="sidebar-sub">${personal ? 'Researcher workspace' : 'Laboratory management'}</div><label class="sidebar-search"><span>Find an editor</span><input type="search" id="sidebar-search" placeholder="Search navigation…"></label>${sections.map(([label, links]) => `<p class="nav-section">${E(label)}</p><nav aria-label="${E(label)}">${links.map(([h, t]) => link(h, t)).join('')}</nav>`).join('')}<div class="sidebar-footer"><p>${personal ? 'Your assigned work only.' : 'Public content and private research are kept separate.'}</p><p><a href="/" target="_blank" rel="noopener">Visit public website ↗</a></p></div></aside><div class="workspace-body"><header class="topbar"><button id="mobile-menu" class="button secondary mobile-toggle" aria-expanded="false" aria-controls="sidebar">Menu</button><span class="topbar-title">TED² · ${personal ? 'Researcher workspace' : 'Administration'}</span><div class="topbar-right"><a href="/" target="_blank" class="public-link" rel="noopener">View public site ↗</a><span class="user-pill">${E(user.username)} · ${E(user.role)}</span><button class="text-button" id="logout">Sign out</button></div></header><main id="content" class="content" tabindex="-1"></main></div></div>`;
+        app.innerHTML = `<div class="app-shell"><aside class="sidebar" id="sidebar"><a class="sidebar-brand" href="#/dashboard"><img src="/images/ted2-wordmark.png" alt="TED² Laboratory"></a><div class="sidebar-sub">${personal ? 'Researcher workspace' : 'Laboratory management'}</div><label class="sidebar-search"><span>Find an editor</span><input type="search" id="sidebar-search" placeholder="Search navigation…"></label>${sections.map(([label, links]) => `<p class="nav-section">${E(label)}</p><nav aria-label="${E(label)}">${links.map(([h, t]) => link(h, t)).join('')}</nav>`).join('')}<div class="sidebar-footer"><p>${personal ? 'Your assigned work only.' : 'Public content and private research are kept separate.'}</p><p><a href="/" target="_blank" rel="noopener">Visit public website ↗</a></p></div></aside><div class="workspace-body"><header class="topbar"><button id="mobile-menu" class="button secondary mobile-toggle" aria-expanded="false" aria-controls="sidebar">Menu</button><span class="topbar-title">TED² · ${personal ? 'Researcher workspace' : 'Administration · V5'}</span><div class="topbar-right"><a href="/" target="_blank" class="public-link" rel="noopener">View public site ↗</a><span class="user-pill">${E(user.username)} · ${E(user.role)}</span><button class="text-button" id="logout">Sign out</button></div></header><main id="content" class="content" tabindex="-1"></main></div></div>`;
         document.getElementById('sidebar-search').addEventListener('input',e=>{const query=e.target.value.toLowerCase();document.querySelectorAll('.sidebar nav a').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(query));});
         document.getElementById('mobile-menu').addEventListener('click', () => { const v = document.getElementById('sidebar').classList.toggle('open'); document.getElementById('mobile-menu').setAttribute('aria-expanded', String(v)); });
         document.getElementById('logout').addEventListener('click', async () => { if (dirty && !confirm('Discard unsaved changes and sign out?'))
@@ -106,8 +106,8 @@
         if (!s)
             return;
         const allowed = admin() || ['manuscripts', 'milestones', 'updates'].includes(collection);
-        document.getElementById('content').innerHTML = heading('Content & activity', s.label, admin() ? 'Search records, edit details and choose what is visible publicly.' : 'Only records assigned to your account are shown. Published records require an administrator to change.', allowed && collection !== 'settings' ? link('new/' + collection, 'Add ' + (collection === 'people' ? 'profile' : 'record'), 'button') : '') + `<section class="panel"><div class="toolbar"><label class="grow field"><span>Search records</span><input id="record-search" type="search"></label><label class="field"><span>Visibility</span><select id="visibility-filter"><option value="">All records</option><option value="private">Private / pending approval</option><option value="public">Public</option></select></label></div><div id="record-list"></div></section>`;
-        const update = () => { const q = document.getElementById('record-search').value.toLowerCase(), v = document.getElementById('visibility-filter').value; const list = rows(collection).filter(p => (!v || v === p.visibility) && [titleOf(collection, p), p.stage, p.role, p.summary, p.status, p.kind].join(' ').toLowerCase().includes(q)); document.getElementById('record-list').innerHTML = list.length ? `<div class="table-scroll"><table><thead><tr><th>Record</th><th>Visibility</th><th>Updated</th><th>Action</th></tr></thead><tbody>${list.map(p => `<tr><td>${link('edit/' + collection + '/' + p.id, titleOf(collection, p))}<span class="help">${E(nice(p.stage || p.status || p.group || p.type || p.kind || ''))}</span></td><td>${tag(p.visibility)}</td><td>${E((p._updated_at || '').slice(0, 10))}</td><td class="record-action">${link('edit/' + collection + '/' + p.id, admin() || (['manuscripts', 'milestones', 'updates'].includes(collection) && p.visibility === 'private') ? 'Edit record →' : 'View record →')}</td></tr>`).join('')}</tbody></table></div>` : empty('No matching records.', q || v ? 'Change the search or visibility filter.' : 'Create the first record when its details are ready.'); };
+        document.getElementById('content').innerHTML = heading('Content & activity', s.label, admin() ? 'Search records, edit details and choose what is visible publicly.' : 'Only records assigned to your account are shown. Published records require an administrator to change.', allowed && !['settings','theme'].includes(collection) ? link('new/' + collection, 'Add ' + (collection === 'people' ? 'profile' : 'record'), 'button') : '') + `<section class="panel"><div class="toolbar"><label class="grow field"><span>Search records</span><input id="record-search" type="search"></label><label class="field"><span>Visibility</span><select id="visibility-filter"><option value="">All records</option><option value="private">Private / pending approval</option><option value="public">Public</option></select></label></div><div id="record-list"></div></section>`;
+        const update = () => { const q = document.getElementById('record-search').value.toLowerCase(), v = document.getElementById('visibility-filter').value; const list = rows(collection).filter(p => (!v || v === p.visibility) && [titleOf(collection, p), p.stage, p.role, p.summary, p.status, p.kind].join(' ').toLowerCase().includes(q)); document.getElementById('record-list').innerHTML = list.length ? `<div class="table-scroll"><table><thead><tr><th>Record</th><th>Visibility</th><th>Updated</th><th>Action</th></tr></thead><tbody>${list.map(p => `<tr><td>${link('edit/' + collection + '/' + p.id, titleOf(collection, p))}<span class="help">${E(nice(p.stage || p.status || p.group || p.type || p.kind || ''))}</span></td><td>${tag(p.visibility)}</td><td>${E((p._updated_at || '').slice(0, 10))}</td><td class="record-action">${link('edit/' + collection + '/' + p.id, admin() || (['manuscripts', 'milestones', 'updates'].includes(collection) && p.visibility === 'private') ? 'Edit record →' : 'View record →')}${admin()&&!['settings','theme'].includes(collection)?` <button class="text-button danger-text" data-trash-record="${E(collection+'/'+p.id)}">Delete</button>`:''}</td></tr>`).join('')}</tbody></table></div>` : empty('No matching records.', q || v ? 'Change the search or visibility filter.' : 'Create the first record when its details are ready.'); };
         document.getElementById('record-search').addEventListener('input', update);
         document.getElementById('visibility-filter').addEventListener('change', update);
         update();
@@ -115,7 +115,7 @@
     function defaultRecord(collection) {
         const out = { id: '', visibility: 'private' };
         for (const f of state.schemas[collection].fields) {
-            out[f.key] = ['multi', 'lines', 'urls'].includes(f.type) ? [] : f.type === 'checkbox' ? false : ['number', 'year', 'weight', 'percent', 'money'].includes(f.type) ? null : f.type === 'select' ? f.options[0] || '' : '';
+            out[f.key] = ['multi', 'lines', 'urls','multi-choice'].includes(f.type) ? [] : f.type === 'checkbox' ? false : ['number', 'year', 'weight', 'percent', 'money'].includes(f.type) ? null : f.type === 'select' ? f.options[0] || '' : '';
         }
         if (collection === 'people') out.bundled_portrait = '';
         if (collection === 'achievements') out.certificate_key = '';
@@ -137,26 +137,28 @@
         const locked = readOnly || (!admin() && ['people', 'researcher_id'].includes(f.key));
         const dis = locked ? ' disabled' : '';
         const req = f.required && !locked ? ' required' : '';
-        const full = ['textarea', 'lines', 'urls', 'image', 'document', 'asset'].includes(f.type);
+        const full = ['textarea', 'lines', 'urls', 'image', 'document', 'asset','multi','multi-choice'].includes(f.type);
         const label = E(f.label) + (f.public ? '' : ` <small class="private-label">${['certificate_key','bundled_portrait'].includes(f.key) ? 'Managed asset choice' : 'Private field'}</small>`);
         let control;
         if (['textarea', 'lines', 'urls'].includes(f.type))
             control = `<textarea id="${id}" name="${E(f.key)}"${dis}${req}>${E(Array.isArray(v) ? v.join('\n') : v)}</textarea>`;
+        else if(f.type==='target')control=`<select id="${id}" name="${E(f.key)}"${dis}${req}><option value="">Select a record…</option></select>`;
+        else if(f.type==='multi-choice'){const values=[...(Array.isArray(v)?v:[]),...f.options.filter(x=>!(v||[]).includes(x))];control=`<input type="hidden" name="${E(f.key)}" value=""><div class="choice-list" data-choice-group="${E(f.key)}">${values.map(x=>`<div class="choice-row"><label><input type="checkbox" value="${E(x)}"${(v||[]).includes(x)?' checked':''}${dis}> ${E(nice(x.replace(/_/g,' ')))}</label>${f.key==='home_blocks'?`<button type="button" class="text-button" data-choice-up aria-label="Move ${E(x)} up">↑</button><button type="button" class="text-button" data-choice-down aria-label="Move ${E(x)} down">↓</button>`:''}</div>`).join('')}</div>`;}
         else if (['select', 'relation', 'multi'].includes(f.type)) {
             const options = f.type === 'select' ? f.options.map(x => ({ id: x, name: nice(x) })) : (state.choices[f.relation] || []);
-            control = `<select id="${id}" name="${E(f.key)}"${f.type === 'multi' ? ' multiple' : ''}${dis}${req}>${f.type !== 'multi' ? '<option value="">Select…</option>' : ''}${options.map(x => `<option value="${E(x.id)}"${(Array.isArray(v) ? v.includes(x.id) : v === x.id) ? ' selected' : ''}>${E(x.name)}</option>`).join('')}</select>${f.type === 'multi' ? '<span class="help">Choose all that apply. Use Ctrl / Command to select multiple names on a desktop.</span>' : ''}`;
+            control = `<select id="${id}" name="${E(f.key)}"${f.type === 'multi' ? ' multiple hidden' : ''}${dis}${req}>${f.type !== 'multi' ? '<option value="">Select…</option>' : ''}${options.map(x => `<option value="${E(x.id)}"${(Array.isArray(v) ? v.includes(x.id) : v === x.id) ? ' selected' : ''}>${E(x.name)}</option>`).join('')}</select>${f.type === 'multi' ? `<div class="multi-checks">${options.map(x=>`<label><input type="checkbox" data-multi-key="${E(f.key)}" value="${E(x.id)}"${(v||[]).includes(x.id)?' checked':''}${dis}> ${E(x.name)}</label>`).join('')||'<span class="help">No records available yet.</span>'}</div>` : ''}`;
         }
         else if (f.type === 'checkbox')
             control = `<input type="checkbox" id="${id}" name="${E(f.key)}"${v ? ' checked' : ''}${dis}>`;
         else if (['image', 'document', 'asset'].includes(f.type))
-            control = `<div class="upload-box"><input type="hidden" id="${id}" name="${E(f.key)}" value="${E(v || '')}"><div id="preview-${E(f.key)}">${v ? `${f.type === 'image' ? `<img class="upload-preview" src="/media/${E(v)}" alt="Current portrait">` : ''}<a href="/media/${E(v)}" target="_blank" rel="noopener">Open current ${f.type === 'image' ? 'photograph' : f.type === 'asset' ? 'media' : 'PDF'} ↗</a>` : '<span class="help">No file attached.</span>'}</div>${!readOnly ? `${isNew ? '<p class="help">Save this record first, then upload its file.</p>' : `<input type="file" data-file="${E(f.key)}" accept="${f.type === 'image' ? 'image/jpeg,image/png,image/webp' : f.type === 'asset' ? 'image/jpeg,image/png,image/webp,video/mp4,video/webm,application/pdf' : 'application/pdf'}" aria-label="Choose ${f.type === 'image' ? 'photograph' : f.type === 'asset' ? 'media' : 'PDF'}"><button type="button" class="button secondary" data-upload="${E(f.key)}">Upload ${f.type === 'image' ? 'photograph' : f.type === 'asset' ? 'media' : 'PDF'}</button>${v ? `<button type="button" class="text-button" data-remove-file="${E(f.key)}">Detach file</button>` : ''}`}` : ''}<span class="help">${f.type === 'image' ? 'JPEG, PNG or WebP: portraits up to 5 MB; homepage photographs up to 10 MB. Approve publication in this record before sharing.' : f.type === 'asset' ? 'Image up to 10 MB, MP4/WebM video up to 50 MB, or PDF up to 20 MB. Choose the matching media type and explicitly approve public sharing.' : 'PDF up to 20 MB. Manuscripts and research-update attachments remain private. Publication and certificate PDFs require explicit approval. PDFs are not antivirus-scanned.'}</span></div>`;
+            control = `<div class="upload-box"><input type="hidden" id="${id}" name="${E(f.key)}" value="${E(v || '')}"><div id="preview-${E(f.key)}">${v ? `${f.type === 'image' ? `<img class="upload-preview" src="/media/${E(v)}" alt="Current portrait">` : ''}<a href="/media/${E(v)}" target="_blank" rel="noopener">Open current ${f.type === 'image' ? 'photograph' : f.type === 'asset' ? 'media' : 'PDF'} ↗</a>` : '<span class="help">No file attached.</span>'}</div>${!readOnly ? `${isNew ? '<p class="help">Save this record first, then upload its file.</p>' : `<input type="file" data-file="${E(f.key)}" accept="${f.type === 'image' ? '.jpg,.jpeg,.png,.webp,.gif,.bmp,.tif,.tiff' : f.type === 'asset' ? '.jpg,.jpeg,.png,.webp,.gif,.bmp,.tif,.tiff,.mp4,.webm,.mov,.m4v,.pdf' : 'application/pdf'}" aria-label="Choose ${f.type === 'image' ? 'photograph' : f.type === 'asset' ? 'media' : 'PDF'}"><button type="button" class="button secondary" data-upload="${E(f.key)}">Upload ${f.type === 'image' ? 'photograph' : f.type === 'asset' ? 'media' : 'PDF'}</button>${v ? `<button type="button" class="text-button" data-remove-file="${E(f.key)}">Detach file</button>` : ''}`}` : ''}<span class="help">${f.type === 'image' ? 'JPEG/JPG, PNG, WebP, GIF, BMP or TIFF up to 20 MB. GIF/TIFF: first frame/page. Approve publication in this record before sharing.' : f.type === 'asset' ? 'Images up to 20 MB; MP4/WebM/MOV videos up to 80 MB; PDF up to 20 MB. Choose the matching media type and explicitly approve public sharing.' : 'This dedicated PDF slot accepts PDFs up to 20 MB. Use Photos, videos & files below for images or videos. Manuscripts and research-update PDF attachments remain private. Publication and certificate PDFs require explicit approval. PDFs are not antivirus-scanned.'}</span></div>`;
         else {
-            const type = ['number', 'year', 'weight', 'percent', 'money'].includes(f.type) ? 'number' : f.type === 'url' ? 'url' : f.type === 'date' ? 'date' : f.type === 'email' ? 'email' : 'text';
+            const type = ['number', 'year', 'weight', 'percent', 'money'].includes(f.type) ? 'number' : f.type === 'url' ? 'url' : f.type === 'date' ? 'date' : f.type === 'email' ? 'email' : f.type === 'color' ? 'color' : 'text';
             control = `<input id="${id}" name="${E(f.key)}" type="${type}" value="${E(v ?? '')}"${dis}${req}${type === 'number' ? ` step="${f.type === 'money' ? '0.01' : '1'}"` : ''}>`;
         }
         if (f.type === 'checkbox')
             return `<label class="field checkbox full">${control}<span>${label}${f.help ? `<small class="help">${E(f.help)}</small>` : ''}</span></label>`;
-        return `<div class="field ${full ? 'full' : ''} ${f.required ? 'required' : ''}"><label for="${id}"><span>${label}</span></label>${control}${f.help ? `<span class="help">${E(f.help)}</span>` : ''}</div>`;
+        return `<div class="field ${full ? 'full' : ''} ${f.required ? 'required' : ''}"><label for="${id}"><span>${label}</span></label>${control}${!locked&&!f.required&&!['image','document','asset','multi','multi-choice','target'].includes(f.type)?`<button type="button" class="clear-field" data-clear-field="${E(f.key)}">Clear value</button>`:''}${f.help ? `<span class="help">${E(f.help)}</span>` : ''}</div>`;
     }
     async function edit(collection, rid) {
         const s = state.schemas[collection];
@@ -164,11 +166,13 @@
             return;
         const isNew = !rid;
         let p = isNew ? defaultRecord(collection) : await api('/records/' + collection + '/' + encodeURIComponent(rid));
+        if(isNew){const query=new URLSearchParams(location.hash.split('?')[1]||'');for(const key of ['researcher_id','target_collection','target_id'])if(query.has(key)&&key in p)p[key]=query.get(key);}
         const readOnly = !admin() && (!['manuscripts', 'milestones', 'updates'].includes(collection) || p.visibility === 'public');
         const c = document.getElementById('content');
         c.innerHTML = heading(isNew ? 'Create record' : readOnly ? 'Assigned record' : 'Edit record', isNew ? 'New ' + (collection === 'people' ? 'profile' : s.label.toLowerCase()) : titleOf(collection, p), readOnly ? 'This record is read-only for your account. Submit a private update to request a change.' : 'Changes are saved to the server. Private records remain off the public website.', link('records/' + collection, 'Back to records', 'button secondary')) +
             `<section class="panel"><form id="record-form"><div class="grid-two"><div class="field required"><label for="record-id"><span>Permanent record ID</span></label><input id="record-id" name="id" value="${E(p.id)}" pattern="[a-z0-9][a-z0-9-]{0,79}" maxlength="80" required${!isNew ? ' disabled' : ''}><span class="help">${isNew ? 'A short URL-safe name is generated from the title. You may edit it before saving.' : 'Kept stable so links and assignments continue to work.'}</span></div><div class="field"><label for="record-visibility"><span>Public visibility</span></label><select id="record-visibility" name="visibility"${!admin() || readOnly ? ' disabled' : ''}><option value="private"${p.visibility === 'private' ? ' selected' : ''}>Private — workspace only</option><option value="public"${p.visibility === 'public' ? ' selected' : ''}>Public — visible on the website</option></select><span class="help">${admin() ? 'Publishing exposes only the approved public fields. Internal notes and private PDFs are excluded.' : 'Only an administrator can approve public publication.'}</span></div>${s.fields.filter(f=>!f.key.startsWith('private_')).map(f => fieldHTML(f, p, readOnly, isNew)).join('')}${s.fields.some(f=>f.key.startsWith('private_')) ? '<div class="private-section full"><h2>Private contact information</h2><p>Visible only within the authorized workspace. Never exported to the public website.</p></div>'+s.fields.filter(f=>f.key.startsWith('private_')).map(f=>fieldHTML(f,p,readOnly,isNew)).join('') : ''}</div><div id="form-error" class="error" role="alert" hidden></div>${readOnly ? '' : `<div class="form-actions"><button class="button" type="submit">${isNew ? 'Create record' : 'Save changes'}</button>${link('records/' + collection, 'Cancel', 'button secondary')}${admin()?link('publish','Review publishing →','text-button'):''}<span class="save-hint">${isNew ? 'Not saved yet' : 'Record version ' + p._version + ' · ' + (p._updated_at || '').slice(0, 16).replace('T', ' ')}</span></div>`}</form></section>${admin() && !isNew ? `<section class="panel"><div class="panel-heading"><h2>Revision history</h2><button class="button secondary" id="load-history">View saved revisions</button></div><div id="history-content"><p class="muted">Earlier saved values are retained in the private audit history.</p></div></section>` : ''}`;
         if(collection==='media' && !isNew)c.insertAdjacentHTML('afterbegin','<section class="panel media-editor-preview">'+previewMedia(p)+'</section>');
+        setupV5Editor(collection,p,isNew,readOnly);
         const form = document.getElementById('record-form');
         let idTouched = false;
         if (isNew) {
@@ -189,7 +193,7 @@
                 const input = form.elements[f.key];
                 if (!input)
                     continue;
-                out[f.key] = f.type === 'multi' ? [...input.selectedOptions].map(x => x.value) : ['lines', 'urls'].includes(f.type) ? input.value.split(/\r?\n/).map(x => x.trim()).filter(Boolean) : f.type === 'checkbox' ? input.checked : ['number', 'year', 'weight', 'percent', 'money'].includes(f.type) ? (input.value === '' ? null : Number(input.value)) : input.value;
+                out[f.key] = valueFrom(form,f);
             }
             if (!isNew)
                 out._version = p._version;
@@ -286,7 +290,7 @@
         showError(err.message);
     } }); }
     function studio() {
-        document.getElementById('content').innerHTML = heading('Website studio · V4', 'Your laboratory. Your website.', 'Edit information, upload photographs and videos, and publish approved changes from this workspace.', link('publish','Publish to GitHub →','button')) +
+        document.getElementById('content').innerHTML = heading('Website studio · V5', 'Your laboratory. Your website.', 'Edit information, upload photographs and videos, and publish approved changes from this workspace.', link('publish','Publish to GitHub →','button')) +
         `<div class="studio-banner"><div><p class="eyebrow">A clear path from draft to public</p><h2>Edit. Review. Publish.</h2><p>Your private research stays here. Every GitHub push needs your current admin password.</p><a class="button secondary" href="/" target="_blank" rel="noopener">Preview local website ↗</a></div><div class="studio-stats"><strong>${rows('people').length}</strong><span>researcher & collaborator profiles</span><strong>${rows('media').length}</strong><span>uploaded media records</span></div></div>` +
         `<div class="studio-grid">${[
             ['edit/settings/laboratory','01','Homepage & contact','Change your main heading, photograph, animation and laboratory information.'],
@@ -294,7 +298,11 @@
             ['media','03','Photos, videos & files','Drag files here, add captions and choose exactly what may be published.'],
             ['records/sections','04','Pages & sections','Add a gallery, a text panel, a researcher section or a new page.'],
             ['records/announcements','05','Alerts & events','Keep conferences, seminars and upcoming activities current.'],
-            ['records/achievements','06','Achievements','Add recognition and approve certificate downloads.']
+            ['records/achievements','06','Achievements','Add recognition and approve certificate downloads.'],
+            ['edit/theme/website','07','Theme & colours','Change colours, fonts, layout, logo and the order of homepage sections.'],
+            ['records/contacts','08','Contact information','Assign emails, phone numbers, addresses and other contacts to a researcher or the laboratory.'],
+            ['records/fields','09','Custom fields','Add your own labelled information to a record, and edit or remove it anytime.'],
+            ['trash','10','Trash & restore','Recover removed records or permanently delete unlinked records after password confirmation.']
         ].map(([route,n,title,text])=>`<a class="studio-tile" href="#/${route}"><span>${n}</span><h2>${title}</h2><p>${text}</p><strong>Open editor →</strong></a>`).join('')}</div>`;
     }
     function previewMedia(p) {
@@ -312,10 +320,12 @@
         });
     }
     async function mediaPage() {
+        const system=await api('/system/info');
         document.getElementById('content').innerHTML=heading('Media library','Bring your research into view.','Upload first, then edit captions and explicitly approve public sharing.',link('records/sections','Arrange pages & sections','button secondary'))+
-        `<section class="panel"><div class="drop-zone" id="media-drop" tabindex="0" role="button" aria-label="Choose media files"><strong>Drop photographs, videos or PDFs here</strong><span>or click to browse your computer</span><small>Images: 10 MB · videos: 50 MB · PDF: 20 MB</small></div><input id="media-files" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,application/pdf" multiple hidden><div id="upload-progress" aria-live="polite"></div></section><section class="panel"><div class="toolbar"><label class="field grow"><span>Find media</span><input id="media-search" type="search" placeholder="Search title, caption or type"></label></div><div class="media-grid" id="media-grid"></div></section>`;
+        `<section class="panel"><div class="drop-zone" id="media-drop" tabindex="0" role="button" aria-label="Choose media files"><strong>Drop photographs, videos or PDFs here</strong><span>or click to browse your computer</span><small>Images: 20 MB · videos: 80 MB · PDF: 20 MB</small></div><input id="media-files" type="file" accept=".jpg,.jpeg,.png,.webp,.gif,.bmp,.tif,.tiff,.mp4,.webm,.mov,.m4v,.pdf" multiple hidden><div id="upload-progress" aria-live="polite"></div></section><section class="panel"><div class="toolbar"><label class="field grow"><span>Find media</span><input id="media-search" type="search" placeholder="Search title, caption or type"></label></div><div class="media-grid" id="media-grid"></div></section>`;
+        document.getElementById('media-drop').insertAdjacentHTML('beforebegin',`<p class="notice">Images: JPEG/JPG, PNG, WebP, GIF, BMP, TIFF (20 MB). Videos: MP4/WebM/MOV (80 MB). PDFs: 20 MB. ${system.ffprobe?'Video validation available.':'Video support missing: run sudo apt install ffmpeg in the terminal.'}</p>`);
         const drop=document.getElementById('media-drop'),input=document.getElementById('media-files');
-        const draw=()=>{const q=document.getElementById('media-search').value.toLowerCase();document.getElementById('media-grid').innerHTML=rows('media').filter(p=>[p.title,p.caption,p.kind].join(' ').toLowerCase().includes(q)).map(p=>`<article class="media-tile">${previewMedia(p)}<div><h3>${E(p.title)}</h3><p>${tag(p.visibility)} ${p.approved?'Approved':'Not approved'}</p>${link('edit/media/'+p.id,'Edit information & approval →')}</div></article>`).join('')||empty('Your media library is ready.','Upload a file above to get started.');};
+        const draw=()=>{const q=document.getElementById('media-search').value.toLowerCase();document.getElementById('media-grid').innerHTML=rows('media').filter(p=>[p.title,p.caption,p.kind].join(' ').toLowerCase().includes(q)).map(p=>`<article class="media-tile">${previewMedia(p)}<div><h3>${E(p.title)}</h3><p>${tag(p.visibility)} ${p.approved?'Approved':'Not approved'}</p>${link('edit/media/'+p.id,'Edit information & approval →')} <button class="text-button danger-text" data-trash-record="media/${E(p.id)}">Delete</button></div></article>`).join('')||empty('Your media library is ready.','Upload a file above to get started.');};
         const batch=async files=>{if(working)return;working=true;drop.setAttribute('aria-disabled','true');try{await refresh();for(const file of files){const entry=document.createElement('div');entry.className='upload-progress';entry.innerHTML=`<span>${E(file.name)}</span><progress max="100" value="0"></progress><small>Uploading…</small>`;document.getElementById('upload-progress').appendChild(entry);try{const result=await uploadFile(file,n=>entry.querySelector('progress').value=n);entry.querySelector('small').innerHTML=link('edit/media/'+result.record.id,'Uploaded privately — edit & approve →');}catch(error){entry.querySelector('small').textContent=error.message;entry.classList.add('error');}}await refresh();draw();}finally{working=false;drop.removeAttribute('aria-disabled');input.value='';}};
         drop.addEventListener('click',()=>{if(!working)input.click();});drop.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();input.click();}});
         for(const type of ['dragover','dragenter'])drop.addEventListener(type,e=>{e.preventDefault();drop.classList.add('dragging');});
@@ -333,6 +343,86 @@
         dialog.querySelector('form').addEventListener('submit',async e=>{e.preventDefault();const button=e.target.querySelector('[type=submit]');button.disabled=true;button.textContent='Publishing…';const password=e.target.elements.password.value;e.target.elements.password.value='';try{const result=await api('/publish/confirm',{method:'POST',body:JSON.stringify({preview_id:release.id,password})});dialog.close();document.getElementById('release-result').innerHTML=`<div class="notice"><strong>Push succeeded.</strong><p>Commit: <code>${E(result.commit)}</code></p><p>${E(result.message)}</p><a href="${E(result.website)}" target="_blank" rel="noopener">Open public website ↗</a></div>`;}catch(error){const box=dialog.querySelector('#publish-error');box.textContent=error.message;box.hidden=false;button.disabled=false;button.textContent='Confirm & push to GitHub';}});
     }
 
+    // V5 management: reversible deletion, linked contacts/fields and visual appearance.
+    const imageAccept = '.jpg,.jpeg,.png,.webp,.gif,.bmp,.tif,.tiff';
+    const allAccept = imageAccept + ',.mp4,.m4v,.mov,.webm,.pdf';
+    async function trashRecord(collection, rid) {
+        try {
+            const record=await api('/records/'+collection+'/'+rid);
+            const refs=await api('/references/'+collection+'/'+rid);
+            if(!confirm('Move “'+titleOf(collection,record)+'” to Trash? It will disappear from the local public website; publish afterward to update GitHub. You can restore it. '+(refs.references.length ? refs.references.length+' existing links will remain saved, but public links to this item are hidden.':'')))return;
+            const result=await api('/records/'+collection+'/'+rid+'/trash',{method:'POST',body:JSON.stringify({_version:record._version})});
+            dirty=false;await refresh();notify(result.message);
+            if(location.hash.startsWith('#/edit/'))location.hash='/records/'+collection;else await render();
+        } catch(error){showError(error.message);}
+    }
+    async function trashPage() {
+        const items=await api('/trash');
+        document.getElementById('content').innerHTML=heading('Recoverable removal','Trash & restore.','Restore an item as a private draft, or permanently delete an unlinked item after confirming your password.')+
+            `<div class="notice">Removing an item locally does not recall earlier website copies. Publish a new release to update GitHub. Permanent deletion does not erase earlier Git commits, private backups or downloaded files.</div><section class="panel">${items.length?`<div class="table-scroll"><table><thead><tr><th>Record</th><th>Removed</th><th>Actions</th></tr></thead><tbody>${items.map(p=>`<tr><td><strong>${E(p.label)}</strong><small class="help">${E(state.schemas[p.collection]?.label || p.collection)}</small></td><td>${E(p.deleted_at)}<small class="help">${E(p.deleted_by)}</small></td><td><button class="button secondary" data-restore="${E(p.collection+'/'+p.id)}">Restore privately</button> <button class="button danger" data-purge="${E(p.collection+'/'+p.id)}">Delete permanently</button></td></tr>`).join('')}</tbody></table></div>`:empty('Trash is empty.','Use Delete / move to Trash from a record or media file.')}</section>`;
+        document.querySelectorAll('[data-restore]').forEach(button=>button.onclick=async()=>{const p=items.find(x=>x.collection+'/'+x.id===button.dataset.restore);try{await api('/trash/'+button.dataset.restore+'/restore',{method:'POST',body:JSON.stringify({_version:p._version})});await refresh();await trashPage();notify('Restored as a private draft. Review links and approve before publishing.');}catch(e){showError(e.message);}});
+        document.querySelectorAll('[data-purge]').forEach(button=>button.onclick=()=>{
+            const p=items.find(x=>x.collection+'/'+x.id===button.dataset.purge);
+            const dialog=document.createElement('dialog');dialog.className='publish-dialog';dialog.innerHTML=`<form><p class="eyebrow">Permanent deletion</p><h2>Delete ${E(p.label)}?</h2><p>Removes this record, its attached upload files and its saved revision values from this installation. Linked records must be detached first. Earlier backups and Git history remain.</p><label class="field"><span>Type DELETE</span><input name="confirmation" autocomplete="off" required pattern="DELETE"></label><label class="field"><span>Current administrator password</span><input name="password" type="password" autocomplete="current-password" required maxlength="1024"></label><p class="error" hidden></p><div class="inline-links"><button type="submit" class="button danger">Delete permanently</button><button type="button" class="button secondary" data-cancel>Cancel</button></div></form>`;document.body.append(dialog);dialog.showModal();dialog.querySelector('[data-cancel]').onclick=()=>dialog.close();dialog.addEventListener('close',()=>dialog.remove());
+            dialog.querySelector('form').onsubmit=async e=>{e.preventDefault();const form=e.target,submit=form.querySelector('[type=submit]');submit.disabled=true;const password=form.elements.password.value;form.elements.password.value='';try{await api('/trash/'+button.dataset.purge+'/purge',{method:'POST',body:JSON.stringify({_version:p._version,password,confirmation:form.elements.confirmation.value})});dialog.close();await refresh();await trashPage();notify('Deleted from this installation. Publish to update the public website.');}catch(error){const box=dialog.querySelector('.error');box.textContent=error.message;box.hidden=false;submit.disabled=false;}};
+        });
+    }
+    function valueFrom(form,f) {
+        const input=form.elements[f.key];
+        if(f.type==='multi-choice')return [...form.querySelectorAll('[data-choice-group="'+f.key+'"] input:checked')].map(x=>x.value);
+        return f.type==='multi'?[...input.selectedOptions].map(x=>x.value):['lines','urls'].includes(f.type)?input.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean):f.type==='checkbox'?input.checked:['number','year','weight','percent','money'].includes(f.type)?(input.value===''?null:Number(input.value)):input.value;
+    }
+    function setupV5Editor(collection,p,isNew,readOnly) {
+        const form=document.getElementById('record-form');
+        form.querySelectorAll('[data-clear-field]').forEach(button=>button.onclick=()=>{const input=form.elements[button.dataset.clearField];if(!input)return;if(input.tagName==='SELECT'&&input.multiple){[...input.options].forEach(x=>x.selected=false);}else if(input.type==='checkbox')input.checked=false;else input.value='';input.dispatchEvent(new Event('change',{bubbles:true}));dirty=true;});
+        form.querySelectorAll('[data-multi-key]').forEach(box=>box.onchange=()=>{const select=form.elements[box.dataset.multiKey];const option=[...select.options].find(x=>x.value===box.value);if(option)option.selected=box.checked;dirty=true;});
+        form.querySelectorAll('[data-choice-up],[data-choice-down]').forEach(button=>button.onclick=()=>{const row=button.closest('.choice-row'),parent=row.parentElement;if(button.hasAttribute('data-choice-up')&&row.previousElementSibling)parent.insertBefore(row,row.previousElementSibling);else if(button.hasAttribute('data-choice-down')&&row.nextElementSibling)parent.insertBefore(row.nextElementSibling,row);dirty=true;});
+        const params=new URLSearchParams((location.hash.split('?')[1]||''));
+        if(collection==='fields') {
+            const select=form.elements.target_collection,target=form.elements.target_id;
+            const draw=()=>{const before=target.value||p.target_id||params.get('target_id');target.innerHTML='<option value="">Select a record…</option>'+rows(select.value).map(x=>`<option value="${E(x.id)}"${x.id===before?' selected':''}>${E(titleOf(select.value,x))}</option>`).join('');};
+            select.addEventListener('change',draw);draw();
+        }
+        if(readOnly)return;
+        if(admin()&&!isNew&&!['settings','theme'].includes(collection)) {
+            const actions=form.querySelector('.form-actions');actions.insertAdjacentHTML('beforeend','<button class="button danger" type="button" id="trash-this-record">Delete / move to Trash</button>');
+            document.getElementById('trash-this-record').onclick=()=>trashRecord(collection,p.id);
+        }
+        if(admin()){
+            if(collection!=='theme')form.insertAdjacentHTML('afterbegin',`<div class="editor-shortcuts"><strong>Quick controls</strong>${form.elements.media_items?'<button type="button" class="button secondary" data-jump-uploads>Photos, videos & files ↓</button>':''}${form.elements.hidden_fields?'<button type="button" class="button secondary" data-jump-hidden>Hide / clear fields ↓</button>':''}${!isNew&&collection==='people'?link('new/contacts?researcher_id='+p.id,'Add contact','button secondary'):''}${!isNew&&!['fields','contacts','media','theme'].includes(collection)?link('new/fields?target_collection='+collection+'&target_id='+p.id,'Add custom field','button secondary'):''}${!isNew&&!['settings','theme'].includes(collection)?'<button type="button" class="button danger" data-top-delete>Delete record</button>':''}</div>`);
+            form.querySelector('[data-jump-uploads]')?.addEventListener('click',()=>form.elements.media_items.closest('.field').scrollIntoView({behavior:'smooth',block:'start'}));
+            form.querySelector('[data-jump-hidden]')?.addEventListener('click',()=>form.querySelector('[data-choice-group=hidden_fields]').closest('.field').scrollIntoView({behavior:'smooth',block:'start'}));
+            form.querySelector('[data-top-delete]')?.addEventListener('click',()=>trashRecord(collection,p.id));
+        }
+        const mediaSelect=form.elements.media_items;
+        if(mediaSelect && admin()) {
+            const box=mediaSelect.closest('.field');
+            box.insertAdjacentHTML('beforeend',`<div class="attachment-upload"><h3>Upload photos, videos & files here</h3><p class="help">This is separate from the dedicated PDF field. New files can be attached before the record is saved.</p><div class="drop-zone compact" data-record-drop tabindex="0" role="button" aria-label="Drop attachments or browse"><strong>Drop files here or browse</strong><span>JPEG/JPG, PNG, WebP, GIF, BMP, TIFF · MP4, WebM, MOV · PDF</span></div><input type="file" data-attachment-files accept="${allAccept}" multiple hidden><label class="checkbox"><input type="checkbox" data-approve-attachments> Approve these uploads for public sharing (only select when permission is confirmed)</label><div data-attachment-progress role="status"></div></div>`);
+            const drop=box.querySelector('[data-record-drop]'),input=box.querySelector('[data-attachment-files]'),progress=box.querySelector('[data-attachment-progress]');
+            const upload=async files=>{if(working)return;working=true;try{for(const file of files){progress.textContent='Uploading / checking '+file.name+'…';const result=await uploadFile(file,n=>progress.textContent=file.name+' · '+n+'% transferred; checking/converting…');let record=result.record;if(box.querySelector('[data-approve-attachments]').checked){const body={...record,visibility:'public',approved:true};delete body._updated_at;record=await api('/records/media/'+record.id,{method:'PUT',body:JSON.stringify(body)});}const option=new Option(record.title,record.id,true,true);mediaSelect.add(option);const checks=box.querySelector('.multi-checks');if(checks){const label=document.createElement('label');const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.checked=true;checkbox.onchange=()=>{option.selected=checkbox.checked;dirty=true;};label.append(checkbox,document.createTextNode(record.title+' · '+record.visibility));checks.append(label);}dirty=true;}await refresh();progress.textContent='Files uploaded and selected. Save this record to attach them. Public files still require Publish to GitHub.';}catch(error){progress.textContent=error.message;showError(error.message);}finally{working=false;input.value='';}};
+            drop.onclick=()=>input.click();drop.onkeydown=e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();input.click();}};drop.ondragover=e=>{e.preventDefault();drop.classList.add('dragging');};drop.ondragleave=()=>drop.classList.remove('dragging');drop.ondrop=e=>{e.preventDefault();drop.classList.remove('dragging');upload([...e.dataTransfer.files]);};input.onchange=()=>upload([...input.files]);
+        }
+        if(!isNew && admin() && !['fields','contacts','media','theme'].includes(collection)) {
+            const fields=rows('fields').filter(x=>x.target_collection===collection&&x.target_id===p.id);
+            const contacts=collection==='people'?rows('contacts').filter(x=>x.researcher_id===p.id):[];
+            document.getElementById('content').insertAdjacentHTML('beforeend',`<section class="panel"><div class="panel-heading"><h2>Custom fields & assigned information</h2>${link('new/fields?target_collection='+collection+'&target_id='+p.id,'Add custom field','button secondary')}</div><p class="help">Add, edit, hide or delete your own labelled values without changing application code. Private values are never published.</p>${fields.map(x=>`<p>${link('edit/fields/'+x.id,x.label)} · ${E(x.value)} ${tag(x.visibility)}</p>`).join('')||'<p>No custom fields yet.</p>'}${collection==='people'?`<h3>Assigned contact information</h3>${contacts.map(x=>`<p>${link('edit/contacts/'+x.id,x.label)} · ${E(x.value)} ${tag(x.visibility)}</p>`).join('')}${link('new/contacts?researcher_id='+p.id,'Add contact for this researcher','button secondary')}`:''}</section>`);
+        }
+        if(collection==='theme')setupThemeEditor(form);
+    }
+    function setupThemeEditor(form) {
+        const presets={
+            'Forest & cream':{primary:'#244d3e',accent:'#a88451',background:'#f5f3eb',surface:'#ffffff',text_color:'#1d3028',muted_color:'#616c63',border_color:'#d9dfd4'},
+            'Clinical blue':{primary:'#164f80',accent:'#157c80',background:'#f1f6fa',surface:'#ffffff',text_color:'#172b3a',muted_color:'#526675',border_color:'#cedce8'},
+            'Burgundy & ivory':{primary:'#7c263a',accent:'#936515',background:'#faf5ee',surface:'#ffffff',text_color:'#35212a',muted_color:'#705b61',border_color:'#e2d4d6'},
+            'Midnight':{primary:'#a0dbcc',accent:'#e2c38e',background:'#132323',surface:'#1c3232',text_color:'#eef7f4',muted_color:'#bbd1ca',border_color:'#44625b'}
+        };
+        form.insertAdjacentHTML('afterbegin',`<section class="theme-studio"><div><p class="eyebrow">Theme studio</p><h2>Style the public website.</h2><div class="inline-links">${Object.keys(presets).map(name=>`<button type="button" class="button secondary" data-preset="${E(name)}">${E(name)}</button>`).join('')}</div><p class="help">Presets change the colour controls below. Save when ready. Homepage blocks can be hidden or reordered; custom sections stay editable separately.</p></div><div id="theme-sample" class="theme-sample"><small>LIVE COLOUR SAMPLE</small><h3>Your laboratory.<br>Your visual identity.</h3><p>Research, people and ideas — in your chosen style.</p><span id="sample-button">Explore research →</span><p id="contrast-check"></p></div></section>`);
+        const sample=document.getElementById('theme-sample');
+        const contrast=(a,b)=>{const lum=hex=>{const values=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return values[0]*.2126+values[1]*.7152+values[2]*.0722;};const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
+        const draw=()=>{const value=k=>form.elements[k].value;sample.style.backgroundColor=value('background');sample.style.color=value('text_color');sample.style.borderColor=value('border_color');sample.querySelector('h3').style.color=value('primary');sample.style.fontFamily=value('body_font')==='serif'?'Georgia,serif':'system-ui,sans-serif';sample.querySelector('h3').style.fontFamily=value('heading_font')==='serif'?'Georgia,serif':'system-ui,sans-serif';sample.style.borderRadius=value('corner_radius')+'px';const button=document.getElementById('sample-button');button.style.backgroundColor=value('primary');button.style.color=contrast(value('primary'),'#ffffff')>=contrast(value('primary'),'#000000')?'#ffffff':'#000000';const ratio=contrast(value('text_color'),value('background'));document.getElementById('contrast-check').textContent='Text/background contrast: '+ratio.toFixed(2)+':1'+(ratio<4.5?' — increase contrast for readability.':'');};
+        form.querySelectorAll('[data-preset]').forEach(button=>button.onclick=()=>{for(const [key,value]of Object.entries(presets[button.dataset.preset]))form.elements[key].value=value;dirty=true;draw();});form.addEventListener('input',draw);form.addEventListener('change',draw);draw();
+    }
+
     async function render() {
         const hash = location.hash || (admin() ? '#/studio' : '#/dashboard');
         if (dirty && hash !== lastHash && !confirm('Leave this form and discard unsaved changes?')) {
@@ -341,7 +431,7 @@
         }
         dirty = false;
         lastHash = hash;
-        const parts = hash.replace(/^#\/?/, '').split('/');
+        const parts = hash.split('?')[0].replace(/^#\/?/, '').split('/');
         const route = parts[0] || 'dashboard';
         document.getElementById('sidebar').classList.remove('open');
         document.getElementById('mobile-menu').setAttribute('aria-expanded', 'false');
@@ -349,13 +439,14 @@
             a.setAttribute('aria-current', 'page');
         else
             a.removeAttribute('aria-current'); });
-        if (!admin() && ['users', 'audit', 'export', 'board','studio','media','publish'].includes(route)) {
+        if (!admin() && ['users', 'audit', 'export', 'board','studio','media','publish','trash'].includes(route)) {
             document.getElementById('content').innerHTML = heading('Restricted', 'Administrator access required.');
             return;
         }
         try {
             if (route === 'studio') studio();
             else if(route==='media') await mediaPage();
+            else if(route==='trash') await trashPage();
             else if(route==='publish' || route==='export') await publishPage();
             else if (route === 'dashboard')
                 dashboard();
@@ -409,5 +500,6 @@
     catch (e) {
         app.innerHTML = `<main class="login-panel"><section class="login-card"><h1>The workspace is unavailable.</h1><p class="error">${E(e.message)}</p><a href="/login">Return to sign in</a></section></main>`;
     } }
+    app.addEventListener('click',e=>{const b=e.target.closest('[data-trash-record]');if(b){const [collection,id]=b.dataset.trashRecord.split('/');trashRecord(collection,id);}});
     init();
 })();

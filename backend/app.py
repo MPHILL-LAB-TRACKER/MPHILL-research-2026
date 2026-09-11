@@ -17,7 +17,7 @@ from .schema import SCHEMAS,RESEARCHER_EDIT,validate
 from .security import (COOKIE,HASHER,DUMMY,digest,password_hash,verify,user_for,write_user,same_origin,is_admin,require_admin,require_owner,assigned)
 from .public import project_public
 
-MAX_BODY=52*1024*1024
+MAX_BODY=82*1024*1024
 class BodyLimit:
     def __init__(self,app): self.app=app
     async def __call__(self,scope,receive,send):
@@ -68,7 +68,7 @@ def check_references(store,c,p):
         members=set(project.get('people',[]))|{project.get('lead_id')}
         if p.get('researcher_id') not in members: raise HTTPException(422,'Add this researcher to the project team before assigning its activity.')
     with store.connect() as con:
-        for key,mime in [('photo_upload_id','image/'),('hero_upload_id','image/'),('document_id','application/pdf'),('file_id','')]:
+        for key,mime in [('photo_upload_id','image/'),('hero_upload_id','image/'),('logo_upload_id','image/'),('document_id','application/pdf'),('file_id','')]:
             if not p.get(key): continue
             up=con.execute('SELECT * FROM uploads WHERE id=?',(p[key],)).fetchone()
             if not up or up['collection']!=c or up['record_id']!=p['id'] or not up['mime'].startswith(mime): raise HTTPException(422,'Upload is not attached to this record or has an incompatible type.')
@@ -76,6 +76,7 @@ def check_references(store,c,p):
         with store.connect() as con: attached=con.execute('SELECT mime FROM uploads WHERE id=?',(p['file_id'],)).fetchone()
         expected={'image':'image/','video':'video/','document':'application/pdf'}[p['kind']]
         if not attached['mime'].startswith(expected): raise HTTPException(422,'Media type does not match the uploaded file.')
+    if c=='fields' and not store.get(p['target_collection'],p['target_id']): raise HTTPException(422,'Select an existing active record for this field.')
     if c=='settings' and p['id']!='laboratory': raise HTTPException(422,'The website has one settings record: laboratory.')
 
 def researcher_write(store,u,c,p,old=None):
@@ -119,7 +120,7 @@ def create_app(db_path=None,base_url=None,production=None):
         response.headers['Referrer-Policy']='strict-origin-when-cross-origin'
         response.headers['Permissions-Policy']='camera=(), microphone=(), geolocation=()'
         if production: response.headers['Strict-Transport-Security']='max-age=31536000'
-        if request.url.path.startswith(('/api/','/admin','/workspace','/login','/media/')): response.headers['Cache-Control']='no-store'
+        if request.url.path.startswith(('/api/','/admin','/workspace','/login','/media/','/assets/')): response.headers['Cache-Control']='no-store'
         if request.url.path in ('/api/public','/api/health') or request.url.path.startswith('/media/'):
             origin=request.headers.get('origin')
             if origin in origins:
@@ -133,7 +134,7 @@ def create_app(db_path=None,base_url=None,production=None):
     app.mount('/images',StaticFiles(directory=ROOT/'web/images'),name='images')
 
     @app.get('/api/health')
-    def health(): return {'status':'ok'}
+    def health(): return {'status':'ok','version':'5.0.0'}
     @app.get('/api/public')
     def public():
         return project_public({c:store.list(c,True) for c in SCHEMAS},base_url)
@@ -223,7 +224,7 @@ def create_app(db_path=None,base_url=None,production=None):
         except ValueError as e: clean_error(e)
         researcher_write(store,u,collection,p); check_references(store,collection,p)
         with store.connect(write=True) as c:
-            if c.execute('SELECT 1 FROM records WHERE collection=? AND id=?',(collection,p['id'])).fetchone(): raise HTTPException(409,'This record ID already exists.')
+            if c.execute('SELECT 1 FROM records WHERE collection=? AND id=? UNION SELECT 1 FROM trash WHERE collection=? AND id=?',(collection,p['id'],collection,p['id'])).fetchone(): raise HTTPException(409,'This record ID already exists.')
             c.execute('INSERT INTO records VALUES(?,?,?,?,1,?,?)',(collection,p['id'],json.dumps(p,ensure_ascii=False),p['visibility'],u['id'],now()))
             store.audit(c,u['username'],'create',collection,p['id'],after=p)
         return store.get(collection,p['id'])
@@ -240,7 +241,7 @@ def create_app(db_path=None,base_url=None,production=None):
         with store.connect(write=True) as c:
             # Recheck the current payload inside the write transaction as well as its version.
             latest=store.record(c.execute('SELECT * FROM records WHERE collection=? AND id=?',(collection,rid)).fetchone())
-            if latest['_version']!=version: raise HTTPException(409,'Someone updated this record. Reload it before saving; your unsaved text has been kept on screen.')
+            if latest is None or c.execute('SELECT 1 FROM trash WHERE collection=? AND id=?',(collection,rid)).fetchone() or latest['_version']!=version: raise HTTPException(409,'Someone updated this record. Reload it before saving; your unsaved text has been kept on screen.')
             researcher_write(store,u,collection,p,latest)
             c.execute('UPDATE records SET payload=?,visibility=?,version=version+1,updated_at=? WHERE collection=? AND id=?',(json.dumps(p,ensure_ascii=False),p['visibility'],now(),collection,rid))
             store.audit(c,u['username'],'update',collection,rid,before=latest,after=p)
@@ -260,7 +261,8 @@ def create_app(db_path=None,base_url=None,production=None):
             if not file or not hasattr(file,'read'): raise HTTPException(422,'Choose a file.')
             raw=await file.read(MAX_UPLOAD+1);original=file.filename or 'upload'
         mode='library' if collection=='media' else ('portrait' if collection=='people' else 'image' if 'image' in supported else 'document')
-        return persist(store,uploads,raw,original,u,collection,rid,mode=mode)
+        from starlette.concurrency import run_in_threadpool
+        return await run_in_threadpool(persist,store,uploads,raw,original,u,collection,rid,mode=mode)
     @app.get('/media/{uid}')
     def media(request:Request,uid:str):
         if not re.fullmatch(r'[0-9a-f]{32}',uid): raise HTTPException(404,'File not found.')
@@ -342,4 +344,6 @@ def create_app(db_path=None,base_url=None,production=None):
         return Response(stream.getvalue(),media_type='application/zip',headers={'Content-Disposition':'attachment; filename="TED2-public-website.zip"'})
     from .v4_routes import install_routes
     install_routes(app)
+    from .v5_routes import install_routes as install_v5_routes
+    install_v5_routes(app)
     return app

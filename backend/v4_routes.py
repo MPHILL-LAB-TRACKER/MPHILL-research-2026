@@ -23,7 +23,8 @@ def install_routes(app):
             if not file or not hasattr(file,'read'):raise HTTPException(422,'Choose a media file.')
             raw=await file.read(MAX_UPLOAD+1);name=file.filename or 'upload'
         rid='media-'+uuid.uuid4().hex
-        result=persist(store,uploads,raw,name,actor,'media',rid)
+        from starlette.concurrency import run_in_threadpool
+        result=await run_in_threadpool(persist,store,uploads,raw,name,actor,'media',rid)
         p=validate('media',{'id':rid,'title':Path(name.replace('\\','/')).stem[:200] or 'Uploaded file','kind':result['kind'],'file_id':result['id'],'visibility':'private','approved':False})
         try:
             with store.connect(write=True) as c:

@@ -101,12 +101,15 @@ SCHEMAS['sections']=dict(label='Pages & sections',title='title',fields=[
  f('layout','Layout','select',options=['text','split','gallery']),f('order','Display order','number'),
  f('media_items','Photographs / videos / documents','multi',relation='media'),
  f('navigation','Show standalone page in navigation','checkbox'),f('nav_label','Navigation label'),NOTE])
+from .schema_v5 import extend, validate_extra
+extend(SCHEMAS, f)
+
 SLUG=re.compile(r'^[a-z0-9][a-z0-9-]{0,79}$')
 RESEARCHER_COLLECTIONS={'projects','manuscripts','milestones','updates','people'}
 RESEARCHER_EDIT={'manuscripts','milestones','updates'}
 
 def default_value(field):
-    if field['type'] in ('multi','lines','urls'): return []
+    if field['type'] in ('multi','lines','urls','multi-choice'): return []
     if field['type']=='checkbox': return False
     if field['type'] in ('number','year','weight','percent','money'): return None
     return ''
@@ -130,9 +133,10 @@ def validate(collection, payload):
     for field in fields:
         key,t=field['key'],field['type']; v=payload.get(key,default_value(field))
         if field['required'] and (v is None or v=='' or v==[]): raise ValueError(field['label']+' is required.')
-        if t in ('lines','multi','urls'):
+        if t in ('lines','multi','urls','multi-choice'):
             if not isinstance(v,list) or len(v)>150 or any(not isinstance(s,str) or not s.strip() or len(s)>2000 for s in v): raise ValueError(field['label']+' must be a list of non-empty values.')
             v=list(dict.fromkeys(s.strip() for s in v))
+            if t=='multi-choice' and any(s not in field['options'] for s in v): raise ValueError('Invalid '+field['label'])
             if t=='urls' and not all(safe_url(s) for s in v): raise ValueError('Invalid evidence URL.')
         elif t=='checkbox':
             if type(v) is not bool: raise ValueError(field['label']+' must be true or false.')
@@ -148,6 +152,7 @@ def validate(collection, payload):
             v=v.strip()
             if t=='select' and v and v not in field['options']: raise ValueError('Invalid '+field['label'])
             if t=='url' and not safe_url(v): raise ValueError('Use an absolute HTTP(S) URL for '+field['label'])
+            if t=='color' and not re.fullmatch(r'#[0-9a-fA-F]{6}',v): raise ValueError('Use a six-digit hex colour for '+field['label'])
             if t=='date' and v:
                 try: date.fromisoformat(v)
                 except ValueError: raise ValueError('Use YYYY-MM-DD for '+field['label'])
@@ -170,4 +175,5 @@ def validate(collection, payload):
             raise ValueError('Explain the date discrepancy in the public evidence note.')
     if collection=='sections' and out['location']=='researcher-profile' and not out['researcher_id']:
         raise ValueError('Select a researcher for a profile section.')
+    validate_extra(collection, out)
     return out

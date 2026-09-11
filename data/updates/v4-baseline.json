@@ -1040,41 +1040,5 @@
     }
   ],
   "media": [],
-  "sections": [],
-  "theme": [
-    {
-      "id": "website",
-      "visibility": "public",
-      "title": "Website appearance",
-      "primary": "#244d3e",
-      "accent": "#a88451",
-      "background": "#f5f3eb",
-      "surface": "#ffffff",
-      "text_color": "#1d3028",
-      "muted_color": "#616c63",
-      "border_color": "#d9dfd4",
-      "heading_font": "serif",
-      "body_font": "sans",
-      "font_size": 16,
-      "content_width": 1200,
-      "corner_radius": 16,
-      "density": "comfortable",
-      "hero_layout": "photo-right",
-      "home_blocks": [
-        "hero",
-        "alerts",
-        "research",
-        "people",
-        "recognition",
-        "contacts"
-      ],
-      "hidden_navigation": [],
-      "logo_upload_id": "",
-      "logo_approved": false,
-      "brand_tagline": "",
-      "footer_text": ""
-    }
-  ],
-  "contacts": [],
-  "fields": []
+  "sections": []
 }
