@@ -10,20 +10,15 @@
       "address": "Hage Geingob Campus\nBach Street\nWindhoek, Namibia",
       "hero_title": "Engineering better biomedical solutions.",
       "hero_intro": "Research at the interface of advanced cell culture, biomaterials, regenerative therapeutics, drug delivery and microscale biomedical platforms.",
-      "hero_image_url": "",
-      "hero_image_credit": "Photograph supplied by the laboratory owner.",
-      "hero_image_source": "",
+      "hero_image_url": "https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit%2Cfl_lossy%2Ch_9000%2Cw_1200%2Cf_auto%2Cq_auto/20730478/355678_108410.png",
+      "hero_image_credit": "Reference laboratory website; photographer and reuse licence not specified.",
+      "hero_image_source": "https://auburn-mint-phnps5.mystrikingly.com/1",
       "reviewed": "2026-09-10",
       "visibility": "public",
       "materials_image_url": "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_clip%2Cw_960%2Ch_720%2Cf_auto%2Cq_auto/unsplashcom/photo-1617155093758-158e4e5dcfe9",
       "materials_image_credit": "Strikingly-hosted Unsplash image photo-1617155093758-158e4e5dcfe9; photographer identity not confirmed.",
       "microscopy_image_url": "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_clip%2Cw_960%2Ch_720%2Cf_auto%2Cq_auto/unsplashcom/photo-1631049124964-f93fd879fec9",
-      "microscopy_image_credit": "Strikingly-hosted Unsplash image photo-1631049124964-f93fd879fec9; photographer identity not confirmed.",
-      "bundled_hero": "laboratory-v4",
-      "hero_permission": "approved",
-      "hero_motion": true,
-      "hero_image_alt": "Researchers working together around a laboratory bench.",
-      "hero_image_caption": "Inside the laboratory — learning, collaboration and discovery."
+      "microscopy_image_credit": "Strikingly-hosted Unsplash image photo-1631049124964-f93fd879fec9; photographer identity not confirmed."
     }
   ],
   "capabilities": [
@@ -266,17 +261,17 @@
       "researchgate_url": "https://www.researchgate.net/profile/Nailoke-Kadhila",
       "linkedin_url": "https://www.linkedin.com/posts/federated-management-institute_africa-biotechnology-engineering-activity-7026856735600455680-Cpj-",
       "orcid_url": "https://orcid.org/0000-0002-9302-9835",
-      "photo_url": "",
-      "photo_source_url": "",
-      "photo_credit": "Photograph supplied by the laboratory owner for the V4 website update.",
-      "photo_permission": "approved",
+      "photo_url": "https://i1.rgstatic.net/ii/profile.image/481528120647682-1491816658954_Q128/Nailoke-Kadhila.jpg",
+      "photo_source_url": "https://www.researchgate.net/profile/Nailoke-Kadhila",
+      "photo_credit": "Named ResearchGate author profile; photographer and reuse permission not specified.",
+      "photo_permission": "unconfirmed",
       "photo_upload_id": "",
       "source_urls": [
         "https://www.researchgate.net/profile/Nailoke-Kadhila",
         "https://scholar.google.com/citations?hl=en&user=XnUxBZEAAAAJ"
       ],
       "visibility": "public",
-      "bundled_portrait": "nailoke-pauline-kadhila-v4"
+      "bundled_portrait": ""
     },
     {
       "id": "paulus-hamutenya",
@@ -324,17 +319,17 @@
       "linkedin_url": "",
       "orcid_url": "",
       "photo_url": "",
-      "photo_credit": "Photograph supplied by the laboratory owner for the V4 website update.",
+      "photo_credit": "Owner-supplied Team.pptx, slide 4; extracted from the labelled portrait. Photographer not specified.",
       "photo_source_url": "",
       "photo_permission": "approved",
       "photo_upload_id": "",
       "source_urls": [],
       "visibility": "public",
-      "bundled_portrait": "naungwe-simasiku-v4"
+      "bundled_portrait": "naungwe-simasiku"
     },
     {
       "id": "jaydine-feris",
-      "name": "Ms Jaydine Feris",
+      "name": "Ms Jaydine Jeris",
       "group": "researcher",
       "role": "Postgraduate student · MSc in Biomedical Sciences",
       "bio": "Ms Jaydine Jeris is listed among the postgraduate students under capacity building in Biomedical Sciences. Her research investigates antibiotic-resistance patterns, molecular detection of resistance genes, and nanoparticle-based antimicrobial activity against oral and gastrointestinal bacterial pathogens.",
@@ -345,7 +340,7 @@
         "Oral and gastrointestinal pathogens"
       ],
       "work": "Investigation of Antibiotic Resistance Patterns, Molecular Detection of Resistance Genes, and Evaluation of Nanoparticle-based Antimicrobial Activity Against Oral and Gastrointestinal Bacterial Pathogens",
-      "note": "Display name corrected to Ms Jaydine Feris at the laboratory owner’s request. Programme and research topic follow the team presentation.",
+      "note": "Display name, programme and research title follow Team.pptx, slide 4. The presentation spells the surname “Jeris”; the earlier website’s “Feris” spelling is preserved only in its legacy record identifier and route. No published result or completed degree is inferred.",
       "scholar_url": "",
       "researchgate_url": "",
       "linkedin_url": "",
@@ -1038,7 +1033,5 @@
       "document_public": true,
       "visibility": "public"
     }
-  ],
-  "media": [],
-  "sections": []
+  ]
 }

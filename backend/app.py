@@ -17,23 +17,24 @@ from .schema import SCHEMAS,RESEARCHER_EDIT,validate
 from .security import (COOKIE,HASHER,DUMMY,digest,password_hash,verify,user_for,write_user,same_origin,is_admin,require_admin,require_owner,assigned)
 from .public import project_public
 
-MAX_BODY=22*1024*1024
+MAX_BODY=52*1024*1024
 class BodyLimit:
     def __init__(self,app): self.app=app
     async def __call__(self,scope,receive,send):
         if scope['type']!='http': return await self.app(scope,receive,send)
+        limit=MAX_BODY if scope.get('path','').startswith(('/api/media/upload','/api/uploads/media/')) else 22*1024*1024
         count=0; too_big=False
         headers=dict(scope.get('headers',[]))
         try: declared=int(headers.get(b'content-length',b'0'))
-        except ValueError: declared=MAX_BODY+1
-        if declared>MAX_BODY:
-            return await JSONResponse({'detail':'Upload exceeds 22 MB request limit.'},status_code=413)(scope,receive,send)
+        except ValueError: declared=limit+1
+        if declared>limit:
+            return await JSONResponse({'detail':'Upload exceeds the request size limit.'},status_code=413)(scope,receive,send)
         async def limited():
             nonlocal count,too_big
             m=await receive()
             if m['type']=='http.request':
                 count+=len(m.get('body',b''))
-                if count>MAX_BODY:
+                if count>limit:
                     too_big=True; raise HTTPException(413,'Request body too large.')
             return m
         await self.app(scope,limited,send)
@@ -67,10 +68,14 @@ def check_references(store,c,p):
         members=set(project.get('people',[]))|{project.get('lead_id')}
         if p.get('researcher_id') not in members: raise HTTPException(422,'Add this researcher to the project team before assigning its activity.')
     with store.connect() as con:
-        for key,mime in [('photo_upload_id','image/'),('document_id','application/pdf')]:
+        for key,mime in [('photo_upload_id','image/'),('hero_upload_id','image/'),('document_id','application/pdf'),('file_id','')]:
             if not p.get(key): continue
             up=con.execute('SELECT * FROM uploads WHERE id=?',(p[key],)).fetchone()
             if not up or up['collection']!=c or up['record_id']!=p['id'] or not up['mime'].startswith(mime): raise HTTPException(422,'Upload is not attached to this record or has an incompatible type.')
+    if c=='media' and p.get('file_id'):
+        with store.connect() as con: attached=con.execute('SELECT mime FROM uploads WHERE id=?',(p['file_id'],)).fetchone()
+        expected={'image':'image/','video':'video/','document':'application/pdf'}[p['kind']]
+        if not attached['mime'].startswith(expected): raise HTTPException(422,'Media type does not match the uploaded file.')
     if c=='settings' and p['id']!='laboratory': raise HTTPException(422,'The website has one settings record: laboratory.')
 
 def researcher_write(store,u,c,p,old=None):
@@ -122,7 +127,7 @@ def create_app(db_path=None,base_url=None,production=None):
                 response.headers['Vary']='Origin'
                 # Never enable cross-origin credentials. Private requests remain same-origin.
         if request.url.path in ('/admin','/workspace','/login'):
-            response.headers['Content-Security-Policy']="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+            response.headers['Content-Security-Policy']="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https: data: blob:; media-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
         return response
     app.mount('/assets',StaticFiles(directory=ROOT/'web/assets'),name='assets')
     app.mount('/images',StaticFiles(directory=ROOT/'web/images'),name='images')
@@ -203,7 +208,7 @@ def create_app(db_path=None,base_url=None,production=None):
         u=user_for(request)
         records={c:[p for p in store.list(c) if assigned(store,u,c,p)] for c in SCHEMAS}
         choices={}
-        for c in ('people','projects','collaborations','funders'):
+        for c in ('people','projects','collaborations','funders','media'):
             choices[c]=[{'id':p['id'],'name':p.get('name') or p.get('title')} for p in store.list(c) if (c!='projects' and p['visibility']=='public') or assigned(store,u,c,p)]
         return {'user':u,'schemas':SCHEMAS,'records':records,'choices':choices,'origin':base_url}
     @app.get('/api/records/{collection}/{rid}')
@@ -247,47 +252,22 @@ def create_app(db_path=None,base_url=None,production=None):
         u=write_user(request); p=get_record(store,collection,rid)
         if not assigned(store,u,collection,p): raise HTTPException(403,'This record is not assigned to you.')
         if not is_admin(u) and (collection not in RESEARCHER_EDIT or p['visibility']=='public'): raise HTTPException(403,'Uploads to published content require an administrator.')
+        from .media_v4 import persist,MAX_UPLOAD
         supported={f['type'] for f in SCHEMAS[collection]['fields']}
+        if not supported.intersection({'image','document','asset'}):raise HTTPException(422,'This record type does not accept uploads.')
         async with request.form(max_files=1,max_fields=2,max_part_size=MAX_BODY) as form:
             file=form.get('file')
-            if not file or not hasattr(file,'read'): raise HTTPException(422,'Choose an image or PDF file.')
-            original=Path(file.filename or 'upload').name[:160]
-            raw=await file.read(20*1024*1024+1)
-            if len(raw)>20*1024*1024: raise HTTPException(413,'Maximum document size is 20 MB.')
-        uid=uuid.uuid4().hex
-        if raw.startswith(b'%PDF-'):
-            if 'document' not in supported: raise HTTPException(422,'This form only accepts a portrait image.')
-            if b'%%EOF' not in raw[-4096:]: raise HTTPException(422,'This does not appear to be a complete PDF.')
-            if any(x in raw for x in (b'/JavaScript',b'/JS ',b'/Launch',b'/EmbeddedFile',b'/OpenAction')): raise HTTPException(422,'PDFs containing active actions or embedded files are not accepted.')
-            mime='application/pdf'; ext='.pdf'; output=raw
-        else:
-            if 'image' not in supported: raise HTTPException(422,'This form accepts a PDF, not an image.')
-            if len(raw)>5*1024*1024: raise HTTPException(413,'Maximum portrait size is 5 MB.')
-            try:
-                image=Image.open(io.BytesIO(raw))
-                if image.format not in ('JPEG','PNG','WEBP') or image.width*image.height>20_000_000: raise ValueError('Unsupported image or too many pixels.')
-                image.load(); image=ImageOps.exif_transpose(image).convert('RGB'); image.thumbnail((1200,1200))
-                buffer=io.BytesIO(); image.save(buffer,format='JPEG',quality=88,optimize=True)
-                output=buffer.getvalue(); mime='image/jpeg'; ext='.jpg'
-            except (UnidentifiedImageError,OSError,ValueError,Image.DecompressionBombError) as e: raise HTTPException(422,'Use a valid JPEG, PNG or WebP portrait under 20 megapixels.') from e
-        target=uploads/(uid+ext); target.write_bytes(output)
-        try: os.chmod(target,0o600)
-        except OSError: pass
-        try:
-            with store.connect(write=True) as c:
-                c.execute('INSERT INTO uploads VALUES(?,?,?,?,?,?,?,?,?)',(uid,target.name,original,mime,len(output),collection,rid,u['id'],now()))
-                store.audit(c,u['username'],'upload',collection,rid,after={'upload_id':uid,'original_name':original,'mime':mime,'bytes':len(output)})
-        except Exception:
-            target.unlink(missing_ok=True); raise
-        return {'id':uid,'mime':mime,'url':'/media/'+uid,'name':original,'bytes':len(output)}
+            if not file or not hasattr(file,'read'): raise HTTPException(422,'Choose a file.')
+            raw=await file.read(MAX_UPLOAD+1);original=file.filename or 'upload'
+        mode='library' if collection=='media' else ('portrait' if collection=='people' else 'image' if 'image' in supported else 'document')
+        return persist(store,uploads,raw,original,u,collection,rid,mode=mode)
     @app.get('/media/{uid}')
     def media(request:Request,uid:str):
         if not re.fullmatch(r'[0-9a-f]{32}',uid): raise HTTPException(404,'File not found.')
         with store.connect() as c: row=c.execute('SELECT * FROM uploads WHERE id=?',(uid,)).fetchone()
         if not row: raise HTTPException(404,'File not found.')
-        p=store.get(row['collection'],row['record_id']); accessible=False
-        if p and p['visibility']=='public':
-            accessible=(row['mime'].startswith('image/') and p.get('photo_upload_id')==uid and p.get('photo_permission')=='approved') or (row['collection'] in ('publications','achievements') and p.get('document_id')==uid and p.get('document_public') is True)
+        from .media_v4 import publicly_attached
+        p=store.get(row['collection'],row['record_id']); accessible=publicly_attached(row,p)
         if not accessible:
             u=user_for(request)
             if not p or not assigned(store,u,row['collection'],p): raise HTTPException(403,'You do not have access to this file.')
@@ -347,27 +327,19 @@ def create_app(db_path=None,base_url=None,production=None):
     @app.get('/api/export/{mode}')
     def export(request:Request,mode:str):
         u=user_for(request); require_admin(u)
-        if mode not in ('snapshot','connected'): raise HTTPException(404,'Export mode not found.')
-        from .build import compile_public
-        data=project_public({c:store.list(c,True) for c in SCHEMAS},base_url)
-        # A snapshot embeds only already-public, approved local images, never private manuscripts.
+        if mode not in ('snapshot','connected','bundle'): raise HTTPException(404,'Export mode not found.')
+        if mode=='connected':
+            from .build import compile_public
+            return Response(compile_public({},live=True,api_base=base_url),media_type='text/html',headers={'Content-Disposition':'attachment; filename="TED2-connected-index.html"'})
+        from .release import release_files
+        files=release_files(store,uploads,embedded=mode=='snapshot')
         if mode=='snapshot':
-            import base64
-            for person in data['people']:
-                link=person.get('photo_url','')
-                if link and link.startswith(base_url+'/media/'):
-                    uid=link.rsplit('/',1)[-1]
-                    with store.connect() as c: row=c.execute("SELECT * FROM uploads WHERE id=? AND mime LIKE 'image/%'",(uid,)).fetchone()
-                    if row and (uploads/row['path']).is_file(): person['photo_url']='data:'+row['mime']+';base64,'+base64.b64encode((uploads/row['path']).read_bytes()).decode()
-            for achievement in data.get('achievements', []):
-                link=achievement.get('document_url','')
-                if link.startswith(base_url+'/media/'):
-                    uid=link.rsplit('/',1)[-1]
-                    with store.connect() as c:
-                        row=c.execute("SELECT * FROM uploads WHERE id=? AND mime='application/pdf' AND collection='achievements'",(uid,)).fetchone()
-                    if row and (uploads/row['path']).is_file():
-                        achievement['document_url']='data:application/pdf;base64,'+base64.b64encode((uploads/row['path']).read_bytes()).decode()
-                        achievement['certificate_filename']=row['original_name']
-        html=compile_public({} if mode=='connected' else data,live=mode=='connected',api_base=base_url)
-        return Response(html,media_type='text/html',headers={'Content-Disposition':f'attachment; filename="TED2-{mode}-index.html"','Cache-Control':'no-store'})
+            return Response(files['index.html'],media_type='text/html',headers={'Content-Disposition':'attachment; filename="TED2-snapshot-index.html"'})
+        import zipfile
+        stream=io.BytesIO()
+        with zipfile.ZipFile(stream,'w',zipfile.ZIP_DEFLATED) as z:
+            for name,blob in files.items():z.writestr(name,blob)
+        return Response(stream.getvalue(),media_type='application/zip',headers={'Content-Disposition':'attachment; filename="TED2-public-website.zip"'})
+    from .v4_routes import install_routes
+    install_routes(app)
     return app

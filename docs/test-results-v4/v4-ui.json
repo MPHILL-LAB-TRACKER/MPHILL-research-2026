@@ -1,0 +1,30 @@
+{
+  "checks_passed": 23,
+  "checks": [
+    "Website studio loads",
+    "Sidebar search selects media editor",
+    "Browse uploads image through real backend",
+    "New upload is private",
+    "Form save succeeds",
+    "Media approval publishes intended metadata",
+    "Drag-and-drop uploads image through backend",
+    "Video browse upload passes backend validation",
+    "Form save succeeds",
+    "Administrator creates public gallery section",
+    "Snapshot renders new homepage section",
+    "Profile editor separates private personal information",
+    "Form save succeeds",
+    "Private profile edit excluded from public output",
+    "Publisher prepares exact approved preview",
+    "Each push opens admin-password confirmation",
+    "Incorrect password fails visibly and safely",
+    "Confirmed browser publish creates real local Git commit",
+    "Browser publishing preserves source HEAD",
+    "Only generated public files reach local remote",
+    "Password dialog removed after push",
+    "Mobile studio has no horizontal overflow",
+    "No JavaScript errors"
+  ],
+  "javascript_errors": [],
+  "mode": "In-memory Chromium UI with TestClient transport for fetch and XHR; real Git operations against a temporary local bare remote. Not live browser-origin/HTTPS/GitHub testing."
+}

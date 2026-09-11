@@ -40,3 +40,8 @@ def certificate_data(key: str) -> dict[str, str]:
         'certificate_preview': _encoded(paths['preview'], 'image/jpeg'),
         'certificate_filename': Path(paths['pdf']).name,
     }
+
+PORTRAITS.update({'naungwe-simasiku-v4':'portraits/naungwe-simasiku-v4.jpg','nailoke-pauline-kadhila-v4':'portraits/nailoke-pauline-kadhila-v4.jpg'})
+HOMEPAGE={'laboratory-v4':'homepage/laboratory-v4.jpg'}
+def homepage_data(key):
+    return _encoded(HOMEPAGE[key], 'image/jpeg') if key in HOMEPAGE else ''

@@ -34,14 +34,14 @@ class ContentV3Tests(unittest.TestCase):
         return {'Origin':'http://testserver','X-CSRF-Token':user['csrf']}
     def test_01_all_eleven_presented_people_have_local_portraits(self):
         public=self.client.get('/api/public').json();portraits=[p for p in public['people'] if p['photo_url'].startswith('data:image/jpeg;base64,')]
-        self.assertEqual(len(portraits),11)
+        self.assertEqual(len(portraits),12)
         for p in portraits:
             image=Image.open(io.BytesIO(base64.b64decode(p['photo_url'].split(',',1)[1])))
             self.assertGreaterEqual(image.width,200);self.assertGreaterEqual(image.height,200)
             self.assertNotIn('bundled_portrait',p)
     def test_02_corrected_names_follow_team_presentation(self):
         names={p['name'] for p in self.client.get('/api/public').json()['people']}
-        self.assertTrue({'Dr Albertina Shatri','Ms Denise Bouman','Dr Maneria Halweendo','Ms Charity Maepa','Ms Nonku Phili','Ms Jaydine Jeris','Ms Vevangapi Mbatara'}.issubset(names))
+        self.assertTrue({'Dr Albertina Shatri','Ms Denise Bouman','Dr Maneria Halweendo','Ms Charity Maepa','Ms Nonku Phili','Ms Jaydine Feris','Ms Vevangapi Mbatara'}.issubset(names))
         self.assertIn('Prof Nailoke Pauline Kadhila',names)
     def test_03_postgraduate_topics_are_assigned_to_the_correct_captions(self):
         p={x['id']:x for x in self.seed['people']}

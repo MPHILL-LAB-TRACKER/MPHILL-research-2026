@@ -9,3 +9,30 @@ backups/
 private-*.zip
 test-results/
 .DS_Store
+
+# TED2 V4 private/runtime exclusions
+.venv/
+.env
+var/
+*.sqlite*
+__pycache__/
+*.py[cod]
+.pytest_cache/
+backups/
+private-*.zip
+test-results/
+.DS_Store
+
+# Never publish private runtime and generated development state
+.env.*
+!.env.example
+*.db
+*.db-*
+*.sqlite3-*
+*.log
+*.zip
+!data/assets/**/*.zip
+node_modules/
+.venv*/
+var*/
+private*/

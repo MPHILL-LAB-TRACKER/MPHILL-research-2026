@@ -1,0 +1,31 @@
+{
+  "checks_passed": 25,
+  "checks": [
+    "Existing-clone upgrade exits successfully",
+    "Git HEAD preserved",
+    "Previously staged work preserved",
+    "Existing environment preserved",
+    "Existing config preserved",
+    "Existing owner account preserved",
+    "Owner-edited biography preserved",
+    "Feris correction migrated",
+    "New supplied portrait migrated",
+    "Existing upload preserved",
+    "Compiled main website uses existing public edits",
+    "Private database content is not serialized",
+    "Private backup created outside clone",
+    "Backup folder private",
+    "Commit helper refuses unrelated staged work",
+    "Staged work still untouched after refusal",
+    "Release-only commit succeeds",
+    "Commit contains only manifest-approved release paths",
+    "Private runtime/config/staged-only file not committed",
+    "All V4 backend and publisher code committed",
+    "No remote needed or changed",
+    "Repeat upgrade is safe and succeeds",
+    "Repeat upgrade preserves owner biography",
+    "Customized source causes safe stop",
+    "Customized source is not overwritten"
+  ],
+  "mode": "Disposable existing Git clones and V3 SQLite content; actual installer and source commit subprocesses; no pip/network/remote GitHub actions."
+}

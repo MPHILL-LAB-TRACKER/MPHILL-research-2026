@@ -1,11 +1,12 @@
 """Allowlisted public projection shared by the HTTP API and static compiler."""
 from __future__ import annotations
 from .schema import SCHEMAS
-from .assets import portrait_data, certificate_data
+from .assets import portrait_data, certificate_data, homepage_data
 
 def project_public(records,media_base=''):
     """Never serialize a stored payload wholesale. Relationship IDs are filtered too."""
     public={c:[x for x in records.get(c,[]) if x.get('visibility')=='public'] for c in SCHEMAS}
+    public['media']=[p for p in public.get('media',[]) if p.get('approved') is True and p.get('file_id')]
     ids={c:{x['id'] for x in items} for c,items in public.items()}
     result={c:[] for c in SCHEMAS}
     for collection,items in public.items():
@@ -14,6 +15,7 @@ def project_public(records,media_base=''):
             if collection=='milestones' and (p.get('project_id') not in ids['projects'] or p.get('researcher_id') not in ids['people']): continue
             if collection in ('updates','achievements') and p.get('researcher_id') not in ids['people']: continue
             if collection=='announcements' and any(rid not in ids['people'] for rid in p.get('people', [])): continue
+            if collection=='sections' and p.get('location')=='researcher-profile' and p.get('researcher_id') not in ids['people']: continue
             out={'id':p['id']}
             for field in SCHEMAS[collection]['fields']:
                 key=field['key']
@@ -32,5 +34,9 @@ def project_public(records,media_base=''):
                 out.update(certificate_data(p.get('certificate_key', '')))
             if collection in ('publications','achievements') and p.get('document_public') and p.get('document_id'):
                 out['document_url']=media_base+'/media/'+p['document_id']
+            if collection=='settings' and p.get('hero_permission')=='approved':
+                if p.get('bundled_hero'): out['hero_image_url']=homepage_data(p['bundled_hero'])
+                if p.get('hero_upload_id'): out['hero_image_url']=media_base+'/media/'+p['hero_upload_id']
+            if collection=='media': out['asset_url']=media_base+'/media/'+p['file_id']
             result[collection].append(out)
     return result

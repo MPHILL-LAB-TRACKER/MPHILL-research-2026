@@ -1,3 +1,13 @@
+# V4 owner-supplied additions
+
+The owner explicitly assigned the first newly uploaded photograph to Ms Naungwe Simasiku, the second to Prof Nailoke Pauline Kadhila, and the third laboratory photograph to the homepage. V4 follows those assignments, not inferred face recognition. Approved local image copies are bundled. The name **Ms Jaydine Feris** supersedes the earlier slide spelling; existing stable IDs and legacy profile routes are retained. No new research claims/publications were added in this release.
+
+Image reuse remains at the laboratory owner's direction; no open redistribution licence is inferred. Existing owner-uploaded portraits may take precedence during migration. Local admin controls allow choosing/replacing or withdrawing their public delivery.
+
+---
+
+## Historical source audit
+
 # V3 content and image audit
 
 Review date: 10 September 2026. This release is grounded in the owner’s `Team.pptx`, `Falling walls.pdf`, the activity instructions, and the official conference pages below. Historical bibliography evidence is retained from V2; it has not been represented as a fresh comprehensive literature search.

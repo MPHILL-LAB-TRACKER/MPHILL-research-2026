@@ -77,6 +77,30 @@ SCHEMAS={
   f('start_date','Funding start','date'),f('end_date','Funding end','date'),NOTE]),
  'sources':dict(label='Sources & credits',title='title',fields=[f('title','Source title',required=True),f('url','Source URL','url'),f('kind','Source type'),f('note','Evidence / reuse note','textarea')])
 }
+# V4: schema-driven admin editors; private fields never enter public projection.
+SCHEMAS['settings']['fields'] += [
+ f('hero_motion','Animate homepage photograph','checkbox'),
+ f('hero_image_alt','Homepage photograph description'),f('hero_image_caption','Homepage photograph caption'),
+ f('hero_upload_id','Upload homepage photograph','image',public=False),
+ f('bundled_hero','Bundled homepage photograph','select',options=['laboratory-v4'],public=False),
+ f('hero_permission','Homepage photograph permission','select',options=['not-recorded','approved'],public=False)]
+SCHEMAS['people']['fields'] += [f('affiliation','Institution'),f('department','Department'),f('qualifications','Qualifications'),
+ f('public_email','Public professional email','email'),f('public_phone','Public professional telephone'),f('website','Professional website','url'),
+ f('private_email','Private email','email',public=False),f('private_phone','Private telephone',public=False),
+ f('private_address','Private contact address','textarea',public=False)]
+SCHEMAS['media']=dict(label='Media library',title='title',fields=[
+ f('title','Title',required=True),f('kind','Media type','select',options=['image','video','document'],required=True),
+ f('file_id','Uploaded media file','asset',public=False),f('approved','Approve this file for public sharing','checkbox',public=False),
+ f('alt','Image / video description'),f('caption','Caption','textarea'),f('credit','Photographer / creator credit'),
+ f('transcript','Video transcript','textarea'),SOURCE,NOTE])
+SCHEMAS['sections']=dict(label='Pages & sections',title='title',fields=[
+ f('title','Section title',required=True),f('eyebrow','Small heading'),f('body','Section text','textarea'),
+ f('location','Display location','select',options=['homepage','researcher-profile','standalone-page'],required=True),
+ f('position','Homepage position','select',options=['after-hero','after-alerts','after-research','before-footer']),
+ f('researcher_id','Researcher profile','relation',relation='people'),
+ f('layout','Layout','select',options=['text','split','gallery']),f('order','Display order','number'),
+ f('media_items','Photographs / videos / documents','multi',relation='media'),
+ f('navigation','Show standalone page in navigation','checkbox'),f('nav_label','Navigation label'),NOTE])
 SLUG=re.compile(r'^[a-z0-9][a-z0-9-]{0,79}$')
 RESEARCHER_COLLECTIONS={'projects','manuscripts','milestones','updates','people'}
 RESEARCHER_EDIT={'manuscripts','milestones','updates'}
@@ -128,7 +152,7 @@ def validate(collection, payload):
                 try: date.fromisoformat(v)
                 except ValueError: raise ValueError('Use YYYY-MM-DD for '+field['label'])
             if t=='email' and v and not re.fullmatch(r'[^\s@]+@[^\s@]+\.[^\s@]+',v): raise ValueError('Invalid email address.')
-            if t in ('relation','image','document') and v and not SLUG.fullmatch(v): raise ValueError('Invalid linked record.')
+            if t in ('relation','image','document','asset') and v and not SLUG.fullmatch(v): raise ValueError('Invalid linked record.')
             if key=='doi' and v and not re.fullmatch(r'10\.\d{4,9}/\S+',v): raise ValueError('Enter the DOI only, beginning 10., not a URL.')
         out[key]=v
     for start,end in [('start_date','due_date'),('start_date','end_date')]:
@@ -144,4 +168,6 @@ def validate(collection, payload):
             raise ValueError('A dated activity needs a start date.')
         if out['date_status'] == 'date-conflict' and not out['evidence_note']:
             raise ValueError('Explain the date discrepancy in the public evidence note.')
+    if collection=='sections' and out['location']=='researcher-profile' and not out['researcher_id']:
+        raise ValueError('Select a researcher for a profile section.')
     return out

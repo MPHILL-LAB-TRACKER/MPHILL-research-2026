@@ -61,7 +61,7 @@ def main():
             page.screenshot(path=str(args.output/'public-home-desktop.png'),full_page=False)
             route(page,'/profiles/nailoke-pauline-kadhila');check('Kadhila individual profile opens',page.get_by_role('heading',name='Prof Nailoke Pauline Kadhila',exact=True).count()==1)
             check('Three publisher-checked Kadhila records render',page.locator('.publication-card').count()==3)
-            check('Unavailable portrait has initials fallback',page.locator('.avatar.large .profile-image').count()==0)
+            check('Supplied Kadhila portrait is embedded',page.locator('.avatar.large .profile-image').count()==1)
             page.screenshot(path=str(args.output/'profile-desktop.png'),full_page=False)
             route(page,'/profiles/mbotarai-vevangapi');check('Legacy profile URL resolves to corrected name',page.get_by_role('heading',name='Ms Vevangapi Mbatara',exact=True).count()==1)
             route(page,'/publications');page.locator('#pub-person').select_option('nailoke-pauline-kadhila');check('Publication researcher filter',page.locator('.publication-card').count()==3);page.locator('#pub-search').fill('2022');check('Publication search',page.locator('.publication-card').count()==1)
@@ -76,12 +76,12 @@ def main():
             check('Nanomedicine seminar is present on the homepage',page.locator('#alerts .seminar-notice h3').inner_text()=='Nanomedicine in Health')
             check('NCRST November date is visibly qualified against the September host notice','17–18 November 2026' in page.locator('#alerts .date-discrepancy').inner_text() and '17–18 September 2026' in page.locator('#alerts .date-discrepancy').inner_text())
             check('No Instagram outbound links in the public page',page.locator('a[href*="instagram.com"]').count()==0)
-            check('Homepage has eleven locally embedded labelled portraits',page.locator('.roster-link img[src^="data:image/jpeg"]').count()==11)
+            check('Homepage has twelve locally embedded labelled portraits',page.locator('.roster-link img[src^="data:image/jpeg"]').count()==12)
             section_snapshot(page,'#alerts','homepage-alerts-desktop.png')
             route(page,'/researchers');page.locator('.person-card').last.scroll_into_view_if_needed();page.wait_for_timeout(200)
-            check('All eleven supplied portraits decode without remote requests',page.locator('.profile-image').evaluate_all('(images)=>images.length===11 && images.every(i=>i.complete && i.naturalWidth>0)'))
+            check('All twelve supplied portraits decode without remote requests',page.locator('.profile-image').evaluate_all('(images)=>images.length===12 && images.every(i=>i.complete && i.naturalWidth>0)'))
             page.evaluate('window.scrollTo(0,0)');page.screenshot(path=str(args.output/'team-directory-desktop.png'),full_page=False)
-            for alias,name in [('denise-bouman','Ms Denise Bouman'),('maneria-halweendo','Dr Maneria Halweendo'),('charity-maepa','Ms Charity Maepa'),('nonku-phili','Ms Nonku Phili'),('jaydine-jeris','Ms Jaydine Jeris')]:
+            for alias,name in [('denise-bouman','Ms Denise Bouman'),('maneria-halweendo','Dr Maneria Halweendo'),('charity-maepa','Ms Charity Maepa'),('nonku-phili','Ms Nonku Phili'),('jaydine-jeris','Ms Jaydine Feris')]:
                 route(page,'/profiles/'+alias);check('Corrected profile alias: '+alias,page.get_by_role('heading',name=name,exact=True).count()==1)
             route(page,'/profiles/paulus-hamutenya');check('Paulus profile shows the correct biosensor research topic','Aptamer-functionalised Gold Nanoparticle Biosensors' in page.locator('#bio').inner_text())
             check('Certificate and selection evidence appear together on Paulus profile',page.locator('#recognition .certificate-preview').count()==1 and 'not printed on the certificate' in page.locator('#recognition').inner_text())
@@ -116,7 +116,7 @@ def main():
                 p=new_page();p.expose_function('__LOCAL_API',bridge);p.set_content(html,wait_until='load');p.wait_for_timeout(300);return p
             page=management_page();page.locator('#login-form').wait_for();check('Sign-in UI renders without authenticated data');page.screenshot(path=str(args.output/'login-desktop.png'),full_page=False)
             page.locator('[name=username]').fill('ui-test-owner');page.locator('[name=password]').fill('Temporary UI test password 2026!');page.locator('#login-form button').click();page.wait_for_function("window.__NAV==='/admin'");check('Login form authenticates through actual local API and chooses admin destination');page.close()
-            page=management_page();page.get_by_role('heading',name='Research, with a clear next step.').wait_for();check('Authenticated owner dashboard renders');page.screenshot(path=str(args.output/'admin-dashboard.png'),full_page=False)
+            page=management_page();page.get_by_role('heading',name='Your laboratory. Your website.').wait_for();check('Authenticated owner dashboard renders');page.screenshot(path=str(args.output/'admin-dashboard.png'),full_page=False)
             route(page,'/records/announcements');check('Admin navigation includes editable homepage alerts',page.locator('#record-list tbody tr').count()==4)
             page.screenshot(path=str(args.output/'admin-alerts-desktop.png'),full_page=False)
             route(page,'/edit/announcements/shatri-ncrst-2026');check('Admin editor exposes both supplied and host-published dates',page.locator('#f-start_date').input_value()=='2026-11-17' and page.locator('#f-official_start_date').input_value()=='2026-09-17')
@@ -135,7 +135,7 @@ def main():
             route(page,'/progress');page.locator('#progress-person').select_option('paulus-hamutenya');check('Individual researcher view calculates 100% completed test milestones',page.get_by_text('100% · internal weighted progress').count()==1)
             route(page,'/new/manuscripts');page.locator('#f-title').fill('UI test — private manuscript');page.locator('#f-people').select_option(['paulus-hamutenya']);page.locator('#f-stage').select_option('under-review');page.locator('#f-internal_notes').fill('PRIVATE-UI-REVIEWER-NOTE');page.locator('#record-form [type=submit]').click();page.wait_for_function("location.hash.includes('/edit/manuscripts/ui-test-private-manuscript')");check('Manuscript editor saves a private draft and review note')
             route(page,'/board');check('Manuscript displays in the correct review stage',page.locator('.board-column').nth(1).get_by_text('UI test — private manuscript').count()==1)
-            route(page,'/export');check('Connected and snapshot export links render',page.locator('a[href="/api/export/connected"]').count()==1 and page.locator('a[href="/api/export/snapshot"]').count()==1)
+            route(page,'/export');check('Portable bundle and snapshot export links render',page.locator('a[href="/api/export/bundle"]').count()==1 and page.locator('a[href="/api/export/snapshot"]').count()==1)
             route(page,'/users');page.locator('#account-form [name=username]').fill('ui-researcher');page.locator('#account-form [name=researcher_id]').select_option('paulus-hamutenya');page.locator('#account-form [name=password]').fill('Temporary researcher password 2026!');page.locator('#account-form [type=submit]').click();page.get_by_text('Account created.',exact=True).wait_for();check('Account editor creates a researcher linked to a profile')
             page.set_viewport_size({'width':390,'height':844});route(page,'/dashboard');check('Mobile admin layout has no horizontal overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth'));page.locator('#mobile-menu').click();check('Admin mobile menu opens',page.locator('#sidebar').get_attribute('class').endswith('open'));page.locator('#mobile-menu').click();page.screenshot(path=str(args.output/'admin-mobile.png'),full_page=False)
             page.locator('#logout').click();page.wait_for_function("window.__NAV==='/login'");check('Sign-out revokes API session',client.get('/api/session').json()['user'] is None);page.close()
@@ -144,7 +144,7 @@ def main():
             route(page,'/new/updates');page.locator('#f-title').fill('UI test — private progress update');page.locator('#f-text').fill('A private test progress note.');page.locator('#record-form [type=submit]').click();page.wait_for_function("location.hash.includes('/edit/updates/ui-test-private-progress-update')");check('Researcher can save an assigned private update');check('Researcher publishing control is disabled',page.locator('#record-visibility').is_disabled())
             public=client.get('/api/public').text;check('Private UI-created titles and notes never enter the public response',all(x not in public for x in ['UI test — private manuscript','PRIVATE-UI-REVIEWER-NOTE','A private test progress note.']))
             check('No JavaScript runtime errors',not errors)
-            report={'checks_passed':len(checks),'checks':checks,'javascript_errors':errors,'mode':'In-memory Chromium rendering and form interactions, using a FastAPI TestClient bridge. Real network navigation, browser-origin cookies, HTTPS and deployment were not exercised.','images':'Remote image requests aborted deliberately. Eleven supplied portraits, certificate preview and original PDF download tested offline; remaining remote-image fallback also tested.','test_data':'All UI test projects, accounts, manuscripts and updates were temporary and are not shipped in seed.json.'}
+            report={'checks_passed':len(checks),'checks':checks,'javascript_errors':errors,'mode':'In-memory Chromium rendering and form interactions, using a FastAPI TestClient bridge. Real network navigation, browser-origin cookies, HTTPS and deployment were not exercised.','images':'Remote image requests aborted deliberately. Twelve supplied portraits, certificate preview and original PDF download tested offline; remaining remote-image fallback also tested.','test_data':'All UI test projects, accounts, manuscripts and updates were temporary and are not shipped in seed.json.'}
             (args.output/'render-report.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2));browser.close()
         client.close()
 if __name__=='__main__':main()
