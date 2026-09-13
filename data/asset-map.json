@@ -1,0 +1,26 @@
+{
+  "portraits": {
+    "albertina-shatri": "portraits/albertina-shatri.jpg",
+    "davis-mumbengegwi": "portraits/davis-mumbengegwi.jpg",
+    "silas-bere": "portraits/silas-bere.jpg",
+    "charity-maepa": "portraits/charity-maepa.jpg",
+    "maneria-halweendo": "portraits/maneria-halweendo.jpg",
+    "denise-bouman": "portraits/denise-bouman.jpg",
+    "nonku-phili": "portraits/nonku-phili.jpg",
+    "naungwe-simasiku": "portraits/naungwe-simasiku.jpg",
+    "vevangapi-mbatara": "portraits/vevangapi-mbatara.jpg",
+    "paulus-hamutenya": "portraits/paulus-hamutenya.jpg",
+    "jaydine-jeris": "portraits/jaydine-jeris.jpg",
+    "naungwe-simasiku-v4": "portraits/naungwe-simasiku-v4.jpg",
+    "nailoke-pauline-kadhila-v4": "portraits/nailoke-pauline-kadhila-v4.jpg"
+  },
+  "certificates": {
+    "falling-walls-paulus-hamutenya-2026": {
+      "pdf": "certificates/falling-walls-paulus-hamutenya-2026.pdf",
+      "preview": "certificates/falling-walls-paulus-hamutenya-2026.jpg"
+    }
+  },
+  "homepage": {
+    "laboratory-v4": "homepage/laboratory-v4.jpg"
+  }
+}

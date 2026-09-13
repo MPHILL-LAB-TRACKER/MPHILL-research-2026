@@ -1,9 +1,7 @@
-# Attribution and licensing notice
+# Content, media and release notice
 
-The TED² and UNAM marks originate from the owner-supplied document and remain subject to institutional brand permissions. Source research text and roster entries originate from the supplied laboratory materials; added scholarly records are attributed in the website and content audit. Remote photographs are not represented as freely licensed. Eleven labelled portraits in this update were supplied by the owner in Team.pptx for this website; that publication instruction is not an open image licence.
+The TED²/UNAM branding, supplied researcher portraits, laboratory photograph and Falling Walls certificate are retained from owner-supplied material and the preceding V5 release. Their use here is not an assertion that institutional marks, portraits or the certificate are public-domain or freely relicensable. Retain appropriate permission and credits.
 
-The original publicly deployed compiled file matched Git object `e629357a55226376268d61ad1a9900ac8c13b69e` when reviewed. The new custom application source and testing materials are provided for the laboratory’s learning and development use. No third-party logo, photograph, researcher work, or journal article is assigned a new licence by this package.
+Researcher identity/photo assignments follow the user's explicit labels and prior approved release data; no image-based identity inference is used. Existing scholarly records remain source-labelled and are not automatically claimed as laboratory-owned publications. The conference date conflict from prior releases remains flagged rather than silently changed.
 
-Python dependencies retain their respective licences. No passwords, populated research database, private documents, copied dependency trees, or font files are distributed.
-
-The original Falling Walls participation certificate was supplied for inclusion and is preserved without modification. The top-16 selection result is owner-reported and is not presented as a ranking certified by that document. Team names, roles and research topics in this release follow Team.pptx, not independent identification of people from their faces.
+The added application source was prepared for this project. No third-party font files or compiled native executables are included. Runtime dependencies retain their respective licences. Test credentials belong only to temporary test fixtures; there is no default production login.

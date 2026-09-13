@@ -1,0 +1,3549 @@
+{
+  "settings": {
+    "label": "Website settings",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Laboratory name",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "short_name",
+        "label": "Short name",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "institution",
+        "label": "Institution",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_title",
+        "label": "Homepage heading",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_intro",
+        "label": "Homepage introduction",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "contact_name",
+        "label": "Public contact name",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "contact_email",
+        "label": "Public contact email",
+        "type": "email",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "address",
+        "label": "Public address",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_image_url",
+        "label": "Homepage photograph URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_image_credit",
+        "label": "Photograph credit",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_image_source",
+        "label": "Photograph source page",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "materials_image_url",
+        "label": "Supporting materials photograph URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "materials_image_credit",
+        "label": "Materials photograph credit",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "microscopy_image_url",
+        "label": "Supporting microscopy photograph URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "microscopy_image_credit",
+        "label": "Microscopy photograph credit",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "reviewed",
+        "label": "Content review date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_motion",
+        "label": "Animate homepage photograph",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_image_alt",
+        "label": "Homepage photograph description",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_image_caption",
+        "label": "Homepage photograph caption",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_upload_id",
+        "label": "Upload homepage photograph",
+        "type": "image",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "bundled_hero",
+        "label": "Bundled homepage photograph",
+        "type": "select",
+        "required": false,
+        "options": [
+          "laboratory-v4"
+        ],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "hero_permission",
+        "label": "Homepage photograph permission",
+        "type": "select",
+        "required": false,
+        "options": [
+          "not-recorded",
+          "approved"
+        ],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "hero_eyebrow",
+        "label": "Homepage small heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "research_title",
+        "label": "Research capabilities section heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "interactions_title",
+        "label": "Cell–material section heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "scaffolds_title",
+        "label": "Scaffolds section heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "people_title",
+        "label": "People section heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "alerts_title",
+        "label": "Homepage alerts heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "contacts_title",
+        "label": "Contact section heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "short_name",
+          "institution",
+          "hero_intro",
+          "contact_name",
+          "contact_email",
+          "address",
+          "hero_image_url",
+          "hero_image_credit",
+          "hero_image_source",
+          "materials_image_url",
+          "materials_image_credit",
+          "microscopy_image_url",
+          "microscopy_image_credit",
+          "reviewed",
+          "hero_image_alt",
+          "hero_image_caption",
+          "hero_eyebrow",
+          "research_title",
+          "interactions_title",
+          "scaffolds_title",
+          "people_title",
+          "alerts_title",
+          "contacts_title"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      },
+      {
+        "key": "anonymous_enabled",
+        "label": "Enable anonymous questions",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "submission_site",
+        "label": "Public HTTPS PHP site for anonymous submissions",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "Leave empty while only running locally. GitHub Pages cannot receive submissions."
+      },
+      {
+        "key": "privacy_notice",
+        "label": "Anonymous response privacy notice",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "search_console_verification",
+        "label": "Google Search Console verification token",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "Only the verification token, not an HTML tag. This supports ownership verification; it does not guarantee indexing."
+      }
+    ]
+  },
+  "capabilities": {
+    "label": "Homepage research",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Research heading",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "text",
+        "label": "Description",
+        "type": "textarea",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "order"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "people": {
+    "label": "Researchers & collaborators",
+    "title": "name",
+    "fields": [
+      {
+        "key": "name",
+        "label": "Full display name",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "group",
+        "label": "Directory",
+        "type": "select",
+        "required": true,
+        "options": [
+          "researcher",
+          "collaborator"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "role",
+        "label": "Position / qualifications",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "bio",
+        "label": "Biography",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "topics",
+        "label": "Research interests",
+        "type": "lines",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "work",
+        "label": "Selected work",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "note",
+        "label": "Public evidence note",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "scholar_url",
+        "label": "Google Scholar",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researchgate_url",
+        "label": "ResearchGate",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "linkedin_url",
+        "label": "LinkedIn profile / attributed post",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "orcid_url",
+        "label": "ORCID",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "photo_url",
+        "label": "Remote portrait URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "Use only a portrait attributed to this named researcher; not a group-photo guess."
+      },
+      {
+        "key": "photo_upload_id",
+        "label": "Uploaded portrait",
+        "type": "image",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "bundled_portrait",
+        "label": "Portrait supplied in Team.pptx",
+        "type": "select",
+        "required": false,
+        "options": [
+          "albertina-shatri",
+          "davis-mumbengegwi",
+          "silas-bere",
+          "charity-maepa",
+          "maneria-halweendo",
+          "denise-bouman",
+          "nonku-phili",
+          "naungwe-simasiku",
+          "vevangapi-mbatara",
+          "paulus-hamutenya",
+          "jaydine-jeris",
+          "naungwe-simasiku-v4",
+          "nailoke-pauline-kadhila-v4"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "The supplied presentation photograph. An approved uploaded portrait takes priority; choose an empty option to remove this fallback."
+      },
+      {
+        "key": "photo_credit",
+        "label": "Photographer / credit",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "photo_source_url",
+        "label": "Portrait source page",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "photo_permission",
+        "label": "Portrait permission",
+        "type": "select",
+        "required": false,
+        "options": [
+          "not-recorded",
+          "unconfirmed",
+          "approved"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "A public profile is not automatically a reuse licence. An approved local upload takes priority."
+      },
+      {
+        "key": "source_urls",
+        "label": "Biography evidence URLs",
+        "type": "urls",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "affiliation",
+        "label": "Institution",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "department",
+        "label": "Department",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "qualifications",
+        "label": "Qualifications",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "public_email",
+        "label": "Public professional email",
+        "type": "email",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "public_phone",
+        "label": "Public professional telephone",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "website",
+        "label": "Professional website",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "private_email",
+        "label": "Private email",
+        "type": "email",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "private_phone",
+        "label": "Private telephone",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "private_address",
+        "label": "Private contact address",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "role",
+          "bio",
+          "topics",
+          "work",
+          "note",
+          "scholar_url",
+          "researchgate_url",
+          "linkedin_url",
+          "orcid_url",
+          "photo_url",
+          "photo_credit",
+          "photo_source_url",
+          "source_urls",
+          "affiliation",
+          "department",
+          "qualifications",
+          "public_email",
+          "public_phone",
+          "website"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      },
+      {
+        "key": "sort_name",
+        "label": "Alphabetical sort name (surname first)",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "priority",
+        "label": "Pinned order (0 = alphabetical)",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "literature_enabled",
+        "label": "Enable external literature alerts",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "literature_query",
+        "label": "Europe PMC search query",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Opt-in: this query is sent to Europe PMC. Do not include unpublished or personal information."
+      }
+    ]
+  },
+  "publications": {
+    "label": "Publications",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "year",
+        "label": "Publication year",
+        "type": "year",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "authors",
+        "label": "Authors — one per line",
+        "type": "lines",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "people",
+        "label": "Researchers",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "venue",
+        "label": "Journal / publisher / university",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "volume",
+        "label": "Volume / issue",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "number",
+        "label": "Article number / pages",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "doi",
+        "label": "DOI",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "type",
+        "label": "Evidence / output type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "peer-reviewed",
+          "author-listed",
+          "catalogued",
+          "preprint",
+          "chapter"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "source_url",
+        "label": "Evidence / source URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Public summary",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "note",
+        "label": "Public evidence note",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "document_id",
+        "label": "PDF",
+        "type": "document",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "document_public",
+        "label": "Allow public download of this PDF",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "Only publish a document when you have the right to distribute it."
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "venue",
+          "volume",
+          "number",
+          "doi",
+          "source_url",
+          "summary",
+          "note"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "collaborations": {
+    "label": "Collaborations",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Collaboration title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "partner",
+        "label": "Partner institution / group",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "people",
+        "label": "Researchers",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "period",
+        "label": "Period / source date",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Public summary",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "detail",
+        "label": "Description",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "source_url",
+        "label": "Evidence / source URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "note",
+        "label": "Evidence / attribution note",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "partner",
+          "period",
+          "summary",
+          "detail",
+          "source_url",
+          "note"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "projects": {
+    "label": "Active research",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Research project title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "lead_id",
+        "label": "Lead researcher",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "people",
+        "label": "Researchers",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "collaborators",
+        "label": "Linked collaborations",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "collaborations",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "funders",
+        "label": "Linked funders",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "funders",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "stage",
+        "label": "Project stage",
+        "type": "select",
+        "required": true,
+        "options": [
+          "planned",
+          "active",
+          "analysis",
+          "completed",
+          "on-hold"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Public project summary",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "start_date",
+        "label": "Start date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "due_date",
+        "label": "Target completion",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "public_progress",
+        "label": "Approved public progress (%)",
+        "type": "percent",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "A deliberately approved figure; internal milestones never change public progress automatically."
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "summary",
+          "start_date",
+          "due_date",
+          "public_progress"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "manuscripts": {
+    "label": "Manuscript pipeline",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Manuscript title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "people",
+        "label": "Researchers",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "project_id",
+        "label": "Linked research project",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "projects",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "stage",
+        "label": "Manuscript stage",
+        "type": "select",
+        "required": true,
+        "options": [
+          "idea",
+          "drafting",
+          "internal-review",
+          "submitted",
+          "under-review",
+          "revisions",
+          "accepted",
+          "published"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Approved public summary",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "journal",
+        "label": "Journal (public when published here)",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "doi",
+        "label": "DOI",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "due_date",
+        "label": "Internal next deadline",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "submission_id",
+        "label": "Journal submission reference",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "document_id",
+        "label": "Private manuscript PDF",
+        "type": "document",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "summary",
+          "journal",
+          "doi"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "milestones": {
+    "label": "Milestones & progress",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Milestone",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "project_id",
+        "label": "Project (optional)",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "projects",
+        "public": true,
+        "help": "Leave empty for an independent researcher milestone."
+      },
+      {
+        "key": "researcher_id",
+        "label": "Responsible researcher",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "status",
+        "label": "Status",
+        "type": "select",
+        "required": true,
+        "options": [
+          "todo",
+          "in-progress",
+          "done",
+          "blocked"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "due_date",
+        "label": "Target date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "weight",
+        "label": "Weight toward internal project progress",
+        "type": "weight",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Optional public milestone summary",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "due_date",
+          "weight",
+          "summary"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "updates": {
+    "label": "Research updates",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Update title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Researcher",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "project_id",
+        "label": "Project",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "projects",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "date",
+        "label": "Date",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "kind",
+        "label": "Update type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "progress",
+          "experiment",
+          "conference",
+          "award",
+          "dataset",
+          "bio-change",
+          "other"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "text",
+        "label": "Update / proposed biography text",
+        "type": "textarea",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "document_id",
+        "label": "Supporting PDF",
+        "type": "document",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "announcements": {
+    "label": "Homepage alerts & events",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Alert title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "kind",
+        "label": "Activity type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "conference",
+          "seminar",
+          "notice"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "people",
+        "label": "Researchers",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "description",
+        "label": "Public description",
+        "type": "textarea",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "host",
+        "label": "Host / organiser",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "location",
+        "label": "Location",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "start_date",
+        "label": "Laboratory-supplied start date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "end_date",
+        "label": "Laboratory-supplied end date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "date_status",
+        "label": "Date evidence",
+        "type": "select",
+        "required": true,
+        "options": [
+          "host-confirmed",
+          "lab-supplied",
+          "date-conflict",
+          "date-to-be-announced"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "official_start_date",
+        "label": "Host-published start date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "official_end_date",
+        "label": "Host-published end date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "official_url",
+        "label": "Official conference / host page",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "evidence_note",
+        "label": "Public date / participation evidence note",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "homepage",
+        "label": "Show in homepage Alerts",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "host",
+          "location",
+          "start_date",
+          "end_date",
+          "official_start_date",
+          "official_end_date",
+          "official_url",
+          "evidence_note"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "achievements": {
+    "label": "Achievements & certificates",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Achievement title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Researcher",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "date",
+        "label": "Activity date",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Achievement description",
+        "type": "textarea",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "evidence_note",
+        "label": "What the evidence supports",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "homepage",
+        "label": "Show recognition on the homepage",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "certificate_key",
+        "label": "Owner-supplied certificate",
+        "type": "select",
+        "required": false,
+        "options": [
+          "falling-walls-paulus-hamutenya-2026"
+        ],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "document_id",
+        "label": "Replacement certificate PDF",
+        "type": "document",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "document_public",
+        "label": "Publish certificate PDF",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "Explicitly approve distribution of this certificate. A replacement upload overrides the bundled certificate."
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "evidence_note"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "funders": {
+    "label": "Funders",
+    "title": "name",
+    "fields": [
+      {
+        "key": "name",
+        "label": "Funder name",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "website",
+        "label": "Website",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Public acknowledgement",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "award_reference",
+        "label": "Public award reference",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "source_url",
+        "label": "Evidence / source URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "amount",
+        "label": "Internal awarded amount",
+        "type": "money",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "currency",
+        "label": "Internal currency",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "start_date",
+        "label": "Funding start",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "end_date",
+        "label": "Funding end",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "website",
+          "summary",
+          "award_reference",
+          "source_url",
+          "start_date",
+          "end_date"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "sources": {
+    "label": "Sources & credits",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Source title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "url",
+        "label": "Source URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "kind",
+        "label": "Source type",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "note",
+        "label": "Evidence / reuse note",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Photos, videos & downloadable files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": "Upload here or select existing files. Files are private until you approve them in the media library."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "url",
+          "kind",
+          "note"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "media": {
+    "label": "Media library",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "kind",
+        "label": "Media type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "image",
+          "video",
+          "document"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "file_id",
+        "label": "Uploaded media file",
+        "type": "asset",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "approved",
+        "label": "Approve this file for public sharing",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "alt",
+        "label": "Image / video description",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "caption",
+        "label": "Caption",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "credit",
+        "label": "Photographer / creator credit",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "transcript",
+        "label": "Video transcript",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "source_url",
+        "label": "Evidence / source URL",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "scope",
+        "label": "Media ownership",
+        "type": "select",
+        "required": true,
+        "options": [
+          "laboratory",
+          "researcher",
+          "review"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Owner researcher",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "display_filename",
+        "label": "Public download filename",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      }
+    ]
+  },
+  "sections": {
+    "label": "Pages & sections",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Section title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "eyebrow",
+        "label": "Small heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "body",
+        "label": "Section text",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "location",
+        "label": "Display location",
+        "type": "select",
+        "required": true,
+        "options": [
+          "homepage",
+          "researcher-profile",
+          "standalone-page"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "position",
+        "label": "Homepage position",
+        "type": "select",
+        "required": false,
+        "options": [
+          "after-hero",
+          "after-alerts",
+          "after-research",
+          "before-footer"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Researcher profile",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "layout",
+        "label": "Layout",
+        "type": "select",
+        "required": false,
+        "options": [
+          "text",
+          "split",
+          "gallery"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Photographs / videos / documents",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "navigation",
+        "label": "Show standalone page in navigation",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "nav_label",
+        "label": "Navigation label",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "Never included in the public website or public export."
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional fields from the public website",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "eyebrow",
+          "body",
+          "position",
+          "layout",
+          "order",
+          "nav_label"
+        ],
+        "relation": null,
+        "public": false,
+        "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      }
+    ]
+  },
+  "contacts": {
+    "label": "Contact information",
+    "title": "label",
+    "fields": [
+      {
+        "key": "label",
+        "label": "Contact label",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Assign to researcher (blank = laboratory)",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "kind",
+        "label": "Contact type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "email",
+          "telephone",
+          "website",
+          "address",
+          "other"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "value",
+        "label": "Contact information",
+        "type": "textarea",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "show_homepage",
+        "label": "Show in homepage contact section",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Private notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      }
+    ]
+  },
+  "fields": {
+    "label": "Custom fields",
+    "title": "label",
+    "fields": [
+      {
+        "key": "label",
+        "label": "Field label",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "target_collection",
+        "label": "Record type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "settings",
+          "capabilities",
+          "people",
+          "publications",
+          "collaborations",
+          "projects",
+          "manuscripts",
+          "milestones",
+          "updates",
+          "announcements",
+          "achievements",
+          "funders",
+          "sources",
+          "sections"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "target_id",
+        "label": "Assign to record",
+        "type": "target",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "kind",
+        "label": "Field type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "text",
+          "multiline",
+          "email",
+          "url",
+          "number",
+          "date"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "value",
+        "label": "Field value",
+        "type": "textarea",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Private notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      }
+    ]
+  },
+  "theme": {
+    "label": "Theme & appearance",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Configuration name",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "primary",
+        "label": "Primary / links",
+        "type": "color",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "accent",
+        "label": "Accent",
+        "type": "color",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "background",
+        "label": "Page background",
+        "type": "color",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "surface",
+        "label": "Cards / header",
+        "type": "color",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "text_color",
+        "label": "Text",
+        "type": "color",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "muted_color",
+        "label": "Secondary text",
+        "type": "color",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "border_color",
+        "label": "Borders",
+        "type": "color",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "heading_font",
+        "label": "Heading font",
+        "type": "select",
+        "required": true,
+        "options": [
+          "serif",
+          "sans",
+          "humanist"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "body_font",
+        "label": "Body font",
+        "type": "select",
+        "required": true,
+        "options": [
+          "sans",
+          "serif",
+          "humanist"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "font_size",
+        "label": "Base font size (14–22 px)",
+        "type": "number",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "content_width",
+        "label": "Content width (960–1600 px)",
+        "type": "number",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "corner_radius",
+        "label": "Card corners (0–28 px)",
+        "type": "number",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "density",
+        "label": "Spacing",
+        "type": "select",
+        "required": true,
+        "options": [
+          "comfortable",
+          "compact"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hero_layout",
+        "label": "Homepage opening layout",
+        "type": "select",
+        "required": true,
+        "options": [
+          "photo-right",
+          "photo-left",
+          "text-only"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "home_blocks",
+        "label": "Homepage sections — select and reorder",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "hero",
+          "alerts",
+          "research",
+          "people",
+          "recognition",
+          "contacts",
+          "leadership",
+          "questions",
+          "gallery"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "hidden_navigation",
+        "label": "Hide navigation links",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "researchers",
+          "activity",
+          "publications",
+          "research",
+          "pipeline",
+          "collaborators",
+          "funders",
+          "sources",
+          "gallery",
+          "questions"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "logo_upload_id",
+        "label": "Custom laboratory logo",
+        "type": "image",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "logo_approved",
+        "label": "Approve custom logo for public use",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "brand_tagline",
+        "label": "Header tagline",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "footer_text",
+        "label": "Footer text",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "preset",
+        "label": "Theme style",
+        "type": "select",
+        "required": false,
+        "options": [
+          "vintage",
+          "modern",
+          "clinical",
+          "night"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "header_band",
+        "label": "Header laboratory decoration",
+        "type": "select",
+        "required": false,
+        "options": [
+          "none",
+          "vintage",
+          "modern"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "footer_band",
+        "label": "Footer laboratory decoration",
+        "type": "select",
+        "required": false,
+        "options": [
+          "none",
+          "vintage",
+          "modern"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "header_alignment",
+        "label": "Header alignment",
+        "type": "select",
+        "required": false,
+        "options": [
+          "left",
+          "center",
+          "balanced"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "footer_alignment",
+        "label": "Footer alignment",
+        "type": "select",
+        "required": false,
+        "options": [
+          "left",
+          "center",
+          "balanced"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "institution_logo_id",
+        "label": "Institution logo",
+        "type": "image",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "institution_logo_approved",
+        "label": "Approve institution logo",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "footer_logo_id",
+        "label": "Footer logo",
+        "type": "image",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "footer_logo_approved",
+        "label": "Approve footer logo",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "favicon_id",
+        "label": "Browser icon",
+        "type": "image",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "favicon_approved",
+        "label": "Approve browser icon",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "show_lab_logo",
+        "label": "Show laboratory logo",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "show_institution_logo",
+        "label": "Show institution logo",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "show_footer_logo",
+        "label": "Show footer logo",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "rotate_spotlight",
+        "label": "Rotate homepage notice panel every 15 seconds",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      }
+    ]
+  },
+  "acknowledgements": {
+    "label": "Leadership & acknowledgements",
+    "title": "label",
+    "fields": [
+      {
+        "key": "label",
+        "label": "Acknowledgement / role",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Named researcher",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "description",
+        "label": "Description",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "homepage",
+        "label": "Show on homepage",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Private notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Media",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": ""
+      }
+    ]
+  },
+  "questions": {
+    "label": "Anonymous Q&A moderation",
+    "title": "question",
+    "fields": [
+      {
+        "key": "question",
+        "label": "Question",
+        "type": "textarea",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "answer",
+        "label": "Approved answer",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Topic researcher (optional)",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "status",
+        "label": "Moderation status",
+        "type": "select",
+        "required": true,
+        "options": [
+          "pending",
+          "answered",
+          "rejected"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Moderation notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Media",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": ""
+      }
+    ]
+  },
+  "questionnaires": {
+    "label": "Anonymous questionnaires",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Questionnaire title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "description",
+        "label": "Introduction",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "open",
+        "label": "Accept responses",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Topic researcher (optional)",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Media",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": ""
+      }
+    ]
+  },
+  "survey_questions": {
+    "label": "Questionnaire questions",
+    "title": "label",
+    "fields": [
+      {
+        "key": "label",
+        "label": "Question",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "questionnaire_id",
+        "label": "Questionnaire",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "questionnaires",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "kind",
+        "label": "Answer type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "text",
+          "long-text",
+          "single-choice",
+          "rating"
+        ],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "options",
+        "label": "Choices (one per line)",
+        "type": "lines",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "required_answer",
+        "label": "Answer required",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      }
+    ]
+  },
+  "discoveries": {
+    "label": "Literature alerts",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Original paper title",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Researcher",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "authors",
+        "label": "Authors",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "journal",
+        "label": "Journal / source",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "year",
+        "label": "Year",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "doi",
+        "label": "DOI",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "source_url",
+        "label": "Source record",
+        "type": "url",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "source_id",
+        "label": "Source identifier",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "fetched_at",
+        "label": "Retrieved time",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "evidence",
+        "label": "Evidence / publication type",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Reviewed summary",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "approved",
+        "label": "Approve as a public literature alert",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "read",
+        "label": "Marked read",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Media",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": ""
+      }
+    ]
+  }
+}

@@ -23,10 +23,7 @@
       "hero_permission": "approved",
       "hero_motion": true,
       "hero_image_alt": "Researchers working together around a laboratory bench.",
-      "hero_image_caption": "Inside the laboratory — learning, collaboration and discovery.",
-      "anonymous_enabled": true,
-      "submission_site": "",
-      "privacy_notice": "No name or email is requested. Responses are visible only to authorised administrators unless an anonymised answer is approved for publication. Avoid personal, patient or confidential information. Hosting providers may keep technical access logs; absolute anonymity cannot be guaranteed."
+      "hero_image_caption": "Inside the laboratory — learning, collaboration and discovery."
     }
   ],
   "capabilities": [
@@ -142,11 +139,7 @@
         "https://scholar.google.com/citations?hl=en&user=qHscwtEAAAAJ"
       ],
       "visibility": "public",
-      "bundled_portrait": "albertina-shatri",
-      "priority": 1,
-      "sort_name": "Shatri Albertina",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "albertina-shatri"
     },
     {
       "id": "denis-bouman",
@@ -170,11 +163,7 @@
       "photo_upload_id": "",
       "source_urls": [],
       "visibility": "public",
-      "bundled_portrait": "denise-bouman",
-      "priority": 0,
-      "sort_name": "Bouman Denise",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "denise-bouman"
     },
     {
       "id": "silas-bere",
@@ -202,11 +191,7 @@
         "https://scholar.google.com/citations?hl=en&user=UvxwY24AAAAJ"
       ],
       "visibility": "public",
-      "bundled_portrait": "silas-bere",
-      "priority": 0,
-      "sort_name": "Bere Silas",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "silas-bere"
     },
     {
       "id": "manelia-halweendo",
@@ -233,11 +218,7 @@
         "https://auburn-mint-phnps5.mystrikingly.com/blog/empowering-ethical-research-informed-consent-training-at-katutura"
       ],
       "visibility": "public",
-      "bundled_portrait": "maneria-halweendo",
-      "priority": 0,
-      "sort_name": "Halweendo Maneria",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "maneria-halweendo"
     },
     {
       "id": "davis-mumbengegwi",
@@ -266,11 +247,7 @@
         "https://link.springer.com/article/10.1186/s12936-018-2626-5"
       ],
       "visibility": "public",
-      "bundled_portrait": "davis-mumbengegwi",
-      "priority": 0,
-      "sort_name": "Mumbengegwi Davis",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "davis-mumbengegwi"
     },
     {
       "id": "nailoke-pauline-kadhila",
@@ -299,11 +276,7 @@
         "https://scholar.google.com/citations?hl=en&user=XnUxBZEAAAAJ"
       ],
       "visibility": "public",
-      "bundled_portrait": "nailoke-pauline-kadhila-v4",
-      "priority": 0,
-      "sort_name": "Kadhila Nailoke Pauline",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "nailoke-pauline-kadhila-v4"
     },
     {
       "id": "paulus-hamutenya",
@@ -330,11 +303,7 @@
       "photo_upload_id": "",
       "source_urls": [],
       "visibility": "public",
-      "bundled_portrait": "paulus-hamutenya",
-      "priority": 0,
-      "sort_name": "Hamutenya Paulus",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "paulus-hamutenya"
     },
     {
       "id": "naungwe-simasiku",
@@ -361,11 +330,7 @@
       "photo_upload_id": "",
       "source_urls": [],
       "visibility": "public",
-      "bundled_portrait": "naungwe-simasiku-v4",
-      "priority": 0,
-      "sort_name": "Simasiku Naungwe",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "naungwe-simasiku-v4"
     },
     {
       "id": "jaydine-feris",
@@ -392,11 +357,7 @@
       "photo_upload_id": "",
       "source_urls": [],
       "visibility": "public",
-      "bundled_portrait": "jaydine-jeris",
-      "priority": 0,
-      "sort_name": "Feris, Jaydine",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "jaydine-jeris"
     },
     {
       "id": "vevangapi-mbatara",
@@ -423,11 +384,7 @@
       "photo_upload_id": "",
       "source_urls": [],
       "visibility": "public",
-      "bundled_portrait": "vevangapi-mbatara",
-      "priority": 0,
-      "sort_name": "Mbatara Vevangapi",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "vevangapi-mbatara"
     },
     {
       "id": "charity-mepa",
@@ -452,11 +409,7 @@
       "photo_upload_id": "",
       "source_urls": [],
       "visibility": "public",
-      "bundled_portrait": "charity-maepa",
-      "priority": 0,
-      "sort_name": "Maepa Charity",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "charity-maepa"
     },
     {
       "id": "nonku-phiri",
@@ -481,11 +434,7 @@
       "photo_upload_id": "",
       "source_urls": [],
       "visibility": "public",
-      "bundled_portrait": "nonku-phili",
-      "priority": 0,
-      "sort_name": "Phili Nonku",
-      "literature_enabled": false,
-      "literature_query": ""
+      "bundled_portrait": "nonku-phili"
     }
   ],
   "publications": [
@@ -1117,68 +1066,15 @@
         "research",
         "people",
         "recognition",
-        "contacts",
-        "leadership",
-        "questions"
+        "contacts"
       ],
       "hidden_navigation": [],
       "logo_upload_id": "",
       "logo_approved": false,
       "brand_tagline": "",
-      "footer_text": "",
-      "preset": "vintage",
-      "header_band": "vintage",
-      "footer_band": "vintage",
-      "header_alignment": "balanced",
-      "footer_alignment": "balanced",
-      "institution_logo_id": "",
-      "institution_logo_approved": false,
-      "footer_logo_id": "",
-      "footer_logo_approved": false,
-      "favicon_id": "",
-      "favicon_approved": false,
-      "show_lab_logo": true,
-      "show_institution_logo": true,
-      "show_footer_logo": true,
-      "rotate_spotlight": true
+      "footer_text": ""
     }
   ],
   "contacts": [],
-  "fields": [],
-  "acknowledgements": [
-    {
-      "id": "principal-investigator",
-      "visibility": "public",
-      "label": "Principal investigator · Main supervisor",
-      "researcher_id": "albertina-shatri",
-      "description": "Project principal investigator and main supervisor.",
-      "homepage": true,
-      "order": 1,
-      "media_items": []
-    },
-    {
-      "id": "website-administrator",
-      "visibility": "public",
-      "label": "Website administration",
-      "researcher_id": "paulus-hamutenya",
-      "description": "Laboratory research workspace administration.",
-      "homepage": true,
-      "order": 2,
-      "media_items": []
-    },
-    {
-      "id": "co-supervisor",
-      "visibility": "private",
-      "label": "Co-supervisor",
-      "researcher_id": "nailoke-pauline-kadhila",
-      "description": "Prof Nailoke Pauline Kadhila — co-supervision. Review and publish the preferred acknowledgement.",
-      "homepage": true,
-      "order": 3,
-      "media_items": []
-    }
-  ],
-  "questions": [],
-  "questionnaires": [],
-  "survey_questions": [],
-  "discoveries": []
+  "fields": []
 }

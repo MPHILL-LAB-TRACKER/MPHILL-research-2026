@@ -1,144 +1,208 @@
-# TED² Research Workspace V5
+# TED² Research Workspace V6
 
-**Manage content and media locally. Change the public design. Review a preview and confirm your administrator password to publish.**
+**PHP management and rendering · optional C++ utilities · researcher-owned media · a public website that remains on GitHub Pages.**
 
-This is the complete application, not a public-HTML-only update. It upgrades the existing V4 clone and database. It retains the supplied laboratory content, corrected researcher names and portraits, publications, conference notices and certificate. There are no new invented researcher achievements or research claims.
+V6 replaces the running Python application with a PHP 8.3+ application. It preserves the existing SQLite database, Argon2 passwords, researchers, publications, uploaded files and private research. It adds server-rendered profile URLs, a reorganised studio, ownership-aware uploads, anonymous forms and session-authorised publishing.
 
-## Install in your existing workspace
+**PHP does not replace the HTML/CSS a browser displays.** The PHP application generates those pages. GitHub Pages serves the generated public files; it does not run PHP or C++. This split keeps the existing public address and lets it remain available when the local management computer is off. Native code is optional, not a claim of automatically better mobile compatibility or unlimited traffic capacity.
 
-Save `TED2-Research-Workspace-v5.zip` in your existing **GitHub tracker** folder (beside the actual clone). Stop the running server with **Ctrl+C**, then run as your normal `paul` account:
+## Upgrade the existing V5 installation
+
+Download the complete `TED2-Research-Workspace-v6.zip` into the same `GitHub tracker` folder as the previous packages. Stop the running V5 server with **Ctrl+C**.
+
+Install the PHP runtime and image/database extensions once on Ubuntu:
+
+```bash
+sudo apt update &&
+sudo apt install -y php-cli php-sqlite3 php-gd php-mbstring ffmpeg git gh unzip
+```
+
+PHP **8.3 or newer** is required. FFmpeg is already installed on the user's current machine; reinstalling an already-installed package is not necessary. On systems where PHP is installed without the Argon2 password algorithm, use a PHP build with Argon2 support before migrating accounts.
+
+Run the upgrade in the existing workspace:
 
 ```bash
 cd "$HOME/Documents/MPhill in biomedical sciences (medical microbiology)/GitHub tracker" &&
-unzip "TED2-Research-Workspace-v5.zip" &&
-bash "./TED2-Research-Workspace-v5/upgrade-v5.sh" --target "$PWD/MPHILL-research-2026"
+unzip "TED2-Research-Workspace-v6.zip" &&
+bash "./TED2-Research-Workspace-v6/upgrade-v6.sh" \
+  --target "$PWD/MPHILL-research-2026"
 ```
 
-Confirm the repository/database paths and type **UPGRADE**. Do not run the installer with sudo. It verifies the release checksums, makes a private backup outside the clone under `~/TED2-private-backups/`, installs pinned requirements, migrates the content conservatively, and rebuilds the root public page from your approved database content. Your `.git`, `.venv`, `.env`, accounts, uploaded files, private research and changed biographies are retained. Customized source files cause a stop instead of a silent overwrite. The installer makes no commit or push.
+Review the paths and type **UPGRADE**. Do **not** run the installer with sudo. It validates the release files, verifies the actual Git clone, checks for source conflicts, creates a private source/configuration/database/upload backup, overlays the PHP release, and migrates the original database. It does not switch branches, commit unrelated files, change passwords or push to GitHub.
 
-After a successful upgrade, commit the complete source and start the backend:
+Private backups are placed under `~/TED2-private-backups/v6-.../`. The migration log lists media that need an ownership review. Known legacy media attached to exactly one researcher are assigned to that researcher. Conflicting attachments become **Ownership needs review** and are withheld from public output until resolved. Existing owner-edited content is retained.
+
+Then commit the release source and start the PHP application:
 
 ```bash
 cd "$HOME/Documents/MPhill in biomedical sciences (medical microbiology)/GitHub tracker/MPHILL-research-2026" &&
-bash scripts/commit-v5.sh &&
+bash scripts/commit-v6.sh &&
 git push origin main &&
-.venv/bin/python manage.py serve
+bash start.sh
 ```
 
-Type **COMMIT** when requested. The helper stages only release-manifest files, not the database, `.env`, runtime uploads or backups. It refuses unrelated already-staged work. Do not substitute `git add .`.
+Type **COMMIT** when prompted. The helper stages release paths only. It stops when unrelated changes are already staged. Never use `git add .` to publish an installed workspace with private local data.
 
-Open `http://127.0.0.1:8000/admin`, use your existing login, and confirm **V5** is displayed. Keep the server terminal running. The public local site is `http://127.0.0.1:8000/` and the researcher workspace is `/workspace`. Use Ctrl+Shift+R once after upgrading to discard an older browser view. V5 also sends no-store headers and versioned admin asset URLs.
+Open:
 
-For video validation and conversion, install FFmpeg once:
-
-```bash
-sudo apt update && sudo apt install -y ffmpeg
+```text
+http://127.0.0.1:8000/admin       Owner / administrator
+http://127.0.0.1:8000/workspace   Researcher account
+http://127.0.0.1:8000/            Public local preview
 ```
 
-This is the system-package command only; never run the application or upgrade script with sudo. Image/text editing works without FFmpeg. The media page reports whether video tooling is available.
+Use the existing username and password. V5 sessions are revoked during migration, so sign in again. Leave the terminal running. **Use `bash start.sh` for V6—not `.venv/bin/python manage.py serve`.** Old Python source and its virtual environment are left in the clone for controlled rollback; they are not used by the V6 runtime.
 
-## What you can control
+For a fresh installation only, extract the release and run `bash start.sh`. The launcher imports the supplied public seed and prompts for the first owner account. There is no default owner password.
 
-| Administration area | V5 controls |
-|---|---|
-| **Website studio** | Direct shortcuts to homepage content, profiles, files, custom pages, contacts, fields, theme, Trash and publishing. |
-| **Record editors** | Visible Delete, clear optional values, hide selected optional fields from the public output, add assigned contacts/fields, and upload media without leaving the record. |
-| **Photos & videos** | Drag-and-drop or browse files; batch uploads, captions, alternative text, attribution, preview, private/public visibility and explicit approval. |
-| **Contact information** | Add email, telephone, website, address or other contact; assign to a researcher or to the laboratory, choose homepage display, reorder, edit and delete. |
-| **Custom fields** | Add labelled text, multiline text, email, URL, number or date fields to a selected researcher, project, publication, section or other supported record; edit, hide/private or delete them. |
-| **Pages & sections** | Add, edit, hide, order and delete custom panels, galleries and pages; attach images, videos and PDFs; link pages in navigation. |
-| **Theme & colours** | Four starting palettes; custom primary/accent/background/surface/text/muted/border colours; fonts, base text size, width, rounded corners, spacing, hero arrangement, custom logo, header/footer text, homepage block order/visibility and navigation visibility. |
-| **Trash & restore** | Reversible removal, restore privately, and separate password-confirmed permanent deletion. |
-| **Publish to GitHub** | Prepare a release, inspect it, enter the current administrator password and publish the exact approved public files. |
+## Your main workflow
 
-This is structured content management, not unrestricted execution of HTML, JavaScript or arbitrary server commands. Required names/titles, stable record IDs, relationships and permission controls are protected. Optional built-in public fields can be cleared or hidden; custom fields are independent deletable records. There is no UI to drop core database columns. Hiding a navigation link does not delete the underlying page or revoke access to its still-public records; make those records private or move them to Trash to remove them from the public output.
+**Edit / upload → save → view the local website → Publish & deployment → Prepare preview → review → confirm & push → check deployment.**
 
-## Upload photos, videos and documents
+Login authorises publishing for that session. There is no second password field on every push. Sessions expire after 30 minutes of inactivity or eight hours total; an expired session requires sign-in again. Account password changes and account-permission changes revoke sessions. Destructive permanent deletion still requires explicit password confirmation.
 
-Open a researcher, project or other content record, then use the **Photos, videos & files** shortcut. Drop files or choose **Browse**. Alternatively upload through **Photos & videos** and select them in the record's attachments. Check approved sharing only when you have permission to publish; save the parent record to attach the uploaded files. Upload success alone does not save other form changes. The library can retain private unattached items for later use.
+The publisher uses the **same clone**, an isolated Git index and the existing terminal Git credentials. It writes only approved public pages and media to `gh-pages`, without switching `main` or including staged source changes. It does not copy the database, `.env`, raw backups, unpublished records or private responses into that branch.
 
-| File type | Accepted input and processing | Per-file limit |
-|---|---|---|
-| Images | JPG/JPEG, PNG, WebP, GIF, BMP, TIFF. Sanitized and resized; transparency preserved. GIF uses its first frame; TIFF its first page. | 20 MiB; maximum 40 megapixels |
-| Video | MP4/M4V, WebM and MOV. FFprobe validation is mandatory. Compatible files are accepted; supported MOV/other input codecs are converted to browser-friendly H.264/AAC MP4 using FFmpeg when necessary. | 80 MiB; up to 2 hours; conversion timeout 180 seconds |
-| Documents | PDF, with basic signature and active-action checks. These checks are not an antivirus guarantee. | 20 MiB |
-
-Conversion is not a guarantee for every codec or very large/long video; the application reports validation and conversion errors. Animated GIF playback is not retained: upload MP4/WebM for moving media. HTML, SVG, scripts and executable files are deliberately rejected. Images have metadata stripped on re-encoding. Already-compatible videos may retain their original encoded file and metadata; review personal/location details before sharing.
-
-**The portrait slot accepts images; a certificate/manuscript/publication PDF slot remains PDF-specific.** Use the new adjacent **Photos, videos & files** attachment panel for mixed media instead of putting a video into a certificate field. Public PDFs and media require explicit approval. Researchers cannot give themselves administrator publishing rights.
-
-## Add or remove researcher information
-
-From a researcher editor select **Add contact for this researcher**. The assignment is prefilled; enter the label, kind and value, then choose Private/Public and whether it belongs on the homepage. A private researcher cannot expose their linked contact through a public contact record.
-
-Use **Add custom field** for information beyond the built-in form, such as office hours or a specific research interest label. Select the target type and record, choose the value type, enter the value and save. Private fields stay out of public API responses, snapshots and publishing files.
-
-Use **Clear value** to remove an optional value. Use **Hide optional fields from the website** to suppress a supported built-in field without deleting its local data. This removes it from the serialized public output, not merely its CSS. It does not provide confidentiality for data already published in old snapshots or Git history.
-
-Public profile contacts are distinct from private email, phone, address and internal notes. Publish only information that the researcher has approved for public use.
-
-## Delete, restore and permanently remove
-
-**Delete** moves an ordinary record to Trash and removes it from the active local website and new public exports. Publish again to apply that deletion to the GitHub website. An earlier static site does not update merely because the local database changed.
-
-**Restore privately** retains the record's data but returns it as Private for review. Republish deliberately after approval. Linked contacts and fields remain excluded while their parent is private or trashed.
-
-**Delete permanently** in Trash requires your current administrator password and the word **DELETE**. Referencing records or linked accounts must be unlinked first; the dialog lists blockers. This prevents silently breaking a researcher's associated work. Permanent deletion removes the active record, owned runtime files and audit payloads for that record while preserving a minimal deletion/audit marker. IDs remain reserved so a later migration cannot recreate a deleted seed entry. It does not wipe historical backups, Git commits, published copies or browser caches. Back up and review before confirming.
-
-Website settings and theme configuration cannot be deleted; edit/reset their fields or hide homepage blocks instead. An attachment can be detached without deleting the shared media item; delete the media record separately when it is no longer needed.
-
-## Change the public design
-
-Open **Theme & colours**. Choose Forest & cream, Clinical blue, Burgundy & ivory or Midnight, or enter your own palette. The sample updates as you edit; the contrast indicator warns about hard-to-read combinations but does not certify accessibility. Save, then use **View local website** to inspect the full result.
-
-Set fonts, text size, content width, corner radius, spacing and hero image position. The homepage block checklist supports up/down ordering and visibility. An uploaded logo requires approval; leave it unapproved to retain the existing bundled logo. Header tagline and footer text are editable. The motion preference from Website settings remains available and visitor reduced-motion preferences are respected.
-
-Section headings and laboratory details are editable in Website settings; the twelve research descriptions have their own editors. Style changes are included in the password-confirmed public release.
-
-## Publish to the existing GitHub website
-
-Your browser calls the local authenticated backend. The backend runs Git inside the existing clone using a separate temporary index; it does not send a terminal password from the browser. The local owner/admin password is requested for **each** push. It is not the GitHub password and is never supplied to Git.
-
-GitHub authentication must already work on that computer under the account running the server. One-time setup, when needed:
+Authenticate GitHub CLI once, using a GitHub account that can write to this repository:
 
 ```bash
 gh auth login --hostname github.com --git-protocol https --web
 gh auth setup-git
 ```
 
-Open **Publish to GitHub → Prepare preview → Review preview → Confirm & publish**. Enter the current local admin password. A wrong password is rejected and repeated failures are rate-limited. Changes made after preview generation require a new preview. The preview is bound to the preparing administrator and expires after 30 minutes.
+GitHub credentials are separate from the local admin login. SSH authentication already configured in Git can also be used. The application does not collect a GitHub password or embed a personal token into the public site.
 
-Only generated public `index.html`, `.nojekyll` and approved hashed `public-media/` files are committed to **gh-pages**. Source stays on **main**. Existing working-tree changes, staged files, private uploads, `.env` and database files are not added by this publishing path. No force push is used. Git push success does not mean the GitHub Pages deployment has finished.
+### Deployment verification
 
-After the first successful publication, set GitHub **Settings → Pages → Deploy from a branch → gh-pages → / (root)** once. This updates the same public address:
+The publishing screen checks the Pages source and distinguishes **commit pushed**, **deployment pending/not started**, **deployment failed** and **deployment success**. With owner permission and a suitable GitHub CLI login, **Configure Pages** sets `gh-pages / (root)` after explicit confirmation. The branch must exist first. The repository's default branch remains `main`.
+
+When API permissions or GitHub CLI are unavailable, status is labelled **unverified**, not successful. A successful Git push alone is never presented as proof that Pages changed. Use **Check status** after the push or open the GitHub deployment run. Deployment completion is not synchronous with the push.
+
+The public site address remains:
 
 ```text
 https://mphill-lab-tracker.github.io/MPHILL-research-2026/
 ```
 
-The browser publisher does not change GitHub repository settings. The local admin is not made public by this process. Leaving the local computer off does not remove the already published static website, but no further edits reach it until the backend runs and you publish again.
+## What administrators can control
 
-The source-commit helper is only for application releases, not routine content publishing. An embedded snapshot containing many videos can be large; use the browser publisher for media-rich updates. Source-release files over 90 MiB are refused by the helper as a safety guard.
+| Studio area | Controls |
+|---|---|
+| Researchers & collaborators | Names, affiliations, biographies, research areas, scholarly links, public/private contacts, portraits, alphabetic sorting and priority. |
+| Milestones & progress | Responsible researcher, status, optional target date, weight and summary. **A project is optional.** |
+| Achievements | Researcher, date, recognition, evidence note, certificate and homepage visibility. No project prerequisite. |
+| Photos, videos & files | Batch drag/drop or browse, owner assignment, visible title, caption, alt text, credit, transcript, public filename, ordering, approval, removal and restoration. |
+| Pages & sections | New text/media panels, profile sections, galleries and standalone pages; order, placement, navigation label and public/private state. |
+| Theme, logos & layout | Vintage, modern, clinical and night presets; custom palette, typography, spacing, width, corners, homepage order, hero position, optional header/footer decorations and logo controls. |
+| Contact information / custom fields | Researcher-specific or laboratory contacts; labelled fields attached to supported records; optional field clearing/hiding. |
+| Anonymous Q&A | Moderate incoming questions; write answers, reject, delete or approve for publication. |
+| Questionnaires | Publish an anonymous questionnaire with separately ordered text, long-text, single-choice or rating questions; review/delete private responses. |
+| Literature watch | Opt-in source-linked paper metadata, private by default, with researcher review and approval. |
+| Leadership & acknowledgements | Editable PI, administrator and supervisor acknowledgements, selected researcher, text, priority and homepage visibility. |
+| Accounts & permissions | Owner-created accounts, linked researcher, profile/research editing rights, password resets and access revocation. |
+| Trash & restore / activity log | Restore accidental deletion, permanently remove with confirmation, and inspect management actions. |
 
-## Accounts, permissions and maintenance
+Essential identifiers, owner-account safeguards and security boundaries remain protected. Custom fields can be removed; optional built-in fields can be cleared/hidden. V6 is a structured laboratory CMS, not an arbitrary PHP/JavaScript execution interface.
 
-Owners manage accounts, roles, access revocation and password resets. Administrators manage content, deletions, themes and public releases; account administration remains owner-only. Researchers retain their assigned private workspace and cannot edit themes, delete other records or publish.
+## Media ownership and presentation
 
-The V5 upgrade makes a SQLite backup before content migration. Runtime data lives at the existing configured database path, normally `var/ted2.sqlite3`, with `uploads` alongside it. Never upload runtime directories, `.env` or private backups into the public Git repository. Do not expose this development server to the internet without the production HTTPS/security setup in `docs/DEPLOYMENT-AND-SECURITY.md`.
+Every library item is either **General laboratory**, owned by **one named researcher**, or awaiting an ownership review. Selecting a researcher record offers only that researcher's media. General files do not silently appear on each researcher's profile. Researcher-owned items do not enter the general laboratory gallery.
 
-See [upgrade and recovery](docs/UPGRADE-V5.md), [V5 test report](docs/TESTING-V5.md) and the bundled test scripts. Earlier V3/V4 documentation and tests remain as historical references; this README and V5 scripts are the current installation instructions.
+Within a record, drag the selected media cards to reorder them; **up/down buttons** provide a touch/keyboard alternative. Save the parent record to keep its attachment order. The media library also supports drag/up/down ordering for its filtered gallery. The visible title, caption and download filename are independent fields. A file is stored under an opaque server filename for safety; renaming the public download does not rename arbitrary filesystem paths.
 
-## Fresh installation and tests
+Image formats: **JPEG/JPG, PNG, WebP, GIF, BMP, TIFF**. Images are decoded and re-encoded to JPEG/PNG, resized to a maximum 2,000-pixel edge. Animated GIF/TIFF inputs become a still frame. Portrait orientation and crop should be reviewed in the preview.
 
-A fresh installation can run `python3 start.py` and create its own first owner. Do not use this to replace your already installed database. Python 3.11 or newer is required; the delivered build was exercised on Python 3.13.5/Linux.
+Video formats: **MP4, WebM and MOV**. FFprobe validates the stream; FFmpeg normalises it to MP4/H.264/AAC with fast-start metadata and a maximum 1920×1080 frame. The public player uses controls, `playsinline` and no preloading of the whole video. This improves compatibility but is not a guarantee for every codec/device combination.
+
+PDF is supported for documents and certificates. Dedicated certificate/manuscript slots remain PDF-only; the adjoining media editor accepts photographs and videos. Input limits are **20 MiB per image/PDF** and **80 MiB per video**; processed videos must also remain under 80 MiB and under one hour. A public release is limited to 400 MiB of media. SVG/HTML/scripts and arbitrary executable uploads are rejected. This validation is not a malware scanner for PDF contents.
+
+Public visibility and approval are separate. Researcher-supplied replacement portrait/library binaries lose their prior approval until an administrator reviews them. Downloaded copies and earlier Git commits cannot be revoked by changing local visibility.
+
+## Theme and layout
+
+The same colour and font tokens drive **both** interfaces. Presets are starting points; all palette controls remain editable. Header/footer laboratory decoration has independent `none`, `vintage` and `modern` settings plus alignment options; the decoration does not fill the page body. Main laboratory logo, institutional logo, footer logo and favicon each have an upload and explicit approval control.
+
+Themes use system font families, not remotely loaded font files. Vintage uses restrained serif headings; modern uses clean system sans-serif; clinical uses a humanist heading stack; night uses a darker palette. Public pages keep spacious blocks rather than compressing all descriptions into one long line. The notice board rotates every **15 seconds**, pauses on hover/focus and when the tab is hidden, and provides previous/next/pause controls. Reduced-motion preferences disable automatic rotation and arrival animation by default.
+
+## Accounts and researcher isolation
+
+Owners manage accounts. Administrators edit all content and publish; researcher accounts cannot publish, alter themes, read private responses or manage other accounts.
+
+Each researcher account is linked to **one** researcher record. The owner separately grants **edit own profile/media/contacts** and **edit assigned research**. Existing V5 researcher accounts preserve research editing but do not automatically receive the new profile-editing privilege; grant it under Accounts & permissions. Cross-profile reads/writes/uploads and incompatible media links are rejected by the PHP backend, even when an API request is crafted manually.
+
+An assigned researcher may edit the professional text of their already-public profile. Those edits enter the next administrator-reviewed public release. New records start private, and researchers cannot independently approve public visibility or media. Private phone, address and email fields are excluded from public pages and export.
+
+## Anonymous forms need a reachable server
+
+The anonymous module is implemented locally and for PHP hosting. It does not send names, emails or account IDs with responses. Incoming questions are private until moderated; questionnaire responses stay private. Only administrators can read or remove them. Set a clear purpose and privacy notice before collecting responses.
+
+**GitHub Pages cannot receive or store these submissions.** To accept responses from internet visitors, host the PHP application behind HTTPS, then enter that HTTPS address under **Website settings → Public submission site**. The published Questions page links to the live forms. Until configured, it explicitly says submissions are not connected—there is no non-working submit button disguised as an active service.
+
+Do not publish the local `127.0.0.1` URL as an online form address. A laptop-only installation can receive submissions only from its own local session. Internet researcher logins likewise require hosted PHP. Hosting providers may record access logs, and identifying details may be typed into free text; no claim of absolute network anonymity is made.
+
+## Discoverability and scholarly integrity
+
+Every researcher has a real route such as `/researchers/paulus-hamutenya/`, with server-rendered content, a unique title, canonical URL, ProfilePage/Person structured data and a sitemap. Legacy hash links are redirected by a small compatibility script. The page's substantive content and directory links are present without JavaScript. JavaScript progressively adds filtering, navigation and the notice board.
+
+After publishing, verify the website in Google Search Console. The verification-token field is under Website settings; submit the generated `sitemap.xml`. Search engines decide whether and when to index/rank a page. Typing a name into a search engine cannot be forced to redirect users to this site, and a new language does not guarantee rankings.
+
+The original twelve research descriptions, twelve people, eight publication records, conference notices and certificate evidence are retained. Prior name corrections are retained. The PI and site-admin acknowledgements are provided; the co-supervisor acknowledgement is a private editable record for confirmation before public display. No new grant, achievement, experiment, confirmed conference date or publication has been invented.
+
+## Literature watch: factual metadata, not automatic scientific advice
+
+Enable literature watch on an individual profile and enter a Europe PMC search query. **Check opted-in topics** fetches up to 50 recent metadata matches per enabled researcher from the preceding 90 days. The response includes source title, author string, journal/year and source/DOI links, not generated claims about a breakthrough. Duplicate records are avoided. New matches are private and unapproved. Failed requests report failure.
+
+The command can also be scheduled on an always-on host:
 
 ```bash
-python -m pip install -r requirements-test.txt
-python -m pytest -q
-python tests/render_v5.py
-python tests/installer_v5.py
+php bin/console.php literature-sync
 ```
 
-The browser test requires Playwright plus Chromium and uses an explicit ASGI transport bridge. The separate `tests/browser_v5.py` attempts actual local HTTP browser navigation for unrestricted environments; that route was blocked by the delivery environment and is not claimed as verified. The installer test must run as a normal, non-root user. No test included here needs your live GitHub credentials; Git integration tests use temporary local bare repositories.
+No recurring job, email service or browser push subscription is installed automatically. Results are an **in-app review queue**, not a guaranteed exhaustive surveillance service. See `deploy/README.md` for hosting/scheduling boundaries.
 
-Primary platform documentation: [GitHub publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site), [GitHub CLI credential setup](https://cli.github.com/manual/gh_auth_setup-git), [FFmpeg documentation](https://ffmpeg.org/ffmpeg.html).
+## Optional C++ utilities
+
+Normal operation uses PHP PDO SQLite. The package also contains a real C++17 utility with a private prepared-statement SQLite protocol and metadata keyword-ranking mode. It has no web listener and accepts no shell commands. It is optional; adding it is not claimed to make a browser faster.
+
+To compile on Ubuntu:
+
+```bash
+sudo apt install -y build-essential libsqlite3-dev libjson-c-dev
+bash bin/build-native.sh
+```
+
+The binary is created privately in `var/native/`. To test the native SQLite adapter explicitly, set `TED2_SQLITE_DRIVER=native` in your private `.env`. It is also a fallback where PHP's SQLite driver is unavailable. No architecture-specific executable or font files are distributed in this release.
+
+## Maintenance and tests
+
+Runtime: PHP 8.3+, Argon2id support, Fileinfo, PDO SQLite; GD recommended; FFmpeg/FFprobe for video. The delivered code was exercised under PHP 8.4.23 with the C++ SQLite adapter and FFmpeg fallback image processing. The PDO/GD branches need deployment-specific verification; they were unavailable in the build environment.
+
+```bash
+bash bin/build-native.sh
+php tests/test_core.php
+python3 tests/test_http.py
+```
+
+Python is used only by the test drivers, not by the V6 application. The tests use temporary data and local Git remotes; they do not log in to or push the live repository. `tests/test_browser.py` adds an optional Chromium/Playwright interface check and documents its in-memory transport. See `docs/TESTING.md` for exact evidence and limitations.
+
+The original-V5 installer integration test is also supplied as `tests/test_installer.py`; it requires an extracted V5 fixture and that fixture’s Python dependencies.
+
+Useful commands:
+
+```bash
+php bin/console.php check
+php bin/console.php migrate
+php bin/console.php build "$HOME/TED2-public-preview-$(date +%Y%m%d-%H%M%S)"
+```
+
+A command-line build uses the current approved database, not the original seed. Back up the database and uploads together; do not publish runtime files. For external hosting, read `deploy/README.md`. Do not expose the PHP built-in development server directly to the internet.
+
+## Reference documentation
+
+- GitHub Pages hosting model: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
+- GitHub Pages publishing source: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+- GitHub CLI authentication: https://cli.github.com/manual/gh_auth_setup-git
+- PHP built-in server warning: https://www.php.net/manual/en/features.commandline.webserver.php
+- Google crawlable/server-rendered pages: https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
+- Accessible carousel behaviour: https://www.w3.org/WAI/tutorials/carousels/animations/
+- Europe PMC developer services: https://europepmc.org/developers
