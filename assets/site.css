@@ -35,3 +35,51 @@ img,video{max-width:100%;height:auto}a,p,dd,figcaption{overflow-wrap:anywhere}.c
 @media(prefers-reduced-motion:reduce){.slide-enter{animation:none!important}.arrival{animation:none!important}*{scroll-behavior:auto!important}}
 /* Visually hide the skip link until keyboard focus, including full-page capture. */
 .skip:not(:focus){clip-path:inset(50%);clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden;white-space:nowrap;padding:0}
+
+/* V6.2 — an image-led reading experience. System fonts; no remote fonts or UI libraries. */
+html{scroll-padding-top:1.5rem}body{overflow-wrap:anywhere}button,a,input,select,textarea{touch-action:manipulation}
+:root[data-appearance="dark"]{color-scheme:dark}
+:root[data-appearance="dark"] body,:root[data-appearance="dark"] .site-header,:root[data-appearance="dark"] .site-footer{background:var(--background);color:var(--text-color)}
+:root[data-appearance="dark"] input,:root[data-appearance="dark"] textarea,:root[data-appearance="dark"] select{background:var(--surface);color:var(--text-color);border-color:var(--border-color)}
+:root[data-appearance="dark"] .button:not(.secondary),:root[data-appearance="dark"] button:not(.secondary):not(.danger){color:var(--background)}
+:root[data-appearance="dark"] .secondary,:root[data-appearance="dark"] .card,:root[data-appearance="dark"] .person-card,:root[data-appearance="dark"] .media-card{background:var(--surface);color:var(--text-color)}
+:root[data-appearance="dark"] .tag,:root[data-appearance="dark"] .badge{background:color-mix(in srgb,var(--primary) 12%,var(--surface));color:var(--text-color)}
+:root[data-appearance="dark"] .notice,:root[data-appearance="dark"] .empty{background:var(--surface);color:var(--text-color)}
+.brand-row{gap:1.2rem;min-height:106px}.brand{flex:1}.brand img{max-width:190px;height:auto}.institution-logo{max-width:92px;height:auto}
+.brand small{max-width:34rem}.main-nav{position:relative;gap:1.7rem;padding-block:.95rem;align-items:center;border-top:1px solid var(--border-color)}
+.main-nav a[aria-current="page"]{color:var(--primary);font-weight:750;text-decoration:underline;text-underline-offset:.5rem}
+.nav-dropdown{position:relative;z-index:30;border:0!important;background:none!important;padding:0!important}
+.nav-dropdown summary{padding:0!important;list-style:none;cursor:pointer;font-size:.92rem;font-weight:650;color:var(--text-color)}
+.nav-dropdown summary::after{content:'⌄';margin-left:.55rem}.nav-dropdown>div{position:absolute;right:0;top:2rem;min-width:225px;display:grid;gap:.25rem;background:var(--surface);border:1px solid var(--border-color);padding:1rem;box-shadow:0 14px 34px #0002;border-radius:var(--radius)}
+.nav-dropdown a{padding:.55rem .6rem;border-radius:6px}.nav-dropdown a:hover{background:var(--background)}
+.appearance-control{display:block!important;width:auto!important;margin:0!important;font-size:.78rem;flex-shrink:0}
+.appearance-control select{width:100px;min-height:40px;padding:.4rem .6rem;border-radius:99px;background:var(--surface);font-size:.8rem}
+.photo-band{position:relative;margin:0;isolation:isolate;overflow:hidden;background:var(--surface);height:104px;max-width:100%;border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color)}
+.photo-band.size-small{height:65px}.photo-band.size-large{height:166px}.photo-band img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 48%;max-width:none}
+.photo-band.with-depth{box-shadow:inset 0 2px 4px #0003,0 5px 15px #0001}
+.photo-band::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#00141250,transparent 45%,#00141250);pointer-events:none}
+.photo-band.treatment-theme-wash::after{background:color-mix(in srgb,var(--primary) 35%,transparent);mix-blend-mode:multiply}
+.photo-band.treatment-monochrome img{filter:grayscale(1)}
+.photo-band figcaption{position:absolute;bottom:.5rem;right:max(1rem,calc((100% - var(--content-width))/2));font-size:.63rem;background:#071814d9;border:1px solid #ffffff44;border-radius:99px;padding:.3rem .8rem;color:#fff;max-width:80%;z-index:2}
+.photo-band figcaption a{color:#fff;text-decoration:none}
+.photo-band-footer{margin-top:3rem}.site-header{box-shadow:0 5px 20px #001b1506}
+main.container>section{padding-block:3.8rem}.hero h1{max-width:17ch;letter-spacing:-.035em}.hero .lead{max-width:53ch;line-height:1.8}.hero figure{border:1px solid var(--border-color);box-shadow:12px 14px 0 color-mix(in srgb,var(--accent) 12%,transparent),0 20px 40px #0001}
+.people-grid,.card-grid{gap:1.5rem}.person-card>div{padding:1.6rem}.person-card{transition:box-shadow .2s ease,transform .2s ease}.person-card:hover{box-shadow:0 14px 26px #001b1514;transform:translateY(-3px)}
+.person-card p{line-height:1.7}.card p,.prose p{line-height:1.8}.section-heading h2{letter-spacing:-.025em}
+.research-pulse{border-block:1px solid var(--border-color);margin-block:2rem}.pulse-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem;margin-top:1.2rem}
+.pulse-card{padding:1.6rem;background:var(--surface);border:1px solid var(--border-color);border-radius:var(--radius);position:relative;min-width:0}
+.pulse-card::before{content:'';position:absolute;top:0;left:1.5rem;right:1.5rem;border-top:3px solid var(--accent)}
+.pulse-card h3{font-size:1.23rem;line-height:1.5;margin-block:1rem}.pulse-card h3 a{text-decoration:none}.pulse-card h3 a:hover{text-decoration:underline}.pulse-card time{font-size:.76rem;color:var(--muted-color);margin-left:.65rem}
+.pulse-card .evidence-label{font-size:.7rem;border-top:1px solid var(--border-color);padding-top:.65rem}
+.pulse-editorial .pulse-card:first-child{grid-column:span 2}.pulse-editorial .pulse-card:first-child h3{font-size:1.75rem;max-width:43ch}
+.pulse-compact .pulse-grid{grid-template-columns:1fr 1fr}.pulse-compact .pulse-card{padding:1.2rem}
+.topic-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}.topic-tags span{font-size:.72rem;line-height:1.5;padding:.3rem .6rem;background:color-mix(in srgb,var(--primary) 7%,var(--surface));border:1px solid var(--border-color);border-radius:99px;color:var(--primary)}
+.pulse-filter{display:flex;gap:1rem;align-items:center;font-size:.85rem;max-width:400px}.pulse-filter select{max-width:240px}
+.quote-panel{padding:2.1rem 2.5rem!important;background:color-mix(in srgb,var(--primary) 6%,var(--surface));border:1px solid var(--border-color);border-inline-start:4px solid var(--accent);border-radius:var(--radius);margin-block:3rem}
+.quote-panel h2{font-size:1.1rem;font-family:var(--body-font)}.quote-panel blockquote{margin:1.4rem 0;font-family:var(--heading-font);font-size:clamp(1.45rem,2.6vw,2.15rem);max-width:40ch;line-height:1.55;font-weight:500}
+.quote-panel blockquote footer{font-size:.95rem;font-family:var(--body-font);font-weight:650;margin-top:1rem;background:none;color:var(--primary)}
+.quote-panel [data-slide][hidden],.pulse-card[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media(max-width:900px){.brand-row{flex-wrap:wrap}.brand img{max-width:150px}.brand small{display:none}.main-nav{gap:1rem}.pulse-grid{grid-template-columns:1fr 1fr}.pulse-editorial .pulse-card:first-child{grid-column:1/-1}.nav-dropdown>div{left:0;right:auto}}
+@media(max-width:640px){.brand-row{gap:.6rem;min-height:90px}.brand{min-width:155px}.brand img{max-width:120px}.brand strong{font-size:.9rem}.institution-logo{width:54px}.appearance-control select{width:88px}.main-nav .nav-dropdown{width:100%}.nav-dropdown>div{position:static;margin-top:.75rem;box-shadow:none}.main-nav a{padding:.5rem 0}.photo-band.size-large{height:100px}.photo-band figcaption{font-size:.58rem}.pulse-grid,.pulse-compact .pulse-grid{grid-template-columns:1fr}.pulse-editorial .pulse-card:first-child{grid-column:auto}.pulse-editorial .pulse-card:first-child h3{font-size:1.4rem}.quote-panel{padding:1.3rem!important}.hero figure{box-shadow:5px 8px 0 color-mix(in srgb,var(--accent) 12%,transparent)}main.container>section{padding-block:2.5rem}.brand span{display:none}.photo-band-footer{margin-top:1rem}}
+@media(prefers-reduced-motion:reduce){.person-card:hover{transform:none}.photo-band img{animation:none!important}.slide-enter{animation:none!important}}
