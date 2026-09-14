@@ -42,6 +42,20 @@ final class Media {
   if(in_array($c,['publications','achievements'],true))return !empty($p['document_public'])&&($p['document_id']??'')===$id;
   return false;
  }
+ /** Generate a cacheable display derivative only from an already-authorised local file. */
+ public static function thumbnailFile(string $path,int $size,string $cache):string {
+  if(!is_file($path))return $path;$info=@getimagesize($path);if(!$info)return $path;
+  if(max($info[0],$info[1])<=$size)return $path;
+  $key=hash_file('sha256',$path).'-'.$size;$dest=$cache.'/'.$key.'.jpg';if(is_file($dest))return $dest;dirPrivate($cache);$temp=$cache.'/'.$key.'-'.id().'.jpg';
+  try{
+   if(function_exists('imagecreatefromstring')){
+    $im=@imagecreatefromstring(file_get_contents($path));if(!$im)return $path;$ratio=$size/max(imagesx($im),imagesy($im));$out=imagecreatetruecolor(max(1,(int)(imagesx($im)*$ratio)),max(1,(int)(imagesy($im)*$ratio)));$white=imagecolorallocate($out,255,255,255);imagefill($out,0,0,$white);imagecopyresampled($out,$im,0,0,0,0,imagesx($out),imagesy($out),imagesx($im),imagesy($im));$ok=imagejpeg($out,$temp,78);imagedestroy($im);imagedestroy($out);if(!$ok)return $path;
+   }else{
+    $r=Process::run(['ffmpeg','-hide_banner','-loglevel','error','-nostdin','-y','-i',$path,'-frames:v','1','-vf','scale=w=min('.$size.'\,iw):h=min('.$size.'\,ih):force_original_aspect_ratio=decrease','-q:v','4','-threads','1',$temp],seconds:25);if($r['code']!==0||!is_file($temp))return $path;
+   }
+   if(filesize($temp)>=filesize($path))return $path;chmod($temp,0600);ensure(rename($temp,$dest),500,'Could not write a display thumbnail.');return $dest;
+  }finally{if(is_file($temp))unlink($temp);}
+ }
  public static function send(string $path,string $mime,string $name='',bool $private=true):never{
   ensure(is_file($path)&&!is_link($path),404,'File not found.');$size=filesize($path);header('Content-Type: '.$mime);header('X-Content-Type-Options: nosniff');header('Cache-Control: '.($private?'private, no-store':'public, max-age=300'));header('Accept-Ranges: bytes');if($name)header("Content-Disposition: ".($mime==='application/pdf'?'attachment':'inline')."; filename*=UTF-8''".rawurlencode($name));
   $start=0;$end=$size-1;$range=$_SERVER['HTTP_RANGE']??'';if($range!==''){ensure(preg_match('/^bytes=(\d*)-(\d*)$/D',$range,$m)===1,416,'Invalid byte range.');if($m[1]==='')$start=max(0,$size-(int)$m[2]);else $start=(int)$m[1];if($m[1]!==''&&$m[2]!=='')$end=min($end,(int)$m[2]);ensure($start<=$end&&$start<$size,416,'Range not available.');http_response_code(206);header("Content-Range: bytes $start-$end/$size");}

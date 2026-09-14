@@ -14,13 +14,13 @@ Publishing uses the OS service account's Git/SSH/GitHub CLI credentials, not the
 
 ## Literature notifications
 
-Enable a researcher's literature watch and specify their query in their profile. New results enter a private review queue. A manual button is available in Literature watch. For periodic checks, use your service account's scheduler to execute the complete command below once daily after deploying to `/srv/ted2`:
+Enable a researcher's literature watch and specify their query in their profile. New results enter a private review queue. The local launcher starts an opt-in metadata worker that stops with it. PHP-FPM does not run that launcher. For periodic hosted checks, use your service account's scheduler to execute the complete command below once daily after deploying to `/srv/ted2`:
 
 ```bash
 cd /srv/ted2 && php bin/console.php literature-sync
 ```
 
-This command is bounded, opt-in, metadata-only and uses Europe PMC. It is **not** an always-running job installed automatically. In-app review items are not emails or browser push notifications. A failed network request records an error, never a invented discovery. Published claims require the researcher to read and assess the underlying source.
+This command is bounded, opt-in, metadata-only and uses Europe PMC. In production no global service or cron entry is installed automatically. In local mode start.sh runs bin/discovery-worker.php, which checks due watches and exits with the launcher. In-app review items are not emails or browser push notifications. A failed network request records an error, never a invented discovery. Published claims require the researcher to read and assess the underlying source.
 
 ## Anonymous response privacy
 

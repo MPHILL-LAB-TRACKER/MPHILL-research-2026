@@ -1,208 +1,120 @@
-# TED² Research Workspace V6
+# TED² Research Workspace V6.1
 
-**PHP management and rendering · optional C++ utilities · researcher-owned media · a public website that remains on GitHub Pages.**
+**PHP laboratory management, editable portraits, methodology-linked procurement, visual theme controls and reviewed research updates.**
 
-V6 replaces the running Python application with a PHP 8.3+ application. It preserves the existing SQLite database, Argon2 passwords, researchers, publications, uploaded files and private research. It adds server-rendered profile URLs, a reorganised studio, ownership-aware uploads, anonymous forms and session-authorised publishing.
+This is the complete application and an in-place upgrade for the existing **V6** clone. It does not create another repository or replace the existing accounts, edited biographies, private research or uploads. The public GitHub website is generated from approved database content; it is not the administration server.
 
-**PHP does not replace the HTML/CSS a browser displays.** The PHP application generates those pages. GitHub Pages serves the generated public files; it does not run PHP or C++. This split keeps the existing public address and lets it remain available when the local management computer is off. Native code is optional, not a claim of automatically better mobile compatibility or unlimited traffic capacity.
+## Upgrade the existing installation
 
-## Upgrade the existing V5 installation
-
-Download the complete `TED2-Research-Workspace-v6.zip` into the same `GitHub tracker` folder as the previous packages. Stop the running V5 server with **Ctrl+C**.
-
-Install the PHP runtime and image/database extensions once on Ubuntu:
-
-```bash
-sudo apt update &&
-sudo apt install -y php-cli php-sqlite3 php-gd php-mbstring ffmpeg git gh unzip
-```
-
-PHP **8.3 or newer** is required. FFmpeg is already installed on the user's current machine; reinstalling an already-installed package is not necessary. On systems where PHP is installed without the Argon2 password algorithm, use a PHP build with Argon2 support before migrating accounts.
-
-Run the upgrade in the existing workspace:
+Save `TED2-Research-Workspace-v6.1.zip` in the existing **GitHub tracker** folder. Stop the current PHP server with **Ctrl+C**. Run as the normal `paul` user, not with sudo:
 
 ```bash
 cd "$HOME/Documents/MPhill in biomedical sciences (medical microbiology)/GitHub tracker" &&
-unzip "TED2-Research-Workspace-v6.zip" &&
-bash "./TED2-Research-Workspace-v6/upgrade-v6.sh" \
+unzip "TED2-Research-Workspace-v6.1.zip" &&
+bash "./TED2-Research-Workspace-v6.1/upgrade-v6.1.sh" \
   --target "$PWD/MPHILL-research-2026"
 ```
 
-Review the paths and type **UPGRADE**. Do **not** run the installer with sudo. It validates the release files, verifies the actual Git clone, checks for source conflicts, creates a private source/configuration/database/upload backup, overlays the PHP release, and migrates the original database. It does not switch branches, commit unrelated files, change passwords or push to GitHub.
+Review the source, target and database paths; type **UPGRADE**. A private source/configuration/database/upload backup is created outside the repository under `~/TED2-private-backups/v6.1-*`. Locally customised source files cause a stop, not silent replacement. Existing `.git`, `.env`, `.venv`, accounts, database content and uploaded files are retained. The migration only fills absent V6.1 fields and adds private starter facts. It does not replace an owner's existing theme colours, homepage section selection or profile edits.
 
-Private backups are placed under `~/TED2-private-backups/v6-.../`. The migration log lists media that need an ownership review. Known legacy media attached to exactly one researcher are assigned to that researcher. Conflicting attachments become **Ownership needs review** and are withheld from public output until resolved. Existing owner-edited content is retained.
-
-Then commit the release source and start the PHP application:
+After the upgrade succeeds:
 
 ```bash
 cd "$HOME/Documents/MPhill in biomedical sciences (medical microbiology)/GitHub tracker/MPHILL-research-2026" &&
-bash scripts/commit-v6.sh &&
+bash scripts/commit-v6.1.sh &&
 git push origin main &&
 bash start.sh
 ```
 
-Type **COMMIT** when prompted. The helper stages release paths only. It stops when unrelated changes are already staged. Never use `git add .` to publish an installed workspace with private local data.
+Type **COMMIT** when prompted. The helper explicitly stages the release's source paths, never `.env`, the database, uploads or private backups. It supports release files already staged from an interrupted commit, refuses unrelated staged work, and prints without the Git pager. It never force-pushes or switches branches. The source commit and the public website publication remain separate operations.
 
-Open:
+Open **http://127.0.0.1:8000/admin** and sign in with the existing account. Refresh with **Ctrl+Shift+R** once. The heading should show **V6.1**. Keep the server terminal running. This URL works only on the server computer; it is not a public mobile-data address.
 
-```text
-http://127.0.0.1:8000/admin       Owner / administrator
-http://127.0.0.1:8000/workspace   Researcher account
-http://127.0.0.1:8000/            Public local preview
-```
+Existing PHP 8.3+, SQLite, image-processing and FFmpeg dependencies remain applicable. A normal Ubuntu installation uses `php-cli php-sqlite3 php-gd php-mbstring ffmpeg`. The optional C++ worker remains available through `bash bin/build-native.sh`; it is not required with PDO SQLite installed and is not downloaded as a binary.
 
-Use the existing username and password. V5 sessions are revoked during migration, so sign in again. Leave the terminal running. **Use `bash start.sh` for V6—not `.venv/bin/python manage.py serve`.** Old Python source and its virtual environment are left in the clone for controlled rollback; they are not used by the V6 runtime.
+## Public website publication
 
-For a fresh installation only, extract the release and run `bash start.sh`. The launcher imports the supplied public seed and prompts for the first owner account. There is no default owner password.
+In administration choose **Publish → Prepare preview → Open exact preview → approve the release → Confirm & push to GitHub**. Check the returned commit and deployment status. The existing authenticated admin session authorises the push; the application does not request the admin password again for each publication. An expired session requires sign-in again. GitHub authentication is separate and must already work for the operating-system account running PHP.
 
-## Your main workflow
+The PHP source belongs on **main**. Generated approved pages and media are pushed to **gh-pages** through an isolated Git index without changing the working branch or staged work. GitHub **Settings → Pages** must use **Deploy from a branch → gh-pages → / (root)**. Do not change the repository's default branch or merge gh-pages into main. A push is not proof of a finished deployment: use **Check status** and inspect GitHub Actions if it reports not-started, running or failure.
 
-**Edit / upload → save → view the local website → Publish & deployment → Prepare preview → review → confirm & push → check deployment.**
+Changes made in administration appear locally after saving. They appear online only after a successful public publication and deployment. No database, unapproved upload, private procurement detail, questionnaire answer or login credential is part of that export. Previously downloaded files and older Git commits cannot be recalled by unpublishing.
 
-Login authorises publishing for that session. There is no second password field on every push. Sessions expire after 30 minutes of inactivity or eight hours total; an expired session requires sign-in again. Account password changes and account-permission changes revoke sessions. Destructive permanent deletion still requires explicit password confirmation.
+## Portraits and researcher editing
 
-The publisher uses the **same clone**, an isolated Git index and the existing terminal Git credentials. It writes only approved public pages and media to `gh-pages`, without switching `main` or including staged source changes. It does not copy the database, `.env`, raw backups, unpublished records or private responses into that branch.
+The V6 defect was in the direct-file editor: it received the new upload ID, then reread the old hidden file value when saving. V6.1 saves the updated record snapshot instead. This also covers the direct logo, certificate and image fields that used that path.
 
-Authenticate GitHub CLI once, using a GitHub account that can write to this repository:
+Open **Researchers & collaborators → the person**. A portrait panel at the top supports **drag-and-drop or Browse**, immediately previews the attached local picture and provides **Remove portrait and bundled fallback**. Add the credit, set **Portrait permission → Approved**, and save when the picture is authorised for public use. Crop position can be centre, top or bottom; shape can be portrait, square or circle. A successful file upload is not permission to publish an unrelated photograph.
 
-```bash
-gh auth login --hostname github.com --git-protocol https --web
-gh auth setup-git
-```
+Owners and administrators can edit every researcher profile. A researcher account can edit only the assigned profile when the owner explicitly grants profile-editing permission. Private/public approval and account privileges remain protected server-side. The researcher-specific upload pickers continue to exclude other researchers' files; general laboratory images and videos remain in the laboratory gallery. The original supplied portraits, corrected names and laboratory materials are retained.
 
-GitHub credentials are separate from the local admin login. SSH authentication already configured in Git can also be used. The application does not collect a GitHub password or embed a personal token into the public site.
+## Theme, layout and header/footer decoration
 
-### Deployment verification
+Open **Theme, logos & layout**. There are **14 palette presets**: Vintage, Modern, Clinical, Night, Botanical, Desert, Ocean, Lavender, Graphite, Copper, Ivory, Forest, Arctic and Heritage. Custom colours, heading/body fonts, width, spacing and corners remain editable. Save the selected palette to apply it to both public pages and administration.
 
-The publishing screen checks the Pages source and distinguishes **commit pushed**, **deployment pending/not started**, **deployment failed** and **deployment success**. With owner permission and a suitable GitHub CLI login, **Configure Pages** sets `gh-pages / (root)` after explicit confirmation. The branch must exist first. The repository's default branch remains `main`.
+The visual decoration gallery has **19 illustrated motifs plus None**: test tubes, glassware, microscopes, pipettes, DNA, molecules, cells, laboratory grid, leaves, fern, botanical plants, mountains, dunes, landscape, waves, savannah, geometric, vintage and modern. Choose Header or Footer, then select a motif. Each end has its own choice; size and contrast are adjustable. The vector outlines inherit theme colours, are bundled with the application and do not require a third-party image service.
 
-When API permissions or GitHub CLI are unavailable, status is labelled **unverified**, not successful. A successful Git push alone is never presented as proof that Pages changed. Use **Check status** after the push or open the GitHub deployment run. Deployment completion is not synchronous with the push.
+There are six border choices: None, Fine line, Double line, Corners, Inset and Botanical. Public content structure can be Cards, Editorial or Compact; researcher directories can use Grid, List or Compact. Existing controls for logos, header/footer alignment, homepage section order, custom pages, captions, media order and visibility are retained. Required IDs, authentication rules and schema-critical fields cannot be removed through the editor; optional fields can be cleared/hidden and custom fields can be added/deleted.
 
-The public site address remains:
+## Notice board
 
-```text
-https://mphill-lab-tracker.github.io/MPHILL-research-2026/
-```
+The default rotation is **five seconds**. In the theme editor, open **Notice board & research facts** to set **3–120 seconds**, choose None/Fade/Slide/Settle and select Spotlight/Split/Stack layout. Existing on/off controls still apply. Prev/next/pause buttons are available; hovering, keyboard focus, a hidden tab or reduced-motion preferences pause rotation. All notices remain readable without JavaScript. No animation is required to reveal the main content.
 
-## What administrators can control
+The separate reviewed-science board has its own interval and maximum pool size. It avoids repeating a fact within the available pool in the same browser tab; after the pool is exhausted it can start a new cycle. This is not an unlimited supply of unique facts.
 
-| Studio area | Controls |
-|---|---|
-| Researchers & collaborators | Names, affiliations, biographies, research areas, scholarly links, public/private contacts, portraits, alphabetic sorting and priority. |
-| Milestones & progress | Responsible researcher, status, optional target date, weight and summary. **A project is optional.** |
-| Achievements | Researcher, date, recognition, evidence note, certificate and homepage visibility. No project prerequisite. |
-| Photos, videos & files | Batch drag/drop or browse, owner assignment, visible title, caption, alt text, credit, transcript, public filename, ordering, approval, removal and restoration. |
-| Pages & sections | New text/media panels, profile sections, galleries and standalone pages; order, placement, navigation label and public/private state. |
-| Theme, logos & layout | Vintage, modern, clinical and night presets; custom palette, typography, spacing, width, corners, homepage order, hero position, optional header/footer decorations and logo controls. |
-| Contact information / custom fields | Researcher-specific or laboratory contacts; labelled fields attached to supported records; optional field clearing/hiding. |
-| Anonymous Q&A | Moderate incoming questions; write answers, reject, delete or approve for publication. |
-| Questionnaires | Publish an anonymous questionnaire with separately ordered text, long-text, single-choice or rating questions; review/delete private responses. |
-| Literature watch | Opt-in source-linked paper metadata, private by default, with researcher review and approval. |
-| Leadership & acknowledgements | Editable PI, administrator and supervisor acknowledgements, selected researcher, text, priority and homepage visibility. |
-| Accounts & permissions | Owner-created accounts, linked researcher, profile/research editing rights, password resets and access revocation. |
-| Trash & restore / activity log | Restore accidental deletion, permanently remove with confirmation, and inspect management actions. |
+## Methodology, procurement and resource readiness
 
-Essential identifiers, owner-account safeguards and security boundaries remain protected. Custom fields can be removed; optional built-in fields can be cleared/hidden. V6 is a structured laboratory CMS, not an arbitrary PHP/JavaScript execution interface.
+**Methodology & work packages** records a researcher, the actual protocol/version/section reference, a public summary, status and optional project. Detailed methodology notes and next actions are private. Do not enter unapproved clinical or patient information.
 
-## Media ownership and presentation
+**Procurement lists** records each consumable, reagent, equipment item or service against a named researcher. Link the methodology when available and enter the actual method-step/reason for the requirement. A project is optional. Quantities accept decimals and explicit units. Record required, available and ordered quantities; condition; expiry; required-by date; order state and priority. Supplier, costs, storage and internal troubleshooting/next-action notes remain private.
 
-Every library item is either **General laboratory**, owned by **one named researcher**, or awaiting an ownership review. Selecting a researcher record offers only that researcher's media. General files do not silently appear on each researcher's profile. Researcher-owned items do not enter the general laboratory gallery.
+**Resource readiness** shows usable stock, shortfall, quantity still to source, expiry/condition warnings, missing method linkage and overdue milestones. Only items with confirmed ready condition and non-expired recorded stock count as available. A print control provides a local checklist. These calculations use the entered numbers: they do not validate scientific suitability, infer a protocol or place orders.
 
-Within a record, drag the selected media cards to reorder them; **up/down buttons** provide a touch/keyboard alternative. Save the parent record to keep its attachment order. The media library also supports drag/up/down ordering for its filtered gallery. The visible title, caption and download filename are independent fields. A file is stored under an opaque server filename for safety; renaming the public download does not rename arbitrary filesystem paths.
+A linked methodology must belong to the same researcher. Public procurement must not expose a private linked method; keep the item private, publish the approved method summary, or unlink and review the standalone public explanation. Admins control public visibility. Assigned researchers can work on their private records, not another researcher's list or public-approval flags. An admin can leave everything private for the researcher/management team or explicitly share selected requirements on the public resource page, researcher profile and optional homepage section.
 
-Image formats: **JPEG/JPG, PNG, WebP, GIF, BMP, TIFF**. Images are decoded and re-encoded to JPEG/PNG, resized to a maximum 2,000-pixel edge. Animated GIF/TIFF inputs become a still frame. Portrait orientation and crop should be reviewed in the preview.
+No investigator-specific equipment or reagent list has been invented from a project title. Populate requirements from the actual authorised methodology. The supplied team slides do not establish quantities or procurement specifications.
 
-Video formats: **MP4, WebM and MOV**. FFprobe validates the stream; FFmpeg normalises it to MP4/H.264/AAC with fast-start metadata and a maximum 1920×1080 frame. The public player uses controls, `playsinline` and no preloading of the whole video. This improves compatibility but is not a guarantee for every codec/device combination.
+## Easier questionnaires
 
-PDF is supported for documents and certificates. Dedicated certificate/manuscript slots remain PDF-only; the adjoining media editor accepts photographs and videos. Input limits are **20 MiB per image/PDF** and **80 MiB per video**; processed videos must also remain under 80 MiB and under one hour. A public release is limited to 400 MiB of media. SVG/HTML/scripts and arbitrary executable uploads are rejected. This validation is not a malware scanner for PDF contents.
+Create the questionnaire, then choose **Open question builder**. Add question cards, edit wording/help/type/choices, mark required answers and reorder by dragging or up/down buttons. Save all questions together. Removed questions go to Trash; existing response snapshots retain their original question wording. Concurrent edits are rejected instead of overwriting another editor's changes.
 
-Public visibility and approval are separate. Researcher-supplied replacement portrait/library binaries lose their prior approval until an administrator reviews them. Downloaded copies and earlier Git commits cannot be revoked by changing local visibility.
+The public form defaults to one question at a time with Back/Next, progress, validation and an editable thank-you message. A questionnaire can instead show all its questions. Choice/rating controls are touch-friendly. Questions-and-answers remain moderated. No name or email is requested in anonymous responses; free text and hosting logs can still identify someone, so the system does not promise absolute network anonymity.
 
-## Theme and layout
+Receiving responses from internet visitors requires a publicly hosted PHP application and a configured **Public submission site**. GitHub Pages cannot execute PHP or store form submissions. A static export without a configured public endpoint clearly says that online submissions are not connected; it does not pretend to send them. The local guided form works while the local PHP server runs.
 
-The same colour and font tokens drive **both** interfaces. Presets are starting points; all palette controls remain editable. Header/footer laboratory decoration has independent `none`, `vintage` and `modern` settings plus alignment options; the decoration does not fill the page body. Main laboratory logo, institutional logo, footer logo and favicon each have an upload and explicit approval control.
+## Did you know? and automated research review
 
-Themes use system font families, not remotely loaded font files. Vintage uses restrained serif headings; modern uses clean system sans-serif; clinical uses a humanist heading stack; night uses a darker palette. Public pages keep spacious blocks rather than compressing all descriptions into one long line. The notice board rotates every **15 seconds**, pauses on hover/focus and when the tab is hidden, and provides previous/next/pause controls. Reduced-motion preferences disable automatic rotation and arrival animation by default.
+Three source-backed starter facts are included as **private, unapproved** drafts. Review their primary sources, edit the wording and set approval/public visibility before sharing them. Facts can have review and expiry dates, a researcher, homepage visibility and a source link. Enable the **Facts** homepage block deliberately; migration does not alter an owner's existing homepage block selection.
 
-## Accounts and researcher isolation
+**Discovery automation** controls general laboratory discovery checks. Individual researcher profiles retain their topic query and opt-in. The default check interval is 24 hours, configurable from 1 to 168 hours, with a configurable 1–365-day lookback. Keep queries specific to the laboratory's real work. Each watch retrieves at most 50 source matches per check; this is a bounded alert feed, not an exhaustive literature review.
 
-Owners manage accounts. Administrators edit all content and publish; researcher accounts cannot publish, alter themes, read private responses or manage other accounts.
+`bash start.sh` now runs a separate lightweight metadata worker alongside the local PHP server. It only checks explicitly enabled watches. It stops when the launcher stops; nothing installs a global cron job or runs on the laptop while it is off. Production PHP-FPM hosting must schedule `php bin/console.php literature-sync` or run the worker under a service manager. The worker has a lock, due-time checks, an error backoff and a status panel. A failed source request records an error and does not fabricate results.
 
-Each researcher account is linked to **one** researcher record. The owner separately grants **edit own profile/media/contacts** and **edit assigned research**. Existing V5 researcher accounts preserve research editing but do not automatically receive the new profile-editing privilege; grant it under Accounts & permissions. Cross-profile reads/writes/uploads and incompatible media links are rejected by the PHP backend, even when an API request is crafted manually.
+Europe PMC provides the research metadata. New items enter the **private literature-review queue**, with title, author/journal/date when supplied, source URL and evidence caveat. DOI/source identities are retained after deletion, preventing reimport of the same item. Cross-profile matches may be kept for each researcher; the public science board deduplicates them. A human must read the source, distinguish a preprint from a peer-reviewed result, write/approve the summary, choose public/homepage visibility and publish the website. The scheduled job does not silently rewrite public scientific claims, fetch full articles or auto-push to GitHub. No email or browser-push service is configured.
 
-An assigned researcher may edit the professional text of their already-public profile. Those edits enter the next administrator-reviewed public release. New records start private, and researchers cannot independently approve public visibility or media. Private phone, address and email fields are excluded from public pages and export.
+## Mobile data and network troubleshooting
 
-## Anonymous forms need a reachable server
+The published website has no Wi-Fi-only rule. V6.1 improves the site-controlled parts: smaller locally generated display images; lazy image loading; click-to-play videos with `preload="none"`; server-rendered content; no mandatory external fonts/scripts; responsive layouts; a dependency-free **Low-data view**; and a tiny **Connection check** page. Publication rejects automatically loaded media addresses using HTTP, localhost or private network addresses. Optional external HTTPS image references can still depend on their source host; locally upload critical images.
 
-The anonymous module is implemented locally and for PHP hosting. It does not send names, emails or account IDs with responses. Incoming questions are private until moderated; questionnaire responses stay private. Only administrators can read or remove them. Set a clear purpose and privacy notice before collecting responses.
+**The reported mobile-carrier failure has not been reproduced or diagnosed.** A website change cannot repair a carrier route, DNS resolver, TLS interception or device certificate problem. No physical Android/iPhone/mobile-data test was performed in the build environment. Do not disable TLS verification, clear data or change DNS blindly.
 
-**GitHub Pages cannot receive or store these submissions.** To accept responses from internet visitors, host the PHP application behind HTTPS, then enter that HTTPS address under **Website settings → Public submission site**. The published Questions page links to the live forms. Until configured, it explicitly says submissions are not connected—there is no non-working submit button disguised as an active service.
+After publishing V6.1, open these on the affected phone with Wi-Fi switched off:
 
-Do not publish the local `127.0.0.1` URL as an online form address. A laptop-only installation can receive submissions only from its own local session. Internet researcher logins likewise require hosted PHP. Hosting providers may record access logs, and identifying details may be typed into free text; no claim of absolute network anonymity is made.
+- `https://mphill-lab-tracker.github.io/MPHILL-research-2026/connection-check/`
+- `https://mphill-lab-tracker.github.io/MPHILL-research-2026/light/`
 
-## Discoverability and scholarly integrity
+If the tiny page loads but the full page does not, capture the full-page browser error and test the low-data view. If neither page loads on mobile data but both work on Wi-Fi, record the carrier, browser/OS and exact error. A 404 means the new route is not published; check the deployed commit/version first.
 
-Every researcher has a real route such as `/researchers/paulus-hamutenya/`, with server-rendered content, a unique title, canonical URL, ProfilePage/Person structured data and a sitemap. Legacy hash links are redirected by a small compatibility script. The page's substantive content and directory links are present without JavaScript. JavaScript progressively adds filtering, navigation and the notice board.
-
-After publishing, verify the website in Google Search Console. The verification-token field is under Website settings; submit the generated `sitemap.xml`. Search engines decide whether and when to index/rank a page. Typing a name into a search engine cannot be forced to redirect users to this site, and a new language does not guarantee rankings.
-
-The original twelve research descriptions, twelve people, eight publication records, conference notices and certificate evidence are retained. Prior name corrections are retained. The PI and site-admin acknowledgements are provided; the co-supervisor acknowledgement is a private editable record for confirmation before public display. No new grant, achievement, experiment, confirmed conference date or publication has been invented.
-
-## Literature watch: factual metadata, not automatic scientific advice
-
-Enable literature watch on an individual profile and enter a Europe PMC search query. **Check opted-in topics** fetches up to 50 recent metadata matches per enabled researcher from the preceding 90 days. The response includes source title, author string, journal/year and source/DOI links, not generated claims about a breakthrough. Duplicate records are avoided. New matches are private and unapproved. Failed requests report failure.
-
-The command can also be scheduled on an always-on host:
+A read-only comparison script is included:
 
 ```bash
-php bin/console.php literature-sync
+bash scripts/diagnose-connectivity.sh
 ```
 
-No recurring job, email service or browser push subscription is installed automatically. Results are an **in-app review queue**, not a guaranteed exhaustive surveillance service. See `deploy/README.md` for hosting/scheduling boundaries.
+Run it on normal Wi-Fi, then on the computer connected to the phone's mobile-data hotspot. It checks DNS, verified HTTPS, IPv4/IPv6 and public route responses without changing network settings. IPv6 failure alone is not a website failure when IPv4 works. The exact outputs are needed before claiming the carrier problem is fixed.
 
-## Optional C++ utilities
+## Reference material and delivery limits
 
-Normal operation uses PHP PDO SQLite. The package also contains a real C++17 utility with a private prepared-statement SQLite protocol and metadata keyword-ranking mode. It has no web listener and accepts no shell commands. It is optional; adding it is not claimed to make a browser faster.
+Primary information sources and feature coverage are listed in [Sources and requirements](docs/SOURCES-AND-COVERAGE.md). See [Upgrade and recovery](docs/UPGRADE-RECOVERY.md), [Deployment](deploy/README.md) and [Testing](docs/TESTING.md).
 
-To compile on Ubuntu:
-
-```bash
-sudo apt install -y build-essential libsqlite3-dev libjson-c-dev
-bash bin/build-native.sh
-```
-
-The binary is created privately in `var/native/`. To test the native SQLite adapter explicitly, set `TED2_SQLITE_DRIVER=native` in your private `.env`. It is also a fallback where PHP's SQLite driver is unavailable. No architecture-specific executable or font files are distributed in this release.
-
-## Maintenance and tests
-
-Runtime: PHP 8.3+, Argon2id support, Fileinfo, PDO SQLite; GD recommended; FFmpeg/FFprobe for video. The delivered code was exercised under PHP 8.4.23 with the C++ SQLite adapter and FFmpeg fallback image processing. The PDO/GD branches need deployment-specific verification; they were unavailable in the build environment.
-
-```bash
-bash bin/build-native.sh
-php tests/test_core.php
-python3 tests/test_http.py
-```
-
-Python is used only by the test drivers, not by the V6 application. The tests use temporary data and local Git remotes; they do not log in to or push the live repository. `tests/test_browser.py` adds an optional Chromium/Playwright interface check and documents its in-memory transport. See `docs/TESTING.md` for exact evidence and limitations.
-
-The original-V5 installer integration test is also supplied as `tests/test_installer.py`; it requires an extracted V5 fixture and that fixture’s Python dependencies.
-
-Useful commands:
-
-```bash
-php bin/console.php check
-php bin/console.php migrate
-php bin/console.php build "$HOME/TED2-public-preview-$(date +%Y%m%d-%H%M%S)"
-```
-
-A command-line build uses the current approved database, not the original seed. Back up the database and uploads together; do not publish runtime files. For external hosting, read `deploy/README.md`. Do not expose the PHP built-in development server directly to the internet.
-
-## Reference documentation
-
-- GitHub Pages hosting model: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
-- GitHub Pages publishing source: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
-- GitHub CLI authentication: https://cli.github.com/manual/gh_auth_setup-git
-- PHP built-in server warning: https://www.php.net/manual/en/features.commandline.webserver.php
-- Google crawlable/server-rendered pages: https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
-- Accessible carousel behaviour: https://www.w3.org/WAI/tutorials/carousels/animations/
-- Europe PMC developer services: https://europepmc.org/developers
+The application is delivered as source code. It has not been installed on the user's computer, pushed to the live repository or load-tested in production. The complete source ZIP and manifest contain no user database, passwords, environment secrets, native executable or private uploads. A deployable public site is generated from the user's actual approved database rather than a demonstration database.

@@ -381,6 +381,94 @@
         "relation": null,
         "public": true,
         "help": "Only the verification token, not an HTML tag. This supports ownership verification; it does not guarantee indexing."
+      },
+      {
+        "key": "discovery_enabled",
+        "label": "Fetch new literature matches automatically",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "",
+        "default": false
+      },
+      {
+        "key": "discovery_query",
+        "label": "General laboratory research query",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "",
+        "default": "tissue engineering OR nanomedicine OR aptamer biosensor"
+      },
+      {
+        "key": "discovery_hours",
+        "label": "Minimum hours between scheduled checks",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "",
+        "default": 24
+      },
+      {
+        "key": "discovery_days",
+        "label": "Look back this many days",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": "",
+        "default": 90
+      },
+      {
+        "key": "discovery_show_days",
+        "label": "Days to feature approved literature",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 90
+      },
+      {
+        "key": "fact_heading",
+        "label": "Research facts section heading",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "Did you know?"
+      },
+      {
+        "key": "questionnaire_intro",
+        "label": "Questionnaire welcome text",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "Your answers help improve our laboratory. No name or email is requested. Please do not enter identifying or sensitive personal information."
+      },
+      {
+        "key": "enable_light_page",
+        "label": "Show low-data view shortcut in footer",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": true
       }
     ]
   },
@@ -571,7 +659,7 @@
       },
       {
         "key": "photo_upload_id",
-        "label": "Uploaded portrait",
+        "label": "Profile picture — upload or replace",
         "type": "image",
         "required": false,
         "options": [],
@@ -826,6 +914,36 @@
         "relation": null,
         "public": false,
         "help": "Opt-in: this query is sent to Europe PMC. Do not include unpublished or personal information."
+      },
+      {
+        "key": "photo_position",
+        "label": "Portrait focus",
+        "type": "select",
+        "required": false,
+        "options": [
+          "center",
+          "top",
+          "bottom"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "center"
+      },
+      {
+        "key": "photo_shape",
+        "label": "Portrait shape",
+        "type": "select",
+        "required": false,
+        "options": [
+          "portrait",
+          "square",
+          "circle"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "portrait"
       }
     ]
   },
@@ -2619,7 +2737,10 @@
           "achievements",
           "funders",
           "sources",
-          "sections"
+          "sections",
+          "methods",
+          "procurement",
+          "lab_facts"
         ],
         "relation": null,
         "public": true,
@@ -2867,7 +2988,9 @@
           "contacts",
           "leadership",
           "questions",
-          "gallery"
+          "gallery",
+          "facts",
+          "procurement"
         ],
         "relation": null,
         "public": true,
@@ -2888,7 +3011,9 @@
           "funders",
           "sources",
           "gallery",
-          "questions"
+          "questions",
+          "procurement",
+          "discoveries"
         ],
         "relation": null,
         "public": true,
@@ -2943,7 +3068,17 @@
           "vintage",
           "modern",
           "clinical",
-          "night"
+          "night",
+          "botanical",
+          "desert",
+          "ocean",
+          "lavender",
+          "graphite",
+          "copper",
+          "ivory",
+          "forest",
+          "arctic",
+          "heritage"
         ],
         "relation": null,
         "public": true,
@@ -2951,7 +3086,7 @@
       },
       {
         "key": "header_band",
-        "label": "Header laboratory decoration",
+        "label": "Header laboratory rule style",
         "type": "select",
         "required": false,
         "options": [
@@ -2965,7 +3100,7 @@
       },
       {
         "key": "footer_band",
-        "label": "Footer laboratory decoration",
+        "label": "Footer laboratory rule style",
         "type": "select",
         "required": false,
         "options": [
@@ -3104,6 +3239,212 @@
         "relation": null,
         "public": true,
         "help": ""
+      },
+      {
+        "key": "header_motif",
+        "label": "Header decorative aligner",
+        "type": "select",
+        "required": false,
+        "options": [
+          "none",
+          "test-tubes",
+          "glassware",
+          "microscopes",
+          "pipettes",
+          "dna",
+          "molecules",
+          "cells",
+          "lab-grid",
+          "leaves",
+          "fern",
+          "botanical",
+          "mountains",
+          "dunes",
+          "landscape",
+          "waves",
+          "savannah",
+          "geometric",
+          "vintage",
+          "modern"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "test-tubes"
+      },
+      {
+        "key": "footer_motif",
+        "label": "Footer decorative aligner",
+        "type": "select",
+        "required": false,
+        "options": [
+          "none",
+          "test-tubes",
+          "glassware",
+          "microscopes",
+          "pipettes",
+          "dna",
+          "molecules",
+          "cells",
+          "lab-grid",
+          "leaves",
+          "fern",
+          "botanical",
+          "mountains",
+          "dunes",
+          "landscape",
+          "waves",
+          "savannah",
+          "geometric",
+          "vintage",
+          "modern"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "leaves"
+      },
+      {
+        "key": "motif_strength",
+        "label": "Decoration strength",
+        "type": "select",
+        "required": false,
+        "options": [
+          "subtle",
+          "balanced",
+          "bold"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "balanced"
+      },
+      {
+        "key": "motif_size",
+        "label": "Decoration height",
+        "type": "select",
+        "required": false,
+        "options": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "medium"
+      },
+      {
+        "key": "page_border",
+        "label": "Page border style",
+        "type": "select",
+        "required": false,
+        "options": [
+          "none",
+          "fine-line",
+          "double-line",
+          "corners",
+          "inset",
+          "botanical"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "corners"
+      },
+      {
+        "key": "structure",
+        "label": "Research content layout",
+        "type": "select",
+        "required": false,
+        "options": [
+          "cards",
+          "editorial",
+          "compact"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "cards"
+      },
+      {
+        "key": "directory_layout",
+        "label": "Researcher directory layout",
+        "type": "select",
+        "required": false,
+        "options": [
+          "grid",
+          "list",
+          "compact"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "grid"
+      },
+      {
+        "key": "notice_seconds",
+        "label": "Seconds between notices",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 5
+      },
+      {
+        "key": "notice_effect",
+        "label": "Notice transition",
+        "type": "select",
+        "required": false,
+        "options": [
+          "none",
+          "fade",
+          "slide",
+          "settle"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "fade"
+      },
+      {
+        "key": "notice_layout",
+        "label": "Notice board structure",
+        "type": "select",
+        "required": false,
+        "options": [
+          "spotlight",
+          "split",
+          "stack"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "split"
+      },
+      {
+        "key": "fact_seconds",
+        "label": "Seconds between approved facts",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 12
+      },
+      {
+        "key": "fact_max",
+        "label": "Maximum facts / discoveries in rotation",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 8
       }
     ]
   },
@@ -3326,6 +3667,28 @@
         "relation": "media",
         "public": true,
         "help": ""
+      },
+      {
+        "key": "one_question_at_a_time",
+        "label": "Guided step-by-step form",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": true
+      },
+      {
+        "key": "thank_you",
+        "label": "Completion message",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "Thank you. Your answers have been received privately."
       }
     ]
   },
@@ -3397,6 +3760,16 @@
         "relation": null,
         "public": true,
         "help": ""
+      },
+      {
+        "key": "help_text",
+        "label": "Short help text",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
       }
     ]
   },
@@ -3416,9 +3789,9 @@
       },
       {
         "key": "researcher_id",
-        "label": "Researcher",
+        "label": "Researcher (blank = general laboratory)",
         "type": "relation",
-        "required": true,
+        "required": false,
         "options": [],
         "relation": "people",
         "public": true,
@@ -3542,6 +3915,627 @@
         "options": [],
         "relation": "media",
         "public": true,
+        "help": ""
+      },
+      {
+        "key": "publication_date",
+        "label": "Source publication date",
+        "type": "date",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": ""
+      },
+      {
+        "key": "homepage",
+        "label": "Include in the reviewed discovery board",
+        "type": "checkbox",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": false
+      }
+    ]
+  },
+  "methods": {
+    "label": "Methodology & work packages",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Methodology step / work package",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Responsible researcher",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "project_id",
+        "label": "Project (optional)",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "projects",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "reference",
+        "label": "Protocol title, version and section",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "Identify the approved methodology that supports this step; no experimental instructions are generated."
+      },
+      {
+        "key": "summary",
+        "label": "Approved public overview",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "methodology_notes",
+        "label": "Full methodology notes (private)",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "status",
+        "label": "Work status",
+        "type": "select",
+        "required": true,
+        "options": [
+          "planned",
+          "in-progress",
+          "blocked",
+          "complete"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "planned"
+      },
+      {
+        "key": "next_action",
+        "label": "Next action / troubleshooting note",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "due_date",
+        "label": "Target date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 0
+      },
+      {
+        "key": "media_items",
+        "label": "Files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Private notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional public fields",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "project_id",
+          "summary",
+          "due_date",
+          "order",
+          "media_items"
+        ],
+        "relation": null,
+        "public": false,
+        "help": ""
+      }
+    ]
+  },
+  "procurement": {
+    "label": "Procurement & readiness",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Item / equipment name",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Responsible researcher",
+        "type": "relation",
+        "required": true,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "project_id",
+        "label": "Project (optional)",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "projects",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "method_id",
+        "label": "Methodology / work package",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "methods",
+        "public": true,
+        "help": "Link an entered methodology step. A project is optional. Unlinked items stay clearly marked for alignment review."
+      },
+      {
+        "key": "category",
+        "label": "Item type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "consumable",
+          "reagent",
+          "equipment",
+          "service"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "consumable"
+      },
+      {
+        "key": "specification",
+        "label": "Required specification",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "method_step",
+        "label": "Methodology section / reason needed",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "Name the methodology section or task this item supports. Not a generated materials prescription."
+      },
+      {
+        "key": "required_quantity",
+        "label": "Quantity required",
+        "type": "quantity",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 1
+      },
+      {
+        "key": "available_quantity",
+        "label": "Usable quantity available",
+        "type": "quantity",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 0
+      },
+      {
+        "key": "ordered_quantity",
+        "label": "Outstanding quantity ordered",
+        "type": "quantity",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 0
+      },
+      {
+        "key": "unit",
+        "label": "Unit (same for all quantities)",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "units"
+      },
+      {
+        "key": "status",
+        "label": "Procurement status",
+        "type": "select",
+        "required": true,
+        "options": [
+          "needed",
+          "quotation",
+          "ordered",
+          "part-received",
+          "received",
+          "on-hold"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "needed"
+      },
+      {
+        "key": "condition",
+        "label": "Usability / equipment condition",
+        "type": "select",
+        "required": true,
+        "options": [
+          "ready",
+          "check-needed",
+          "unavailable"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "check-needed"
+      },
+      {
+        "key": "expiry_date",
+        "label": "Earliest relevant expiry date",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "due_date",
+        "label": "Needed by",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "expected_date",
+        "label": "Expected delivery",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "priority",
+        "label": "Priority",
+        "type": "select",
+        "required": true,
+        "options": [
+          "normal",
+          "high",
+          "critical"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "normal"
+      },
+      {
+        "key": "supplier",
+        "label": "Supplier / contact (private)",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "estimated_cost",
+        "label": "Estimated cost (private)",
+        "type": "money",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "currency",
+        "label": "Currency (private)",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "next_action",
+        "label": "Next action / blocker",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "storage",
+        "label": "Storage / inventory location (private)",
+        "type": "text",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Public note",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Supporting files",
+        "type": "multi",
+        "required": false,
+        "options": [],
+        "relation": "media",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "internal_notes",
+        "label": "Private notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional public fields",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "project_id",
+          "method_id",
+          "specification",
+          "ordered_quantity",
+          "due_date",
+          "summary",
+          "media_items"
+        ],
+        "relation": null,
+        "public": false,
+        "help": ""
+      }
+    ]
+  },
+  "lab_facts": {
+    "label": "Did you know? Research facts",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Fact heading",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Researcher (optional)",
+        "type": "relation",
+        "required": false,
+        "options": [],
+        "relation": "people",
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "summary",
+        "label": "Fact / teaching point",
+        "type": "textarea",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "source_url",
+        "label": "Supporting original / institutional source",
+        "type": "url",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "source_label",
+        "label": "Source / organisation",
+        "type": "text",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "kind",
+        "label": "Card type",
+        "type": "select",
+        "required": true,
+        "options": [
+          "lab-fact",
+          "research-update"
+        ],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": "lab-fact"
+      },
+      {
+        "key": "reviewed_date",
+        "label": "Last fact-check date",
+        "type": "date",
+        "required": true,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "expires_on",
+        "label": "Remove from rotation after (optional)",
+        "type": "date",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": ""
+      },
+      {
+        "key": "approved",
+        "label": "Approved for public use",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": false
+      },
+      {
+        "key": "homepage",
+        "label": "Include on homepage",
+        "type": "checkbox",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": true
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": true,
+        "help": "",
+        "default": 0
+      },
+      {
+        "key": "internal_notes",
+        "label": "Private notes",
+        "type": "textarea",
+        "required": false,
+        "options": [],
+        "relation": null,
+        "public": false,
+        "help": ""
+      },
+      {
+        "key": "hidden_fields",
+        "label": "Hide optional public fields",
+        "type": "multi-choice",
+        "required": false,
+        "options": [
+          "researcher_id",
+          "expires_on",
+          "approved",
+          "homepage",
+          "order"
+        ],
+        "relation": null,
+        "public": false,
         "help": ""
       }
     ]

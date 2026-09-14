@@ -58,3 +58,25 @@ private*/
 backups/
 test-results/
 .DS_Store
+
+# TED2 V6.1 private/runtime exclusions
+.env
+.env.*
+!.env.example
+var/
+var*/
+.venv/
+.venv*/
+*.sqlite*
+*.db
+*.db-*
+*.log
+*.zip
+*.tar.gz
+__pycache__/
+.pytest_cache/
+node_modules/
+private*/
+backups/
+test-results/
+.DS_Store

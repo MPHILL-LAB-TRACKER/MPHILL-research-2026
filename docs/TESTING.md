@@ -1,67 +1,56 @@
-# TED² V6 — verification report
+# V6.1 verification report
 
-Release: **6.0.0**. Verification date: **13 September 2026**.
+## Executed checks
 
-## Executed tests
-
-| Suite | Actual result | What was exercised |
+| Suite | Result | Scope |
 |---|---:|---|
-| PHP core, migration and Git | **36 named checks passed** | V5 field/password preservation, idempotent migration, prepared statements and rollback, deterministic public export, directory order, private-data exclusion, real local Git push, stale-preview/replay rejection and researcher publishing denial. |
-| HTTP regression | **32 test cases passed**, including parameterised logo/theme checks | Real HTTP requests to a temporary PHP application; session/CSRF/origin/host validation; record CRUD; optional milestone project; researcher isolation; actual image and MP4 processing; range responses; themes; logo slots; contacts; media ownership; trash/restore; anonymous questionnaires/moderation; static export. |
-| Chromium interface | **27 named checks passed** | Real admin JavaScript, form submission, upload, scoping, caption/filename editing, theme save on both interfaces, optional milestone project, publishing form without repeat-password input, responsive navigation and homepage carousel controls. |
-| In-place upgrade and source commit | **29 named checks passed** | Original V5 package copied into a temporary Git clone, original Python-created database/password hash, non-root installer, external backup, preservation of environment/uploads/history/staged work, fail-closed custom-source handling, release-only commit and repeat dry run. |
-| Source syntax | Passed | PHP syntax checks, Bash parser checks, JavaScript syntax checks and C++17 compilation with warnings enabled. |
+| PHP core/migration/Git | **36 passed** | Original regression checks, account hash preservation, public/private projection, repeatable exports, real temporary Git pushes, original branch/index preservation, changed-preview rejection and publishing permissions. |
+| PHP HTTP application | **52 tests passed** | Includes all 32 V6 HTTP regressions and 20 V6.1 cases. Real local PHP HTTP server, native prepared-statement SQLite adapter, login/CSRF/permissions, portraits, themes, ownership, methods/procurement, questionnaire batching, facts, source deduplication, worker due-time fixtures, network-safe export and new routes. Theme/motif subtests are not counted as extra tests here. |
+| Chromium interface | **49 checks passed** | Real PHP API through an explicit in-memory browser transport; login, all 14 preset choices/19 ornament options, saved theme shared by both interfaces, browse portrait replacement/removal/approval, scoped media, methodology/procurement UI, readiness calculations, question builder/reorder/answers, notice controls and mobile layouts. No JavaScript page errors. |
+| Original V6 upgrade/commit | **36 checks passed** | Actual original V6 release copied into a temporary local Git repository. Original V6 PHP created the database. Non-root installer preserved password hash, edited biography/private data, uploads, environment, Git branch/history/index, owner colours and selected homepage sections. It also upgrades the verified legacy V5 VERSION file still present on the V6 main branch. It rejected wrong folder/root/custom source/unrelated staged work; resumed release-only staged work; produced private backups and an idempotent migration. |
+| Syntax | **Passed** | PHP lint for every PHP source; Node syntax checks for site/admin JavaScript; Bash syntax checks for launcher, installer and commit/diagnostic scripts. |
+| Release integrity | **Passed at packaging** | Every packaged path checked against the SHA-256 release manifest; ZIP extraction/CRC check; no database/runtime/private uploads/secret environment/native binary shipped. |
 
-The Git suites used **real temporary local bare repositories**, never the user's remote repository. The installer suite used the original V5 package and the original V5 database initializer. Source commits were made only in temporary test clones.
+### Portrait defect reproduced and covered
 
-## Browser transport — important limitation
+V6's direct upload received a new upload ID but subsequently reconstructed the form from the old hidden input. V6.1 passes the updated form snapshot to saveEditor. The browser regression selects a replacement JPEG, checks that the new ID persists in the real PHP record, verifies the editor image, removes all portrait fallbacks, then restores and approves the picture. Anonymous portrait-preview requests are rejected; authorised own/admin requests work.
 
-Direct Chromium navigation to the local application was blocked by the build environment's browser network policy. The browser suite therefore loaded HTML/CSS from a real temporary PHP server and used an explicit in-memory bridge for HTTP requests and images. This exercised the actual JavaScript and backend, not fabricated API responses, but it is **not an end-to-end production-browser navigation test**.
+### Procurement and approval boundaries
 
-Rendered widths were 1440 px desktop and 390 px mobile. Screenshots are available with the release handover. No JavaScript exceptions or horizontal page overflow were observed in the checked screens. There was no physical iPhone/Android device, Safari/WebKit or Firefox test. Universal device support is not claimed.
+Tests cover optional project/method relationships, a required explicit method-step explanation, decimal/negative quantity handling, same-researcher references, private-method publication blocking, expired-stock exclusion, shortfall/to-source calculations, and exclusion of private supplier/cost/action details from exports. Assigned researchers cannot read/edit another researcher's private method or procurement list. Starter facts require explicit approval; expired facts are removed from public projection. No real methodology, order or experimental result is fabricated for tests.
 
-## Runtime actually exercised
+### Questionnaire and discovery checks
 
-- PHP **8.4.23** CLI application server.
-- Included C++17 prepared-statement SQLite adapter and native metadata-ranking mode.
-- FFmpeg/FFprobe image fallback and H.264/AAC video normalisation.
-- Linux, Chromium, Python HTTP driver and Playwright interface driver.
-- The container did not provide PHP PDO SQLite or GD. Those supported adapters **were not exercised here**; they require deployment verification. Normal Ubuntu installation uses `php-sqlite3` and `php-gd`.
+Batch question saving/reordering is atomic. Stale versions are rejected. Removed questions enter Trash and existing response snapshots are retained. The browser submits a guided anonymous questionnaire to the real PHP server.
 
-## What has not been verified
+Research source fixtures exercise bounded ingestion, DOI/source deduplication even after record deletion, private review status, check intervals and optional watches. These fixtures are marked as test metadata and never included in the release seed. No live Europe PMC fetch is claimed. No unattended public claim-writing or Git push is performed by the research worker.
 
-There was no live GitHub publication, Pages configuration change, production TLS/FPM deployment, public anonymous-form submission from an external device, Europe PMC network refresh, load/concurrency benchmark or search-engine indexing/ranking test. No claim is made that language choice alone increases traffic capacity.
+## Important limits
 
-Git push, Pages source selection and Pages build/deployment status are now separate states. A status request that cannot authenticate is shown as unknown, not success. GitHub permissions and internet connectivity remain deployment requirements.
+- Build runtime: PHP **8.4.23**, compiled optional C++ SQLite adapter and FFmpeg/FFprobe. **PDO SQLite and GD were not installed in the environment and were not executed.** Normal installations may use those PHP extensions; the release still contains both code paths.
+- Direct Chromium navigation to localhost was attempted and failed with **ERR_BLOCKED_BY_ADMINISTRATOR** in the environment. Browser tests therefore use an explicitly declared fetch/image bridge to a real HTTP PHP server. This is not a live end-to-end browser/network deployment test.
+- The public GitHub URL could not be loaded directly by the browsing environment. Current repository branches and export structure were inspected with the GitHub connector. This does not test the user's network.
+- No physical Android/iPhone, mobile carrier, VPN, DNS resolver, TLS interception, production host, performance/load test or live GitHub publication was verified. **The reported Wi-Fi-only/mobile-data problem remains unconfirmed.** Low-data/connection routes and a read-only network comparison script are included to isolate it.
+- Responsive checks passed at widths **320, 390, 430 and 768 pixels**, including horizontal-overflow checks and mobile navigation; they are Chromium viewport simulations, not hardware certification.
+- Temporary local Git repositories were used for actual push tests. No push to the user's repository, Pages settings change or installation on the user's computer occurred.
+- Screenshots are test previews, not the user's live database. Resource examples in screenshots are nonexperimental demonstration data.
 
-Literature watch was checked for opt-in behaviour and PHP/C++ metadata-ranking agreement. An actual Europe PMC network fetch was unavailable; failed requests report an error and do not create invented findings.
+## Reproduce
 
-## Re-run
-
-From a development copy (not against a production database):
+Runtime prerequisites: PHP 8.3+, SQLite via PDO or the compiled optional adapter, image processing through GD/FFmpeg and Git. Browser/HTTP test prerequisites: Python 3, requests, Playwright and Chromium. Test commands create temporary databases/repositories, not modifications to the operator's live database.
 
 ```bash
-bash bin/build-native.sh
 php tests/test_core.php
-python3 tests/test_http.py
+python3 tests/test_v61.py
+python3 tests/test_browser_v61.py
 ```
 
-The optional interface test needs Playwright, requests and a Chromium executable:
+Set `TED2_TEST_DRIVER=pdo` for browser/HTTP execution with PDO installed, or use the default native adapter after `bash bin/build-native.sh`. Set `CHROMIUM_PATH` only when Chromium is not discoverable. The browser report always identifies its explicit in-memory transport.
+
+For the original-release migration test, extract the original V6 ZIP beside the V6.1 folder, or set `TED2_V6_FIXTURE` to its actual extracted path. Then run:
 
 ```bash
-python3 -m venv .venv-tests
-.venv-tests/bin/pip install playwright requests
-CHROMIUM_PATH=/usr/bin/chromium .venv-tests/bin/python tests/test_browser.py
+python3 tests/test_installer.py
 ```
 
-The V5 upgrade integration test additionally needs the extracted V5 release and its Python dependencies; it constructs temporary copies and never edits that source fixture:
-
-```bash
-TED2_V5_FIXTURE="../TED2-Research-Workspace-v5" python3 tests/test_installer.py
-```
-
-`TED2_TEST_DRIVER=pdo` selects PDO SQLite for HTTP/browser verification on a host where it is installed. Test credentials exist only in test code and temporary databases, not in a delivered database or deployed default account. Runtime and browser-output folders are excluded from the ZIP and Git commit helper.
-
-## Release integrity
-
-`release-manifest.json` lists the SHA-256 of each source/asset file, excluding the manifest itself. The companion ZIP checksum covers the complete archive. Packaging verification checks each file and rejects runtime databases, passwords, `.env`, uploads, compiled native binaries, `.git`, Python environments and font files. Checksums detect corruption; they are not a cryptographic publisher signature.
+That test runs the installer as a non-root account (nobody when executed by root in a test container) and requires the completed release manifest. It does not contact a remote Git service. The original fixture is not bundled into V6.1; ordinary runtime and unit tests do not depend on an old ZIP being present.

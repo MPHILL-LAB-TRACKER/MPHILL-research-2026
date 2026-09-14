@@ -53,7 +53,7 @@ final class Store {
  public function replace(string $c,array $p,int $version,string $actor):array{$result=$this->db->query('UPDATE records SET payload=?,visibility=?,version=version+1,updated_at=? WHERE collection=? AND id=? AND version=?',[json($p),$p['visibility'],utc(),$c,$p['id'],$version]);ensure($result['changes']===1,409,'Someone changed this record. Reload before saving; your text has not been discarded.');return $this->get($c,$p['id'])??[];}
  public function seed():void{if($this->db->one('SELECT COUNT(*) AS n FROM records')['n'])return;$seed=decode(file_get_contents(ROOT.'/data/seed.json'));$this->db->tx(function()use($seed){foreach($seed as $c=>$rows)foreach($rows as $p)$this->insert($c,$p,'seed');});}
  public function migrate():array{
-  $this->init();if($this->db->one("SELECT value FROM v6_meta WHERE key='migration'"))return ['already_upgraded'=>true];
+  $this->init();if($this->db->one("SELECT value FROM v6_meta WHERE key='migration'"))return ['already_upgraded'=>true,'v61'=>Upgrade61::apply($this)];
   $backup=dirname($this->db->path).'/pre-v6-'.gmdate('Ymd-His').'-'.id().'.sqlite3';$this->db->query('VACUUM INTO ?',[$backup]);@chmod($backup,0600);
   $report=['backup'=>$backup,'media_review'=>[],'added_defaults'=>0];$schema=Schema::all();$seed=decode(file_get_contents(ROOT.'/data/seed.json'));
   $this->db->tx(function()use(&$report,$schema,$seed){
@@ -70,6 +70,6 @@ final class Store {
    $this->db->query("INSERT OR IGNORE INTO v6_rights(user_id,edit_profile,edit_research) SELECT id,0,1 FROM users WHERE role='researcher'");
    // V5 sessions are revoked on migration, but Argon2 password hashes are unchanged.
    $this->db->query('DELETE FROM sessions');$this->db->query("INSERT INTO v6_meta(key,value) VALUES('migration',?)",[utc()]);$this->audit('server-operator','migrate-v6','settings','laboratory');
-  });return $report;
+  });$report['v61']=Upgrade61::apply($this);return $report;
  }
 }
