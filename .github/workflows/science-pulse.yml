@@ -1,0 +1,29 @@
+name: Research pulse — source headlines
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: science-pulse
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Read source without third-party workflow actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          SERVER: ${{ github.server_url }}
+        run: |
+          set -euo pipefail
+          gh auth setup-git
+          git clone --depth 1 "$SERVER/$REPOSITORY.git" workspace
+      - name: Check public configuration and update metadata
+        working-directory: workspace
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/update-science-feed.sh

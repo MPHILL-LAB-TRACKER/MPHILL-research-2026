@@ -469,6 +469,121 @@
         "public": true,
         "help": "",
         "default": true
+      },
+      {
+        "key": "pulse_enabled",
+        "label": "Enable automatic research-world updates",
+        "type": "checkbox",
+        "default": false,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "pulse_topics",
+        "label": "Public research topic filters (one per line)",
+        "type": "lines",
+        "default": [
+          "nanomedicine",
+          "biosensor",
+          "tissue engineering",
+          "antimicrobial resistance"
+        ],
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "These public topic labels and queries are exported for the scheduled feed; do not enter confidential project details.",
+        "relation": null
+      },
+      {
+        "key": "pulse_sources",
+        "label": "Approved feed providers",
+        "type": "multi-choice",
+        "default": [
+          "europepmc"
+        ],
+        "options": [
+          "europepmc",
+          "plos-blog"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "pulse_policy",
+        "label": "Research feed approval policy",
+        "type": "select",
+        "default": "review",
+        "options": [
+          "review",
+          "source-headlines"
+        ],
+        "public": true,
+        "required": false,
+        "help": "Review keeps imported headlines private until approved. Source-headlines automatically shows source titles, dates and links; it never invents summaries.",
+        "relation": null
+      },
+      {
+        "key": "pulse_delivery",
+        "label": "Automatic update delivery",
+        "type": "select",
+        "default": "local",
+        "options": [
+          "local",
+          "github-scheduled"
+        ],
+        "public": true,
+        "required": false,
+        "help": "GitHub-scheduled runs from the source repository and serves a separate public JSON feed. Local checks run while the server/worker is running.",
+        "relation": null
+      },
+      {
+        "key": "pulse_lookback",
+        "label": "Headline lookback (days)",
+        "type": "number",
+        "default": 45,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "pulse_refresh_hours",
+        "label": "Source check interval (hours)",
+        "type": "number",
+        "default": 6,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "pulse_heading",
+        "label": "Research feed heading",
+        "type": "text",
+        "default": "Research in focus",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "quotes_heading",
+        "label": "Quotation panel heading",
+        "type": "text",
+        "default": "A moment of scientific perspective",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
       }
     ]
   },
@@ -2990,7 +3105,9 @@
           "questions",
           "gallery",
           "facts",
-          "procurement"
+          "procurement",
+          "pulse",
+          "quotes"
         ],
         "relation": null,
         "public": true,
@@ -3445,6 +3562,386 @@
         "public": true,
         "help": "",
         "default": 8
+      },
+      {
+        "key": "appearance",
+        "label": "Default colour mode",
+        "type": "select",
+        "default": "system",
+        "options": [
+          "system",
+          "light",
+          "dark"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "appearance_switch",
+        "label": "Let visitors choose light / dark / system",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "dark_primary",
+        "label": "Dark mode: primary",
+        "type": "color",
+        "default": "#a8dcc5",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "dark_accent",
+        "label": "Dark mode: accent",
+        "type": "color",
+        "default": "#e6bd81",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "dark_background",
+        "label": "Dark mode: background",
+        "type": "color",
+        "default": "#101c20",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "dark_surface",
+        "label": "Dark mode: surface",
+        "type": "color",
+        "default": "#192a2e",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "dark_text_color",
+        "label": "Dark mode: text color",
+        "type": "color",
+        "default": "#eff5f2",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "dark_muted_color",
+        "label": "Dark mode: muted color",
+        "type": "color",
+        "default": "#b5c9c4",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "dark_border_color",
+        "label": "Dark mode: border color",
+        "type": "color",
+        "default": "#355057",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "header_art",
+        "label": "Photographic header",
+        "type": "select",
+        "default": "lab-bench",
+        "options": [
+          "none",
+          "lab-bench",
+          "retina",
+          "deep-field",
+          "launch",
+          "botanical",
+          "vintage-glassware",
+          "fern",
+          "custom"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "footer_art",
+        "label": "Photographic footer",
+        "type": "select",
+        "default": "deep-field",
+        "options": [
+          "none",
+          "lab-bench",
+          "retina",
+          "deep-field",
+          "launch",
+          "botanical",
+          "vintage-glassware",
+          "fern",
+          "custom"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "header_art_upload",
+        "label": "Custom header photograph",
+        "type": "image",
+        "default": "",
+        "options": [],
+        "public": false,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "footer_art_upload",
+        "label": "Custom footer photograph",
+        "type": "image",
+        "default": "",
+        "options": [],
+        "public": false,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "header_art_credit",
+        "label": "Header image credit",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "footer_art_credit",
+        "label": "Footer image credit",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "header_art_source",
+        "label": "Header image source",
+        "type": "url",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "footer_art_source",
+        "label": "Footer image source",
+        "type": "url",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "photo_art_approved",
+        "label": "Approve chosen photographic decorations",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": false,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "photo_art_height",
+        "label": "Photographic strip height",
+        "type": "select",
+        "default": "medium",
+        "options": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "photo_art_tint",
+        "label": "Photograph treatment",
+        "type": "select",
+        "default": "natural",
+        "options": [
+          "natural",
+          "theme-wash",
+          "monochrome"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "photo_art_depth",
+        "label": "Subtle depth/shadow treatment",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "navigation_style",
+        "label": "Navigation structure",
+        "type": "select",
+        "default": "grouped",
+        "options": [
+          "grouped",
+          "flat"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "show_quotes",
+        "label": "Show science quotation panel",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "quote_seconds",
+        "label": "Quotation interval (seconds)",
+        "type": "number",
+        "default": 18,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "quotes_random",
+        "label": "Shuffle quotations without repeats in a cycle",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "show_pulse",
+        "label": "Show research-world feed",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "pulse_layout",
+        "label": "Research feed layout",
+        "type": "select",
+        "default": "editorial",
+        "options": [
+          "editorial",
+          "cards",
+          "compact"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "pulse_max",
+        "label": "Maximum headlines displayed",
+        "type": "number",
+        "default": 6,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "public_asset_cache",
+        "label": "Cache public immutable images/styles locally",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "public_cache_entries",
+        "label": "Maximum browser cached assets",
+        "type": "number",
+        "default": 60,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "render_cache_seconds",
+        "label": "PHP public-page cache lifetime (seconds)",
+        "type": "number",
+        "default": 120,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
       }
     ]
   },
@@ -3937,6 +4434,17 @@
         "options": [],
         "help": "",
         "default": false
+      },
+      {
+        "key": "tags",
+        "label": "Topic hashtags",
+        "type": "lines",
+        "default": [],
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
       }
     ]
   },
@@ -4537,6 +5045,334 @@
         "relation": null,
         "public": false,
         "help": ""
+      },
+      {
+        "key": "tags",
+        "label": "Topic hashtags",
+        "type": "lines",
+        "default": [],
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      }
+    ]
+  },
+  "science_quotes": {
+    "label": "Science quotations",
+    "title": "author",
+    "fields": [
+      {
+        "key": "quote",
+        "label": "Quotation or original reflection",
+        "type": "textarea",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": true,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "author",
+        "label": "Author / attribution",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": true,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "source_url",
+        "label": "Verifiable source",
+        "type": "url",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "source_label",
+        "label": "Source title / context",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "attribution_type",
+        "label": "Attribution type",
+        "type": "select",
+        "default": "original",
+        "options": [
+          "primary-source",
+          "translation",
+          "original"
+        ],
+        "public": true,
+        "required": true,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "license",
+        "label": "Rights / licence statement",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "approved",
+        "label": "Approve wording, attribution and rights",
+        "type": "checkbox",
+        "default": false,
+        "options": [],
+        "public": false,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "homepage",
+        "label": "Show in rotating panel",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "tags",
+        "label": "Topic hashtags (one per line)",
+        "type": "lines",
+        "default": [],
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "default": "",
+        "options": [],
+        "public": false,
+        "required": false,
+        "help": "",
+        "relation": null
+      }
+    ]
+  },
+  "science_news": {
+    "label": "Research-world headlines",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Source headline",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": true,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "source_url",
+        "label": "Original source",
+        "type": "url",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": true,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "source_label",
+        "label": "Source publisher",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "authors",
+        "label": "Source authors",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "published_date",
+        "label": "Publication date",
+        "type": "date",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "fetched_at",
+        "label": "Last fetched",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "doi",
+        "label": "DOI",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "source_kind",
+        "label": "Record type",
+        "type": "select",
+        "default": "research",
+        "options": [
+          "research",
+          "preprint",
+          "blog"
+        ],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "source_key",
+        "label": "Provider",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "identity",
+        "label": "Deduplication identity",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": false,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "summary",
+        "label": "Administrator-written commentary",
+        "type": "textarea",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "license",
+        "label": "Rights / licence note",
+        "type": "text",
+        "default": "",
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "approved",
+        "label": "Approve for public display",
+        "type": "checkbox",
+        "default": false,
+        "options": [],
+        "public": false,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "automatic",
+        "label": "Unreviewed source headline",
+        "type": "checkbox",
+        "default": false,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "homepage",
+        "label": "Show on homepage",
+        "type": "checkbox",
+        "default": true,
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "tags",
+        "label": "Topic hashtags (one per line)",
+        "type": "lines",
+        "default": [],
+        "options": [],
+        "public": true,
+        "required": false,
+        "help": "",
+        "relation": null
+      },
+      {
+        "key": "internal_notes",
+        "label": "Internal notes",
+        "type": "textarea",
+        "default": "",
+        "options": [],
+        "public": false,
+        "required": false,
+        "help": "",
+        "relation": null
       }
     ]
   }

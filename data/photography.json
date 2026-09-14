@@ -1,0 +1,69 @@
+{
+  "lab-bench": {
+    "title": "Laboratory bench",
+    "file": "lab-bench.jpg",
+    "credit": "Laboratory-supplied photograph",
+    "license": "Owner-supplied; not open-licensed",
+    "source": "",
+    "license_url": "",
+    "changes": "Resized, JPEG recompressed; display is cropped to the chosen strip. Photograph is illustrative, not a TED² research result."
+  },
+  "retina": {
+    "title": "Retinal microvasculature",
+    "file": "retina.jpg",
+    "credit": "Mikael Häggström",
+    "license": "CC0 1.0",
+    "source": "https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.retina",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Resized, JPEG recompressed; display is cropped to the chosen strip. Photograph is illustrative, not a TED² research result."
+  },
+  "deep-field": {
+    "title": "Deep-field perspective",
+    "file": "deep-field.jpg",
+    "credit": "NASA / ESA; distributed in scikit-image",
+    "license": "Public domain as documented by scikit-image",
+    "source": "https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.hubble_deep_field",
+    "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "changes": "Resized, JPEG recompressed; display is cropped to the chosen strip. Photograph is illustrative, not a TED² research result."
+  },
+  "launch": {
+    "title": "Discovery at the horizon",
+    "file": "launch.jpg",
+    "credit": "SpaceX",
+    "license": "Public domain / CC0",
+    "source": "https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.rocket",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Resized, JPEG recompressed; display is cropped to the chosen strip. Photograph is illustrative, not a TED² research result."
+  },
+  "botanical": {
+    "title": "Botanical macro",
+    "file": "botanical.jpg",
+    "credit": "danielbuechele / Flickr account vultilion (credit distributed by scikit-learn)",
+    "license": "CC BY 2.0",
+    "source": "https://www.flickr.com/photos/vultilion/6056698931/",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "changes": "Resized, JPEG recompressed; display is cropped to the chosen strip. Photograph is illustrative, not a TED² research result."
+  },
+  "vintage-glassware": {
+    "title": "Vintage laboratory glassware",
+    "file": "vintage-glassware.jpg",
+    "credit": "LukaszKatlewa",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_laboratory_glassware.jpg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Vintage_laboratory_glassware.jpg",
+    "sha1": "73fb0667ee46ca0d6280f7d5bfd75c353467cf92",
+    "changes": "Resized/recompressed on import; cropped for display."
+  },
+  "fern": {
+    "title": "Fern foliage",
+    "file": "fern.jpg",
+    "credit": "Antilived",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Fern_leaves.jpg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/3/32/Fern_leaves.jpg",
+    "sha1": "918c1f1439c5476c884e5a6bd2310e825aca96a5",
+    "changes": "Resized/recompressed on import; derivatives remain CC BY-SA 3.0."
+  }
+}

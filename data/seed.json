@@ -45,7 +45,23 @@
       "discovery_show_days": 90,
       "fact_heading": "Did you know?",
       "questionnaire_intro": "Your answers help improve our laboratory. No name or email is requested. Please do not enter identifying or sensitive personal information.",
-      "enable_light_page": true
+      "enable_light_page": true,
+      "pulse_enabled": false,
+      "pulse_topics": [
+        "nanomedicine",
+        "biosensor",
+        "tissue engineering",
+        "antimicrobial resistance"
+      ],
+      "pulse_sources": [
+        "europepmc"
+      ],
+      "pulse_policy": "review",
+      "pulse_delivery": "local",
+      "pulse_lookback": 45,
+      "pulse_refresh_hours": 6,
+      "pulse_heading": "Research in focus",
+      "quotes_heading": "A moment of scientific perspective"
     }
   ],
   "capabilities": [
@@ -1435,7 +1451,9 @@
         "contacts",
         "leadership",
         "questions",
-        "facts"
+        "facts",
+        "pulse",
+        "quotes"
       ],
       "hidden_navigation": [],
       "logo_upload_id": "",
@@ -1468,7 +1486,38 @@
       "notice_effect": "fade",
       "notice_layout": "split",
       "fact_seconds": 12,
-      "fact_max": 8
+      "fact_max": 8,
+      "appearance": "system",
+      "appearance_switch": true,
+      "dark_primary": "#a8dcc5",
+      "dark_accent": "#e6bd81",
+      "dark_background": "#101c20",
+      "dark_surface": "#192a2e",
+      "dark_text_color": "#eff5f2",
+      "dark_muted_color": "#b5c9c4",
+      "dark_border_color": "#355057",
+      "header_art": "lab-bench",
+      "footer_art": "deep-field",
+      "header_art_upload": "",
+      "footer_art_upload": "",
+      "header_art_credit": "",
+      "footer_art_credit": "",
+      "header_art_source": "",
+      "footer_art_source": "",
+      "photo_art_approved": true,
+      "photo_art_height": "medium",
+      "photo_art_tint": "natural",
+      "photo_art_depth": true,
+      "navigation_style": "grouped",
+      "show_quotes": true,
+      "quote_seconds": 18,
+      "quotes_random": true,
+      "show_pulse": true,
+      "pulse_layout": "editorial",
+      "pulse_max": 6,
+      "public_asset_cache": true,
+      "public_cache_entries": 60,
+      "render_cache_seconds": 120
     }
   ],
   "contacts": [],
@@ -1530,7 +1579,8 @@
       "order": 0,
       "researcher_id": "",
       "internal_notes": "Starter fact: approve after laboratory review.",
-      "hidden_fields": []
+      "hidden_fields": [],
+      "tags": []
     },
     {
       "id": "literature-includes-preprints",
@@ -1547,7 +1597,8 @@
       "order": 1,
       "researcher_id": "",
       "internal_notes": "Starter fact: approve after laboratory review.",
-      "hidden_fields": []
+      "hidden_fields": [],
+      "tags": []
     },
     {
       "id": "open-access-has-licences",
@@ -1564,7 +1615,113 @@
       "order": 2,
       "researcher_id": "",
       "internal_notes": "Starter fact: approve after laboratory review.",
-      "hidden_fields": []
+      "hidden_fields": [],
+      "tags": []
     }
-  ]
+  ],
+  "science_quotes": [
+    {
+      "quote": "There is grandeur in this view of life",
+      "author": "Charles Darwin",
+      "source_url": "https://www.gutenberg.org/files/1228/1228-h/1228-h.htm",
+      "source_label": "On the Origin of Species, concluding paragraph (excerpt)",
+      "attribution_type": "primary-source",
+      "license": "Public-domain original text",
+      "approved": false,
+      "homepage": true,
+      "tags": [
+        "Evolution",
+        "Curiosity"
+      ],
+      "internal_notes": "",
+      "id": "darwin-grandeur",
+      "visibility": "private"
+    },
+    {
+      "quote": "time and the progress of science will best settle such cases",
+      "author": "Michael Faraday",
+      "source_url": "https://www.gutenberg.org/files/14986/14986-h/14986-h.htm",
+      "source_label": "Experimental Researches in Electricity, Vol. I, Preface, 1839 (excerpt)",
+      "attribution_type": "primary-source",
+      "license": "Public-domain original text",
+      "approved": false,
+      "homepage": true,
+      "tags": [
+        "Evidence",
+        "ScientificMethod"
+      ],
+      "internal_notes": "",
+      "id": "faraday-inquiry",
+      "visibility": "private"
+    },
+    {
+      "quote": "A useful research question turns curiosity into something you can test.",
+      "author": "Original editorial reflection",
+      "source_url": "",
+      "source_label": "Original text prepared for this release; not attributed to a historical scientist",
+      "attribution_type": "original",
+      "license": "CC0 1.0",
+      "approved": false,
+      "homepage": true,
+      "tags": [
+        "Curiosity",
+        "ResearchDesign"
+      ],
+      "internal_notes": "",
+      "id": "question-first",
+      "visibility": "private"
+    },
+    {
+      "quote": "Careful records make today’s observations useful to tomorrow’s researcher.",
+      "author": "Original editorial reflection",
+      "source_url": "",
+      "source_label": "Original text prepared for this release; not attributed to a historical scientist",
+      "attribution_type": "original",
+      "license": "CC0 1.0",
+      "approved": false,
+      "homepage": true,
+      "tags": [
+        "Reproducibility",
+        "LabPractice"
+      ],
+      "internal_notes": "",
+      "id": "record-carefully",
+      "visibility": "private"
+    },
+    {
+      "quote": "A clear account of uncertainty is a contribution to knowledge, not a weakness.",
+      "author": "Original editorial reflection",
+      "source_url": "",
+      "source_label": "Original text prepared for this release; not attributed to a historical scientist",
+      "attribution_type": "original",
+      "license": "CC0 1.0",
+      "approved": false,
+      "homepage": true,
+      "tags": [
+        "Evidence",
+        "ResearchIntegrity"
+      ],
+      "internal_notes": "",
+      "id": "uncertainty",
+      "visibility": "private"
+    },
+    {
+      "quote": "Share the question, respect the evidence, and make the next experiment better.",
+      "author": "Original editorial reflection",
+      "source_url": "",
+      "source_label": "Original text prepared for this release; not attributed to a historical scientist",
+      "attribution_type": "original",
+      "license": "CC0 1.0",
+      "approved": false,
+      "homepage": true,
+      "tags": [
+        "Collaboration",
+        "Innovation"
+      ],
+      "internal_notes": "",
+      "id": "collaborate",
+      "visibility": "private"
+    }
+  ],
+  "science_news": []
 }

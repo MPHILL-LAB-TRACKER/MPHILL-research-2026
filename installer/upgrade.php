@@ -4,14 +4,15 @@ require __DIR__.'/../php/bootstrap.php';
 use Ted2\{Config,Process,Problem};
 use function Ted2\{ensure,decode,dirPrivate,atomic,json};
 try {
- $args=$argv;array_shift($args);$target=getenv('HOME').'/Documents/MPhill in biomedical sciences (medical microbiology)/GitHub tracker/MPHILL-research-2026';$yes=false;$dry=false;
+ $args=$argv;array_shift($args);$target='';$yes=false;$dry=false;
  while($args){$a=array_shift($args);if($a==='--target'){$target=array_shift($args)??'';}elseif($a==='--yes')$yes=true;elseif($a==='--dry-run')$dry=true;else throw new Problem(422,'Unknown argument: '.$a);}
  ensure(function_exists('posix_geteuid')?posix_geteuid()!==0:true,403,'Run as your normal user, not root or sudo.');
+ if($target===''){ensure(!$yes,422,'Provide --target when using --yes.');fwrite(STDOUT,'Path to your existing repository: ');$target=trim(fgets(STDIN)?:'');if(str_starts_with($target,'~/'))$target=getenv('HOME').substr($target,1);}
  $source=realpath(dirname(__DIR__));$target=realpath($target);ensure($target!==false&&$target!==$source,422,'Target must be your existing Git clone, not the extracted package.');
  $git=Process::run(['git','-C',$target,'rev-parse','--show-toplevel']);ensure($git['code']===0&&realpath(trim($git['out']))===$target,422,'Target is not the actual Git repository root.');
  $origin=Process::run(['git','-C',$target,'remote','get-url','origin']);ensure($origin['code']===0&&preg_match('#^(?:https://github\.com/|git@github\.com:|ssh://git@github\.com/)MPHILL-LAB-TRACKER/MPHILL-research-2026(?:\.git)?$#iD',trim($origin['out']))===1,422,'The target origin is not the expected laboratory repository.');
  ensure(is_file($source.'/release-manifest.json'),422,'The release manifest is missing. Use the complete release ZIP.');$manifest=decode(file_get_contents($source.'/release-manifest.json'));$hashes=$manifest['files'];
- $prior=decode(file_get_contents($source.'/data/v6-source-hashes.json'));$conflicts=[];
+ $prior=decode(file_get_contents($source.'/data/v61-source-hashes.json'));$conflicts=[];
  foreach($hashes as $rel=>$hash){ensure(preg_match('#^[a-zA-Z0-9_.\-/]+$#D',$rel)===1&&!str_contains($rel,'..')&&!preg_match('#^(?:var|\.git|\.venv)/#',$rel),422,'Unsafe release path.');ensure(is_file($source.'/'.$rel)&&!is_link($source.'/'.$rel)&&hash_equals($hash,hash_file('sha256',$source.'/'.$rel)),422,'Release integrity failed: '.$rel);
   $path=$target.'/'.$rel;for($d=dirname($path);$d!==$target;$d=dirname($d))ensure(!is_link($d),422,'A target parent is a symlink: '.$rel);ensure(!is_link($path),422,'Target file is a symlink: '.$rel);
   if(is_file($path)&&$rel!=='.gitignore'&&!hash_equals($hash,hash_file('sha256',$path))&&(!isset($prior[$rel])||!hash_equals($prior[$rel],hash_file('sha256',$path))))$conflicts[]=$rel;
@@ -23,8 +24,8 @@ try {
  $base=getenv('TED2_BASE_URL')?:($environment['TED2_BASE_URL']??'http://127.0.0.1:8000');$host=parse_url($base,PHP_URL_HOST);$port=parse_url($base,PHP_URL_PORT)?:($host==='127.0.0.1'?8000:443);
  if(in_array($host,['127.0.0.1','localhost'],true)){$fp=@fsockopen($host,$port,$errno,$errstr,0.4);if($fp){fclose($fp);throw new Problem(409,'Stop the current local server with Ctrl+C before upgrading.');}}
  ensure(in_array('sqlite',PDO::getAvailableDrivers(),true)||is_executable($target.'/var/native/ted2-worker'),422,'Install php-sqlite3 first. The optional native adapter may instead be built explicitly; it is not downloaded automatically.');
- $stamp=gmdate('Ymd-His').'-'.substr(bin2hex(random_bytes(4)),0,8);$backup=getenv('HOME').'/TED2-private-backups/v6.1-'.$stamp;
- printf("\nTED² V6.1 · in-place PHP upgrade\nSource: %s\nTarget: %s\nDatabase: %s\nPrivate backup: %s\n\nThe existing Git index/branch, accounts, password hashes and uploads are preserved. Your PHP V6 database, accounts and uploads remain in place.\n",$source,$target,$db,$backup);
+ $stamp=gmdate('Ymd-His').'-'.substr(bin2hex(random_bytes(4)),0,8);$backup=getenv('HOME').'/TED2-private-backups/v6.2-'.$stamp;
+ printf("\nTED² V6.2 · in-place PHP upgrade\nSource: %s\nTarget: %s\nDatabase: %s\nPrivate backup: %s\n\nThe existing Git index/branch, accounts, password hashes and uploads are preserved. Your PHP database, accounts and uploads remain in place.\n",$source,$target,$db,$backup);
  if($dry){echo "Dry run passed. No files were changed.\n";exit;}
  if(!$yes){fwrite(STDOUT,'Type UPGRADE to proceed: ');ensure(trim(fgets(STDIN)?:'')==='UPGRADE',400,'Cancelled.');}
  dirPrivate($backup);
@@ -36,5 +37,5 @@ try {
  foreach($hashes as $rel=>$hash){$path=$target.'/'.$rel;if(!is_dir(dirname($path)))mkdir(dirname($path),0755,true);$bytes=file_get_contents($source.'/'.$rel);if($rel==='.gitignore'&&is_file($path))$bytes=rtrim(file_get_contents($path))."\n\n".$bytes;ensure(file_put_contents($path,$bytes)!==false,500,'Cannot install '.$rel);chmod($path,str_ends_with($rel,'.sh')?0755:0644);}
  copy($source.'/release-manifest.json',$target.'/release-manifest.json');
  $run=Process::run(['php',$target.'/bin/console.php','migrate'],seconds:180,cwd:$target,extra:['TED2_DB'=>$db,'TED2_NATIVE'=>$target.'/var/native/ted2-worker']);atomic($backup.'/migration-report.txt',$run['out']."\n".$run['err']);ensure($run['code']===0,500,'Migration failed. Keep the server stopped and consult '.$backup.'/migration-report.txt. Your backup is intact.');
- echo $run['out'];echo "\nV6.1 installed.\nCommit source: bash scripts/commit-v6.1.sh\nStart PHP: bash start.sh\nBackup: $backup\n\nReview any media_review entries in the migration report before publishing.\n";
+ echo $run['out'];echo "\nV6.2 installed.\nCommit source: bash scripts/commit-v6.2.sh\nStart PHP: bash start.sh\nBackup: $backup\n\nReview any media_review entries in the migration report before publishing.\n";
 }catch(Throwable $e){fwrite(STDERR,$e->getMessage()."\n");exit(1);}

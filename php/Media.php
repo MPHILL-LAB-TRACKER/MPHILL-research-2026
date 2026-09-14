@@ -38,7 +38,7 @@ final class Media {
   if($c==='media'){if(($p['scope']??'review')==='review')return false;if(($p['scope']??'')==='researcher'){if(($this->store->get('people',$p['researcher_id'])['visibility']??'private')!=='public')return false;}return !empty($p['approved'])&&($p['file_id']??'')===$id;}
   if($c==='people')return ($p['photo_permission']??'')==='approved'&&($p['photo_upload_id']??'')===$id&&!in_array('photo_url',$p['hidden_fields']??[],true);
   if($c==='settings')return ($p['hero_permission']??'')==='approved'&&($p['hero_upload_id']??'')===$id&&!in_array('hero_image_url',$p['hidden_fields']??[],true);
-  if($c==='theme'){foreach(['logo_upload_id'=>'logo_approved','institution_logo_id'=>'institution_logo_approved','footer_logo_id'=>'footer_logo_approved','favicon_id'=>'favicon_approved'] as $field=>$flag)if(($p[$field]??'')===$id&&!empty($p[$flag]))return true;}
+  if($c==='theme'){foreach(['logo_upload_id'=>'logo_approved','institution_logo_id'=>'institution_logo_approved','footer_logo_id'=>'footer_logo_approved','favicon_id'=>'favicon_approved','header_art_upload'=>'photo_art_approved','footer_art_upload'=>'photo_art_approved'] as $field=>$flag)if(($p[$field]??'')===$id&&!empty($p[$flag]))return true;}
   if(in_array($c,['publications','achievements'],true))return !empty($p['document_public'])&&($p['document_id']??'')===$id;
   return false;
  }
@@ -57,7 +57,9 @@ final class Media {
   }finally{if(is_file($temp))unlink($temp);}
  }
  public static function send(string $path,string $mime,string $name='',bool $private=true):never{
-  ensure(is_file($path)&&!is_link($path),404,'File not found.');$size=filesize($path);header('Content-Type: '.$mime);header('X-Content-Type-Options: nosniff');header('Cache-Control: '.($private?'private, no-store':'public, max-age=300'));header('Accept-Ranges: bytes');if($name)header("Content-Disposition: ".($mime==='application/pdf'?'attachment':'inline')."; filename*=UTF-8''".rawurlencode($name));
+  ensure(is_file($path)&&!is_link($path),404,'File not found.');$size=filesize($path);header('Content-Type: '.$mime);header('X-Content-Type-Options: nosniff');$request=(string)($_SERVER['REQUEST_URI']??'');$versioned=preg_match('#/public-media/[a-f0-9]{64}\.#',$request)||preg_match('/[?&]v=[a-f0-9]{16}(?:&|$)/',$request);
+  header('Cache-Control: '.($private?'private, no-store':($versioned?'public, max-age=31536000, immutable':'public, no-cache')));
+  if(!$private){$etag='"'.hash_file('sha256',$path).'"';header('ETag: '.$etag);if(empty($_SERVER['HTTP_RANGE'])&&($_SERVER['HTTP_IF_NONE_MATCH']??'')===$etag){http_response_code(304);exit;}}header('Accept-Ranges: bytes');if($name)header("Content-Disposition: ".($mime==='application/pdf'?'attachment':'inline')."; filename*=UTF-8''".rawurlencode($name));
   $start=0;$end=$size-1;$range=$_SERVER['HTTP_RANGE']??'';if($range!==''){ensure(preg_match('/^bytes=(\d*)-(\d*)$/D',$range,$m)===1,416,'Invalid byte range.');if($m[1]==='')$start=max(0,$size-(int)$m[2]);else $start=(int)$m[1];if($m[1]!==''&&$m[2]!=='')$end=min($end,(int)$m[2]);ensure($start<=$end&&$start<$size,416,'Range not available.');http_response_code(206);header("Content-Range: bytes $start-$end/$size");}
   header('Content-Length: '.($end-$start+1));if(($_SERVER['REQUEST_METHOD']??'GET')==='HEAD')exit;$fp=fopen($path,'rb');fseek($fp,$start);$remaining=$end-$start+1;while($remaining>0&&!feof($fp)){set_time_limit(30);$buffer=fread($fp,min(65536,$remaining));echo $buffer;$remaining-=strlen($buffer);}fclose($fp);exit;
  }

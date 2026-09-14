@@ -30,7 +30,7 @@ final class Schema {
   if($c==='sections'&&$out['location']==='researcher-profile')ensure($out['researcher_id']!=='',422,'Choose the profile for this section.');
   if($c==='questions'&&$out['visibility']==='public')ensure($out['status']==='answered'&&$out['answer']!=='',422,'Only answered, approved questions can be public.');
   if($c==='survey_questions'&&$out['kind']==='single-choice')ensure(count($out['options'])>=2,422,'Add at least two answer choices.');
-  Upgrade61::validate($c,$out);
+  Upgrade61::validate($c,$out);Upgrade62::validate($c,$out);
   foreach([['start_date','end_date'],['start_date','due_date']] as [$a,$b])if(!empty($out[$a])&&!empty($out[$b]))ensure($out[$b]>=$out[$a],422,'End date must not precede start date.');
   return $out;
  }

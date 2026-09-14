@@ -10,3 +10,26 @@
 @media print{.sidebar,.topbar,.ornament,.tracking-card a,.tracking-card button,.filter-row,.page-intro .actions{display:none!important}.studio-shell{display:block}.studio-main{margin:0}.tracking-card{break-inside:avoid}.workspace-content{padding:0}.tracking-quantities{grid-template-columns:repeat(4,1fr)}}
 /* Keep upload instructions and field help legible rather than concatenated. */
 #portrait-drop{display:grid;gap:10px}#portrait-drop>span{font-weight:400;color:var(--muted-color);line-height:1.5}.field>small{display:block;margin-top:5px}.field>.clear-field{margin-top:4px}
+/* V6.2 administration: collapsible navigation, image-led appearance, fewer competing controls. */
+.sidebar{width:260px;background:var(--surface);color:var(--text-color);border-right:1px solid var(--border-color)}
+.nav-section{padding:0!important;border:0!important;border-bottom:1px solid var(--border-color)!important;border-radius:0!important;margin:.4rem 0!important;background:transparent!important}
+.nav-section summary{cursor:pointer;font-size:.74rem;text-transform:uppercase;letter-spacing:.075em;font-weight:750;padding:.95rem .3rem!important;color:var(--muted-color)}
+.nav-section>div{display:grid;gap:.15rem;padding-bottom:.8rem}.nav-link{border-radius:8px;line-height:1.5;padding:.58rem .65rem!important;font-size:.85rem}.nav-link.active{background:color-mix(in srgb,var(--primary) 10%,var(--surface));color:var(--primary);border-inline-start:3px solid var(--accent)}
+.nav-link[hidden],.nav-section[hidden]{display:none!important}.sidebar nav{padding-bottom:2rem}.studio-version{font-size:.73rem}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border-color);gap:1rem}.topbar .appearance-control select{min-height:36px}
+.workspace-content{max-width:1550px;padding:2.3rem 2.5rem}.workspace-content>.page-intro h1{font-size:clamp(1.9rem,3vw,2.8rem);max-width:26ch;letter-spacing:-.03em}.page-intro p{max-width:76ch;line-height:1.8}
+.design-studio{padding:1.7rem}.design-studio>h2{margin-top:0}.photo-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-block:1.3rem}.photo-choice{display:flex;flex-direction:column;gap:.6rem;border:1px solid var(--border-color);border-radius:var(--radius);padding:.7rem;background:var(--surface);min-width:0}
+.photo-choice button{display:block;width:100%;padding:0;overflow:hidden;border-radius:8px}.photo-choice img{width:100%;height:110px;object-fit:cover;display:block}.photo-choice strong{display:block;padding:.8rem}.photo-choice small{font-size:.67rem;line-height:1.65;color:var(--muted-color)}.photo-choice>a{font-size:.75rem}.image-unavailable{height:155px;display:flex;flex-direction:column;justify-content:center;padding:.5rem;background:var(--background);border-radius:8px}.image-unavailable span{font-size:.75rem;color:var(--muted-color)}
+#photo-preview{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.photo-picker [data-photo]:hover{outline:2px solid var(--accent);outline-offset:2px}
+.editor-panel details{border:1px solid var(--border-color);border-radius:10px;margin-block:.8rem}.editor-panel details summary{padding:1rem;font-size:.94rem;font-weight:650}.editor-panel .field-grid{padding:0 1rem 1rem}
+.status-report{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--background);padding:1rem;border-radius:10px;color:var(--text-color);font-size:.8rem}
+.theme-presets{gap:.5rem}.theme-presets button{font-size:.76rem;min-height:34px;padding:.5rem .8rem}
+:root[data-appearance="dark"] .sidebar,:root[data-appearance="dark"] .topbar,:root[data-appearance="dark"] .editor-panel,:root[data-appearance="dark"] .side-panel,:root[data-appearance="dark"] .studio-card,:root[data-appearance="dark"] .record-row,:root[data-appearance="dark"] .stat{background:var(--surface);color:var(--text-color);border-color:var(--border-color)}
+:root[data-appearance="dark"] .workspace-content,:root[data-appearance="dark"] .studio-main,:root[data-appearance="dark"] .admin-body{background:var(--background);color:var(--text-color)}
+:root[data-appearance="dark"] dialog{background:var(--surface);color:var(--text-color)}
+:root[data-appearance="dark"] .sidebar a,:root[data-appearance="dark"] .studio-card h2,:root[data-appearance="dark"] .stat strong{color:var(--primary)}
+:root[data-appearance="dark"] .dropzone,:root[data-appearance="dark"] .ordered-item{background:var(--background);color:var(--text-color)}
+@media(max-width:1100px){.photo-picker{grid-template-columns:repeat(2,minmax(0,1fr))}.workspace-content{padding:1.5rem}.topbar{flex-wrap:wrap}}
+@media(max-width:700px){.workspace-content{padding:1rem}.photo-picker{grid-template-columns:1fr 1fr;gap:.6rem}.photo-choice{padding:.5rem}.photo-choice img{height:90px}#photo-preview{grid-template-columns:1fr}.topbar .actions{gap:.45rem}.topbar .button,.topbar button{font-size:.75rem;padding:.5rem}.appearance-control select{width:86px}.studio-main>.photo-band{height:45px}.editor-panel details summary{font-size:.86rem}.design-studio{padding:1rem}}
+
+:root[data-appearance="dark"] .sidebar .nav-link.active{background:color-mix(in srgb,var(--primary) 12%,var(--surface));color:var(--text-color)}
