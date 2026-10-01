@@ -1,47 +1,33 @@
-# Upgrade V6.1 to V6.2
+# V6.2 → V7 upgrade and recovery
 
-Use the complete V6.2 release archive. Stop the existing PHP server and local worker before upgrading. Extract the archive wherever convenient; do not extract it over the working application by hand.
+## Upgrade without replacing the working database
 
-From the extracted **V6.2 package directory**, run:
+Stop the running application with Ctrl+C. Extract the complete V7 ZIP into a separate folder of your choice. Inside that extracted folder, run:
 
 ```bash
-bash upgrade-v6.2.sh
+bash upgrade-v7.sh
 ```
 
-The script asks for the path to your **existing Git repository**, then shows the source, target, database and backup locations. Enter `UPGRADE` only after checking those locations. Paths containing spaces are supported. No new clone or `git init` is required. Do not run the installer with `sudo`.
+At **Path to your existing repository**, enter only the actual clone's absolute folder path. Do not paste shell commands into this prompt. Review the source, target, database and backup locations, then type `UPGRADE`.
 
-An explicit `--target` argument is also supported. To avoid embedding anyone's private directory layout in instructions:
+The installer verifies its release manifest and compares overlapping source against the original V6.2 release. It refuses customized source, symlink targets, the wrong repository, root/sudo execution or a detected running local server. Backups are private and outside the clone. It preserves `.git`, the current branch/index, `.env`, `.venv`, accounts, password hashes, uploaded files and edited records.
 
-```bash
-read -r -p 'Existing repository path: ' TARGET
-bash upgrade-v6.2.sh --target "$TARGET" --dry-run
-bash upgrade-v6.2.sh --target "$TARGET"
-```
+V7 adds missing fields, new private tables, 32 original openly reusable reflections and nine curated resource links. Existing edited content and quotation approvals are unchanged. Intentional tombstones are respected. New reflections can be disabled together in the theme or edited/removed individually. Existing media ownership is retained; albums are initially empty until deliberately assigned.
 
-The dry run validates paths, package hashes and overlapping source changes without applying the upgrade. Automated installations must supply `--target` explicitly before using `--yes`.
-
-## Preservation and migration
-
-The installer uses the original V6.1 checksums to detect customised source. It refuses an unknown overwrite instead of silently discarding local code. It preserves `.git`, the staging index, `.env`, any existing Python environment, accounts, password hashes, database edits and uploads.
-
-A private backup under `~/TED2-private-backups/` contains source/configuration, a consistent SQLite copy, uploads and the migration report. New settings are additive: existing colours, profiles, project content, questions, procurement and media are not reset. Two new homepage block choices, `pulse` and `quotes`, are added near the existing facts block. They can be reordered or hidden; no external headlines or quotation records are automatically approved during migration.
-
-V6.2 initially imports six **private** quotation records. The photographic header/footer selectors use new fields; old line-art settings are retained for recovery but no longer rendered by the V6.2 layout. A newly imported optional photograph is stored privately until it is selected for the public design and included in a publication.
-
-## Commit and run
-
-From the **existing application repository** after a successful upgrade:
+Only after **V7 installed.** appears, open a terminal in the existing installed clone and run:
 
 ```bash
-bash scripts/commit-v6.2.sh
+bash scripts/commit-v7.sh
 git push origin main
 bash start.sh
 ```
 
-The commit helper supports release files already staged from an interrupted attempt. It refuses unrelated staged work. It commits source files only; it neither publishes local research nor uploads the database. When a push fails, stop and resolve that error before assuming the release is on GitHub.
+Run each command only after the previous succeeds. Type `COMMIT` at the commit helper prompt. It handles already staged release files, refuses unrelated staged work and never stages runtime/private files. No `git init`, force push, broad `git add .` or second clone is needed.
 
-Use the local admin to prepare, review and publish the generated site to `gh-pages`. Committing PHP on `main` is not a website publication. Review the deployment status separately.
+Refresh administration with Ctrl+Shift+R. Review and publish from administration to update the website. Pushing application source alone does not publish your edited database content.
 
 ## Recovery
 
-Keep the application stopped after a failed migration. Read `migration-report.txt` and `recovery.json` in the printed backup directory. Restore the source archive to the same target and the database backup to the recorded database path; restore the uploads archive only when necessary. Do not replace a newer database with an older one without first backing up the newer data. Keep Git history and separately staged work intact. Contact your system administrator before restoring an installation containing subsequent research edits.
+If migration fails, leave the server stopped and read the printed private backup's `migration-report.txt` and `recovery.json`. It includes the old source/configuration archive, consistent SQLite database backup and uploads archive. Preserve the failed installation for comparison rather than deleting it. Restore a consistent source/database pair together; do not mix a newer migrated database with older code without review.
+
+The upgrade does not modify or delete an independently deployed response gateway. Its messages and backups live in that separate account. Preserve its private deployment directory and key independently. Do not post recovery archives, passwords or keys in a public issue.

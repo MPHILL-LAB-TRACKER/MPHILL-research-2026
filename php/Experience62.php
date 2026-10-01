@@ -74,7 +74,13 @@ final class Experience62
     public static function quotePanel(PublicSite $site): string
     {
         if(empty($site->theme['show_quotes']))return '';
-        $rows=array_values(array_filter($site->data['science_quotes']??[],fn($p)=>!empty($p['homepage'])));if(!$rows)return '';
+        $rows=array_values(array_filter($site->data['science_quotes']??[],function($p)use($site){
+            if(empty($p['homepage']))return false;
+            if(str_starts_with($p['id'],'v7-reflection-')&&empty($site->theme['original_quote_library']))return false;
+            $wanted=array_map('strtolower',$site->theme['quote_topics']??[]);
+            return !$wanted||array_intersect($wanted,array_map('strtolower',$p['tags']??[]));
+        }));if(!$rows)return '';
+        if(!empty($site->theme['quote_daily_shuffle'])){ $day=Research7::today($site->settings);usort($rows,fn($a,$b)=>strcmp(hash('sha256',$day.$a['id']),hash('sha256',$day.$b['id']))); }
         $h='<section class="quote-panel" data-carousel data-quotes data-random="'.(!empty($site->theme['quotes_random'])?'yes':'no').'" data-autoplay="yes" data-seconds="'.e($site->theme['quote_seconds']??18).'" data-effect="fade"><div class="spotlight-top"><div><span class="eyebrow">Ideas worth keeping</span><h2>'.e($site->settings['quotes_heading']??'A moment of scientific perspective').'</h2></div><div><button data-carousel-prev aria-label="Previous quotation">←</button><button data-carousel-pause>Pause</button><button data-carousel-next aria-label="Next quotation">→</button></div></div>';
         foreach($rows as $q){$h.='<article data-slide data-quote-id="'.e($q['id']).'"><blockquote><p>“'.e($q['quote']).'”</p><footer>'.e($q['author']).'</footer></blockquote><p class="small muted">'.e($q['source_label']).'</p>';if($q['source_url'])$h.='<a href="'.e($q['source_url']).'">Check attribution ↗</a>'; $h.=self::tags($q['tags']??[]).'</article>';}
         return $h.'<p data-carousel-count class="carousel-count"></p></section>';

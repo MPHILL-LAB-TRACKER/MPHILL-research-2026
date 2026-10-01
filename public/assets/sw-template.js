@@ -10,7 +10,7 @@ function allowed(request) {
   if (url.origin !== self.location.origin || !url.pathname.startsWith(C.prefix)) return false;
   const path = url.pathname.slice(C.prefix.length);
   return /^public-media\/[a-f0-9]{64}\.(jpg|png|webp)$/.test(path) ||
-    (/^assets\/(site\.css|site\.js|experience\.js)$/.test(path) && /^[a-f0-9]{16}$/.test(url.searchParams.get('v') || ''));
+    (/^assets\/(site\.css|site\.js|experience\.js|v7\.css|v7\.js)$/.test(path) && /^[a-f0-9]{16}$/.test(url.searchParams.get('v') || ''));
 }
 self.addEventListener('fetch', event => {
   if (!allowed(event.request)) return;

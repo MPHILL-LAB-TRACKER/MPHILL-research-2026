@@ -1,31 +1,33 @@
-# V6.2 request coverage
+# Sources, inspirations and request coverage
 
-| Requested change | Implementation | Relevant boundary |
-|---|---|---|
-| Actual images instead of simple drawings | Independently selected photographic header/footer bands, local image packaging, custom uploads, tint/height/depth controls and credits | Five bundled photos; two optional internet imports. The owner-supplied laboratory photo is not an open-licensed stock asset. No claim of an interactive 3D model. |
-| Dark mode and better visuals | Shared light/dark/system mode, separate dark palette, administrator lock or visitor switch, refined spacing, cards, borders and restrained motion | Fourteen existing presets remain. Colour preferences contain no account information. |
-| Better navigation | Five collapsible, searchable administration groups; grouped/flat public menu options and mobile controls | Editing/publishing permissions remain enforced server-side. |
-| Automatic research/blog updates and hashtags | Europe PMC/PLOS adapters, dated metadata cards, source/type labels, topic filters, duplicate prevention, local review and opt-in GitHub-scheduled source-headline delivery | Not live breaking-news coverage or a systematic review. No paper bodies, third-party article images or generated research claims copied. |
-| Informative/motivational quotations | Two short primary-source excerpts plus four clearly labelled original editorial reflections, all private until approved; administrator-editable attribution, rights and tags; shuffle/rotation/pause | No unreliable random-quote attribution API and no promise of new historical quotations on every refresh. |
-| Faster caching | Content/code-fingerprinted local public-render cache; ETags; content-hashed assets; bounded public asset-only Service Worker; administration clear/disable controls | Never caches private API/account pages, forms, HTML, PDFs or video in CacheStorage. Does not solve unverified DNS/carrier/TLS failures. |
-| All changes under administration | Appearance, source policy/topics, feed display, quotation approval, cache settings and old laboratory editors | Scheduled source-headlines are authorised by source policy rather than item-by-item review. Use review/local mode for individual approval. |
-| Short public README | Project overview and minimal startup, links to dedicated setup/upgrade/operations/rights/testing documents | No personal home-directory commands. Installer asks for the chosen existing clone path. |
-| Existing functionality retained | Researcher-owned media, portrait editing, contact/custom fields, projects, independent milestones, method-linked procurement, resource readiness, achievements, questionnaires, Trash, permissions and reviewed publication | New theme/feed functions do not broaden researcher access to other researchers' private records. |
+## Technical primary sources checked for V7
 
-## Primary documentation
+- Overleaf developer interface: https://www.overleaf.com/devs — ZIP data-URI POST hand-off. No unofficial password integration, iframe assumption or synchronization claim.
+- Cloudflare D1: https://developers.cloudflare.com/d1/get-started/ — optional persistent response database. Wrangler reference: https://developers.cloudflare.com/workers/wrangler/commands/d1/ .
+- GitHub Pages: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages — generated static-site hosting, separate from visitor-response processing.
+- eLabFTW: https://github.com/elabftw/elabftw — reviewed as a laboratory-notebook design reference: separate experiments, metadata, ownership and publication decisions. **No source code copied.** Its licence remains its own.
+- SciNote: https://github.com/scinote-eln/scinote-web — reviewed for the distinction between structured working records, researcher responsibilities and inventory/workflow organisation. **No source code copied or endorsement claimed.**
 
-Photographic registry with exact credits/licences: `data/photography.json`; upstream botanical notice: `data/photography/SCIKIT-LEARN-IMAGE-CREDITS.txt`.
+The new Worker, response-key flow, authoring helpers and V7 interface are original implementations extending the existing application; they are not eLabFTW/SciNote installations. The resource shelf is curated outbound linking, not bundled third-party web apps.
 
-- https://scikit-image.org/docs/stable/api/skimage.data.html
-- https://commons.wikimedia.org/wiki/File:Vintage_laboratory_glassware.jpg
-- https://commons.wikimedia.org/wiki/File:Fern_leaves.jpg
-- https://europepmc.org/RestfulWebService
-- https://plos.org/blogs/about/
-- https://plos.org/terms-of-use/
-- https://www.gutenberg.org/files/1228/1228-h/1228-h.htm
-- https://www.gutenberg.org/files/14986/14986-h/14986-h.htm
-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control
-- https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
-- https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+## Request coverage
 
-See [Research feeds and rights](FEEDS-AND-RIGHTS.md) for source-policy, scheduling and image-import limits, and [Verification](TESTING.md) for the executed test scope. Existing researcher and laboratory evidence is retained from the previous release; this upgrade does not add unsupported academic credentials, grants, publication claims or research results.
+| Request | Implementation / boundary |
+|---|---|
+| Any visitor can respond | Same-host PHP responses; optional independently hosted Worker/D1 for static GitHub Pages. Deploy/connect once. |
+| Read replies directly | Private response-key lookup without visitor accounts; administrator approval and visitor consent for shared conversations. |
+| More varied daily quotes | 32 original CC0 science reflections, topics, daily ordering, shuffle and pause; existing historical records preserved. |
+| LaTeX / Overleaf | Private researcher-owned source editor, three templates, import, actual ZIP and explicit official one-way hand-off. No unsafe local TeX execution. |
+| Close expired notices | Laboratory timezone, inclusive end/override dates, manual closure/cancellation, client refresh and historical activity archive. |
+| Researcher gallery folders | General and per-researcher collection routes plus owner-matched named albums. Private albums suppress anonymous file access/export. |
+| Fresh public and admin appearance | Biomedical editorial composition, 4 compositions/18 palettes, preserved photo bands, responsive dark/light UI and reorganised research desk. |
+| Interesting research tools | Structured private bench notes, reproducibility reminders, manuscript stage/next-action fields and 9 editable open-science resource links. |
+| Preserve tracking | Existing methodology/procurement, uploads, biographies, milestone/project controls, permission gates, publication flow and caches retained. |
+
+## Content rights
+
+Owner-supplied laboratory text, branding, named portraits and certificate remain unchanged; inclusion is not an open licence or a new authentication of their claims. The previously corrected **Ms Jaydine Feris** name is retained even though the earlier slide had a typo. Public references remain attached to existing publications and notices.
+
+The 32 new reflections are original editorial writing offered under CC0-1.0. They are explicitly not quotations from Faraday, Curie or other named scientists. The old primary-source quotation records retain their own evidence labels and approval states. Literature, preprints and blog perspectives remain distinct; no feed title is promoted into a verified clinical discovery without review.
+
+Photographic assets and optional downloads retain the credits in `data/photography.json`, Sources and `docs/FEEDS-AND-RIGHTS.md`. No new stock photographs, faces or scientific images were generated or silently copied for V7. No font files are distributed. Each external resource retains its own terms and licence; public access does not imply unrestricted reuse.

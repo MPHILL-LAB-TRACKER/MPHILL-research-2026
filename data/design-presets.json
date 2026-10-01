@@ -180,5 +180,61 @@
     "body_font": "sans",
     "corner_radius": 16,
     "preset": "heritage"
+  },
+  "biomedical": {
+    "primary": "#125754",
+    "accent": "#b66531",
+    "background": "#f5f4ef",
+    "surface": "#ffffff",
+    "text_color": "#142d2d",
+    "muted_color": "#596966",
+    "border_color": "#d6dfdc",
+    "heading_font": "serif",
+    "body_font": "sans",
+    "corner_radius": 14,
+    "preset": "biomedical",
+    "v7_style": "biomedical"
+  },
+  "living-atlas": {
+    "primary": "#315a40",
+    "accent": "#986b25",
+    "background": "#f5f6ed",
+    "surface": "#ffffff",
+    "text_color": "#223829",
+    "muted_color": "#64705b",
+    "border_color": "#dde3d2",
+    "heading_font": "serif",
+    "body_font": "sans",
+    "corner_radius": 14,
+    "preset": "living-atlas",
+    "v7_style": "atlas"
+  },
+  "research-journal": {
+    "primary": "#253a55",
+    "accent": "#9c493f",
+    "background": "#f5f3ee",
+    "surface": "#ffffff",
+    "text_color": "#243044",
+    "muted_color": "#626979",
+    "border_color": "#d9dce2",
+    "heading_font": "serif",
+    "body_font": "sans",
+    "corner_radius": 4,
+    "preset": "research-journal",
+    "v7_style": "journal"
+  },
+  "studio-minimal": {
+    "primary": "#303744",
+    "accent": "#697885",
+    "background": "#f8f9fb",
+    "surface": "#ffffff",
+    "text_color": "#202632",
+    "muted_color": "#626d7c",
+    "border_color": "#dfe4ec",
+    "heading_font": "sans",
+    "body_font": "sans",
+    "corner_radius": 14,
+    "preset": "studio-minimal",
+    "v7_style": "minimal"
   }
 }

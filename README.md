@@ -1,33 +1,26 @@
 # TED² Research Workspace
 
-**A laboratory website and research-management studio, built with PHP.**
+**A biomedical research website and private laboratory studio, built with PHP.**
 
-Manage researchers, publications, milestones, methodology-linked procurement and media in one place. Review the public website locally, then publish an approved static release to GitHub Pages. Private research and account data stay in the management application.
+From a first question to a published result: organize the team, plan resources, keep working notes, draft manuscripts and share approved research. Private records stay in the management application; reviewed public pages can be published to GitHub Pages.
 
-## V6.2 highlights
+## V7
 
-- Photographic header/footer designs, editable branding and shared light, dark or system appearance.
-- Searchable administration, grouped public navigation and responsive researcher pages.
-- Researcher-owned uploads, editable captions, ordering, contact details and access rights.
-- Source-linked research headlines, topic tags and an administrator-reviewed science-quotation collection.
-- Public asset caching and automatic invalidation, without caching private pages or submissions.
+- **Conversations:** moderated visitor messages, private reply keys and an optional always-online response gateway.
+- **Writing:** researcher-owned LaTeX drafts, real project ZIP exports and an explicit Overleaf hand-off.
+- **Collections:** researcher folders and named albums with approval, captions and file ordering.
+- **Research desk:** structured private bench notes, methodology-linked procurement and independent milestones.
+- **Fresh presentation:** four new compositions, eighteen colour presets, photographic headers/footers, light/dark/system appearance and responsive navigation.
+- **Current information:** elapsed-notice removal, an activity archive, 32 original rotating science reflections, reviewed literature feeds and an open-science resource shelf.
 
-## Run locally
+Existing accounts, content, portraits, uploads, permissions and publishing controls are retained.
 
-Requirements: **PHP 8.3+**, SQLite support, Fileinfo, OpenSSL and Argon2 password support. GD or FFmpeg handles images; FFmpeg is required for video processing. Git and GitHub authentication are required for publishing. C++ utilities are optional.
+## Start
 
-From the application directory:
+PHP 8.3+ with SQLite, fileinfo, OpenSSL and Argon2 support. GD is recommended; FFmpeg/FFprobe handles video processing. No TeX engine or Node.js is required for normal local operation.
 
-```bash
-bash start.sh
-```
+For an existing **V6.2** installation, extract V7 separately and run `bash upgrade-v7.sh` inside the extracted folder. Enter the path to your existing Git clone when asked. After upgrading, start the installed application with `bash start.sh`.
 
-Open `http://127.0.0.1:8000/admin`. The first run asks you to create an owner; existing accounts are preserved. The built-in server is for local development, not public production hosting.
+**An online reply service must be deployed once before internet visitors can submit to a GitHub Pages website.** Local PHP responses work while the PHP server is running. Overleaf receives only a saved draft you explicitly approve for transfer; it is not two-way synchronization.
 
-## Documentation
-
-[Setup](docs/SETUP.md) · [Upgrade and recovery](docs/UPGRADE-RECOVERY.md) · [Administration and publishing](docs/OPERATIONS.md) · [Research feeds and image rights](docs/FEEDS-AND-RIGHTS.md) · [Testing](docs/TESTING.md)
-
-**Choose your own installation directory.** Upgrade scripts ask for the existing repository path; no personal folder layout is required.
-
-GitHub Pages hosts the generated public site, not PHP or private administration. Automatic external headlines require an explicit source policy. Anonymous online submissions require a publicly hosted PHP service. Publicly shared files may remain in Git history or visitors’ downloads after removal.
+[Setup](docs/SETUP.md) · [Upgrade](docs/UPGRADE-RECOVERY.md) · [V7 guide](docs/V7-GUIDE.md) · [Visitor service](responses-service/README.md) · [Writing](docs/WRITING.md) · [Tests](docs/TESTING.md) · [Sources and rights](docs/SOURCES-AND-COVERAGE.md)

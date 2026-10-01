@@ -102,3 +102,30 @@ private*/
 backups/
 test-results/
 .DS_Store
+
+# TED2 V7 private/runtime exclusions
+.env
+.env.*
+!.env.example
+var/
+var*/
+.venv/
+.venv*/
+*.sqlite*
+*.db
+*.db-*
+*.log
+*.zip
+*.tar.gz
+__pycache__/
+.pytest_cache/
+node_modules/
+private*/
+backups/
+test-results/
+.DS_Store
+
+# Response service secrets and local deployment state
+.dev.vars
+.dev.vars.*
+.wrangler/

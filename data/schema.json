@@ -584,6 +584,61 @@
         "required": false,
         "help": "",
         "relation": null
+      },
+      {
+        "key": "community_enabled",
+        "label": "Allow visitor messages",
+        "type": "checkbox",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": true
+      },
+      {
+        "key": "community_endpoint",
+        "label": "Public response service HTTPS address",
+        "type": "url",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "Connect the included cloud service for GitHub Pages. Leave empty for the local/hosted PHP service.",
+        "default": ""
+      },
+      {
+        "key": "community_intro",
+        "label": "Visitor message introduction",
+        "type": "textarea",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": "Ask a research question, suggest a collaboration, or share feedback. Messages are reviewed before any public display. Do not include patient details or confidential research."
+      },
+      {
+        "key": "lab_timezone",
+        "label": "Laboratory time zone",
+        "type": "text",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": "Africa/Windhoek"
+      },
+      {
+        "key": "resources_heading",
+        "label": "Open science shelf heading",
+        "type": "text",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": "Your open-science toolkit"
       }
     ]
   },
@@ -2091,6 +2146,32 @@
         "relation": null,
         "public": false,
         "help": "Hiding preserves the saved value. Use Clear next to an optional field to remove its current value. Required identifiers and relationship fields remain protected."
+      },
+      {
+        "key": "lifecycle",
+        "label": "Notice lifecycle",
+        "type": "select",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [
+          "automatic",
+          "closed",
+          "cancelled"
+        ],
+        "help": "Automatic removes dated notices after their end date, or their start date for a one-day event. The archive is retained.",
+        "default": "automatic"
+      },
+      {
+        "key": "expires_on",
+        "label": "Explicit notice expiry date",
+        "type": "date",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "Optional. Overrides the normal event end date for homepage display.",
+        "default": ""
       }
     ]
   },
@@ -2578,6 +2659,17 @@
         "relation": null,
         "public": true,
         "help": ""
+      },
+      {
+        "key": "album_id",
+        "label": "Researcher / laboratory album",
+        "type": "relation",
+        "required": false,
+        "public": true,
+        "relation": "albums",
+        "options": [],
+        "help": "Choose an album with the same owner. A private album keeps all its files private.",
+        "default": ""
       }
     ]
   },
@@ -3195,7 +3287,11 @@
           "ivory",
           "forest",
           "arctic",
-          "heritage"
+          "heritage",
+          "biomedical",
+          "living-atlas",
+          "research-journal",
+          "studio-minimal"
         ],
         "relation": null,
         "public": true,
@@ -3942,6 +4038,81 @@
         "required": false,
         "help": "",
         "relation": null
+      },
+      {
+        "key": "v7_style",
+        "label": "V7 visual composition",
+        "type": "select",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [
+          "biomedical",
+          "journal",
+          "atlas",
+          "minimal"
+        ],
+        "help": "",
+        "default": "biomedical"
+      },
+      {
+        "key": "original_quote_library",
+        "label": "Include the V7 original science reflection library",
+        "type": "checkbox",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "Thirty-two original editorial reflections, not quotations attributed to scientists. Disable to use only your approved collection.",
+        "default": true
+      },
+      {
+        "key": "quote_topics",
+        "label": "Quotation/reflection topics",
+        "type": "lines",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "Leave empty for all topics.",
+        "default": []
+      },
+      {
+        "key": "quote_daily_shuffle",
+        "label": "Change the first quotation/reflection daily",
+        "type": "checkbox",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": true
+      },
+      {
+        "key": "gallery_layout",
+        "label": "Album presentation",
+        "type": "select",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [
+          "editorial",
+          "grid",
+          "compact"
+        ],
+        "help": "",
+        "default": "editorial"
+      },
+      {
+        "key": "show_resource_shelf",
+        "label": "Show the open-science resource shelf",
+        "type": "checkbox",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": true
       }
     ]
   },
@@ -5373,6 +5544,428 @@
         "required": false,
         "help": "",
         "relation": null
+      }
+    ]
+  },
+  "albums": {
+    "label": "Researcher gallery folders",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Album title",
+        "type": "text",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "scope",
+        "label": "Owner",
+        "type": "select",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [
+          "laboratory",
+          "researcher"
+        ],
+        "help": "",
+        "default": "laboratory"
+      },
+      {
+        "key": "researcher_id",
+        "label": "Researcher",
+        "type": "relation",
+        "required": false,
+        "public": true,
+        "relation": "people",
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "description",
+        "label": "Album description",
+        "type": "textarea",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": 0
+      }
+    ]
+  },
+  "writing_projects": {
+    "label": "Writing & Overleaf",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Working title",
+        "type": "text",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Lead author",
+        "type": "relation",
+        "required": true,
+        "public": true,
+        "relation": "people",
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "project_id",
+        "label": "Research project (optional)",
+        "type": "relation",
+        "required": false,
+        "public": true,
+        "relation": "projects",
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "stage",
+        "label": "Writing stage",
+        "type": "select",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [
+          "outline",
+          "drafting",
+          "internal-review",
+          "submitted",
+          "revisions",
+          "accepted"
+        ],
+        "help": "",
+        "default": "drafting"
+      },
+      {
+        "key": "main_tex",
+        "label": "LaTeX source · main.tex",
+        "type": "textarea",
+        "required": false,
+        "public": false,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "bibtex",
+        "label": "References · references.bib",
+        "type": "textarea",
+        "required": false,
+        "public": false,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "overleaf_url",
+        "label": "Existing Overleaf project link",
+        "type": "url",
+        "required": false,
+        "public": false,
+        "relation": null,
+        "options": [],
+        "help": "Private. This link is never exported to GitHub Pages.",
+        "default": ""
+      },
+      {
+        "key": "next_action",
+        "label": "Next writing action",
+        "type": "textarea",
+        "required": false,
+        "public": false,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "due_date",
+        "label": "Next target date",
+        "type": "date",
+        "required": false,
+        "public": false,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      }
+    ]
+  },
+  "bench_notes": {
+    "label": "Research bench notebook",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Entry title",
+        "type": "text",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "researcher_id",
+        "label": "Researcher",
+        "type": "relation",
+        "required": true,
+        "public": true,
+        "relation": "people",
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "method_id",
+        "label": "Methodology / work package",
+        "type": "relation",
+        "required": false,
+        "public": true,
+        "relation": "methods",
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "project_id",
+        "label": "Project (optional)",
+        "type": "relation",
+        "required": false,
+        "public": true,
+        "relation": "projects",
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "date",
+        "label": "Entry date",
+        "type": "date",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "question",
+        "label": "Research question or purpose",
+        "type": "textarea",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "observations",
+        "label": "Observations / evidence",
+        "type": "textarea",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "interpretation",
+        "label": "Interpretation and limitations",
+        "type": "textarea",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "next_action",
+        "label": "Next action",
+        "type": "textarea",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "checks",
+        "label": "Reproducibility checklist",
+        "type": "multi-choice",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [
+          "protocol-version-recorded",
+          "controls-documented",
+          "raw-data-linked",
+          "deviations-noted",
+          "units-checked",
+          "review-requested"
+        ],
+        "help": "",
+        "default": []
+      },
+      {
+        "key": "data_url",
+        "label": "Raw data / repository reference",
+        "type": "url",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "media_items",
+        "label": "Linked researcher media",
+        "type": "multi",
+        "required": false,
+        "public": true,
+        "relation": "media",
+        "options": [],
+        "help": "",
+        "default": []
+      },
+      {
+        "key": "internal_notes",
+        "label": "Private notes",
+        "type": "textarea",
+        "required": false,
+        "public": false,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      }
+    ]
+  },
+  "resources": {
+    "label": "Open science resources",
+    "title": "title",
+    "fields": [
+      {
+        "key": "title",
+        "label": "Resource title",
+        "type": "text",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "category",
+        "label": "Resource category",
+        "type": "select",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [
+          "literature",
+          "methods",
+          "writing",
+          "data",
+          "analysis",
+          "open-source"
+        ],
+        "help": "",
+        "default": "literature"
+      },
+      {
+        "key": "url",
+        "label": "Official resource URL",
+        "type": "url",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "description",
+        "label": "Short description",
+        "type": "textarea",
+        "required": true,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "license_note",
+        "label": "Reuse and access note",
+        "type": "textarea",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": ""
+      },
+      {
+        "key": "order",
+        "label": "Display order",
+        "type": "number",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": 0
+      },
+      {
+        "key": "homepage",
+        "label": "Show on resource shelf",
+        "type": "checkbox",
+        "required": false,
+        "public": true,
+        "relation": null,
+        "options": [],
+        "help": "",
+        "default": true
       }
     ]
   }

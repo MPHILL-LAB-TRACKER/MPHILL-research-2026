@@ -1,38 +1,41 @@
 # Setup
 
-## Requirements
+## Existing workspace
 
-Use PHP 8.3 or newer with PDO SQLite, Fileinfo, OpenSSL and Argon2 password support. PHP-GD is recommended for images. FFmpeg/FFprobe is required for videos and also provides an image-processing fallback. Git is required for publishing; GitHub CLI is used for Pages status and configuration.
+Use the [upgrade guide](UPGRADE-RECOVERY.md), not a new database. There is no required directory name. The installer must target the actual existing repository root, not its parent or the extracted upgrade folder.
 
-On Ubuntu, install the missing dependencies through your system package manager:
+## Local prerequisites
+
+On Ubuntu:
 
 ```bash
-sudo apt install php-cli php-sqlite3 php-gd php-mbstring ffmpeg git gh unzip
+sudo apt update
+sudo apt install -y php-cli php-sqlite3 php-gd php-mbstring ffmpeg git gh unzip
 ```
 
-This package does not require Composer or a JavaScript build service. No font files or third-party browser libraries are included. Optional native utilities are built with `bash bin/build-native.sh`; normal PDO SQLite installations do not need them.
+Check `php -v` (8.3+). Run `php bin/console.php check` inside the installed application to see runtime adapters. The optional native SQLite adapter is built with `bash bin/build-native.sh`; this requires g++, sqlite3 development headers and the documented C++ dependencies. Normal PDO SQLite installations do not need it.
 
-## Choose a directory
+For a fresh installation only, run `bash start.sh` in the application directory. Create an owner when prompted. Existing installations keep their login. There is no default production password.
 
-Extract or clone the application into any directory you control. Run `bash start.sh` from that application directory, not a parent directory. On first run choose an owner username and password. On later runs existing accounts and data remain intact.
+The default addresses are `http://127.0.0.1:8000/`, `/admin` and `/workspace`. Keep the terminal open. This binds to the same computer, not the internet. Public hosting needs HTTPS and a proper PHP-FPM/web-server deployment; see `deploy/`.
 
-The public local page is at `http://127.0.0.1:8000/`, administration at `/admin` and researcher access at `/workspace`. Leave the terminal running. Ctrl+C stops the server and local source-check worker.
+## GitHub publishing
 
-Private runtime data lives in `var/` unless `TED2_DB` specifies another path. Keep `.env`, databases, uploads, session data and backups out of public Git. The included ignore rules protect normal runtime paths but cannot undo files previously committed elsewhere.
-
-## Publishing identity
-
-In your terminal, as the same operating-system user running PHP:
+One-time terminal sign-in:
 
 ```bash
 gh auth login --hostname github.com --git-protocol https --web
 gh auth setup-git
 ```
 
-The public website publisher is configured for this laboratory's repository. Repository selection is deliberately not a free-form URL field in administration. Fork deployments must review `php/Publisher.php`, the reading-feed URL in `public/assets/experience.js`, `TED2_PUBLIC_URL` and the installer repository check together.
+Use an account with access to the laboratory repository. Source is committed to `main`; generated public files are pushed from administration to `gh-pages`. Configure Pages to use `gh-pages` and `/ (root)`. Review the actual Pages status, not just the push result. Never commit `var/`, `.env`, private uploads, backups or response-service keys.
 
-Adding the optional scheduled workflow may require permission to modify Actions workflows. For a GitHub CLI OAuth login that reports a missing `workflow` scope, use `gh auth refresh -h github.com -s workflow`. Fine-grained tokens or organisation policies may instead require repository administrator changes. Never put a token into the public code or paste it into a support conversation.
+A browser login authorizes publishing for its active session. The application does not collect your GitHub password. A source push containing `.github/workflows` may require additional workflow permission in your Git authentication.
 
-## Public PHP hosting
+## Optional public replies
 
-The local PHP development server is not a production web server. Review `deploy/` for PHP-FPM/Nginx and HTTPS guidance before hosting admin or anonymous submissions publicly. Separate public exports from private application storage. GitHub Pages does not execute PHP.
+Run `bash responses-service/setup.sh` once in the installed repository after reading its guide. This uses a separate Cloudflare account and is not required for normal editing, publishing or Overleaf ZIP export. Nobody receives submissions from the internet merely by downloading the ZIP.
+
+## Production privacy
+
+Use HTTPS, reliable backups, named accounts and least-privilege roles. Do not upload identifiable patient data. Audit hosting logs and institutional requirements before accepting public responses. The PHP development server is not an internet production deployment.

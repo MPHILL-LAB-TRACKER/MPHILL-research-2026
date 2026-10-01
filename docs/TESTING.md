@@ -1,50 +1,40 @@
-# V6.2 verification
+# V7 verification
 
-## Executed suites
+Verified in the build environment on 1 October 2026. No changes were made to the user's computer, GitHub branches, Cloudflare account or Overleaf projects.
 
-| Suite | Result | What was exercised |
+| Suite | Result | Scope |
 |---|---:|---|
-| PHP core, migration and Git | 36 checks passed | Existing accounts/password hashes, private/public projection, repeatable exports, real pushes to temporary local Git remotes, preserved branch/index, changed-preview rejection and publishing permissions. |
-| PHP HTTP application | 66 tests passed | V6/V6.1 regression cases plus photographic assets, appearance modes, approval/source validation, metadata deduplication, error status, cache invalidation, ETags, public projection, ownership and administrative rights. The tests execute a real PHP HTTP server. |
-| Chromium interface | 32 checks passed | Five navigation groups/search; shared appearance; photographic selection/save; source/quote/cache panels; portrait replacement; independent milestones; resource tracker; quote approval/rotation/tags; mobile navigation/overflow; reduced-motion; no uncaught JavaScript exceptions. |
-| Service Worker behavior | 25 checks passed | Public immutable-asset cache hit; bounded eviction; release invalidation; unrelated-cache preservation; disabled-cache behavior; bypass of HTML, admin/API/forms, PDFs, video and range requests; private/no-store rejection; oversized responses; blocked/quota-limited storage fallback. |
-| Cloud feed CLI policy | 10 checks passed | Disabled/review/local policies produce no cloud output; policy digest/interval checks; stale-item expiry; no fabricated successful-source timestamp; metadata-only output. These checks make no external requests. |
-| Original V6.1 upgrade and source commit | 39 checks passed | Original V6.1 package as the fixture; normal-user installer; path prompt with spaces; wrong target/root/custom source rejection; preserved account hash, biography, private fields, uploads, environment, Git history/branch/index, colour choices and homepage ordering; private starter quotes; backup permissions; safe resume of already-staged release files; repeatable migration. |
-| Syntax | Passed | All PHP files linted; browser scripts checked with Node; shell launch/upgrade/publishing scripts checked with Bash. |
-| Release | Verified at packaging | ZIP CRC and SHA-256 for every manifest file; no runtime database, uploaded private data, credentials, font files or compiled native executable shipped. |
+| PHP core/migration/Git | 36 checks passed | Existing permission, projection, ZIP/site integrity and actual Git operations against temporary local remotes. |
+| PHP HTTP application | 84 test cases passed | Preserved V6.2 regressions plus visitor challenge/replay, private receipts, moderation/consent, writing ZIP and export privacy, researcher scoping, album ownership, private/trashed album files, date expiry, public routes and valid exported links. |
+| Chromium interface | 45 checks passed | Real temporary PHP/database through an explicit in-memory HTTP/image bridge; owner login, themes, manuscript source/save/ZIP, Overleaf consent form, gallery folders, expiry, quotation changes, public/private visitor replies, mobile widths and no uncaught JavaScript exceptions. |
+| Worker + SQLite | 32 checks passed | Actual Worker handler using WebCrypto and Node's real SQLite with a small D1-compatible adapter. Auth, CORS, bounded body, consent, replay/limits, lookup, deletion and no public key leaks. Not Cloudflare deployment. |
+| Original V6.2 upgrade/commit | 39 checks passed | Copied original V6.2 ZIP, non-root installation, unchanged passwords, edited biography/private fields, uploads, Git history/index/staged work, protected source edits, backups, idempotent migration and allowlisted source commit. |
+| Response provisioning | 13 checks passed | Mocked Wrangler orchestration, cancellation, supported CLI syntax, idempotent database lookup, generated configuration and private persistent key. Does not contact a provider. |
+| Trusted LaTeX templates | 3 templates compiled | Packaged report, review and protocol outlines compiled with pdflatex and shell escape disabled, in a temporary developer test only. Not a user-source execution endpoint. |
 
-## Test environment and limits
+All PHP sources, shell entry scripts and active JavaScript entrypoints passed syntax checks. The final release manifest and ZIP CRC/paths are checked during packaging.
 
-PHP 8.4.23 used the compiled optional C++ SQLite adapter; FFmpeg/FFprobe performed image/video processing. PDO SQLite and GD were unavailable and were not executed. The delivered application retains those normal PHP extension paths.
+## Runtime used
 
-Chromium uses an explicitly declared fetch/image bridge to the real local PHP server. Direct browser navigation is blocked in this environment. Interface checks are not equivalent to a deployed browser/network test. Mobile checks are viewport simulations, not physical Android/iPhone certification.
+PHP 8.4.23 with the bundled source-built native SQLite adapter and FFmpeg/FFprobe. PDO SQLite and GD were unavailable here, so those alternate runtime paths remain unverified in this environment. Node 22.16 with `node:sqlite` was used for Worker contracts. Chromium ran through Playwright.
 
-Public source adapters were exercised with explicit bibliographic/blog fixtures. Live Europe PMC/PLOS retrieval and the GitHub-hosted scheduled workflow were not executed. The CLI checks validate policy handling and output boundaries; they do not claim to validate GitHub scheduling or remote credential permissions. Git pushes in the core suite used temporary local remotes only.
+Direct browser navigation was blocked by the execution environment (`ERR_BLOCKED_BY_ADMINISTRATOR`). Interface tests therefore bridge browser fetch/image requests to a real local PHP server using Python. They do not prove production navigation, physical Android/iPhone behavior, carrier connectivity, real GitHub/Cloudflare publishing, anti-abuse strength under attack, or a complete accessibility/security audit.
 
-Optional Wikimedia glassware/fern imports were not downloaded here. Four external photographic assets were sourced from installed, documented example-image distributions; the fifth is the existing owner-supplied laboratory photograph. The latter is not openly licensed. The rights registry makes that distinction.
+No live Overleaf transfer or provider-side compilation was performed. Its documented form payload and locally generated source/archive were tested. The new cloud response service is not deployed or connected. Live research-feed providers and scheduled GitHub Actions were not revalidated; these existing features are retained, not claimed as new live integrations.
 
-No real carrier/Wi-Fi comparison, production load benchmark, public PHP deployment, live GitHub push, Pages settings change or installation on the user's computer was performed. Caching cannot establish that the earlier mobile-data connection problem is fixed. Public HTML is deliberately not stored in the Service Worker cache; deleting an old downloaded file or Git history is outside cache invalidation.
+## Re-run
 
-Screenshot contents are temporary testing records, not the user's live database. Historical quote approval in screenshots is a test action; the six release seed records remain private until approved by an administrator.
-
-## Reproduce
-
-Use PHP 8.3+, Git, SQLite support, image/video support, and Node for the cache/script checks. HTTP/browser tests also require Python 3, requests, Playwright and Chromium. Python is a testing dependency, not the application runtime.
+From the installed source:
 
 ```bash
 php tests/test_core.php
-python3 tests/test_v62.py
-python3 tests/test_browser_v62.py
-node tests/test_cache_sw.mjs
-php tests/test_cloud_policy.php
+python3 tests/test_v7.py
+python3 tests/test_browser_v7.py
+node --experimental-sqlite tests/test_responses_worker.mjs
+python3 tests/test_service_setup.py
+python3 tests/test_writing_templates.py
 ```
 
-The build used `bash bin/build-native.sh` and the native test driver. Use `TED2_TEST_DRIVER=pdo` where PDO SQLite is installed; set `CHROMIUM_PATH` only if Chromium is not discoverable.
+Browser tests need Python Playwright, requests and Chromium. Template smoke tests need pdflatex; the normal application does not. Set `TED2_TEST_DRIVER` or the documented PHP SQLite adapter settings for your environment. The original-release installer test additionally requires `TED2_V62_FIXTURE` pointing to an extracted, unchanged V6.2 package, then `python3 tests/test_installer_v7.py`.
 
-For the original-release upgrade test, extract the V6.1 archive separately and set `TED2_V61_FIXTURE` to that extracted application directory. Then run:
-
-```bash
-python3 tests/test_installer_v62.py
-```
-
-The upgrade test requires the complete current release manifest and uses a temporary repository. It runs as a non-root user (nobody when invoked as root in a suitable test container). The old archive is needed only for this explicit release-migration test, not ordinary application operation or unit tests. Previous test files are retained as historical contracts; V6.2 overrides intentional differences such as photographic rather than line-art output.
+Older version-specific test files remain as inherited regression contracts. Run the V7 suite, rather than assuming every older release-number assertion should still apply unchanged.

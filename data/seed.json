@@ -61,7 +61,12 @@
       "pulse_lookback": 45,
       "pulse_refresh_hours": 6,
       "pulse_heading": "Research in focus",
-      "quotes_heading": "A moment of scientific perspective"
+      "quotes_heading": "A moment of scientific perspective",
+      "community_enabled": true,
+      "community_endpoint": "",
+      "community_intro": "Ask a research question, suggest a collaboration, or share feedback. Messages are reviewed before any public display. Do not include patient details or confidential research.",
+      "lab_timezone": "Africa/Windhoek",
+      "resources_heading": "Your open-science toolkit"
     }
   ],
   "capabilities": [
@@ -1333,7 +1338,9 @@
       "visibility": "public",
       "internal_notes": "",
       "media_items": [],
-      "hidden_fields": []
+      "hidden_fields": [],
+      "lifecycle": "automatic",
+      "expires_on": ""
     },
     {
       "id": "shatri-ncrst-2026",
@@ -1356,7 +1363,9 @@
       "visibility": "public",
       "internal_notes": "Owner supplied the Instagram reference https://www.instagram.com/p/DX6N7sdDfxk/. The post could not be fetched; no caption or change of date was inferred. Public links go to NCRST, not Instagram.",
       "media_items": [],
-      "hidden_fields": []
+      "hidden_fields": [],
+      "lifecycle": "automatic",
+      "expires_on": ""
     },
     {
       "id": "simasiku-ncrst-2026",
@@ -1379,7 +1388,9 @@
       "visibility": "public",
       "internal_notes": "",
       "media_items": [],
-      "hidden_fields": []
+      "hidden_fields": [],
+      "lifecycle": "automatic",
+      "expires_on": ""
     },
     {
       "id": "nanomedicine-in-health-seminars",
@@ -1400,7 +1411,9 @@
       "visibility": "public",
       "internal_notes": "",
       "media_items": [],
-      "hidden_fields": []
+      "hidden_fields": [],
+      "lifecycle": "automatic",
+      "expires_on": ""
     }
   ],
   "achievements": [
@@ -1517,7 +1530,13 @@
       "pulse_max": 6,
       "public_asset_cache": true,
       "public_cache_entries": 60,
-      "render_cache_seconds": 120
+      "render_cache_seconds": 120,
+      "v7_style": "biomedical",
+      "original_quote_library": true,
+      "quote_topics": [],
+      "quote_daily_shuffle": true,
+      "gallery_layout": "editorial",
+      "show_resource_shelf": true
     }
   ],
   "contacts": [],
@@ -1721,7 +1740,623 @@
       "internal_notes": "",
       "id": "collaborate",
       "visibility": "private"
+    },
+    {
+      "id": "v7-reflection-01",
+      "quote": "A careful question is already a useful contribution to the experiment.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "ScientificCuriosity",
+        "Methods"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-02",
+      "quote": "Let the controls challenge the story before the story leaves the laboratory.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Reproducibility",
+        "BiomedicalScience"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-03",
+      "quote": "A clear notebook is a conversation with the researcher who comes next.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "OpenScience",
+        "LabNotebook"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-04",
+      "quote": "Progress can be a better measurement, not only a bigger result.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Measurement",
+        "Research"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-05",
+      "quote": "When an observation surprises you, preserve the evidence before explaining it.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "ScientificCuriosity",
+        "Evidence"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-06",
+      "quote": "The most helpful figure makes the limits of the data visible.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "DataVisualization",
+        "Integrity"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-07",
+      "quote": "A method becomes stronger when another person can understand its choices.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Methods",
+        "OpenScience"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-08",
+      "quote": "A negative result deserves the same careful record as a promising one.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "ResearchIntegrity",
+        "Reproducibility"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-09",
+      "quote": "Keep the question ambitious and the claim proportional to the evidence.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "ScientificCuriosity",
+        "Evidence"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-10",
+      "quote": "Precision begins with naming what was measured and how.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Measurement",
+        "BiomedicalScience"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-11",
+      "quote": "Before changing the protocol, write down the reason for the change.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Methods",
+        "LabNotebook"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-12",
+      "quote": "An unexpected result is an invitation to check, not a licence to assume.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Evidence",
+        "CriticalThinking"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-13",
+      "quote": "Good collaboration makes uncertainty easier to discuss.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Collaboration",
+        "OpenScience"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-14",
+      "quote": "Make room in the notebook for what did not fit the hypothesis.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "LabNotebook",
+        "Integrity"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-15",
+      "quote": "A reproducible workflow is a gift to your future self.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Reproducibility",
+        "Methods"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-16",
+      "quote": "The purpose of a reference is to let someone follow the evidence.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Writing",
+        "OpenScience"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-17",
+      "quote": "Explain the comparison before celebrating the difference.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Statistics",
+        "Evidence"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-18",
+      "quote": "A well-labelled sample carries part of the method with it.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "LaboratoryPractice",
+        "Methods"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-19",
+      "quote": "Let curiosity open the question and discipline shape the answer.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "ScientificCuriosity",
+        "Research"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-20",
+      "quote": "Do not let an elegant explanation outrun a careful observation.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Evidence",
+        "CriticalThinking"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-21",
+      "quote": "Every revision can make the science easier to question and understand.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Writing",
+        "Collaboration"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-22",
+      "quote": "Record the conditions that made the result possible.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Methods",
+        "Reproducibility"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-23",
+      "quote": "A useful discussion separates what is known from what needs testing.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Writing",
+        "Evidence"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-24",
+      "quote": "The next small, well-chosen step often matters more than a crowded plan.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Research",
+        "Motivation"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-25",
+      "quote": "Ask what another explanation would predict before dismissing it.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "CriticalThinking",
+        "Methods"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-26",
+      "quote": "Make the uncertainty readable; it is part of the result.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Statistics",
+        "Integrity"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-27",
+      "quote": "Research gains value when its reasoning can be followed.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "OpenScience",
+        "Evidence"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-28",
+      "quote": "Protect the people behind the samples as carefully as the samples themselves.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Ethics",
+        "BiomedicalScience"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-29",
+      "quote": "A thoughtful pause to check the details is still scientific progress.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Research",
+        "Motivation"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-30",
+      "quote": "Write the limitation while you still remember why it matters.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Writing",
+        "LabNotebook"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-31",
+      "quote": "A strong laboratory culture leaves room for honest questions.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "Collaboration",
+        "Integrity"
+      ],
+      "visibility": "public"
+    },
+    {
+      "id": "v7-reflection-32",
+      "quote": "The path from observation to understanding is built one documented decision at a time.",
+      "author": "Original science reflection",
+      "source_label": "V7 editorial collection · not a historical quotation",
+      "source_url": "",
+      "attribution_type": "original",
+      "license": "CC0-1.0",
+      "approved": true,
+      "homepage": true,
+      "tags": [
+        "BiomedicalScience",
+        "Methods"
+      ],
+      "visibility": "public"
     }
   ],
-  "science_news": []
+  "science_news": [],
+  "resources": [
+    {
+      "id": "europe-pmc",
+      "visibility": "public",
+      "title": "Europe PMC",
+      "category": "literature",
+      "url": "https://europepmc.org/",
+      "description": "Explore life-science literature and source-linked research records.",
+      "license_note": "Metadata access and full-text availability vary; check each article licence.",
+      "order": 0,
+      "homepage": true
+    },
+    {
+      "id": "pubmed",
+      "visibility": "public",
+      "title": "PubMed",
+      "category": "literature",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "description": "Find biomedical literature and follow records to the original publication.",
+      "license_note": "A bibliographic record is not permission to redistribute an article.",
+      "order": 1,
+      "homepage": true
+    },
+    {
+      "id": "elabftw",
+      "visibility": "public",
+      "title": "eLabFTW",
+      "category": "open-source",
+      "url": "https://github.com/elabftw/elabftw",
+      "description": "Open-source electronic laboratory notebook for experiments and inventory.",
+      "license_note": "External application, not embedded or bundled. See its repository licence.",
+      "order": 2,
+      "homepage": true
+    },
+    {
+      "id": "scinote",
+      "visibility": "public",
+      "title": "SciNote",
+      "category": "open-source",
+      "url": "https://github.com/scinote-eln/scinote-web",
+      "description": "Explore an electronic laboratory notebook organised around research work.",
+      "license_note": "External application. See its repository and third-party licences.",
+      "order": 3,
+      "homepage": true
+    },
+    {
+      "id": "overleaf",
+      "visibility": "public",
+      "title": "Overleaf",
+      "category": "writing",
+      "url": "https://www.overleaf.com/",
+      "description": "Collaborative LaTeX writing and PDF compilation.",
+      "license_note": "Hosted service with its own terms. The tracker sends work only after your confirmation.",
+      "order": 4,
+      "homepage": true
+    },
+    {
+      "id": "zenodo",
+      "visibility": "public",
+      "title": "Zenodo",
+      "category": "data",
+      "url": "https://zenodo.org/",
+      "description": "Discover or deposit research outputs with persistent identifiers.",
+      "license_note": "Check record-specific licences and repository terms.",
+      "order": 5,
+      "homepage": true
+    },
+    {
+      "id": "imagej",
+      "visibility": "public",
+      "title": "Fiji / ImageJ",
+      "category": "analysis",
+      "url": "https://imagej.net/software/fiji/",
+      "description": "Open-source image-analysis tools for scientific imaging workflows.",
+      "license_note": "External software. Verify plugins, suitability and applicable licences.",
+      "order": 6,
+      "homepage": true
+    },
+    {
+      "id": "bioconductor",
+      "visibility": "public",
+      "title": "Bioconductor",
+      "category": "analysis",
+      "url": "https://www.bioconductor.org/",
+      "description": "Open-source software resources for biological data analysis.",
+      "license_note": "Package licences and validation requirements differ.",
+      "order": 7,
+      "homepage": true
+    },
+    {
+      "id": "equator",
+      "visibility": "public",
+      "title": "EQUATOR Network",
+      "category": "methods",
+      "url": "https://www.equator-network.org/",
+      "description": "Find reporting guidelines relevant to the type of biomedical study.",
+      "license_note": "External guidance. Consult the relevant original guideline and its terms.",
+      "order": 8,
+      "homepage": true
+    }
+  ],
+  "albums": [],
+  "writing_projects": [],
+  "bench_notes": []
 }
