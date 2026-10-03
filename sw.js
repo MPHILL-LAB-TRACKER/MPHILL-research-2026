@@ -1,4 +1,4 @@
-const C={"prefix":"/MPHILL-research-2026/","namespace":"ted2-public-b147d8a1feab-","cache":"ted2-public-b147d8a1feab-d86a89076212215dd3a2","enabled":true,"limit":60};
+const C={"prefix":"/MPHILL-research-2026/","namespace":"ted2-public-b147d8a1feab-","cache":"ted2-public-b147d8a1feab-65b955aceb46203428c3","enabled":true,"limit":60};
 /* Only versioned public images/CSS/JS are cached. HTML, API, admin, forms and media documents never enter CacheStorage. */
 self.addEventListener('install', event => { self.skipWaiting(); });
 self.addEventListener('activate', event => event.waitUntil((async () => {
@@ -11,7 +11,7 @@ function allowed(request) {
   if (url.origin !== self.location.origin || !url.pathname.startsWith(C.prefix)) return false;
   const path = url.pathname.slice(C.prefix.length);
   return /^public-media\/[a-f0-9]{64}\.(jpg|png|webp)$/.test(path) ||
-    (/^assets\/(site\.css|site\.js|experience\.js)$/.test(path) && /^[a-f0-9]{16}$/.test(url.searchParams.get('v') || ''));
+    (/^assets\/(site\.css|site\.js|experience\.js|v7\.css|v7\.js)$/.test(path) && /^[a-f0-9]{16}$/.test(url.searchParams.get('v') || ''));
 }
 self.addEventListener('fetch', event => {
   if (!allowed(event.request)) return;
