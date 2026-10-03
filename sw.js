@@ -1,4 +1,4 @@
-const C={"prefix":"/MPHILL-research-2026/","namespace":"ted2-public-b147d8a1feab-","cache":"ted2-public-b147d8a1feab-65b955aceb46203428c3","enabled":true,"limit":60};
+const C={"prefix":"/MPHILL-research-2026/","namespace":"ted2-public-b147d8a1feab-","cache":"ted2-public-b147d8a1feab-d1c9915faac7301645b9","enabled":true,"limit":60};
 /* Only versioned public images/CSS/JS are cached. HTML, API, admin, forms and media documents never enter CacheStorage. */
 self.addEventListener('install', event => { self.skipWaiting(); });
 self.addEventListener('activate', event => event.waitUntil((async () => {
